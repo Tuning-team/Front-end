@@ -28,12 +28,10 @@ const LoginSignupWrap = () => {
   const onLogoutSuccess = () => {
     console.log("success log out");
   };
-
+  const onClickHandler = () => {};
   return (
     <>
-      {/* <GoogleLoginButton onClick={() => alert("Hello")} /> */}
-      <Input />
-      <button>로그인하기</button>
+      <GoogleLoginButton onClick={onClickHandler} />
       <GoogleLogin
         clientId={clientId}
         responseType={"id_token"}
