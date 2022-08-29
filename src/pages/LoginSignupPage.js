@@ -1,7 +1,9 @@
+import LoginSignupWrap from "../components/loginSignup/LoginSignupWrap";
+
 const LoginSignupPage = () => {
   return (
     <>
-      <div>로그인페이지</div>
+      <LoginSignupWrap />
     </>
   );
 };
