@@ -2,6 +2,7 @@ import React from "react";
 import { Input } from "../../elements/Input";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import GoogleLogin from "react-google-login";
+import axios from "axios";
 
 const LoginSignupWrap = () => {
   const clientId = "OAuth Web Client ID";
@@ -28,7 +29,9 @@ const LoginSignupWrap = () => {
   const onLogoutSuccess = () => {
     console.log("success log out");
   };
-  const onClickHandler = () => {};
+  const onClickHandler = () => {
+    axios.get("");
+  };
   return (
     <>
       <GoogleLoginButton onClick={onClickHandler} />
