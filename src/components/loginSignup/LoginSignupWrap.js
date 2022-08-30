@@ -1,46 +1,21 @@
 import React from "react";
 import { Input } from "../../elements/Input";
 import { GoogleLoginButton } from "react-social-login-buttons";
-import GoogleLogin from "react-google-login";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginSignupWrap = () => {
-  const clientId = "OAuth Web Client ID";
-  //!구글로그인 함수
-  const onSuccess = async (response) => {
-    console.log(response);
-    const {
-      googleId,
-      profileObj: { email, name },
-    } = response;
-    // await onSocial({
-    //   socialId: googleId,
-    //   socialType: "google",
-    //   email,
-    //   nickname: name,
-    // });
-    console.log(response);
-  };
-  //에러처리
-  const onFailure = (error) => {
-    console.log(error);
-  };
+  const nav = useNavigate();
 
-  const onLogoutSuccess = () => {
-    console.log("success log out");
-  };
-  const onClickHandler = () => {
-    axios.get("");
-  };
+  //!구글로그인 함수
+
   return (
     <>
-      <GoogleLoginButton onClick={onClickHandler} />
-      <GoogleLogin
-        clientId={clientId}
-        responseType={"id_token"}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-      />
+      <a href="https://accounts.google.com/signin/oauth/error?authError=Cg9pbnZhbGlkX3JlcXVlc3QSLFJlcXVpcmVkIHBhcmFtZXRlciBpcyBtaXNzaW5nOiByZXNwb25zZV90eXBlGjdodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pZGVudGl0eS9wcm90b2NvbHMvb2F1dGgyIJAD&client_id=603162325798-hb44n9gjugoc6aoinmb0964ovrqi8uqe.apps.googleusercontent.com">
+        {" "}
+        요청
+      </a>
+      {/* <GoogleLoginButton onClick={()=>nav("https://accounts.google.com/signin/oauth/error?authError=Cg9pbnZhbGlkX3JlcXVlc3QSLFJlcXVpcmVkIHBhcmFtZXRlciBpcyBtaXNzaW5nOiByZXNwb25zZV90eXBlGjdodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pZGVudGl0eS9wcm90b2NvbHMvb2F1dGgyIJAD&client_id=603162325798-hb44n9gjugoc6aoinmb0964ovrqi8uqe.apps.googleusercontent.com"} /> */}
     </>
   );
 };
