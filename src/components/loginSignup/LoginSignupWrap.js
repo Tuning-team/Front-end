@@ -1,21 +1,21 @@
 import React from "react";
-import { Input } from "../../elements/Input";
 import { GoogleLoginButton } from "react-social-login-buttons";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const LoginSignupWrap = () => {
-  const nav = useNavigate();
-
-  //!구글로그인 함수
+  const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
+  // console.log(setCookie);
 
   return (
     <>
-      <a href="https://accounts.google.com/signin/oauth/error?authError=Cg9pbnZhbGlkX3JlcXVlc3QSLFJlcXVpcmVkIHBhcmFtZXRlciBpcyBtaXNzaW5nOiByZXNwb25zZV90eXBlGjdodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pZGVudGl0eS9wcm90b2NvbHMvb2F1dGgyIJAD&client_id=603162325798-hb44n9gjugoc6aoinmb0964ovrqi8uqe.apps.googleusercontent.com">
-        {" "}
-        요청
-      </a>
-      {/* <GoogleLoginButton onClick={()=>nav("https://accounts.google.com/signin/oauth/error?authError=Cg9pbnZhbGlkX3JlcXVlc3QSLFJlcXVpcmVkIHBhcmFtZXRlciBpcyBtaXNzaW5nOiByZXNwb25zZV90eXBlGjdodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pZGVudGl0eS9wcm90b2NvbHMvb2F1dGgyIJAD&client_id=603162325798-hb44n9gjugoc6aoinmb0964ovrqi8uqe.apps.googleusercontent.com"} /> */}
+      //!nav바와 헤더부분을 넣을건지 말건지
+      <h2>Welcome to Tuning</h2>
+      <GoogleLoginButton
+        onClick={() => {
+          window.location.href =
+            "https://accounts.google.com/o/oauth2/auth?client_id=603162325798-hb44n9gjugoc6aoinmb0964ovrqi8uqe.apps.googleusercontent.com&redirect_uri=https://www.myspaceti.me/api/google_callback&scope=https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email&response_type=code&access_type=offline";
+        }}
+      ></GoogleLoginButton>
     </>
   );
 };
