@@ -1,46 +1,20 @@
-// import React from "react";
-// import { Input } from "../../elements/Input";
-// import { GoogleLoginButton } from "react-social-login-buttons";
-// import GoogleLogin from "react-google-login";
+import React from "react";
+import { GoogleLoginButton } from "react-social-login-buttons";
+import { useCookies } from "react-cookie";
 
-// const LoginSignupWrap = () => {
-//   const clientId = "OAuth Web Client ID";
-//   //!구글로그인 함수
-//   const onSuccess = async (response) => {
-//     console.log(response);
-//     const {
-//       googleId,
-//       profileObj: { email, name },
-//     } = response;
-//     // await onSocial({
-//     //   socialId: googleId,
-//     //   socialType: "google",
-//     //   email,
-//     //   nickname: name,
-//     // });
-//     console.log(response);
-//   };
-//   //에러처리
-//   const onFailure = (error) => {
-//     console.log(error);
-//   };
+const LoginSignupWrap = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
 
-//   const onLogoutSuccess = () => {
-//     console.log("success log out");
-//   };
-
-//   return (
-//     <>
-//       {/* <GoogleLoginButton onClick={() => alert("Hello")} /> */}
-//       <Input />
-//       <button>로그인하기</button>
-//       <GoogleLogin
-//         clientId={clientId}
-//         responseType={"id_token"}
-//         onSuccess={onSuccess}
-//         onFailure={onFailure}
-//       />
-//     </>
-//   );
-// };
-// export default LoginSignupWrap;
+  return (
+    <>
+      <h2>Welcome to Tuning</h2>
+      <GoogleLoginButton
+        onClick={() => {
+          window.location.href =
+            "https://accounts.google.com/o/oauth2/auth?client_id=603162325798-hb44n9gjugoc6aoinmb0964ovrqi8uqe.apps.googleusercontent.com&redirect_uri=https://www.myspaceti.me/api/google_callback&scope=https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email&response_type=code&access_type=offline";
+        }}
+      ></GoogleLoginButton>
+    </>
+  );
+};
+export default LoginSignupWrap;
