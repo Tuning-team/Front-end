@@ -15,6 +15,7 @@
     "react-slick": "^0.29.0",
     "react-social-login-buttons": "^3.6.1",
     "router-dom": "^2.2.9",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.5.4",
