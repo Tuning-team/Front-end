@@ -4,11 +4,9 @@ import { useCookies } from "react-cookie";
 
 const LoginSignupWrap = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
-  // console.log(setCookie);
 
   return (
     <>
-      //!nav바와 헤더부분을 넣을건지 말건지
       <h2>Welcome to Tuning</h2>
       <GoogleLoginButton
         onClick={() => {
