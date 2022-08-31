@@ -17,16 +17,18 @@ const CollectionList = ({ state }) => {
     slidesToScroll: 1,
     arrows: false,
   };
-  useEffect(() => {
-    setData([...state]);
-  }, []);
+  // useEffect(() => {
+  //   if (data === null) {
+  //     setData([...state]);
+  //   }
+  // }, []);
   //!렌더링 총두번
   //todo 백그라운드 이미지로 바꿔주기
   //todo 데이터 연결후 해야할것 : pending상태 처리하기, 데이터 안들어올때 어떻게 할건지 useeffect, usecallback,
   return (
     <>
       <ListWrap>
-        {data?.map((data, idx) => {
+        {state?.map((data, idx) => {
           return (
             <Collection key={idx}>
               <SlideWrap>
