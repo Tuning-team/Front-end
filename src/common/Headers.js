@@ -6,7 +6,7 @@ const Headers = () => {
   const nav = useNavigate();
   return (
     <Header>
-      <div>Tunning</div>
+      <div>Tuning</div>
       <button onClick={() => nav("/login")}>로그인</button>
     </Header>
   );
