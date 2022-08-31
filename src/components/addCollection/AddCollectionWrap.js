@@ -1,16 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-
 import AddCollectionForm from "./AddCollectionForm";
+import AddVideo from "./AddVideo";
 
 const AddCollectionWrap = () => {
   return (
     <>
-      <Title>컬렉션 만들기</Title>
       <AddCollectionForm />
+      <AddVideo />
     </>
   );
 };
 export default AddCollectionWrap;
-
-const Title = styled.h1``;

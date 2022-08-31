@@ -1,12 +1,11 @@
+import React from "react";
 import styled from "styled-components";
 
-export const StBtn = styled.button`
-
-
+const Button = styled.button`
   cursor: pointer;
-
   &:hover {
     color: ${(props) => props.hoverColor};
     background-color: ${(props) => props.hoverBackgroundColor};
   }
 `;
+export default Button;

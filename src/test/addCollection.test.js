@@ -1,8 +1,37 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import AddCollectionForm from "../components/addCollection/AddCollectionForm";
 
-test("input2개, textarea, button이 있는지 확인  ", () => {
-  render(<Awesome initialvalue={7}></Awesome>);
-  const count = screen.queryByText(7);
-  expect(count).toBeVisible();
+test("input2개, textarea, button2가 있는지 확인  ", () => {
+  render(<AddCollectionForm />);
+  expect(screen.getByPlaceholderText("컬랙션 제목을 입력하세요")).toBeVisible();
+  expect(screen.getByPlaceholderText("컬랙션 설명을 넣어주세요")).toBeVisible();
+  expect(screen.getByRole("button", { name: "추가하기" })).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "취소하기" })).toBeInTheDocument();
+  //   expect(screen.getByRole("form")).toBe();
+});
+
+test("모든 인풋이 필수인지 확인", () => {
+  render(<AddCollectionForm />);
+  expect(
+    screen.getByPlaceholderText("컬랙션 제목을 입력하세요")
+  ).toBeRequired();
+  expect(
+    screen.getByPlaceholderText("컬랙션 설명을 넣어주세요")
+  ).toBeRequired();
+  //   expect(screen.getByRole("form")).toBe();
+});
+
+test("인풋이 공백일때 버튼은 disabled true, 모두 채워지면 disabled false", () => {
+  render(<AddCollectionForm />);
+  expect(screen.getByRole("button", { name: "추가하기" })).toBeDisabled();
+  const setup = () => {
+    const input = screen.getByPlaceholderText("컬랙션 제목을 입력하세요");
+    return {
+      input,
+    };
+  };
+  const { input } = setup();
+  userEvent.change(input, { target: { value: "컬렉션제목" } });
+  expect(input.value).toBe("컬렉션제목");
 });
