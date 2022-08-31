@@ -1,7 +1,15 @@
+import React from "react";
+
+import Headers from "../common/Headers";
+import SearchWrap from "../components/search/SearchWrap";
+import Navbar from "../common/Navbar";
+
 const Search = () => {
   return (
     <>
-      <div>검색페이지</div>
+      <Headers />
+      <SearchWrap />
+      <Navbar />
     </>
   );
 };
