@@ -5,38 +5,36 @@ import VideoList from "./VideoList";
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const UserCollections = () => {
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 2.5,
-    slidesToScroll: 1,
-    arrows: false,
-  };
 
+import CollectionSlide from "../../elements/CollectionSlide";
+
+const UserCollections = () => {
   const temp = [
-    { title: "하나" },
-    { title: "둘" },
-    { title: "셋" },
-    { title: "넷" },
-    { title: "다서엇" },
+    { id: 0, title: "하나", img: "https://via.placeholder.com/150x150" },
+    { id: 1, title: "둘", img: "https://via.placeholder.com/150x150" },
+    { id: 2, title: "셋", img: "https://via.placeholder.com/150x150" },
+    { id: 3, title: "넷", img: "https://via.placeholder.com/150x150" },
+    { id: 4, title: "다서엇", img: "https://via.placeholder.com/150x150" },
   ];
   return (
     <section>
       <H1>제주도가 가고 싶을 때🍊</H1>
-      <CollectionWrapper>
-        <Slider {...settings}>
-          {temp?.map((video, idx) => {
-            if (idx < 3) {
-              return <VideoList key={idx} title={video.title} />;
-            } else if (idx === 3) {
-              return <VideoList key={idx}>더보기</VideoList>;
-            }
-            return null;
-          })}
-        </Slider>
-      </CollectionWrapper>
+      <CollectionSlide>
+        {temp?.map((data, idx) => {
+          if (idx < 3) {
+            return (
+              <VideoList key={data.id} title={data.title} img={data.img} />
+            );
+          } else if (idx === 3) {
+            return (
+              <VideoList key={data.id} img={data.img}>
+                더보기
+              </VideoList>
+            );
+          }
+          return null;
+        })}
+      </CollectionSlide>
     </section>
   );
 };
@@ -45,10 +43,4 @@ const H1 = styled.h1`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 10px 0;
-`;
-const CollectionWrapper = styled.div`
-  position: relative;
-  border: 1px solid black;
-  margin: 0 auto;
-  overflow-x: hidden;
 `;
