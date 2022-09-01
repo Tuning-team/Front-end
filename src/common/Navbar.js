@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CategoryModal from "./CategoryModal";
 import styled from "styled-components";
 
 const Navbar = () => {
   const nav = useNavigate();
+
+  const [isCategoryShown, setIsCategoryShown] = useState(false);
+
   return (
-    <Nav>
-      <div>카테고리</div>
-      <div>검색</div>
-      <div onClick={() => nav("/")}>메인</div>
-      <div>내컬렉션</div>
-    </Nav>
+    <>
+      {isCategoryShown && (
+        <CategoryModal setIsCategoryShown={setIsCategoryShown} />
+      )}
+      <Nav>
+        <div onClick={() => setIsCategoryShown(!isCategoryShown)}>카테고리</div>
+        <div onClick={() => nav("/search")}>검색</div>
+        <div onClick={() => nav("/")}>메인</div>
+        <div onClick={() => nav("/mypage")}>내컬렉션</div>
+      </Nav>
+    </>
   );
 };
 
@@ -23,6 +32,8 @@ const Nav = styled.nav`
   left: 0;
   right: 0;
 
+  z-index: 100;
+
   box-sizing: border-box;
 
   display: flex;
@@ -30,12 +41,16 @@ const Nav = styled.nav`
   align-items: center;
 
   border: 1px solid black;
-  height: 2rem;
+  height: 3rem;
 
-  padding: 10px;
+  background-color: white;
 
   /* 나중에 지울 코드 */
   & div {
-    background-color: pink;
+    border: 1px solid red;
+    display: block;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
   }
 `;
