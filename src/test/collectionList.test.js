@@ -13,7 +13,6 @@ import CollectionList from "../common/CollectionList";
 describe("<CollectionList />", () => {
   it("잘되나", () => {
     const { getByText } = render(<CollectionList />);
-    getByText("내 컬랙션");
     getByText("웃긴영상 모음집");
     getByText("좋아요 5");
     getByText("댓글 21"); // button이 있는지 확인

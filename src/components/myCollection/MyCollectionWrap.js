@@ -3,45 +3,6 @@ import styled from "styled-components";
 import CollectionList from "../../common/CollectionList";
 
 const MyCollectionWrap = () => {
-  const mockData = [
-    {
-      collectionTitle: "우울할때 보는영상",
-      id: 0,
-      likes: 3,
-      comments: 23,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-    {
-      collectionTitle: "배고플때 보는영상",
-      id: 1,
-      likes: 3,
-      comments: 23,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-    {
-      collectionTitle: "웃긴영상 모음집",
-      id: 2,
-      likes: 5,
-      comments: 21,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-  ];
-
   return (
     <div>
       <TitleWrap>
