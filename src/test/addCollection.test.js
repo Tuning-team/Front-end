@@ -9,7 +9,6 @@ test("input2개, textarea, button2가 있는지 확인  ", () => {
   expect(screen.getByPlaceholderText("컬랙션 설명을 넣어주세요")).toBeVisible();
   expect(screen.getByRole("button", { name: "추가하기" })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: "취소하기" })).toBeInTheDocument();
-  //   expect(screen.getByRole("form")).toBe();
 });
 
 test("모든 인풋이 필수인지 확인", () => {
@@ -20,7 +19,6 @@ test("모든 인풋이 필수인지 확인", () => {
   expect(
     screen.getByPlaceholderText("컬랙션 설명을 넣어주세요")
   ).toBeRequired();
-  //   expect(screen.getByRole("form")).toBe();
 });
 
 test("인풋이 공백일때 버튼은 disabled true, 모두 채워지면 disabled false", () => {

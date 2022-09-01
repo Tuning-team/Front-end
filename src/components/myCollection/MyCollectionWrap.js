@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CollectionList from "../../common/CollectionList";
 import Button from "../../elements/Button";
 
 const MyCollectionWrap = () => {
+  const nav = useNavigate();
   const mockData = [
     {
       collectionTitle: "우울할때 보는영상",
@@ -49,7 +51,13 @@ const MyCollectionWrap = () => {
         {" "}
         <Title>내 컬랙션</Title>
         {/* //todo 버튼은 로그인 아이디가 일치할때만 보이도록 */}
-        <Button>추가하기</Button>
+        <Button
+          onClick={() => {
+            nav("/mypage/add");
+          }}
+        >
+          추가하기
+        </Button>
       </TitleWrap>
       <CollectionList state={mockData} />
     </div>

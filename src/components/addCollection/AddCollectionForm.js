@@ -7,18 +7,18 @@ import icon_addvideo from "../../svg/icon_addvideo.svg";
 import { useNavigate } from "react-router-dom";
 
 const AddCollectionForm = () => {
-  const [disabled, setDisabled] = useState(true);
   //todo 검색하기를 하면 비디오이미지가 배열에 추가가 된다.
   const [addVideo, setAddVideo] = useState(null);
-  const [{ title, description }, onChange, reset] = useInputs({
+  const [{ title, description, category }, onChange, reset] = useInputs({
     title: "",
     description: "",
+    category: "0",
   });
   const nav = useNavigate();
   const onSubmitHandler = (e) => {
     e.preventDefault();
   };
-  const category = [
+  const categoryList = [
     "여행",
     "일상",
     "엔터테이먼트/방송",
@@ -38,22 +38,34 @@ const AddCollectionForm = () => {
     "기타",
   ];
   const onClickHandler = () => {
-    nav("/mypage/add/search");
+    //공백이 있으면 리턴
+    if (
+      title === "" ||
+      description === "" ||
+      addVideo === null ||
+      category === "0"
+    ) {
+      alert("모두 입력해주세요");
+      return;
+    } else {
+      console.log("전송");
+    }
   };
   //todo required 효과넣기
   //todo 버튼 disabled효과 주기
-  // if (title === "" || description === "" || addVideo === null) {
-  //   setDisabled(true);
-  // } else {
-  //   setDisabled(false);
-  // }
 
   return (
     <>
+      <Title>컬렉션 만들기</Title>
+      <Button
+        onClick={() => {
+          nav(-1);
+        }}
+      >
+        취소하기
+      </Button>
       <Form onSubmit={onSubmitHandler}>
-        <Title>컬렉션 만들기</Title>
-        <Button>취소하기</Button>
-        <Button disabled={disabled}>추가하기</Button>
+        <Button onClick={onClickHandler}>추가하기</Button>
         <Input
           placeholder="컬랙션 제목을 입력하세요"
           data-testid="title-input"
@@ -70,9 +82,9 @@ const AddCollectionForm = () => {
           value={description}
           required
         />
-        <Select name="category">
+        <Select name="category" onChange={onChange} value={category}>
           <Option value="0">카테고리를 선택해주세요</Option>
-          {category?.map((option, idx) => {
+          {categoryList?.map((option, idx) => {
             return (
               <Option value={option} key={idx}>
                 {option}
@@ -84,7 +96,12 @@ const AddCollectionForm = () => {
           <div>
             {" "}
             영상을 추가해 주세요
-            <img src={icon_addvideo} onClick={onClickHandler}></img>
+            <img
+              src={icon_addvideo}
+              onClick={() => {
+                nav("/mypage/add/search");
+              }}
+            ></img>
           </div>
           {addVideo?.map((img, idx) => {
             return <img key={idx} src={img} />;
