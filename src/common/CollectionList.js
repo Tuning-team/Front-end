@@ -1,6 +1,11 @@
+import React from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CollectionSlide from "../elements/CollectionSlide";
 import { useEffect, useState } from "react";
+import VideoList from "../components/mainList/VideoList";
 
 const CollectionList = () => {
   const [data, setData] = useState(null);
@@ -8,9 +13,15 @@ const CollectionList = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 2.5,
+    slidesToScroll: 1,
+    arrows: false,
   };
+  // useEffect(() => {
+  //   if (data === null) {
+  //     setData([...state]);
+  //   }
+  // }, []);
 
   const state = [
     {
@@ -60,17 +71,18 @@ const CollectionList = () => {
   return (
     <>
       <ListWrap>
-        {data?.map((data, idx) => {
+        {state?.map((data, idx) => {
           return (
             <Collection key={idx}>
               <SlideWrap>
-                <Test>
-                  {" "}
+                <Slider {...settings}>
                   {data.thumbnail?.map((src, i) => {
-                    return <img src={src} key={i}></img>;
+                    return (
+                      <VideoList key={data.id} img={data.thumbnail}></VideoList>
+                    );
                   })}
-                  <a>더보기...</a>
-                </Test>
+                </Slider>
+                <a>더보기...</a>
               </SlideWrap>
 
               <h3>{data.collectionTitle}</h3>
@@ -91,19 +103,15 @@ const Collection = styled.section`
   background-color: green;
 `;
 const SlideWrap = styled.div`
-  overflow: hidden;
+  // overflow: hidden;
+  // flex-direction: row;
+  // background-color: white;
+  position: relative;
+  border: 1px solid black;
+  margin: 0 auto;
+  overflow-x: hidden;
+`;
 
-  flex-direction: row;
-  background-color: white;
-`;
-const Img = styled.img``;
-const Test = styled.div`
-  overflow: auto;
-  white-space: nowrap;
-  .wrap-vertical::-webkit-scrollbar {
-    display: none;
-  }
-`;
 const ListWrap = styled.div`
   background-color: yellow;
 `;

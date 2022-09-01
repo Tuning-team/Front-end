@@ -1,11 +1,9 @@
 import React from "react";
 import Slider from "react-slick"; // 슬라이더 패키지
 import VideoList from "./VideoList";
-
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import CollectionSlide from "../../elements/CollectionSlide";
 
 const UserCollections = () => {

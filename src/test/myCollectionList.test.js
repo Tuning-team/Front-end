@@ -1,12 +1,9 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import CollectionList from "../../common/CollectionList";
-import Button from "../../elements/Button";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import CollectionList from "../common/CollectionList";
 
-const MyCollectionWrap = () => {
-  const nav = useNavigate();
-  const mockData = [
+test("컬렉션리스트map", () => {
+  const state = [
     {
       collectionTitle: "우울할때 보는영상",
       id: 0,
@@ -44,28 +41,7 @@ const MyCollectionWrap = () => {
       ],
     },
   ];
-
-  return (
-    <div>
-      <TitleWrap>
-        {" "}
-        <Title>내 컬랙션</Title>
-        {/* //todo 버튼은 로그인 아이디가 일치할때만 보이도록 */}
-        <Button
-          onClick={() => {
-            nav("/mypage/add");
-          }}
-        >
-          추가하기
-        </Button>
-      </TitleWrap>
-      <CollectionList state={mockData} />
-    </div>
-  );
-};
-export default MyCollectionWrap;
-
-const TitleWrap = styled.div`
-  background-color: pink;
-`;
-const Title = styled.h1``;
+  const { container } = render(<CollectionList state={state} />);
+  expect(container).toHaveTextContent("우울할때 보는영상");
+  expect(container).toHaveTextContent("웃긴영상 모음집");
+});
