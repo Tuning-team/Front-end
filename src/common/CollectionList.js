@@ -7,7 +7,7 @@ import CollectionSlide from "../elements/CollectionSlide";
 import { useEffect, useState } from "react";
 import VideoList from "../components/mainList/VideoList";
 
-const CollectionList = ({ state }) => {
+const CollectionList = () => {
   const [data, setData] = useState(null);
   const settings = {
     dots: false,
@@ -22,6 +22,49 @@ const CollectionList = ({ state }) => {
   //     setData([...state]);
   //   }
   // }, []);
+
+  const state = [
+    {
+      collectionTitle: "우울할때 보는영상",
+      id: 0,
+      likes: 3,
+      comments: 23,
+      thumbnail: [
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+      ],
+    },
+    {
+      collectionTitle: "배고플때 보는영상",
+      id: 1,
+      likes: 3,
+      comments: 23,
+      thumbnail: [
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+      ],
+    },
+    {
+      collectionTitle: "웃긴영상 모음집",
+      id: 2,
+      likes: 5,
+      comments: 21,
+      thumbnail: [
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+        "https://via.placeholder.com/150x150",
+      ],
+    },
+  ];
+
+  useEffect(() => {
+    setData([...state]);
+  }, []);
   //!렌더링 총두번
   //todo 백그라운드 이미지로 바꿔주기
   //todo 데이터 연결후 해야할것 : pending상태 처리하기, 데이터 안들어올때 어떻게 할건지 useeffect, usecallback,
