@@ -27,10 +27,10 @@ const CollectionInformation = () => {
       </p>
       <MakeElementsHorizontal>
         <div>
-          좋아요<span data-testid="count">128</span>
+          좋아요<span data-testid="countLikes">128</span>
         </div>
         <div>
-          댓글 <span data-testid="count">100</span>
+          댓글 <span data-testid="countComments">100</span>
         </div>
       </MakeElementsHorizontal>
       <MakeElementsHorizontal>

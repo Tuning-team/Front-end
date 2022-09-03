@@ -10,18 +10,17 @@ import CollectionWrap from "../components/collection/CollectionWrap";
 test("render collectionWrap component", () => {
   render(<CollectionWrap />);
   // <h1>확인
-  const title = screen.getByRole("heading");
+  const title = screen.getByRole("heading", { name: /보물단지/i }); // ! 다른 컴포넌트에 h엘리먼트가 있어서 오류가 남->name속성을 줘서 해결
   expect(title).toBeInTheDocument(); //element가 document에 나타나는지 아닌지
 
   // <p>확인 어쩔수없이 testid사용..
   const collectionDesc = screen.getByTestId("collection-description");
   expect(collectionDesc).toBeInTheDocument();
 
-  // todo <span>확인 -> 통과못함 다시 해보기
-  //   const span1 = screen.getByTestId("countLikes");
-  //   const span2 = screen.getByTestId("countComments");
-  //   const span = screen.getAllByTestId("count");
-  //   expect(span).toBeInTheDocument();
+  const span1 = screen.getByTestId("countLikes");
+  const span2 = screen.getByTestId("countComments");
+  expect(span1).toBeInTheDocument();
+  expect(span2).toBeInTheDocument();
 
   //  <button>확인
   const deleteButton = screen.getByRole("button", { name: "삭제" });
