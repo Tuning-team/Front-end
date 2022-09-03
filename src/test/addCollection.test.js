@@ -24,13 +24,7 @@ test("모든 인풋이 필수인지 확인", () => {
 test("인풋이 공백일때 버튼은 disabled true, 모두 채워지면 disabled false", () => {
   const { getByTestId } = render(<AddCollectionForm />);
   expect(screen.getByRole("button", { name: "추가하기" })).toBeDisabled();
-  // const setup = () => {
-  //   const input = screen.getByPlaceholderText("컬랙션 제목을 입력하세요");
-  //   return {
-  //     input,
-  //   };
-  // };
-  // const { input } = setup();
+
   userEvent.change(getByTestId("title-input"), {
     target: { value: "컬렉션제목" },
   });

@@ -5,6 +5,7 @@ import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import icon_addvideo from "../../svg/icon_addvideo.svg";
 import { useNavigate } from "react-router-dom";
+import submit from "../../common/Confirm";
 
 const AddCollectionForm = () => {
   //todo 검색하기를 하면 비디오이미지가 배열에 추가가 된다.
@@ -16,7 +17,19 @@ const AddCollectionForm = () => {
   });
   const nav = useNavigate();
   const onSubmitHandler = (e) => {
+    console.log(title, description, category);
     e.preventDefault();
+    if (
+      title === "" ||
+      description === "" ||
+      // addVideo === null ||
+      category === "0"
+    ) {
+      alert("모두 입력해주세요");
+      return;
+    } else {
+      console.log("전송");
+    }
   };
   const categoryList = [
     "여행",
@@ -39,17 +52,6 @@ const AddCollectionForm = () => {
   ];
   const onClickHandler = () => {
     //공백이 있으면 리턴
-    if (
-      title === "" ||
-      description === "" ||
-      addVideo === null ||
-      category === "0"
-    ) {
-      alert("모두 입력해주세요");
-      return;
-    } else {
-      console.log("전송");
-    }
   };
   //todo required 효과넣기
   //todo 버튼 disabled효과 주기
@@ -60,12 +62,13 @@ const AddCollectionForm = () => {
       <Button
         onClick={() => {
           nav(-1);
+          submit();
         }}
       >
         취소하기
       </Button>
       <Form onSubmit={onSubmitHandler}>
-        <Button onClick={onClickHandler}>추가하기</Button>
+        <Button>추가하기</Button>
         <Input
           placeholder="컬랙션 제목을 입력하세요"
           data-testid="title-input"
