@@ -10,17 +10,26 @@ import submit from "../../common/Confirm";
 const AddCollectionForm = () => {
   //todo 검색하기를 하면 비디오이미지가 배열에 추가가 된다.
   const [addVideo, setAddVideo] = useState(null);
-  const [{ title, description, category }, onChange, reset] = useInputs({
-    title: "",
-    description: "",
-    category: "0",
-  });
+  const [{ collectionTitle, description, category }, onChange, reset] =
+    useInputs({
+      collectionTitle: "",
+      description: "",
+      category: "0",
+    });
+  //request
+  //   {
+  //     "category_id": "6312c45c65fc44c5a50ee0dd",
+  //     "collectionTitle": "내가 좋아하는 영화 요약",
+  //     "description": "내가 좋아하는 영화 요약을 모아봤습니다. ",
+  //     "videos": ["6312c7b4d3084a7cb866bb9f", "6312c7b4d3084a7cb866bb9f", "6312c7b4d3084a7cb866bb99"]
+  // }
+
   const nav = useNavigate();
   const onSubmitHandler = (e) => {
-    console.log(title, description, category);
+    console.log(collectionTitle, description, category);
     e.preventDefault();
     if (
-      title === "" ||
+      collectionTitle === "" ||
       description === "" ||
       // addVideo === null ||
       category === "0"
@@ -71,10 +80,9 @@ const AddCollectionForm = () => {
         <Button>추가하기</Button>
         <Input
           placeholder="컬랙션 제목을 입력하세요"
-          data-testid="title-input"
-          name="title"
+          name="collectionTitle"
           onChange={onChange}
-          value={title}
+          value={collectionTitle}
           required
         />
         <TextArea
