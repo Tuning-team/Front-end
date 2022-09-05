@@ -16,7 +16,9 @@ const CollectionInformation = ({ data, collectionId }) => {
   console.log(data);
   console.log(collectionInfo);
   const deleteThisCollection = () => {
-    window.confirm("정말 지울겁니까?") ? console.log("yes") : console.log("no");
+    window.confirm("정말 지울겁니까?")
+      ? dispatch(deleteThisCollection(collectionId))
+      : console.log("no");
   };
   const onClickLikeBtn = () => {
     dispatch(putLikeBtn(collectionId));
