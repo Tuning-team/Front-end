@@ -4,7 +4,7 @@ import styled from "styled-components";
 import CollectionList from "../../common/CollectionList";
 import Button from "../../elements/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyCollection } from "../../redux/modules/myCollectionSlice";
+import { getMyCollection } from "../../redux/modules/collectionSlice";
 
 const MyCollectionWrap = () => {
   const dispatch = useDispatch();

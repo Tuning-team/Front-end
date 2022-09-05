@@ -1,20 +1,31 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import { instance } from "../../shared/instance";
 
-// initialState 설정
 const initialState = {
-  loading: false,
-  data: [],
-  videos: [],
-  error: "",
+  myCollection: {
+    loading: false,
+    data: [],
+    error: "",
+  },
+  thumbnails: [],
+  category: {
+    loading: false,
+    data: [],
+    error: "",
+  },
+  newCollection: {
+    loading: false,
+    success: [],
+    error: "",
+  },
 };
 
-// 컬렉션에 대한 정보를 가져오는 thunk함수(collection에 대한 response를 가져옴)
-export const getCollection = createAsyncThunk(
-  "get/collection",
-  async (collection_id) => {
+export const getMyCollection = createAsyncThunk(
+  "get/myCollection",
+  async () => {
     try {
-      const res = await instance.get(`/collections/${collection_id}`);
+      const res = await instance("/collections/mine");
       return res.data.data;
     } catch (error) {
       return error.message;
@@ -22,49 +33,94 @@ export const getCollection = createAsyncThunk(
   }
 );
 
-// 해당 컬렉션에 해당하는 비디오 목록을 가져오는 thunk함수
-export const getVideoList = createAsyncThunk(
-  "get/videoList",
-  async (collection_id) => {
+export const getThumbnail = createAsyncThunk("get/thumbnail", async (id) => {
+  try {
+    const res = await axios.get(
+      `https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBJg1gJLZT0As7NGbFDHpWFLO_mi4JDw0c&part=snippet&maxResults=50&regionCode=kr&id=${id}`
+    );
+    console.log(res.data.items[0].snippet.thumbnails.medium.url);
+    return res.data.items[0].snippet.thumbnails.medium.url;
+  } catch (error) {
+    return error.message;
+  }
+});
+export const getCategory = createAsyncThunk("get/category", async (id) => {
+  try {
+    const res = await instance("/categories");
+    return res.data.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
+export const postCollection = createAsyncThunk(
+  "post/collection",
+  async (data) => {
+    console.log(data);
     try {
-      const res = await instance.get(`/videos/${collection_id}`);
-      return res.data.data;
+      const res = await instance.post("/collections", data);
+      console.log(res.data.success);
+      return res.data.success;
     } catch (error) {
       return error.message;
     }
   }
 );
 
-// 슬라이스
-export const collectionSlice = createSlice({
-  name: "collection",
+export const myCollectionSlice = createSlice({
+  name: "myCollection",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // ! 잊지말자. thunk에서 나온 return값이 여기서 action.payload라는 걸!!!
-    builder.addCase(getCollection.pending, (state, acion) => {
-      state.loading = true;
+    //!getMyCollection
+    builder.addCase(getMyCollection.pending, (state) => {
+      state.myCollection.loading = true;
     });
-    builder.addCase(getCollection.fulfilled, (state, action) => {
+    builder.addCase(getMyCollection.fulfilled, (state, action) => {
+      state.myCollection.loading = false;
+      state.myCollection.data = action.payload;
+      state.myCollection.error = "";
+    });
+    builder.addCase(getMyCollection.rejected, (state, action) => {
+      state.myCollection.loading = false;
+      state.myCollection.data = [];
+      state.myCollection.error = action.error.message;
+    });
+    //!getThumbnail
+    builder.addCase(getThumbnail.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.thumbnails = [...state.thumbnails, ...action.payload];
+      state.error = "";
     });
-    builder.addCase(getCollection.rejected, (state, action) => {
-      console.log("rejected");
-      state.loading = false;
-      state.error = action.error.message;
+    //!getCategory
+    builder.addCase(getCategory.pending, (state) => {
+      console.log("pending");
+      state.category.loading = true;
     });
-    builder.addCase(getVideoList.pending, (state, action) => {
-      state.loading = true;
+    builder.addCase(getCategory.fulfilled, (state, action) => {
+      state.category.loading = false;
+      state.category.data = action.payload;
+      state.category.error = "";
     });
-    builder.addCase(getVideoList.fulfilled, (state, action) => {
-      state.loading = false;
-      state.videos = action.payload;
+    builder.addCase(getCategory.rejected, (state, action) => {
+      state.category.loading = false;
+      state.category.data = "";
+      state.category.error = action.error.message;
     });
-    builder.addCase(getVideoList.rejected, (state, action) => {
-      console.log("rejected");
-      state.loading = false;
-      state.error = action.error.message;
+    //!postCollection
+    builder.addCase(postCollection.pending, (state) => {
+      console.log("pending");
+      state.newCollection.loading = true;
+    });
+    builder.addCase(postCollection.fulfilled, (state, action) => {
+      state.newCollection.loading = false;
+      state.newCollection.success = action.payload;
+      state.newCollection.error = "";
+    });
+    builder.addCase(postCollection.rejected, (state, action) => {
+      state.newCollection.loading = false;
+      state.newCollection.success = "";
+      state.newCollection.error = action.error.message;
     });
   },
 });
