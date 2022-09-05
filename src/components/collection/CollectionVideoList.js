@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { getVideoList } from "../../redux/modules/collectionSlice";
 
-const CollectionVideoList = () => {
+const CollectionVideoList = ({ collectionId }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getVideoList(collectionId));
+  }, []);
+
+  const videoList = useSelector((state) => state.collectionSlice.videos);
+
   return (
     <div>
-      {/* map으로 돌릴친구.. */}
-      <VideoContainer>
-        <img src="https://via.placeholder.com/150x150" alt="썸네일" />
-        <div>
-          <h3 style={{ fontWeight: "bold", fontSize: "2rem" }}>영상제목</h3>
-          <h6>유튜버이름</h6>
-        </div>
-      </VideoContainer>
+      {videoList?.map((elem) => {
+        return (
+          <VideoContainer key={elem._id}>
+            {/* <img src={elem.thumbnails} alt="썸네일" /> */}
+            <Img src={elem.thumbnails} alt={elem._id} />
+            <div>
+              <h3 style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
+                {elem.videoTitle}
+              </h3>
+              <h6>{elem.channelTitle}</h6>
+            </div>
+          </VideoContainer>
+        );
+      })}
     </div>
   );
 };
@@ -22,3 +37,7 @@ const VideoContainer = styled.div`
   display: flex;
   border: 1px solid black;
 `;
+const Img = styled.img`
+  width: 45%;
+`;
+// todo https://jos39.tistory.com/211 ->나중에 css로 text overflow ...처리하려면 참고
