@@ -1,17 +1,47 @@
 import React from "react";
-import Button from "../../elements/Button";
 import styled from "styled-components";
+import { instance } from "../../shared/instance";
+import { useState, useEffect } from "react";
+import Button from "../../elements/Button";
 
-const CollectionInformation = () => {
+// import orders : React > package > modules > hooks > component > css
+// logis orders : useState > useRef > dispatch > navigate > useSelector > extra..
+const CollectionInformation = ({ collectionId }) => {
+  const [collectionInfo, setCollectionInfo] = useState(null);
+
+  // todo 나중에 redux로 옮길 내용
+  const fetchTestData = async () => {
+    const testData = await instance.get("/collections");
+    setCollectionInfo(testData.data);
+  };
+
+  useEffect(() => {
+    fetchTestData();
+  }, []);
+  console.log(collectionInfo);
+  console.log(typeof collectionId);
+
   const deleteThisCollection = () => {
     alert("진짜 지울거냐!!!");
     // todo 디스패치로 삭제 기능thunk가져오기
   };
+
+  // ! 어떤 방식으로 화면에서 그려줄건지 생각해보기
+  let test = collectionInfo?.filter((elem) => elem._id === collectionId);
+  console.log(...test);
   return (
     <div>
-      <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>
-        출근하기 싫을 때 꺼내는 보물단지
-      </h1>
+      {collectionInfo?.map((elem) => {
+        if (elem._id === collectionId) {
+          return (
+            <h1 key={elem._id} style={{ fontSize: "2rem", fontWeight: "bold" }}>
+              {elem.collectionTitle}
+            </h1>
+          );
+        }
+        return null;
+      })}
+
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button
           width="64px"
