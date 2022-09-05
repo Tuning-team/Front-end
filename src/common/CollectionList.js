@@ -6,9 +6,12 @@ import "slick-carousel/slick/slick-theme.css";
 import CollectionSlide from "../elements/CollectionSlide";
 import { useEffect, useState } from "react";
 import VideoList from "../components/mainList/VideoList";
+import { useDispatch, useSelector } from "react-redux";
+import { getThumbnail } from "../redux/modules/collectionSlice";
 
 const CollectionList = ({ state }) => {
-  const [data, setData] = useState(null);
+  const img = useSelector((state) => state.myCollectionSlice.thumbnails);
+  const dispatch = useDispatch();
   const settings = {
     dots: false,
     infinite: false,
@@ -18,9 +21,19 @@ const CollectionList = ({ state }) => {
     arrows: false,
   };
 
+  const [thumb, setThumb] = useState(null);
+
   useEffect(() => {
-    setData([...state]);
+    dispatch(getThumbnail("PZIPsKgWJiw"));
+    // console.log(state[0]?.videos); //data.videos --> 배열
+    // dispatch(getThumbnail(state[0]?.videos[0]));
+    // dispatch(getThumbnail(state[0]?.videos[1]));
+    // dispatch(getThumbnail(state[0]?.videos[2]));
+    // console.log(state[1]?.videos);
+    // console.log(state[2]?.videos);
+    // console.log(state[3]?.videos);
   }, []);
+
   return (
     <>
       <ListWrap>
@@ -29,9 +42,12 @@ const CollectionList = ({ state }) => {
             <Collection key={data._id}>
               <SlideWrap>
                 <Slider {...settings}>
-                  {data.thumbnail?.map((src, i) => {
+                  {data.videos?.map((src, i) => {
                     return (
-                      <VideoList key={data.id} img={data.thumbnail}></VideoList>
+                      <VideoList
+                        key={data._id}
+                        img={data.thumbnail}
+                      ></VideoList>
                     );
                   })}
                 </Slider>
@@ -40,8 +56,8 @@ const CollectionList = ({ state }) => {
 
               <h3>{data.collectionTitle}</h3>
               <div>
-                <span>좋아요 {data.likes}</span>
-                <span>댓글 {data.comments}</span>
+                <span>좋아요 {data.likes} /</span>
+                <span>댓글 {data.commentNum}</span>
               </div>
             </Collection>
           );
