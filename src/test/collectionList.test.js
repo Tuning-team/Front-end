@@ -9,9 +9,9 @@ import CollectionList from "../common/CollectionList";
 //   expect(count).toBeVisible();
 // });
 
-//! ui테스트
+
 describe("<CollectionList />", () => {
-  it("잘되나", () => {
+  it("컬렉션리스트가 잘불러와지는지 확인", () => {
     const { getByText } = render(<CollectionList />);
     getByText("웃긴영상 모음집");
     getByText("좋아요 5");
