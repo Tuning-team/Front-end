@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteComment, updateComment } from "../../redux/modules/commentSlice"
+import { deleteComment, updateComment } from "../../redux/modules/commentSlice";
 
 const CommentList = ({ commentId, comment }) => {
-
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
 
@@ -21,20 +20,22 @@ const CommentList = ({ commentId, comment }) => {
   };
 
   return (
-    <>
+  <>
       <ul>
-      <li>Comment Number: {commentId}</li>
-      <li>내용 : {comment}</li>
+        <li>Comment Number: {commentId}</li>
+        <li>내용 : {comment}</li>
       </ul>
       <input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       ></input>
-      <button type='button' onClick={onDelete}>
+      <button type="button" onClick={onDelete}>
         삭제
       </button>
-      <button type='button' onClick={onUpdate}>
+      <button type="button" onClick={onUpdate}>
         수정
-      </button></>);};
-      
+      </button>
+    </>
+  );
+};
 export default CommentList;
