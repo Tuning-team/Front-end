@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Button = (props) => {
+const Button = (props) => {
   return (
     <GlobalBtnStyle
       // 버튼 속성
@@ -22,6 +22,9 @@ export const Button = (props) => {
     </GlobalBtnStyle>
   );
 };
+
+export default Button;
+
 const GlobalBtnStyle = styled.button`
   width: ${(props) => props.width || "120px"};
   height: ${(props) => props.height || "44px"};
