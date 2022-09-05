@@ -22,7 +22,9 @@ const Button = (props) => {
     </GlobalBtnStyle>
   );
 };
+
 export default Button;
+
 const GlobalBtnStyle = styled.button`
   width: ${(props) => props.width || "120px"};
   height: ${(props) => props.height || "44px"};

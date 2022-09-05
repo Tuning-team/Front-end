@@ -4,7 +4,7 @@ import Headers from "../common/Headers";
 import SearchWrap from "../components/search/SearchWrap";
 import Navbar from "../common/Navbar";
 
-const Search = () => {
+const SearchPage = () => {
   return (
     <>
       <Headers />
@@ -13,4 +13,4 @@ const Search = () => {
     </>
   );
 };
-export default Search;
+export default SearchPage;

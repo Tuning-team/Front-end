@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Input from "../../elements/Input"
 
 const SearchWrap = () => {
   const [search, setSearch] = useState("");
@@ -16,13 +17,8 @@ const SearchWrap = () => {
   return (
     <form onSubmit={onSubmitHandler}>
       <h2>Collections을 검색하세요</h2>
-      <input
-        onChange={onChangeHandler}
-        name="search"
-        placeholder="검색"
-        type="text"
-      />
-      <button type="submit">Search</button>
+      <Input onChange={onChangeHandler} name="search" type="text" />
+      <button type='submit'>Search</button>
     </form>
   );
 };
