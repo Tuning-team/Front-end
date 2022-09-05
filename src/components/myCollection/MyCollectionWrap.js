@@ -9,7 +9,10 @@ import { getMyCollection } from "../../redux/modules/collectionSlice";
 const MyCollectionWrap = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const data = useSelector((state) => state.myCollectionSlice.data);
+  const data = useSelector(
+    (state) => state.myCollectionSlice.myCollection.data
+  );
+  console.log(data);
   useEffect(() => {
     dispatch(getMyCollection());
   }, []);

@@ -15,7 +15,7 @@ const Navbar = () => {
       )}
       <Nav>
         <div onClick={() => setIsCategoryShown(!isCategoryShown)}>카테고리</div>
-        <div onClick={() => nav("/SearchPage")}>검색</div>
+        <div onClick={() => nav("/search")}>검색</div>
         <div onClick={() => nav("/")}>메인</div>
         <div onClick={() => nav("/mypage")}>내컬렉션</div>
       </Nav>
