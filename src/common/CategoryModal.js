@@ -11,9 +11,11 @@ const CategoryModal = ({ setIsCategoryShown }) => {
     (state) => state.myCollectionSlice.category.data
   );
   useEffect(() => {
-    dispatch(getCategory());
+    if (categories.length === 0) {
+      dispatch(getCategory());
+    }
   }, []);
-  // todo 지금은 모달을 열때마다 요청을 보내는데, 한번만 요청을 보내고 그 후부터는 안가게 하기...
+
   return (
     <>
       <ModalFloater setIsCategoryShown="setIsCategoryShown">
