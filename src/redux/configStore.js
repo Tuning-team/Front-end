@@ -1,9 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { myCollectionSlice } from "./modules/collectionSlice";
-import { collectionSlice } from "./modules/collectionSlice";
-import { commentSlice } from "./modules/commentSlice"
-
+import { collectionSlice } from "./modules/tempCollectionSlice";
+import { commentSlice } from "./modules/commentSlice";
 
 export default configureStore({
   reducer: {

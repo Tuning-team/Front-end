@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getVideoList } from "../../redux/modules/collectionSlice";
+import { getVideoList } from "../../redux/modules/tempCollectionSlice";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();

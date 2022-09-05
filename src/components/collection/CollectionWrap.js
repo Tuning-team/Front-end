@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCollection } from "../../redux/modules/collectionSlice";
+import { getCollection } from "../../redux/modules/tempCollectionSlice";
 import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
 
