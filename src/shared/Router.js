@@ -7,6 +7,7 @@ import MyCollectionPage from "../pages/MyCollectionPage";
 import Search from "../pages/Search";
 import AddCollectionPage from "../pages/AddCollectionPage";
 import AddVideoSearchPage from "../pages/AddVideoSearchPage";
+import CollectionPage from "../pages/CollectionPage";
 
 function Router() {
   return (
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/mypage" element={<MyCollectionPage />} />
         <Route path="/mypage/add" element={<AddCollectionPage />} />
         <Route path="/mypage/add/search" element={<AddVideoSearchPage />} />
+        <Route path="/collection/:collection_id" element={<CollectionPage />} />
       </Routes>
     </BrowserRouter>
   );
