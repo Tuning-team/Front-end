@@ -21,17 +21,8 @@ const CollectionList = ({ state }) => {
     arrows: false,
   };
 
-  const [thumb, setThumb] = useState(null);
-
   useEffect(() => {
-    dispatch(getThumbnail("PZIPsKgWJiw"));
-    // console.log(state[0]?.videos); //data.videos --> 배열
-    // dispatch(getThumbnail(state[0]?.videos[0]));
-    // dispatch(getThumbnail(state[0]?.videos[1]));
-    // dispatch(getThumbnail(state[0]?.videos[2]));
-    // console.log(state[1]?.videos);
-    // console.log(state[2]?.videos);
-    // console.log(state[3]?.videos);
+    console.log(state);
   }, []);
 
   return (
@@ -42,16 +33,12 @@ const CollectionList = ({ state }) => {
             <Collection key={data._id}>
               <SlideWrap>
                 <Slider {...settings}>
-                  {data.videos?.map((src, i) => {
-                    return (
-                      <VideoList
-                        key={data._id}
-                        img={data.thumbnail}
-                      ></VideoList>
-                    );
+                  {data.thumbnails?.map((src, i) => {
+                    return <VideoList key={data._id} img={src}></VideoList>;
                   })}
+
+                  <a>더보기...</a>
                 </Slider>
-                <a>더보기...</a>
               </SlideWrap>
 
               <h3>{data.collectionTitle}</h3>
@@ -69,7 +56,7 @@ const CollectionList = ({ state }) => {
 export default CollectionList;
 
 const Collection = styled.section`
-  background-color: green;
+  background-color: white;
 `;
 const SlideWrap = styled.div`
   // overflow: hidden;

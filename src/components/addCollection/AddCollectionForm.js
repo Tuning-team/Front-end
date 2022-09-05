@@ -61,6 +61,7 @@ const AddCollectionForm = () => {
       <Button
         onClick={() => {
           nav(-1);
+          //confirm test
           submit();
         }}
       >
