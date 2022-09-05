@@ -24,7 +24,6 @@ Content-Type: application/json
 ### 3. 특정 컬렉션 id로 상세정보 : GET /api/collections/:collection_id
 GET	https://www.myspaceti.me/api/collections/6312cd792a4f77334033a9bd
 
-
 ### 4. 특정 컬렉션 id로 삭제하기 : DELETE /api/collections/:collection_id
 DELETE https://www.myspaceti.me/api/collections/630f30fa71d6081b5c178ed2
 
@@ -44,12 +43,12 @@ Content-Type: application/json
 
 
 ### 7. 내가 생성한 컬렉션 리스트 : GET /api/collections/mine
-GET	https://www.myspaceti.me/api/collections/mine
+GET	https://www.myspaceti.me/api/collections/mine?offset=6&limit=3
 Content-Type: application/json
 
 
 ### 8. 카테고리에 맞는 컬렉션 리스트 찾기 : GET /api/collections?category_id=
-GET	https://www.myspaceti.me/api/collections?category_id=630f31258b8c916480f96adf
+GET	https://www.myspaceti.me/api/collections?category_id=630f31258b8c916480f96adf&offset=0&limit=3
 
 
 ### 9. 검색어에 맞는 컬렉션 리스트 찾기 : GET /api/collections?keyword=
@@ -116,7 +115,7 @@ GET https://www.myspaceti.me/api/user/6312ad8b5057863778c220ca
 
 ## ---------------------- 영상 관련 API  ------------------------
 ### 18. 특정 id 컬렉션에 포함되어 있는 영상들의 리스트 : GET /api/videos/:collection_id
-GET	https://www.myspaceti.me/api/videos/6312cd792a4f77334033a9bd
+GET	https://www.myspaceti.me/api/videos/6312cd792a4f77334033a9be?offset=0&limit=3
 
 
 ### 19. 특정 id 영상의 더 상세한 정보 불러오기 : GET /api/videos/detail/:video_id
