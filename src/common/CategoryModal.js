@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategory } from "../redux/modules/collectionSlice";
 import styled from "styled-components";
 
 const CategoryModal = ({ setIsCategoryShown }) => {
   const nav = useNavigate();
-  const mockData = [
-    { id: 0, title: "맘마" },
-    { id: 1, title: "맛도리" },
-    { id: 2, title: "할로" },
-    { id: 3, title: "멈머" },
-    { id: 4, title: "미야옹" },
-    { id: 5, title: "여행" },
-    { id: 6, title: "어려워" },
-    { id: 7, title: "엉엉" },
-  ];
-  useEffect(() => {}, []);
+  const dispatch = useDispatch();
+  const categories = useSelector(
+    (state) => state.myCollectionSlice.category.data
+  );
+  useEffect(() => {
+    dispatch(getCategory());
+  }, []);
+  // todo 지금은 모달을 열때마다 요청을 보내는데, 한번만 요청을 보내고 그 후부터는 안가게 하기...
   return (
     <>
       <ModalFloater setIsCategoryShown="setIsCategoryShown">
@@ -25,8 +24,16 @@ const CategoryModal = ({ setIsCategoryShown }) => {
             카테고리
           </h1>
           <ul>
-            {mockData?.map((category) => {
-              return <Li key={category.id}>{category.title}</Li>;
+            {categories?.map((elem) => {
+              return (
+                <Li
+                  key={elem._id}
+                  onClick={() => nav(`/category/${elem._id}`)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {elem.categoryName}
+                </Li>
+              );
             })}
           </ul>
         </div>
