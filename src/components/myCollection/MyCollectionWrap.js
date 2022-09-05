@@ -1,50 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CollectionList from "../../common/CollectionList";
 import Button from "../../elements/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyCollection } from "../../redux/modules/myCollectionSlice";
 
 const MyCollectionWrap = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
-  const mockData = [
-    {
-      collectionTitle: "우울할때 보는영상",
-      id: 0,
-      likes: 3,
-      comments: 23,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-    {
-      collectionTitle: "배고플때 보는영상",
-      id: 1,
-      likes: 3,
-      comments: 23,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-    {
-      collectionTitle: "웃긴영상 모음집",
-      id: 2,
-      likes: 5,
-      comments: 21,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-  ];
-
+  const data = useSelector((state) => state.myCollectionSlice.data);
+  useEffect(() => {
+    dispatch(getMyCollection());
+  }, []);
   return (
     <div>
       <TitleWrap>
@@ -59,7 +27,7 @@ const MyCollectionWrap = () => {
           추가하기
         </Button>
       </TitleWrap>
-      <CollectionList state={mockData} />
+      <CollectionList state={data} />
     </div>
   );
 };
