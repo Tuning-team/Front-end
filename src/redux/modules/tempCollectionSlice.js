@@ -37,13 +37,26 @@ export const getVideoList = createAsyncThunk(
   }
 );
 
+// 유저가 컬렉션에 좋아요
+export const putLikeBtn = createAsyncThunk(
+  "put/likeBtn",
+  async (collection_id) => {
+    try {
+      const res = await instance.put(`/collections/like/${collection_id}`);
+      return res.data.message;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
 // 슬라이스
 export const collectionSlice = createSlice({
   name: "collection",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // ! 잊지말자. thunk에서 나온 return값이 여기서 action.payload라는 걸!!!
+    // ! getCollection
     builder.addCase(getCollection.pending, (state, acion) => {
       state.loading = true;
     });
@@ -56,6 +69,7 @@ export const collectionSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
+    // ! getVideoList
     builder.addCase(getVideoList.pending, (state, action) => {
       state.loading = true;
     });
@@ -67,6 +81,19 @@ export const collectionSlice = createSlice({
       console.log("rejected");
       state.loading = false;
       state.error = action.error.message;
+    });
+    // ! putLikeBtn
+    builder.addCase(putLikeBtn.pending, (state, action) => {
+      console.log("pending");
+      state.loading = true;
+    });
+    builder.addCase(putLikeBtn.fulfilled, (state, action) => {
+      console.log("fulfilled");
+      state.loading = false;
+      alert(`${action.payload}`);
+    });
+    builder.addCase(putLikeBtn.rejected, (state, action) => {
+      state.loading = false;
     });
   },
 });
