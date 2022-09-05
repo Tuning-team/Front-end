@@ -20,7 +20,7 @@ function Router() {
         <Route path="/mypage" element={<MyCollectionPage />} />
         <Route path="/mypage/add" element={<AddCollectionPage />} />
         <Route path="/mypage/add/search" element={<AddVideoSearchPage />} />
-        <Route path="/collection" element={<CollectionPage />} />
+        <Route path="/collection/:collection_id" element={<CollectionPage />} />
       </Routes>
     </BrowserRouter>
   );
