@@ -12,6 +12,7 @@ const MyCollectionWrap = () => {
   const data = useSelector(
     (state) => state.myCollectionSlice.myCollection.data
   );
+  console.log(data);
   useEffect(() => {
     dispatch(getMyCollection());
   }, []);

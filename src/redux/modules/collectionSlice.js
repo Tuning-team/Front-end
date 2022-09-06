@@ -93,7 +93,6 @@ export const myCollectionSlice = createSlice({
     });
     //!getCategory
     builder.addCase(getCategory.pending, (state) => {
-      console.log("pending");
       state.category.loading = true;
     });
     builder.addCase(getCategory.fulfilled, (state, action) => {
@@ -108,7 +107,6 @@ export const myCollectionSlice = createSlice({
     });
     //!postCollection
     builder.addCase(postCollection.pending, (state) => {
-      console.log("pending");
       state.newCollection.loading = true;
     });
     builder.addCase(postCollection.fulfilled, (state, action) => {
@@ -123,7 +121,6 @@ export const myCollectionSlice = createSlice({
     });
     //!getVideo
     builder.addCase(getVideo.pending, (state) => {
-      console.log("pending");
       state.searchResult.loading = true;
     });
     builder.addCase(getVideo.fulfilled, (state, action) => {
