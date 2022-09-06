@@ -12,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 const CollectionList = ({ state }) => {
   const nav = useNavigate();
-  const img = useSelector((state) => state.myCollectionSlice.thumbnails);
   const dispatch = useDispatch();
   const settings = {
     dots: false,
@@ -22,9 +21,6 @@ const CollectionList = ({ state }) => {
     slidesToScroll: 1,
     arrows: false,
   };
-  // useEffect(() => {
-  //   console.log(state);
-  // }, []);
 
   return (
     <>
