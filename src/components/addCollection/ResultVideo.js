@@ -1,10 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { addVideoList } from "../../redux/modules/collectionSlice";
 
 const ResultVideo = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
   //검색결과가 있을때, 없을때. 모달
   const [add, setAdd] = useState(null);
@@ -21,10 +24,9 @@ const ResultVideo = () => {
           return (
             <ResultBox
               onClick={() => {
-                setAdd(x.videoId);
-                // nav("-1", {
-                //   state: x.videoId,
-                // });
+                console.log(x);
+                dispatch(addVideoList(x));
+                nav(-1);
               }}
             >
               {x.title}

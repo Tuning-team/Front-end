@@ -21,9 +21,9 @@ const CollectionList = ({ state }) => {
     arrows: false,
   };
 
-  useEffect(() => {
-    console.log(state);
-  }, []);
+  // useEffect(() => {
+  //   console.log(state);
+  // }, []);
 
   return (
     <>

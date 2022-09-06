@@ -23,6 +23,7 @@ const initialState = {
     data: [],
     error: "",
   },
+  videoList: [],
 };
 
 export const getMyCollection = createAsyncThunk(
@@ -52,7 +53,6 @@ export const postCollection = createAsyncThunk(
     console.log(data);
     try {
       const res = await instance.post("/collections", data);
-      console.log(res.data.success);
       return res.data.success;
     } catch (error) {
       return error.message;
@@ -62,7 +62,6 @@ export const postCollection = createAsyncThunk(
 export const getVideo = createAsyncThunk("get/video", async (data) => {
   try {
     const res = await instance(`/search/videos/db?keyword=${data}`);
-    console.log(res.data);
     return res.data.data;
   } catch (error) {
     return error.message;
@@ -72,7 +71,11 @@ export const getVideo = createAsyncThunk("get/video", async (data) => {
 export const myCollectionSlice = createSlice({
   name: "myCollection",
   initialState,
-  reducers: {},
+  reducers: {
+    addVideoList(state, action) {
+      state.videoList.push(action.payload);
+    },
+  },
   extraReducers: (builder) => {
     //!getMyCollection
     builder.addCase(getMyCollection.pending, (state) => {
@@ -135,3 +138,5 @@ export const myCollectionSlice = createSlice({
     });
   },
 });
+
+export let { addVideoList } = myCollectionSlice.actions;

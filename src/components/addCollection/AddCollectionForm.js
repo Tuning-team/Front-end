@@ -21,11 +21,8 @@ const AddCollectionForm = () => {
   const categories = useSelector(
     (state) => state.myCollectionSlice.category.data
   );
-  const videos = [
-    "6312c7b4d3084a7cb866bb9f",
-    "6312c7b4d3084a7cb866bb9f",
-    "6312c7b4d3084a7cb866bb99",
-  ];
+  const videoList = useSelector((state) => state.myCollectionSlice.videoList);
+
   const [addVideo, setAddVideo] = useState(null);
   const [{ collectionTitle, description, category_id }, onChange, reset] =
     useInputs({
@@ -33,9 +30,11 @@ const AddCollectionForm = () => {
       description: "",
       category_id: "0",
     });
+  const videos = videoList.map((x) => x.videoId);
   const addData = { category_id, collectionTitle, description, videos };
 
   const onSubmitHandler = (e) => {
+    console.log(videos);
     console.log(addData);
     e.preventDefault();
     if (
@@ -102,8 +101,8 @@ const AddCollectionForm = () => {
               }}
             ></Icon>
           </div>
-          {addVideo?.map((img, idx) => {
-            return <img key={idx} src={img} />;
+          {videoList?.map((x, idx) => {
+            return <div key={idx}>{x.title}</div>;
           })}
         </ImgBox>
       </Form>
