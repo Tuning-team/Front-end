@@ -21,14 +21,41 @@ export const getCollection = createAsyncThunk(
     }
   }
 );
+// 컬렉션 삭제
+export const deleteCollection = createAsyncThunk(
+  "delete/collection",
+  async (collection_id) => {
+    try {
+      const res = await instance.delete(`/collections/${collection_id}`);
+      return res.data.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
 
 // 해당 컬렉션에 해당하는 비디오 목록을 가져오는 thunk함수
 export const getVideoList = createAsyncThunk(
   "get/videoList",
   async (collection_id) => {
     try {
-      const res = await instance.get(`/videos/${collection_id}`);
+      const res = await instance.get(
+        `/videos/${collection_id}/?offset=0&limit=4`
+      );
       return res.data.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+// 유저가 컬렉션에 좋아요
+export const putLikeBtn = createAsyncThunk(
+  "put/likeBtn",
+  async (collection_id) => {
+    try {
+      const res = await instance.put(`/collections/like/${collection_id}`);
+      return res.data.message;
     } catch (error) {
       return error.message;
     }
@@ -41,7 +68,7 @@ export const collectionSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // ! 잊지말자. thunk에서 나온 return값이 여기서 action.payload라는 걸!!!
+    // ! getCollection
     builder.addCase(getCollection.pending, (state, acion) => {
       state.loading = true;
     });
@@ -54,6 +81,20 @@ export const collectionSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
+    // ! deleteCollection
+    builder.addCase(deleteCollection.pending, (state, action) => {
+      console.log("pending");
+      state.loading = true;
+    });
+    builder.addCase(deleteCollection.fulfilled, (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(deleteCollection.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+    // ! getVideoList
     builder.addCase(getVideoList.pending, (state, action) => {
       state.loading = true;
     });
@@ -63,6 +104,20 @@ export const collectionSlice = createSlice({
     });
     builder.addCase(getVideoList.rejected, (state, action) => {
       console.log("rejected");
+      state.loading = false;
+      state.error = action.error.message;
+    });
+    // ! putLikeBtn
+    builder.addCase(putLikeBtn.pending, (state, action) => {
+      console.log("pending");
+      state.loading = true;
+    });
+    builder.addCase(putLikeBtn.fulfilled, (state, action) => {
+      console.log("fulfilled");
+      state.loading = false;
+      alert(`${action.payload}`);
+    });
+    builder.addCase(putLikeBtn.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     });
