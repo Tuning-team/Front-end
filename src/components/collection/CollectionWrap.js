@@ -6,7 +6,6 @@ import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
 
 const CollectionWrap = () => {
-  // ! param에는 collection_id가 담겨있고 이 친구는 다른 곳에서 넘어와야 되는 애..
   const param = useParams();
 
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ const CollectionWrap = () => {
 
   return (
     <>
-      <CollectionInformation data={data} />
+      <CollectionInformation data={data} collectionId={param.collection_id} />
       <CollectionVideoList collectionId={param.collection_id} />
       {/* <CollectionComment /> */}
     </>

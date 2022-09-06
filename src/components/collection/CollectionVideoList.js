@@ -16,7 +16,6 @@ const CollectionVideoList = ({ collectionId }) => {
       {videoList?.map((elem) => {
         return (
           <VideoContainer key={elem._id}>
-            {/* <img src={elem.thumbnails} alt="썸네일" /> */}
             <Img src={elem.thumbnails} alt={elem._id} />
             <div>
               <h3 style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
