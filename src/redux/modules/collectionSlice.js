@@ -24,6 +24,11 @@ const initialState = {
     error: "",
   },
   videoList: [],
+  categoryCollection: {
+    loading: false,
+    data: [],
+    error: "",
+  },
 };
 
 export const getMyCollection = createAsyncThunk(
@@ -46,6 +51,20 @@ export const getCategory = createAsyncThunk("get/category", async (id) => {
     return error.message;
   }
 });
+export const getCategoryCollection = createAsyncThunk(
+  "get/categoryCollection",
+  async (id) => {
+    try {
+      const res = await instance(
+        `/collections?category_id=${id}&offset=0&limit=3`
+      );
+      console.log(res);
+      return res.data.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
 
 export const postCollection = createAsyncThunk(
   "post/collection",
@@ -132,6 +151,20 @@ export const myCollectionSlice = createSlice({
       state.searchResult.loading = false;
       state.searchResult.success = "";
       state.searchResult.error = action.error.message;
+    });
+    //!getCategoryCollection
+    builder.addCase(getCategoryCollection.pending, (state) => {
+      state.categoryCollection.loading = true;
+    });
+    builder.addCase(getCategoryCollection.fulfilled, (state, action) => {
+      state.categoryCollection.loading = false;
+      state.categoryCollection.data = action.payload;
+      state.categoryCollection.error = "";
+    });
+    builder.addCase(getCategoryCollection.rejected, (state, action) => {
+      state.categoryCollection.loading = false;
+      state.categoryCollection.success = "";
+      state.categoryCollection.error = action.error.message;
     });
   },
 });
