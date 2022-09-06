@@ -8,7 +8,6 @@ const initialState = {
     data: [],
     error: "",
   },
-  thumbnails: [],
   category: {
     loading: false,
     data: [],
@@ -19,6 +18,12 @@ const initialState = {
     success: [],
     error: "",
   },
+  searchResult: {
+    loading: false,
+    data: [],
+    error: "",
+  },
+  videoList: [],
 };
 
 export const getMyCollection = createAsyncThunk(
@@ -33,17 +38,6 @@ export const getMyCollection = createAsyncThunk(
   }
 );
 
-export const getThumbnail = createAsyncThunk("get/thumbnail", async (id) => {
-  try {
-    const res = await axios.get(
-      `https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBJg1gJLZT0As7NGbFDHpWFLO_mi4JDw0c&part=snippet&maxResults=50&regionCode=kr&id=${id}`
-    );
-    console.log(res.data.items[0].snippet.thumbnails.medium.url);
-    return res.data.items[0].snippet.thumbnails.medium.url;
-  } catch (error) {
-    return error.message;
-  }
-});
 export const getCategory = createAsyncThunk("get/category", async (id) => {
   try {
     const res = await instance("/categories");
@@ -59,18 +53,29 @@ export const postCollection = createAsyncThunk(
     console.log(data);
     try {
       const res = await instance.post("/collections", data);
-      console.log(res.data.success);
       return res.data.success;
     } catch (error) {
       return error.message;
     }
   }
 );
+export const getVideo = createAsyncThunk("get/video", async (data) => {
+  try {
+    const res = await instance(`/search/videos/db?keyword=${data}`);
+    return res.data.data;
+  } catch (error) {
+    return error.message;
+  }
+});
 
 export const myCollectionSlice = createSlice({
   name: "myCollection",
   initialState,
-  reducers: {},
+  reducers: {
+    addVideoList(state, action) {
+      state.videoList.push(action.payload);
+    },
+  },
   extraReducers: (builder) => {
     //!getMyCollection
     builder.addCase(getMyCollection.pending, (state) => {
@@ -85,12 +90,6 @@ export const myCollectionSlice = createSlice({
       state.myCollection.loading = false;
       state.myCollection.data = [];
       state.myCollection.error = action.error.message;
-    });
-    //!getThumbnail
-    builder.addCase(getThumbnail.fulfilled, (state, action) => {
-      state.loading = false;
-      state.thumbnails = [...state.thumbnails, ...action.payload];
-      state.error = "";
     });
     //!getCategory
     builder.addCase(getCategory.pending, (state) => {
@@ -122,5 +121,22 @@ export const myCollectionSlice = createSlice({
       state.newCollection.success = "";
       state.newCollection.error = action.error.message;
     });
+    //!getVideo
+    builder.addCase(getVideo.pending, (state) => {
+      console.log("pending");
+      state.searchResult.loading = true;
+    });
+    builder.addCase(getVideo.fulfilled, (state, action) => {
+      state.searchResult.loading = false;
+      state.searchResult.data = action.payload;
+      state.searchResult.error = "";
+    });
+    builder.addCase(getVideo.rejected, (state, action) => {
+      state.searchResult.loading = false;
+      state.searchResult.success = "";
+      state.searchResult.error = action.error.message;
+    });
   },
 });
+
+export let { addVideoList } = myCollectionSlice.actions;
