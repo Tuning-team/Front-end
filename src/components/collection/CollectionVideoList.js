@@ -6,21 +6,30 @@ import YoutubePlayer from "./YoutubePlayer";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getVideoList(collectionId));
-  }, []);
 
   const videoList = useSelector((state) => state.collectionSlice.videos);
   console.log(videoList);
 
-  const onPlayVideo = () => {
-    console.log("아이 유튜브어떻게 재생시키지..");
+  useEffect(() => {
+    dispatch(getVideoList(collectionId));
+  }, []);
+
+  const [testVideoId, setTestVideoId] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const onPlayVideo = (videoId) => {
+    setTestVideoId(videoId);
+    setShowModal(true);
   };
+  console.log(testVideoId, showModal);
   return (
     <div>
       {videoList?.map((elem) => {
         return (
-          <VideoContainer key={elem._id} onClick={() => onPlayVideo()}>
+          <VideoContainer
+            key={elem._id}
+            onClick={() => onPlayVideo(elem.videoId)}
+          >
             <Wrapper>
               <Img src={elem.thumbnails} alt={elem._id} />
               {/* <YoutubePlayer videoId={elem.videoId} /> */}
@@ -32,6 +41,10 @@ const CollectionVideoList = ({ collectionId }) => {
           </VideoContainer>
         );
       })}
+      {/* showModal이 true면 YoutubePlayer컴포넌트 반환, false이면 null */}
+      {showModal && (
+        <YoutubePlayer videoId={testVideoId} onCloseModal={setShowModal} />
+      )}
     </div>
   );
 };
