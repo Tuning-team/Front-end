@@ -24,7 +24,6 @@ const ResultVideo = () => {
           return (
             <ResultBox
               onClick={() => {
-                console.log(x);
                 dispatch(addVideoList(x));
                 nav(-1);
               }}

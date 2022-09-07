@@ -8,9 +8,10 @@ import { useEffect, useState } from "react";
 import VideoList from "../components/mainList/VideoList";
 import { useDispatch, useSelector } from "react-redux";
 import { getThumbnail } from "../redux/modules/collectionSlice";
+import { useNavigate } from "react-router-dom";
 
 const CollectionList = ({ state }) => {
-  const img = useSelector((state) => state.myCollectionSlice.thumbnails);
+  const nav = useNavigate();
   const dispatch = useDispatch();
   const settings = {
     dots: false,
@@ -20,10 +21,6 @@ const CollectionList = ({ state }) => {
     slidesToScroll: 1,
     arrows: false,
   };
-
-  // useEffect(() => {
-  //   console.log(state);
-  // }, []);
 
   return (
     <>
@@ -40,11 +37,13 @@ const CollectionList = ({ state }) => {
                   <a>더보기...</a>
                 </Slider>
               </SlideWrap>
-
-              <h3>{data.collectionTitle}</h3>
-              <div>
-                <span>좋아요 {data.likes} /</span>
-                <span>댓글 {data.commentNum}</span>
+              <div onClick={() => nav(`/collection/${data._id}`)}>
+                {" "}
+                <h3>{data.collectionTitle}</h3>
+                <div>
+                  <span>좋아요 {data.likes} /</span>
+                  <span>댓글 {data.commentNum}</span>
+                </div>
               </div>
             </Collection>
           );

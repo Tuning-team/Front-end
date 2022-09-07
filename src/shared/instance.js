@@ -2,5 +2,5 @@ import React from "react";
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://www.myspaceti.me/api",
+  baseURL: "https://tube-tuning.com/api",
 });
