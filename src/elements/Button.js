@@ -26,16 +26,16 @@ const Button = (props) => {
 export default Button;
 
 const GlobalBtnStyle = styled.button`
-  width: ${(props) => props.width || "120px"};
-  height: ${(props) => props.height || "44px"};
+  width: ${(props) => props.width || "auto"};
+  height: ${(props) => props.height || "24px"};
 
-  border-radius: 25px;
+  border-radius: 12px;
   border: ${(props) => props.border || "1px solid black"};
-  color: ${(props) => props.color || "white"};
-  background-color: ${(props) => props.backgroundColor || "black"};
+  color: ${(props) => props.color || "black"};
+  background-color: ${(props) => props.backgroundColor || "white"};
 
-  font-size: ${(props) => props.fontSize || "14px"};
-  font-weight: ${(props) => props.fontWize || 500};
+  font-size: ${(props) => props.fontSize || "0.5rem"};
+  font-weight: ${(props) => props.fontWeight || 500};
 
   display: ${(props) => props.display || "block"};
 
