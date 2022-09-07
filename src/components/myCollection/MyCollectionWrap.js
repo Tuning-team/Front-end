@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CollectionList from "../../common/CollectionList";
@@ -7,14 +7,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyCollection } from "../../redux/modules/collectionSlice";
 
 const MyCollectionWrap = () => {
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const nav = useNavigate();
+  const [count, setCount] = useState(0);
   const data = useSelector(
     (state) => state.myCollectionSlice.myCollection.data
   );
+  //!데이터 push했을때
+  const 테스트 = useSelector(
+    (state) => state.myCollectionSlice.myCollection.dataList
+  );
+
   useEffect(() => {
-    dispatch(getMyCollection());
-  }, []);
+    dispatch(getMyCollection({ page, count }));
+  }, [page]);
+
   return (
     <div>
       <TitleWrap>
@@ -29,7 +37,12 @@ const MyCollectionWrap = () => {
           추가하기
         </Button>
       </TitleWrap>
-      <CollectionList state={data} />
+      <CollectionList
+        state={테스트}
+        setPage={setPage}
+        page={page}
+        setCount={setCount}
+      />
     </div>
   );
 };

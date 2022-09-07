@@ -7,10 +7,10 @@ import CollectionSlide from "../elements/CollectionSlide";
 import { useEffect, useState } from "react";
 import VideoList from "../components/mainList/VideoList";
 import { useDispatch, useSelector } from "react-redux";
-import { getThumbnail } from "../redux/modules/collectionSlice";
 import { useNavigate } from "react-router-dom";
+import throttle from "lodash/throttle";
 
-const CollectionList = ({ state }) => {
+const CollectionList = ({ state, setPage, page, setCount }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const settings = {
@@ -21,6 +21,26 @@ const CollectionList = ({ state }) => {
     slidesToScroll: 1,
     arrows: false,
   };
+
+  const useHandleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    console.log("스크롤 이벤트 발생");
+    if (scrollTop + clientHeight >= scrollHeight) {
+      console.log("페이지 끝에 스크롤이 닫았음. ");
+      setPage((prev) => prev + 1);
+      setCount((prev) => prev + 5);
+    }
+  };
+  const infiniteScroll = throttle(useHandleScroll, 1000);
+
+  useEffect(() => {
+    window.addEventListener("scroll", infiniteScroll);
+    return () => {
+      window.removeEventListener("scroll", infiniteScroll);
+    };
+  }, []);
 
   return (
     <>

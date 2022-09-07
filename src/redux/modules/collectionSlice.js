@@ -6,6 +6,7 @@ const initialState = {
   myCollection: {
     loading: false,
     data: [],
+    dataList: [],
     error: "",
   },
   category: {
@@ -33,9 +34,9 @@ const initialState = {
 
 export const getMyCollection = createAsyncThunk(
   "get/myCollection",
-  async () => {
+  async ({ page, count }) => {
     try {
-      const res = await instance("/collections/mine");
+      const res = await instance(`/collections/mine?offset=${count}&limit=5`);
       return res.data.data;
     } catch (error) {
       return error.message;
@@ -56,7 +57,7 @@ export const getCategoryCollection = createAsyncThunk(
   async (id) => {
     try {
       const res = await instance(
-        `/collections?category_id=${id}&offset=0&limit=3`
+        `/collections?category_id=${id}&offset=0&limit=20`
       );
       console.log(res);
       return res.data.data;
@@ -81,7 +82,14 @@ export const postCollection = createAsyncThunk(
 export const getVideo = createAsyncThunk("get/video", async (data) => {
   try {
     const res = await instance(`/search/videos/db?keyword=${data}`);
-    return res.data.data;
+    if (res.data.data.length === 0) {
+      const youtubeRes = await instance(
+        `/search/videos/youtube?keyword=${data}`
+      );
+      return youtubeRes.data.data;
+    } else {
+      return res.data.data;
+    }
   } catch (error) {
     return error.message;
   }
@@ -103,6 +111,10 @@ export const myCollectionSlice = createSlice({
     builder.addCase(getMyCollection.fulfilled, (state, action) => {
       state.myCollection.loading = false;
       state.myCollection.data = action.payload;
+      state.myCollection.dataList = [
+        ...state.myCollection.dataList,
+        ...action.payload,
+      ];
       state.myCollection.error = "";
     });
     builder.addCase(getMyCollection.rejected, (state, action) => {
