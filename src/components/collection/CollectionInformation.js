@@ -5,7 +5,6 @@ import {
   deleteCollection,
   putLikeBtn,
 } from "../../redux/modules/tempCollectionSlice";
-import { getVideoDetail } from "../../redux/modules/videoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../elements/Button";
@@ -14,18 +13,11 @@ const CollectionInformation = ({ collectionId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
+  const data = useSelector((state) => state.collectionSlice.data[0]);
+  console.log(data);
   useEffect(() => {
     dispatch(getCollection(collectionId));
   }, []);
-  const data = useSelector((state) => state.collectionSlice.data[0]);
-
-  useEffect(() => {
-    if (data) {
-      dispatch(getVideoDetail(data.videos[0]));
-    }
-  }, [data]);
-  const videoData = useSelector((state) => state.videoSlice.video[0]);
-  let repThumnail = videoData?.snippet.thumbnails.medium.url;
 
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
@@ -42,7 +34,7 @@ const CollectionInformation = ({ collectionId }) => {
   return (
     <>
       <CollectionHeaderBox>
-        <img src={repThumnail} alt="컬렉션 대표 썸네일" />
+        <img src={data?.thumbnails[0]} alt="컬렉션 대표 썸네일" />
         <div style={{ marginLeft: "0.6rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h1>{data?.collectionTitle}</h1>
