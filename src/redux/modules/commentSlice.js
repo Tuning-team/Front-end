@@ -1,23 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { instance } from "../../shared/instance";
 
 // [GET] COMMENT 
 export const getComment = createAsyncThunk("GET_COMMENT", async () => {
-    // const response = await axios.get("https://www.myspaceti.me/api/comments");
-    const response = await axios.get("http://localhost:3002/member");
+    const response = await instance.get(`/comments/`);
     console.log(response.data);
     return response.data;
 });
 
 // [ADD] COMMENT 
 export const addComment = createAsyncThunk("ADD_COMMENT", async (newList) => {
-    const response = await axios.post("http://localhost:3002/member", newList);
+    const response = await instance.post(`/comments/`, newList);
     return response.data;
 })
 
 // [DELETE] COMMENT
 export const deleteComment = createAsyncThunk("DELETE_COMMENT", async (commentId) => {
-    const response = await axios.delete(`http://localhost:3002/member/${commentId}`,);
+    const response = await instance.delete(`/comments/`,);
     return commentId;
 })
 
@@ -26,8 +25,8 @@ export const deleteComment = createAsyncThunk("DELETE_COMMENT", async (commentId
 export const updateComment = createAsyncThunk(
     "UPDATE_COMMENT",
     async ({ commentId, username, comment }) => {
-        const response = await axios.put(`http://localhost:3002/member/${commentId}`, {
-            username: username, comment: comment
+        const response = await instance.put(`/comments/`, {
+            username: username, comment : comment
         });
         return { commentId, username, comment };
     }
