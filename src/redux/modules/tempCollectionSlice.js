@@ -27,7 +27,7 @@ export const deleteCollection = createAsyncThunk(
   async (collection_id) => {
     try {
       const res = await instance.delete(`/collections/${collection_id}`);
-      return res.data.data;
+      return res.data.message;
     } catch (error) {
       return error.message;
     }
@@ -89,6 +89,7 @@ export const collectionSlice = createSlice({
     builder.addCase(deleteCollection.fulfilled, (state, action) => {
       state.loading = false;
       state.data = action.payload;
+      alert(`${action.payload}`);
     });
     builder.addCase(deleteCollection.rejected, (state, action) => {
       state.loading = false;
