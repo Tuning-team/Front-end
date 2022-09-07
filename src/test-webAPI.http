@@ -127,7 +127,8 @@ GET	https://www.myspaceti.me/api/videos/detail/6312c7b4d3084a7cb866bb90
 GET	https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBJg1gJLZT0As7NGbFDHpWFLO_mi4JDw0c&part=snippet&maxResults=50&regionCode=kr&id=PZIPsKgWJiw
 
 ### 22. 유튜브 동영상 id에 해당하는 재생목록 자동으로 db에 저장
-POST https://www.myspaceti.me/api/videos/add/4q4vpQCIZ6w
+POST https://www.myspaceti.me/api/videos/add/KefKOFGy5I0,Lux8xJMQH-k
+
 
 
 
