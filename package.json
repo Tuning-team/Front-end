@@ -17,6 +17,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-social-login-buttons": "^3.6.1",
+    "react-youtube": "^9.0.3",
     "router-dom": "^2.2.9",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
