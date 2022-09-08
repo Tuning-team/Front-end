@@ -3,33 +3,54 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideoList } from "../../redux/modules/tempCollectionSlice";
 import YoutubePlayer from "./YoutubePlayer";
+import throttle from "lodash/throttle";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
 
   const videoList = useSelector((state) => state.collectionSlice.videos);
   console.log(videoList);
+  const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);
+  console.log(pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
 
-  useEffect(() => {
-    dispatch(getVideoList(collectionId));
-  }, []);
-
-  const [testVideoId, setTestVideoId] = useState("");
+  const [videoId, setVideoId] = useState("");
   const [showModal, setShowModal] = useState(false);
 
+  // ! 클릭하면 유튜브 동영상을 재생할 수 있는 모달 발생
   const onPlayVideo = (videoId) => {
-    setTestVideoId(videoId);
+    setVideoId(videoId);
     setShowModal(true);
   };
-  console.log(testVideoId, showModal);
+  // --------------------여기까지 기본 로직-----------------------
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
+  console.log(page, count);
 
-  console.log(
-    window.scrollY,
-    document.documentElement.clientHeight,
-    document.documentElement.scrollHeight
-  );
+  const scrollHeight = document.documentElement.scrollHeight;
+  const scrollTop = document.documentElement.scrollTop;
+  const clientHeight = document.documentElement.clientHeight;
+
+  const useHandleScroll = () => {
+    console.log(scrollTop, clientHeight, scrollHeight);
+    if (scrollTop + clientHeight > scrollHeight) {
+      setPage((prev) => prev + 1);
+      setCount((prev) => prev + 4);
+    }
+  };
+
+  console.log(scrollTop, clientHeight, scrollHeight);
+  const infiniteScroll = throttle(useHandleScroll, 1000);
+
+  useEffect(() => {
+    dispatch(getVideoList({ collectionId, count }));
+    window.addEventListener("scroll", infiniteScroll);
+    return () => {
+      window.removeEventListener("scroll", infiniteScroll);
+    };
+  }, [page]);
+
   return (
-    <div>
+    <div id="checkingBoxSize" style={{ border: "1px solid black" }}>
       {videoList?.map((elem) => {
         return (
           <VideoContainer
@@ -38,7 +59,6 @@ const CollectionVideoList = ({ collectionId }) => {
           >
             <Wrapper>
               <Img src={elem.thumbnails} alt={elem._id} />
-              {/* <YoutubePlayer videoId={elem.videoId} /> */}
             </Wrapper>
             <TextWrapper>
               <h3>{elem.videoTitle}</h3>
@@ -49,7 +69,7 @@ const CollectionVideoList = ({ collectionId }) => {
       })}
       {/* showModal이 true면 YoutubePlayer컴포넌트 반환, false이면 null */}
       {showModal && (
-        <YoutubePlayer videoId={testVideoId} onCloseModal={setShowModal} />
+        <YoutubePlayer videoId={videoId} onCloseModal={setShowModal} />
       )}
     </div>
   );
