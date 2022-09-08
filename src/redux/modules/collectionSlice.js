@@ -34,7 +34,7 @@ const initialState = {
 
 export const getMyCollection = createAsyncThunk(
   "get/myCollection",
-  async ({ page, count }) => {
+  async (count) => {
     try {
       const res = await instance(`/collections/mine?offset=${count}&limit=5`);
       return res.data.data;

@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyCollection } from "../../redux/modules/collectionSlice";
 
 const MyCollectionWrap = () => {
-  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [count, setCount] = useState(0);
@@ -20,8 +19,8 @@ const MyCollectionWrap = () => {
   );
 
   useEffect(() => {
-    dispatch(getMyCollection({ page, count }));
-  }, [page]);
+    dispatch(getMyCollection(count));
+  }, [count]);
 
   return (
     <div>
@@ -37,12 +36,7 @@ const MyCollectionWrap = () => {
           추가하기
         </Button>
       </TitleWrap>
-      <CollectionList
-        state={테스트}
-        setPage={setPage}
-        page={page}
-        setCount={setCount}
-      />
+      <CollectionList state={테스트} setCount={setCount} />
     </div>
   );
 };
