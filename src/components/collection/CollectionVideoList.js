@@ -22,6 +22,12 @@ const CollectionVideoList = ({ collectionId }) => {
     setShowModal(true);
   };
   console.log(testVideoId, showModal);
+
+  console.log(
+    window.scrollY,
+    document.documentElement.clientHeight,
+    document.documentElement.scrollHeight
+  );
   return (
     <div>
       {videoList?.map((elem) => {

@@ -40,7 +40,7 @@ export const getVideoList = createAsyncThunk(
   async (collection_id) => {
     try {
       const res = await instance.get(
-        `/videos/${collection_id}/?offset=0&limit=4`
+        `/videos/${collection_id}/?offset=0&limit=3`
       );
       return res.data.data;
     } catch (error) {

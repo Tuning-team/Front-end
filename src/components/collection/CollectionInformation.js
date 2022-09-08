@@ -14,7 +14,7 @@ const CollectionInformation = ({ collectionId }) => {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
-  console.log(data);
+
   useEffect(() => {
     dispatch(getCollection(collectionId));
   }, []);
@@ -24,6 +24,7 @@ const CollectionInformation = ({ collectionId }) => {
     window.confirm("정말 지울겁니까?")
       ? dispatch(deleteCollection(collectionId))
       : console.log("no");
+    // todo 삭제한 다음에 그 전 페이지로 이동하는 로직 필요
   };
 
   // ! 좋아요버튼 클릭시 좋아요 등록/취소
@@ -41,6 +42,11 @@ const CollectionInformation = ({ collectionId }) => {
             <Button onClick={() => onDeleteThisCollection()}>삭제</Button>
           </div>
           <p data-testid="collection-description">{data?.description}</p>
+          <br></br>
+          {/* <div id="userId" style={{ overFlow: "hidden" }}>
+            {data?.user_id}
+          </div> */}
+          <div>영상 {data?.videos.length}개</div>
           <MakeElementsHorizontal>
             <div>
               좋아요
@@ -77,6 +83,7 @@ const CollectionInformation = ({ collectionId }) => {
 export default CollectionInformation;
 const CollectionHeaderBox = styled.div`
   display: flex;
+
   & img {
     border-radius: 4px;
     width: 150px;
