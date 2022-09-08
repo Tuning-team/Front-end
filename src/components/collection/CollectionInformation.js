@@ -5,7 +5,6 @@ import {
   deleteCollection,
   putLikeBtn,
 } from "../../redux/modules/tempCollectionSlice";
-import { getVideoDetail } from "../../redux/modules/videoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../elements/Button";
@@ -14,24 +13,18 @@ const CollectionInformation = ({ collectionId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCollection(collectionId));
-  }, []);
   const data = useSelector((state) => state.collectionSlice.data[0]);
 
   useEffect(() => {
-    if (data) {
-      dispatch(getVideoDetail(data.videos[0]));
-    }
-  }, [data]);
-  const videoData = useSelector((state) => state.videoSlice.video[0]);
-  let repThumnail = videoData?.snippet.thumbnails.medium.url;
+    dispatch(getCollection(collectionId));
+  }, []);
 
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
     window.confirm("정말 지울겁니까?")
       ? dispatch(deleteCollection(collectionId))
       : console.log("no");
+    // todo 삭제한 다음에 그 전 페이지로 이동하는 로직 필요
   };
 
   // ! 좋아요버튼 클릭시 좋아요 등록/취소
@@ -42,13 +35,18 @@ const CollectionInformation = ({ collectionId }) => {
   return (
     <>
       <CollectionHeaderBox>
-        <img src={repThumnail} alt="컬렉션 대표 썸네일" />
+        <img src={data?.thumbnails[0]} alt="컬렉션 대표 썸네일" />
         <div style={{ marginLeft: "0.6rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h1>{data?.collectionTitle}</h1>
             <Button onClick={() => onDeleteThisCollection()}>삭제</Button>
           </div>
           <p data-testid="collection-description">{data?.description}</p>
+          <br></br>
+          {/* <div id="userId" style={{ overFlow: "hidden" }}>
+            {data?.user_id}
+          </div> */}
+          <div>영상 {data?.videos.length}개</div>
           <MakeElementsHorizontal>
             <div>
               좋아요
@@ -85,6 +83,7 @@ const CollectionInformation = ({ collectionId }) => {
 export default CollectionInformation;
 const CollectionHeaderBox = styled.div`
   display: flex;
+
   & img {
     border-radius: 4px;
     width: 150px;
