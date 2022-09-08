@@ -9,11 +9,11 @@ import VideoList from "../components/mainList/VideoList";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
+
 // import useHandleScroll from "../hooks/useHandscroll";
 
 const CollectionList = ({ state, setCount }) => {
   const nav = useNavigate();
-  const dispatch = useDispatch();
   const settings = {
     dots: false,
     infinite: false,

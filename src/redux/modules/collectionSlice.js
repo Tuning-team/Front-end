@@ -102,6 +102,9 @@ export const myCollectionSlice = createSlice({
     addVideoList(state, action) {
       state.videoList.push(action.payload);
     },
+    deleteList(state, action) {
+      state.myCollection.dataList = [];
+    },
   },
   extraReducers: (builder) => {
     //!getMyCollection
@@ -181,4 +184,4 @@ export const myCollectionSlice = createSlice({
   },
 });
 
-export let { addVideoList } = myCollectionSlice.actions;
+export let { addVideoList, deleteList } = myCollectionSlice.actions;
