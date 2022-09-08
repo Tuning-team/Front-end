@@ -6,7 +6,6 @@ import YoutubePlayer from "./YoutubePlayer";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
-
   const videoList = useSelector((state) => state.collectionSlice.videos);
   console.log(videoList);
 

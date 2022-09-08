@@ -12,7 +12,6 @@ import Button from "../../elements/Button";
 const CollectionInformation = ({ collectionId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-
   const data = useSelector((state) => state.collectionSlice.data[0]);
 
   useEffect(() => {

@@ -15,6 +15,9 @@ export const searchSlice = createSlice({
   initialState: [],
   reducers: {},
   extraReducers: {
-    [getList.fulfilled]: (state, { payload }) => [state = payload],
+    // (인자) => 결과: 괄호가 없으면 return 생략
+    // 이중 배열의 문제는 return되는 내용이 []를 감싸서!
+    // 지우시면 해결!
+    [getList.fulfilled]: (state, { payload }) => state = payload,
   },
 })
