@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteComment, updateComment } from "../../redux/modules/commentSlice";
+import { deleteComment, getComment, updateComment } from "../../redux/modules/commentSlice";
 
-const CommentList = ({ commentId, comment }) => {
+
+const CommentList = ({ commentId, collectionId, comment }) => {
+  console.log(collectionId)
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getComment(collectionId));
+  }, []);
 
   const onDelete = (e) => {
     e.preventDefault();
@@ -20,7 +26,7 @@ const CommentList = ({ commentId, comment }) => {
   };
 
   return (
-  <>
+    <>
       <ul>
         <li>Comment Number: {commentId}</li>
         <li>내용 : {comment}</li>

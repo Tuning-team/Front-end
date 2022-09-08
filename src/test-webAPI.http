@@ -22,6 +22,7 @@ GET	{{host}}/api/collections/63170a90cec22ddac6c12482
 ### 4. 특정 컬렉션 id로 삭제하기 : DELETE /api/collections/:collection_id
 DELETE {{host}}/api/collections/63170a90cec22ddac6c12482
 
+
 ### 5. DB에 올려진 특정 영상(id 배열)들을 받아 컬렉션에 추가하기 : PUT /api/collections/:collection_id
 PUT	{{host}}/api/collections/63136cbd25b3d37574b18bfd
 Content-Type: application/json
@@ -74,6 +75,7 @@ Content-Type: application/json
 ### 13. 특정 id를 가진 댓글을 삭제하기  : DELETE /api/comments/:collection_id
 DELETE {{host}}/api/comments/63136b9625b3d37574b18bee
 
+
 ## ---------------------- 영상 찾기 관련 API ------------------------
 ### 14. (기본찾기) 우리DB에 저장된 영상 중에 검색하기 : GET /api/search/videos/db?keyword=
 GET {{host}}/api/search/videos/db?keyword=디자인
@@ -81,6 +83,7 @@ GET {{host}}/api/search/videos/db?keyword=디자인
 
 ### 15. (더찾아보기) 유튜브API에 100점 주고 검색하기 : GET /api/search/videos/youtube?keyword=
 GET {{host}}/api/search/videos/youtube?keyword=운동
+
 
 ## ---------------------- 유저 정보 찾기 관련 API ------------------------
 ### 16. 로그인한 유저의 정보 가져오기 : GET /api/user
@@ -90,9 +93,11 @@ GET	{{host}}/api/user/
 ### 17. 고유 id로 유저 정보 찾기 : GET /api/user/:user_id
 GET {{host}}/api/user/6312ad8b5057863778c220ca
 
+
 ## ---------------------- 영상 관련 API  ------------------------
 ### 18. 특정 id 컬렉션에 포함되어 있는 영상들의 리스트 : GET /api/videos/:collection_id
 GET	{{host}}/api/videos/63186b1c9451dcb256fd3a2f?offset=0&limit=3
+
 
 
 ### 19. 특정 id 영상의 더 상세한 정보 불러오기 : GET /api/videos/detail/:video_id
@@ -106,3 +111,4 @@ GET	https://www.googleapis.com/youtube/v3/videos?key=AIzaSyBJg1gJLZT0As7NGbFDHpW
 
 ### 22. 영상 아이디를 하나 넣으면 그 채널 전체의 재생목록 영상을 검색가능하게 함
 POST {{host}}/api/videos/add/FPkrJjDO7Fc
+

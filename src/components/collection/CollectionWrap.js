@@ -5,6 +5,7 @@ import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
 
 import styled from "styled-components";
+import CommentList from "../comment/CommentList";
 
 const CollectionWrap = () => {
   const param = useParams();
@@ -12,7 +13,9 @@ const CollectionWrap = () => {
     <Layout>
       <CollectionInformation collectionId={param.collection_id} />
       <CollectionVideoList collectionId={param.collection_id} />
-      {/* <CollectionComment /> */}
+
+      {/* Comment Component 작업 중 */}
+      <CommentList collectionId={param.collection_id} />
     </Layout>
   );
 };
