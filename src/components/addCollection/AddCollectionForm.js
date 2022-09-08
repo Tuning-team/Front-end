@@ -5,7 +5,7 @@ import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import icon_addvideo from "../../svg/icon_addvideo.svg";
 import { useNavigate } from "react-router-dom";
-import submit from "../../common/Confirm";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategory,
@@ -23,11 +23,14 @@ const AddCollectionForm = () => {
   );
   const videoList = useSelector((state) => state.myCollectionSlice.videoList);
 
-  const [addVideo, setAddVideo] = useState(null);
   const [{ collectionTitle, description, category_id }, onChange, reset] =
     useInputs({
-      collectionTitle: "",
-      description: "",
+      collectionTitle: localStorage.getItem("title")
+        ? localStorage.getItem("title")
+        : "",
+      description: localStorage.getItem("description")
+        ? localStorage.getItem("description")
+        : "",
       category_id: "0",
     });
   const videos = videoList.map((x) => x.videoId);
@@ -40,17 +43,19 @@ const AddCollectionForm = () => {
     if (
       collectionTitle === "" ||
       description === "" ||
-      // addVideo === null ||
+      videoList.length === 0 ||
       category_id === "0"
     ) {
       alert("모두 입력해주세요");
       return;
     } else {
-      console.log("전송");
+      alert("컬렉션이 생성되었습니다.");
       dispatch(postCollection(addData));
+      window.location.href = "/mypage";
+      localStorage.removeItem("title");
+      localStorage.removeItem("description");
     }
   };
-
   //todo required 효과넣기
   //todo 버튼 disabled효과 주기
 
@@ -60,14 +65,15 @@ const AddCollectionForm = () => {
       <Button
         onClick={() => {
           nav(-1);
-          //confirm test
-          submit();
+          localStorage.removeItem("title");
+          localStorage.removeItem("description");
+          localStorage.removeItem("description");
         }}
       >
         취소하기
       </Button>
       <Form onSubmit={onSubmitHandler}>
-        <Button>추가하기</Button>
+        <Button>확인</Button>
         <Input
           placeholder="컬랙션 제목을 입력하세요"
           name="collectionTitle"
@@ -97,6 +103,8 @@ const AddCollectionForm = () => {
             <Icon
               src={icon_addvideo}
               onClick={() => {
+                localStorage.setItem("title", collectionTitle);
+                localStorage.setItem("description", description);
                 nav("/mypage/add/search");
               }}
             ></Icon>
@@ -111,7 +119,10 @@ const AddCollectionForm = () => {
 };
 export default AddCollectionForm;
 const Title = styled.h1``;
-const Form = styled.form``;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 const TextArea = styled.textarea``;
 const Select = styled.select``;
 const Option = styled.option``;

@@ -3,7 +3,7 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import { useCookies } from "react-cookie";
 
 const LoginSignupWrap = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
+  // const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
 
   return (
     <>
