@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideoList } from "../../redux/modules/tempCollectionSlice";
+import {
+  getVideoList,
+  resetVideoList,
+} from "../../redux/modules/tempCollectionSlice";
 import YoutubePlayer from "./YoutubePlayer";
 import throttle from "lodash/throttle";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
   const videoList = useSelector((state) => state.collectionSlice.videos);
-  console.log(videoList);
   const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);
-  console.log(pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
+  // console.log(pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
 
   const [videoId, setVideoId] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -21,35 +23,43 @@ const CollectionVideoList = ({ collectionId }) => {
     setShowModal(true);
   };
   // --------------------여기까지 기본 로직-----------------------
-  const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
-  console.log(page, count);
-
-  const scrollHeight = document.documentElement.scrollHeight;
-  const scrollTop = document.documentElement.scrollTop;
-  const clientHeight = document.documentElement.clientHeight;
 
   const useHandleScroll = () => {
-    console.log(scrollTop, clientHeight, scrollHeight);
-    if (scrollTop + clientHeight > scrollHeight) {
-      setPage((prev) => prev + 1);
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    console.log(
+      "scrollTop:" + scrollTop,
+      "clientHeight:" + clientHeight,
+      "scrollHeight:" + scrollHeight
+    );
+    if (scrollTop + clientHeight >= scrollHeight) {
       setCount((prev) => prev + 4);
+      console.log("페이지 끝에 스크롤이 닫았음. ");
     }
   };
-
-  console.log(scrollTop, clientHeight, scrollHeight);
   const infiniteScroll = throttle(useHandleScroll, 1000);
 
   useEffect(() => {
+    if (count >= pageInfo?.totalVideosView) {
+      return;
+    }
     dispatch(getVideoList({ collectionId, count }));
+    if (count === 0) {
+      dispatch(resetVideoList());
+    }
+  }, [count]);
+
+  useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {
       window.removeEventListener("scroll", infiniteScroll);
     };
-  }, [page]);
+  }, []);
 
   return (
-    <div id="checkingBoxSize" style={{ border: "1px solid black" }}>
+    <div>
       {videoList?.map((elem) => {
         return (
           <VideoContainer
