@@ -21,6 +21,7 @@ export const getCollection = createAsyncThunk(
     }
   }
 );
+
 // 컬렉션 삭제
 export const deleteCollection = createAsyncThunk(
   "delete/collection",
@@ -37,12 +38,14 @@ export const deleteCollection = createAsyncThunk(
 // 해당 컬렉션에 해당하는 비디오 목록을 가져오는 thunk함수
 export const getVideoList = createAsyncThunk(
   "get/videoList",
-  async (collection_id) => {
+  async ({ collectionId, count }) => {
+    console.log(count);
     try {
       const res = await instance.get(
-        `/videos/${collection_id}/?offset=0&limit=3`
+        `/videos/${collectionId}/?offset=${count}&limit=4`
       );
-      return res.data.data;
+      console.log(res.data);
+      return res.data;
     } catch (error) {
       return error.message;
     }
@@ -101,7 +104,8 @@ export const collectionSlice = createSlice({
     });
     builder.addCase(getVideoList.fulfilled, (state, action) => {
       state.loading = false;
-      state.videos = action.payload;
+      state.pageInfo = action.payload.pageInfo;
+      state.videos = state.videos.concat(action.payload.data);
     });
     builder.addCase(getVideoList.rejected, (state, action) => {
       console.log("rejected");
