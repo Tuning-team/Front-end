@@ -9,14 +9,11 @@ import styled from "styled-components";
 // logis orders : useState > useRef > dispatch > navigate > useSelector > extra..
 const MainPage = () => {
   return (
-    <StMainPage>
-      <Headers />
+    <>
+      {/* <Headers /> */}
       <MainListWrap />
       <Navbar />
-    </StMainPage>
+    </>
   );
 };
 export default MainPage;
-const StMainPage = styled.div`
-  padding: 10px;
-`;
