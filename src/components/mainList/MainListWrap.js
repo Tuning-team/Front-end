@@ -1,5 +1,6 @@
 import React from "react";
 
+import RecomendedCollections from "./RecomendedCollections";
 import FamousCollections from "./FamousCollections";
 import UserCollections from "./UserCollections";
 import RandomCollections from "./RandomCollections";
@@ -11,8 +12,9 @@ import styled from "styled-components";
 const MainListWrap = () => {
   return (
     <div>
+      <RecomendedCollections />
       <FamousCollections />
-      <UserCollections />
+      {/* <UserCollections /> */}
       <RandomCollections />
     </div>
   );
