@@ -1,15 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../shared/instance";
 
-// initialState 설정
 const initialState = {
   loading: false,
+  isDeleted: false,
+  isLiked: false,
   data: [],
   videos: [],
   error: "",
 };
 
-// 컬렉션에 대한 정보를 가져오는 thunk함수(collection에 대한 response를 가져옴)
+// 컬렉션에 대한 정보를 가져오는 thunk
 export const getCollection = createAsyncThunk(
   "get/collection",
   async (collection_id) => {
@@ -22,7 +23,7 @@ export const getCollection = createAsyncThunk(
   }
 );
 
-// 컬렉션 삭제
+// 컬렉션 삭제 thunk
 export const deleteCollection = createAsyncThunk(
   "delete/collection",
   async (collection_id) => {
@@ -35,16 +36,14 @@ export const deleteCollection = createAsyncThunk(
   }
 );
 
-// 해당 컬렉션에 해당하는 비디오 목록을 가져오는 thunk함수
+// 컬렉션 id에 해당하는 비디오 목록 가져오는 thunk
 export const getVideoList = createAsyncThunk(
   "get/videoList",
   async ({ collectionId, count }) => {
-    console.log(count);
     try {
       const res = await instance.get(
         `/videos/${collectionId}/?offset=${count}&limit=4`
       );
-      console.log(res.data);
       return res.data;
     } catch (error) {
       return error.message;
@@ -52,12 +51,13 @@ export const getVideoList = createAsyncThunk(
   }
 );
 
-// 유저가 컬렉션에 좋아요
+// 컬렉션 좋아요 thunk
 export const putLikeBtn = createAsyncThunk(
   "put/likeBtn",
   async (collection_id) => {
     try {
       const res = await instance.put(`/collections/like/${collection_id}`);
+      console.log(res);
       return res.data.message;
     } catch (error) {
       return error.message;
@@ -69,7 +69,11 @@ export const putLikeBtn = createAsyncThunk(
 export const collectionSlice = createSlice({
   name: "collection",
   initialState,
-  reducers: {},
+  reducers: {
+    resetVideoList(state, action) {
+      state.videos = [];
+    },
+  },
   extraReducers: (builder) => {
     // ! getCollection
     builder.addCase(getCollection.pending, (state, acion) => {
@@ -86,23 +90,30 @@ export const collectionSlice = createSlice({
     });
     // ! deleteCollection
     builder.addCase(deleteCollection.pending, (state, action) => {
-      console.log("pending");
+      console.log("delete pending");
       state.loading = true;
+      state.isDeleted = false;
     });
     builder.addCase(deleteCollection.fulfilled, (state, action) => {
+      console.log("delete fulfilled");
       state.loading = false;
+      state.isDeleted = true;
       state.data = action.payload;
       alert(`${action.payload}`);
+      return (window.location.href = "/mypage"); //에러 일어나지만 새로고침해버림..
     });
     builder.addCase(deleteCollection.rejected, (state, action) => {
       state.loading = false;
+      state.isDeleted = false;
       state.error = action.error.message;
     });
     // ! getVideoList
     builder.addCase(getVideoList.pending, (state, action) => {
+      console.log("get pending");
       state.loading = true;
     });
     builder.addCase(getVideoList.fulfilled, (state, action) => {
+      console.log("get fulfilled");
       state.loading = false;
       state.pageInfo = action.payload.pageInfo;
       state.videos = state.videos.concat(action.payload.data);
@@ -116,10 +127,12 @@ export const collectionSlice = createSlice({
     builder.addCase(putLikeBtn.pending, (state, action) => {
       console.log("pending");
       state.loading = true;
+      state.isLiked = false;
     });
     builder.addCase(putLikeBtn.fulfilled, (state, action) => {
       console.log("fulfilled");
       state.loading = false;
+      state.isLiked = true;
       alert(`${action.payload}`);
     });
     builder.addCase(putLikeBtn.rejected, (state, action) => {
@@ -128,3 +141,4 @@ export const collectionSlice = createSlice({
     });
   },
 });
+export let { resetVideoList } = collectionSlice.actions;

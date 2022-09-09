@@ -10,7 +10,7 @@ import styled from "styled-components";
 const MainPage = () => {
   return (
     <>
-      {/* <Headers /> */}
+      <Headers />
       <MainListWrap />
       <Navbar />
     </>
