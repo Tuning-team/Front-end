@@ -10,9 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
 
-const CollectionList = ({ state, setPage, page, setCount }) => {
+// import useHandleScroll from "../hooks/useHandscroll";
+
+const CollectionList = ({ state, setCount }) => {
   const nav = useNavigate();
-  const dispatch = useDispatch();
   const settings = {
     dots: false,
     infinite: false,
@@ -29,11 +30,10 @@ const CollectionList = ({ state, setPage, page, setCount }) => {
     console.log("스크롤 이벤트 발생");
     if (scrollTop + clientHeight >= scrollHeight) {
       console.log("페이지 끝에 스크롤이 닫았음. ");
-      setPage((prev) => prev + 1);
       setCount((prev) => prev + 5);
     }
   };
-  const infiniteScroll = throttle(useHandleScroll, 1000);
+  const infiniteScroll = throttle(useHandleScroll, 2000);
 
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
@@ -47,7 +47,7 @@ const CollectionList = ({ state, setPage, page, setCount }) => {
       <ListWrap>
         {state?.map((data, idx) => {
           return (
-            <Collection key={data._id}>
+            <Collection key={idx}>
               <SlideWrap>
                 <Slider {...settings}>
                   {data.thumbnails?.map((src, i) => {
