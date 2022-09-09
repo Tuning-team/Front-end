@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Input from "../../elements/Input";
+
 import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import icon_addvideo from "../../svg/icon_addvideo.svg";
+import icon_add from "../../svg/icon_add.svg";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -31,15 +32,14 @@ const AddCollectionForm = () => {
       description: localStorage.getItem("description")
         ? localStorage.getItem("description")
         : "",
-      category_id: "0",
+      category_id: localStorage.getItem("category")
+        ? localStorage.getItem("category")
+        : "",
     });
   const videos = videoList.map((x) => x.videoId);
   const addData = { category_id, collectionTitle, description, videos };
 
-  const onSubmitHandler = (e) => {
-    console.log(videos);
-    console.log(addData);
-    e.preventDefault();
+  const onClickHandler = (e) => {
     if (
       collectionTitle === "" ||
       description === "" ||
@@ -49,11 +49,10 @@ const AddCollectionForm = () => {
       alert("모두 입력해주세요");
       return;
     } else {
-      alert("컬렉션이 생성되었습니다.");
       dispatch(postCollection(addData));
-      window.location.href = "/mypage";
       localStorage.removeItem("title");
       localStorage.removeItem("description");
+      localStorage.removeItem("category");
     }
   };
   //todo required 효과넣기
@@ -61,75 +60,161 @@ const AddCollectionForm = () => {
 
   return (
     <>
-      <Title>컬렉션 만들기</Title>
-      <Button
-        onClick={() => {
-          nav(-1);
-          localStorage.removeItem("title");
-          localStorage.removeItem("description");
-          localStorage.removeItem("description");
-        }}
-      >
-        취소하기
-      </Button>
-      <Form onSubmit={onSubmitHandler}>
-        <Button>확인</Button>
-        <Input
-          placeholder="컬랙션 제목을 입력하세요"
-          name="collectionTitle"
-          onChange={onChange}
-          value={collectionTitle}
-        />
-        <TextArea
-          placeholder="컬랙션 설명을 넣어주세요"
-          name="description"
-          onChange={onChange}
-          value={description}
-        />
-        <Select name="category_id" onChange={onChange} value={category_id}>
-          <Option value="0">카테고리를 선택해주세요</Option>
-          {categories?.map((option, idx) => {
-            return (
-              <Option value={option._id} key={idx}>
-                {option.categoryName}
-              </Option>
-            );
-          })}
-        </Select>
-        <ImgBox>
-          <div>
-            {" "}
-            영상을 추가해 주세요
-            <Icon
-              src={icon_addvideo}
+      <TitleBox>
+        <Title
+          onClick={() => {
+            nav(-1);
+            localStorage.removeItem("title");
+            localStorage.removeItem("description");
+            localStorage.removeItem("description");
+            localStorage.removeItem("category");
+          }}
+        >
+          &lt;
+        </Title>
+        <Title>컬렉션 만들기</Title>
+
+        <Btn onClick={onClickHandler}>확인</Btn>
+      </TitleBox>
+
+      <Form>
+        <Wrap>
+          <Label>
+            제목 <Required>*</Required>
+          </Label>
+          <Input
+            placeholder="컬랙션 제목을 입력하세요"
+            name="collectionTitle"
+            onChange={onChange}
+            value={collectionTitle}
+          />
+        </Wrap>
+        <Wrap>
+          <Label>
+            카테고리<Required>*</Required>
+          </Label>
+          <Select name="category_id" onChange={onChange} value={category_id}>
+            <Option value="0">카테고리를 선택해주세요</Option>
+            {categories?.map((option, idx) => {
+              return (
+                <Option value={option._id} key={idx}>
+                  {option.categoryName}
+                </Option>
+              );
+            })}
+          </Select>
+        </Wrap>
+        <Wrap>
+          {" "}
+          <Label>
+            설명<Required>*</Required>
+          </Label>
+          <TextArea
+            placeholder="컬랙션 설명을 넣어주세요"
+            name="description"
+            onChange={onChange}
+            value={description}
+          />
+        </Wrap>
+        <Wrap>
+          <Label>
+            영상추가<Required>*</Required>
+          </Label>
+          <AddVideoBox>
+            <StVideo
               onClick={() => {
                 localStorage.setItem("title", collectionTitle);
                 localStorage.setItem("description", description);
+                localStorage.setItem("category", category_id);
                 nav("/mypage/add/search");
               }}
-            ></Icon>
-          </div>
-          {videoList?.map((x, idx) => {
-            return <div key={idx}>{x.title}</div>;
-          })}
-        </ImgBox>
+            >
+              <Icon src={icon_add} />
+            </StVideo>
+            {videoList?.map((x, idx) => {
+              return <div key={idx}>{x.title}</div>;
+            })}
+          </AddVideoBox>
+        </Wrap>
       </Form>
     </>
   );
 };
 export default AddCollectionForm;
-const Title = styled.h1``;
-const Form = styled.form`
+const TitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 123.8%;
+  padding: 5px;
+`;
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Btn = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 123.8%;
+  padding: 5px;
+`;
+const Required = styled.p`
+  color: #b295e9;
+  margin-left: 5px;
+`;
+const Label = styled.label`
+  display: flex;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 123.8%;
+  margin-bottom: 12px;
+`;
+const Input = styled.input`
+  margin-bottom: 12px;
+  border: #b295e9 solid;
+  width: 343px;
+  height: 40px;
+`;
+const Wrap = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const TextArea = styled.textarea``;
-const Select = styled.select``;
+const TextArea = styled.textarea`
+  margin-bottom: 12px;
+  border: #b295e9 solid;
+  width: 343px;
+  height: 78px;
+`;
+const Select = styled.select`
+  margin-bottom: 12px;
+  border: #b295e9 solid;
+  width: 343px;
+  height: 40px;
+`;
 const Option = styled.option``;
-const ImgBox = styled.div`
+const AddVideoBox = styled.div`
   border-style: solid;
+  width: 343px;
+  height: 40px;
+`;
+const StVideo = styled.div`
+  width: 164px;
+  height: 90px;
+  border: #b295e9 solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const Icon = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 20px;
+  height: 20px;
 `;

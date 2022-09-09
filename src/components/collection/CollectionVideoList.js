@@ -46,10 +46,12 @@ const CollectionVideoList = ({ collectionId }) => {
       return;
     }
     dispatch(getVideoList({ collectionId, count }));
+
     if (count === 0) {
       dispatch(resetVideoList());
     }
   }, [count]);
+
 
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
