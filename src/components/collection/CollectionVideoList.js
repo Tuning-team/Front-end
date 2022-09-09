@@ -7,7 +7,6 @@ import throttle from "lodash/throttle";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
-
   const videoList = useSelector((state) => state.collectionSlice.videos);
   console.log(videoList);
   const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);

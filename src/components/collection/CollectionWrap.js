@@ -6,7 +6,9 @@ import CollectionVideoList from "./CollectionVideoList";
 
 import styled from "styled-components";
 import CommentList from "../comment/CommentList";
+import CommentForm from "../comment/CommentForm";
 import throttle from "lodash/throttle";
+
 
 const CollectionWrap = () => {
   const param = useParams();
@@ -48,7 +50,8 @@ const CollectionWrap = () => {
       <CollectionVideoList collectionId={param.collection_id} />
 
       {/* Comment Component 작업 중 */}
-      {/* <CommentList collectionId={param.collection_id} /> */}
+      <CommentForm collectionId={param.collection_id} />
+      <CommentList collectionId={param.collection_id} />
     </Layout>
   );
 };

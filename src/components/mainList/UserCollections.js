@@ -18,7 +18,7 @@ const UserCollections = () => {
     (state) => state.collectionSlice.data
   );
   // ! 임시로 넣어놓은 collectionID
-  let collectionId = "6312cd792a4f77334033a9be";
+  let collectionId = "631a068c18564991703a8770";
   useEffect(() => {
     dispatch(getCollection(collectionId));
   }, []);
