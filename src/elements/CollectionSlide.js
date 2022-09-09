@@ -10,13 +10,15 @@ const CollectionSlide = ({ children }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 2.5,
-    slidesToScroll: 1,
-    arrows: false,
+    slidesToShow: 2.1, //스크린에 몇 개의 이미지를 보여줄 것인지
+    rows: 1,
+    slidesToScroll: 1, //스크롤할때 몇개가 넘어가는지
+    arrows: false, //화살표 표시
+    adaptiveHeight: true, //높이를 컨텐츠에 맞게 자동 조절
   };
   return (
     <SlideWrapper>
-      <Slider {...settings}>{children}</Slider>
+      <StyleSlider {...settings}>{children}</StyleSlider>
     </SlideWrapper>
   );
 };
@@ -24,7 +26,7 @@ export default CollectionSlide;
 
 const SlideWrapper = styled.div`
   position: relative;
-  border: 1px solid black;
   margin: 0 auto;
   overflow-x: hidden;
 `;
+const StyleSlider = styled(Slider)``;

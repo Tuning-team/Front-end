@@ -1,57 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import CollectionSlide from "../../elements/CollectionSlide";
+import { getCategoryCollection } from "../../redux/modules/collectionSlice";
 
 const FamousCollections = () => {
-  const mockdata = [
-    {
-      collectionTitle: "우울할때 보는영상",
-      id: 0,
-      likes: 3,
-      comments: 23,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-    {
-      collectionTitle: "배고플때 보는영상",
-      id: 1,
-      likes: 3,
-      comments: 23,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-    {
-      collectionTitle: "웃긴영상 모음집",
-      id: 2,
-      likes: 5,
-      comments: 21,
-      thumbnail: [
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-        "https://via.placeholder.com/150x150",
-      ],
-    },
-  ];
+  const dispatch = useDispatch();
+
+  const popularCollections = useSelector(
+    (state) => state.myCollectionSlice.categoryCollection
+  );
+  const isLoading = popularCollections.Loading;
+  const collectionsData = popularCollections.data;
+
+  let popularCollectionId = "6319aeebd1e330e86bbade9f"; //"인기있는"카테고리에 대한 id
+
+  useEffect(() => {
+    dispatch(getCategoryCollection(popularCollectionId));
+  }, [isLoading]);
+
   return (
     <section>
-      <H1>인기있는 컬렉션들</H1>
+      <H1>인기있는 튜닝</H1>
       <CollectionSlide>
-        {mockdata?.map((data) => (
-          <CollectionFolder key={data.id}>
-            <ThumbnailWrapper>
-              {data.thumbnail?.map((src, idx) => (
-                <Img src={src} key={idx} />
-              ))}
-            </ThumbnailWrapper>
+        {collectionsData?.map((data) => (
+          <CollectionFolder key={data._id}>
+            <RepThumbnail url={data.thumbnails[0]} />
             <CollectionTitle>{data.collectionTitle}</CollectionTitle>
           </CollectionFolder>
         ))}
@@ -59,6 +33,7 @@ const FamousCollections = () => {
     </section>
   );
 };
+// todo https://www.cluemediator.com/add-space-between-carousel-items-in-react-slick 리액트슬릭 마진 추가..
 export default FamousCollections;
 const H1 = styled.h1`
   font-size: 1.5rem;
@@ -71,24 +46,15 @@ const CollectionFolder = styled.div`
   width: 130px;
   text-align: center;
 `;
-const ThumbnailWrapper = styled.div`
-  border: 1px solid red;
-  display: flex;
-  flex-wrap: wrap;
-  width: 120px;
-  gap: 5px;
-  justify-content: space-evenly;
-  margin: 0 auto;
+const RepThumbnail = styled.div`
+  max-width: 320px;
+  min-height: 180px;
+  background-image: url(${(props) => props.url});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
 const CollectionTitle = styled.h3`
   font-size: 16px;
   font-weight: bold;
-  border: 1px solid green;
-`;
-const Img = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
-  background-image: url(${(props) => props.src});
-  background-position: center;
 `;
