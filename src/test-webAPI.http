@@ -52,11 +52,11 @@ GET	{{host}}/api/collections/search?keyword=음악&offset=0&limit=3
 
 ## ---------------------- 컬렉션에 달린 댓글 관련 API ------------------------
 ### 10. collection_id 컬렉션에 달린 댓글 리스트 보기 : GET /api/comments/:collection_id
-GET	{{host}}/api/comments/6316eed7b34698b92f0224ea
+GET	{{host}}/api/comments/631ab86b8a3971d0c7842412
 
 
 ### 11. collection_id 컬렉션에 댓글 달기  : POST /api/comments/:collection_id
-POST {{host}}/api/comments/6316eed7b34698b92f0224ea
+POST {{host}}/api/comments/631ab86b8a3971d0c7842412
 Content-Type: application/json
 
 {
@@ -64,7 +64,7 @@ Content-Type: application/json
 }
 
 ### 12. 특정 id를 가진 댓글을 수정하기  : PUT /api/comments/:collection_id
-PUT	{{host}}/api/comments/63136b9625b3d37574b18bee
+PUT	{{host}}/api/comments/631ab86b8a3971d0c7842412
 Content-Type: application/json
 
 {
@@ -73,7 +73,7 @@ Content-Type: application/json
 
 
 ### 13. 특정 id를 가진 댓글을 삭제하기  : DELETE /api/comments/:collection_id
-DELETE {{host}}/api/comments/63136b9625b3d37574b18bee
+DELETE {{host}}/api/comments/631ab86b8a3971d0c7842412
 
 
 ## ---------------------- 영상 찾기 관련 API ------------------------

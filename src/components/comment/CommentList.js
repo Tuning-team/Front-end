@@ -31,7 +31,6 @@
 //       setInputValue("");
 //     }
 //   };
-
 //   return (
 //     <>
 //       <ul>
@@ -43,7 +42,6 @@
 //               <input
 //                 onChange={(e) => setInputValue(e.target.value)}
 //               ></input>
-
 
 //               <button type="button" value={data.comment_id} onClick={onDelete}>
 //                 삭제

@@ -7,7 +7,7 @@ export const getComment = createAsyncThunk("GET_COMMENT", async (collection_id) 
     return response.data.data;
 });
 
-// [ADD] COMMENT  [=>collection_id 남음]
+// [ADD] COMMENT 
 export const addComment = createAsyncThunk("ADD_COMMENT", async ({ newList, collectionId }) => {
     const response = await instance.post(`/comments/${collectionId}`, newList);
     console.log(response)
@@ -21,9 +21,9 @@ export const deleteComment = createAsyncThunk("DELETE_COMMENT", async (commentId
 })
 
 
-// [UPDATE] COMMENT [=>collection_id 남음]
-export const updateComment = createAsyncThunk("UPDATE_COMMENT", async ({ commentId, comment }) => {
-    const response = await instance.put(`/comments/${commentId}`, comment);
+// [UPDATE] COMMENT 
+export const updateComment = createAsyncThunk("UPDATE_COMMENT", async ({ commentId, editComment }) => {
+    const response = await instance.put(`/comments/${commentId}`, editComment);
     console.log(response)
 }
 )

@@ -43,12 +43,16 @@ const CommentList = ({ collectionId }) => {
     if (inputValue === "") {
       alert("수정해주세요");
     } else {
-      dispatch(updateComment({ commentId, comment: inputValue }));
+      dispatch(updateComment({ commentId, editComment }));
       setInputValue("");
       setRefresh(true)
     }
   };
   console.log(commentList);
+
+  const editComment = {
+    comment: inputValue
+  }
 
   return (
     <>
