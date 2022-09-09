@@ -24,7 +24,7 @@ const CategoryWrap = () => {
 
   return (
     <>
-      <TitleWrap>{title[0].categoryName} 관련된 컬렉션</TitleWrap>
+      <TitleWrap>{title[0]?.categoryName} 관련된 컬렉션</TitleWrap>
       <CollectionList state={data} />
     </>
   );
