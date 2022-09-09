@@ -8,6 +8,7 @@ import {
   deleteList,
   getMyCollection,
 } from "../../redux/modules/collectionSlice";
+import icon_add from "../../svg/icon_add.svg";
 
 const MyCollectionWrap = () => {
   const dispatch = useDispatch();
@@ -22,25 +23,25 @@ const MyCollectionWrap = () => {
   );
 
   useEffect(() => {
-    dispatch(getMyCollection(count));
     if (count === 0) {
       dispatch(deleteList());
     }
+    dispatch(getMyCollection(count));
+    // console.log(count);
   }, [count]);
 
   return (
     <div>
       <TitleWrap>
         {" "}
-        <Title>내 컬랙션</Title>
+        <Title>내 튜닝</Title>
         {/* //todo 버튼은 로그인 아이디가 일치할때만 보이도록 */}
-        <Button
+        <Icon
+          src={icon_add}
           onClick={() => {
             nav("/mypage/add");
           }}
-        >
-          추가하기
-        </Button>
+        />
       </TitleWrap>
       <CollectionList state={data} setCount={setCount} />
     </div>
@@ -49,6 +50,17 @@ const MyCollectionWrap = () => {
 export default MyCollectionWrap;
 
 const TitleWrap = styled.div`
-  background-color: pink;
+  display: flex;
+  justify-content: space-between;
 `;
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 123.8%;
+`;
+const Icon = styled.img`
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+`;

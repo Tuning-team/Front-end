@@ -12,25 +12,31 @@ import Button from "../../elements/Button";
 const CollectionInformation = ({ collectionId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.collectionSlice.data[0]);
 
-  useEffect(() => {
-    dispatch(getCollection(collectionId));
-  }, []);
+  const data = useSelector((state) => state.collectionSlice.data[0]);
+  const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
+  const isLiked = useSelector((state) => state.collectionSlice.isLiked);
 
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
     window.confirm("정말 지울겁니까?")
       ? dispatch(deleteCollection(collectionId))
       : console.log("no");
-    // todo 삭제한 다음에 그 전 페이지로 이동하는 로직 필요
   };
+  // todo 삭제 후 페이지 이동하는 로직 리팩토링 필수!!
+
+  useEffect(() => {
+    dispatch(getCollection(collectionId));
+  }, [isLiked, collectionId]);
 
   // ! 좋아요버튼 클릭시 좋아요 등록/취소
   const onClickLikeBtn = () => {
     dispatch(putLikeBtn(collectionId));
   };
 
+  // if (isDeleted) {
+  //   return nav("/mypage");
+  // }
   return (
     <>
       <CollectionHeaderBox>
@@ -67,11 +73,7 @@ const CollectionInformation = ({ collectionId }) => {
         >
           좋아요
         </Button>
-        <Button
-          backgroundColor="white"
-          color="black"
-          onClick={() => nav("/comment")}
-        >
+        <Button backgroundColor="white" color="black">
           댓글
         </Button>
       </MakeElementsHorizontal>

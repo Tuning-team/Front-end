@@ -27,9 +27,9 @@ const CollectionList = ({ state, setCount }) => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
-    console.log("스크롤 이벤트 발생");
+    // console.log("스크롤 이벤트 발생");
     if (scrollTop + clientHeight >= scrollHeight) {
-      console.log("페이지 끝에 스크롤이 닫았음. ");
+      // console.log("페이지 끝에 스크롤이 닫았음. ");
       setCount((prev) => prev + 5);
     }
   };
@@ -59,7 +59,7 @@ const CollectionList = ({ state, setCount }) => {
               </SlideWrap>
               <div onClick={() => nav(`/collection/${data._id}`)}>
                 {" "}
-                <h3>{data.collectionTitle}</h3>
+                <CollectionTitle>{data.collectionTitle}</CollectionTitle>
                 <div>
                   <span>좋아요 {data.likes} /</span>
                   <span>댓글 {data.commentNum}</span>
@@ -89,4 +89,10 @@ const SlideWrap = styled.div`
 
 const ListWrap = styled.div`
   background-color: yellow;
+`;
+const CollectionTitle = styled.h3`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 123.8%;
 `;
