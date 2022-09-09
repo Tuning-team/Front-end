@@ -15,14 +15,21 @@ const ResultVideo = () => {
     (state) => state.myCollectionSlice.searchResult.data
   );
 
+  const loading = useSelector(
+    (state) => state.myCollectionSlice.searchResult.loading
+  );
+
   return (
     <>
-      {data.length === 0 ? (
+      {loading ? (
+        <div>로딩중입니다</div>
+      ) : data.length === 0 ? (
         <div>결과가 없습니다.</div>
       ) : (
         data?.map((x, idx) => {
           return (
             <ResultBox
+              key={idx}
               onClick={() => {
                 dispatch(addVideoList(x));
                 nav(-1);

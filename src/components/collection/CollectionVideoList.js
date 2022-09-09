@@ -42,11 +42,14 @@ const CollectionVideoList = ({ collectionId }) => {
 
   useEffect(() => {
     dispatch(getVideoList({ collectionId, count }));
+  }, [page]);
+
+  useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {
       window.removeEventListener("scroll", infiniteScroll);
     };
-  }, [page]);
+  }, []);
 
   return (
     <div id="checkingBoxSize" style={{ border: "1px solid black" }}>

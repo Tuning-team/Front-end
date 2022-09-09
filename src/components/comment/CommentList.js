@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteComment, getComment, updateComment } from "../../redux/modules/commentSlice";
-
+import {
+  deleteComment,
+  getComment,
+  updateComment,
+} from "../../redux/modules/commentSlice";
 
 const CommentList = ({ collectionId }) => {
   const [inputValue, setInputValue] = useState("");
@@ -15,9 +18,9 @@ const CommentList = ({ collectionId }) => {
 
   const onDelete = (e) => {
     e.preventDefault();
-    const commentId = e.target.value
+    const commentId = e.target.value;
     dispatch(deleteComment(commentId));
-    window.location.reload()
+    window.location.reload();
   };
 
   const onUpdate = (e) => {
@@ -39,11 +42,7 @@ const CommentList = ({ collectionId }) => {
             <li key={idx}>
               <p>{data.writerName}</p>
               <p>{data.comment}</p>
-              <input
-                onChange={(e) => setInputValue(e.target.value)}
-              ></input>
-
-
+              <input onChange={(e) => setInputValue(e.target.value)}></input>
               <button type="button" value={data.comment_id} onClick={onDelete}>
                 삭제
               </button>

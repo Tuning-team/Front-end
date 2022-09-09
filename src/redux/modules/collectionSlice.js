@@ -70,11 +70,14 @@ export const getCategoryCollection = createAsyncThunk(
 export const postCollection = createAsyncThunk(
   "post/collection",
   async (data) => {
-    console.log(data);
     try {
       const res = await instance.post("/collections", data);
+
+      alert("컬렉션이 생성되었습니다.");
+      window.location.href = "/mypage";
       return res.data.success;
     } catch (error) {
+      alert(error.message);
       return error.message;
     }
   }
@@ -86,8 +89,10 @@ export const getVideo = createAsyncThunk("get/video", async (data) => {
       const youtubeRes = await instance(
         `/search/videos/youtube?keyword=${data}`
       );
+      console.log(youtubeRes.data);
       return youtubeRes.data.data;
     } else {
+      console.log(res.data.data);
       return res.data.data;
     }
   } catch (error) {
