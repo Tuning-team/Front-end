@@ -10,10 +10,9 @@ export const getComment = createAsyncThunk(
   }
 );
 
-// [ADD] COMMENT  [=>collection_id 남음]
-export const addComment = createAsyncThunk(
-  "ADD_COMMENT",
-  async ({ newList, collectionId }) => {
+
+// [ADD] COMMENT 
+export const addComment = createAsyncThunk("ADD_COMMENT", async ({ newList, collectionId }) => {
     const response = await instance.post(`/comments/${collectionId}`, newList);
     console.log(response);
     return response.data;
@@ -29,31 +28,31 @@ export const deleteComment = createAsyncThunk(
   }
 );
 
-// [UPDATE] COMMENT [=>collection_id 남음]
-export const updateComment = createAsyncThunk(
-  "UPDATE_COMMENT",
-  async ({ commentId, comment }) => {
-    const response = await instance.put(`/comments/${commentId}`, comment);
-    console.log(response);
-  }
-);
+// [UPDATE] COMMENT 
+export const updateComment = createAsyncThunk("UPDATE_COMMENT", async ({ commentId, editComment }) => {
+    const response = await instance.put(`/comments/${commentId}`, editComment);
+    console.log(response)
+}
+)
 
 export const commentSlice = createSlice({
-  name: "commentList",
-  initialState: [],
-  reducers: {},
-  extraReducers: {
-    [getComment.fulfilled]: (state, { payload }) => payload,
-    [addComment.fulfilled]: (state, { payload }) => [...state, payload],
-    [deleteComment.fulfilled]: (state, { payload }) => payload,
-    [updateComment.fulfilled]: (state, { payload }) => {
-      // return state.map((comment) => {
-      //     if (comment.id === payload.commentId) {
-      //         return { ...comment, username: payload.username, comment: payload.comment };
-      //     } else {
-      //         return comment;
-      //     }
-      // })
+    name: "commentList",
+    initialState: [],
+    reducers: {},
+    extraReducers: {
+        [getComment.fulfilled]: (state, { payload }) => payload,
+        [addComment.fulfilled]: (state, { payload }) => [...state, payload],
+        [deleteComment.fulfilled]: (state, { payload }) => [...state, payload],
+        [updateComment.fulfilled]: (state, { payload }) => [...state, payload],
+        // return state.map((comment) => {
+        //     if (comment.id === payload.commentId) {
+        //         return { ...comment, username: payload.username, comment: payload.comment };
+        //     } else {
+        //         return comment;
+        //     }
+        // })
+
+
     },
   },
 });

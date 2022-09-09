@@ -27,6 +27,7 @@ const SearchWrap = () => {
     <>
       <form onSubmit={onSearch}>
         <h2>Collections을 검색하세요</h2>
+
         <Input onChange={onChangeHandler} name="search" type="text" />
         <button type="submit">Search</button>
       </form>
@@ -35,12 +36,17 @@ const SearchWrap = () => {
           {/* map 쓰실 때 참고하쎄용~ */}
           {/* map((data) => {"배고팡"})<- 괄호 들어가면 반드시 결과에 return */}
           {/* map((data) => "배고팡")<- 괄호 안 들어가면 자동으로 return 적용 */}
-          {searchList.map((data) => {
-            return <div key={data._id}>
-              <li></li>
-              <p>{data.collectionTitle}</p>
-            </div>
-          })}
+          {search === "" ?
+            <div>추천검색어</div>
+            :
+            searchList.filter(data => data.collectionTitle.indexOf(search) !== -1
+              || data.description.indexOf(search) !== -1).map((data) => {
+                return <div key={data._id}>
+                  <li></li>
+                  <p>{data.collectionTitle}</p>
+                </div>
+              })
+          }
         </ul>
       </div>
     </>
