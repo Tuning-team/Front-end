@@ -51,7 +51,7 @@ const CollectionWrap = () => {
 
       {/* Comment Component 작업 중 */}
       <CommentForm collectionId={param.collection_id} />
-      <CommentList collectionId={param.collection_id} />
+      {/* <CommentList collectionId={param.collection_id} /> */}
     </Layout>
   );
 };

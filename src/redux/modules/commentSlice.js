@@ -35,16 +35,15 @@ export const commentSlice = createSlice({
     extraReducers: {
         [getComment.fulfilled]: (state, { payload }) => payload,
         [addComment.fulfilled]: (state, { payload }) => [...state, payload],
-        [deleteComment.fulfilled]: (state, { payload }) => payload,
-        [updateComment.fulfilled]: (state, { payload }) => {
-            // return state.map((comment) => {
-            //     if (comment.id === payload.commentId) {
-            //         return { ...comment, username: payload.username, comment: payload.comment };
-            //     } else {
-            //         return comment;
-            //     }
-            // })
-        },
+        [deleteComment.fulfilled]: (state, { payload }) => [...state, payload],
+        [updateComment.fulfilled]: (state, { payload }) => [...state, payload],
+        // return state.map((comment) => {
+        //     if (comment.id === payload.commentId) {
+        //         return { ...comment, username: payload.username, comment: payload.comment };
+        //     } else {
+        //         return comment;
+        //     }
+        // })
 
     },
 })
