@@ -18,13 +18,11 @@ const CollectionInformation = ({ collectionId }) => {
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
 
   //!카카오톡 공유하기
-  useEffect(() => {
+
+  const shareKakao = () => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init("8fb951e6a91434fad955fdcf7098c44a");
     }
-  }, []);
-
-  const shareKakao = () => {
     window.Kakao.Link.sendCustom({
       templateId: 82633,
       // 내가 만든 템플릿 아이디를 넣어주면 된다

@@ -27,7 +27,6 @@ const MyCollectionWrap = () => {
       dispatch(deleteList());
     }
     dispatch(getMyCollection(count));
-    // console.log(count);
   }, [count]);
 
   return (
