@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../redux/modules/collectionSlice";
 import styled from "styled-components";
+import { keyframes } from "styled-components";
 
 const CategoryModal = ({ setIsCategoryShown }) => {
   const nav = useNavigate();
@@ -21,7 +22,7 @@ const CategoryModal = ({ setIsCategoryShown }) => {
       <ModalFloater setIsCategoryShown="setIsCategoryShown">
         <div style={{ margin: "1rem" }}>
           <h1
-            style={{ color: "white", fontSize: "2rem", marginBottom: "1rem" }}
+            style={{ color: "#7951C6", fontSize: "2rem", marginBottom: "1rem" }}
           >
             카테고리
           </h1>
@@ -45,6 +46,16 @@ const CategoryModal = ({ setIsCategoryShown }) => {
   );
 };
 export default CategoryModal;
+
+const slideIn = keyframes`
+from{
+  transform: translateX(-150px)
+}
+to{
+  transform: translateX(0px)
+}
+`;
+
 const Div = styled.div`
   width: 100%;
   z-index: 9;
@@ -54,21 +65,30 @@ const Div = styled.div`
   bottom: 0;
 `;
 const ModalFloater = styled.div`
-  /* position: fixed; */
-  position: absolute;
+  position: fixed;
+  // position: absolute;
 
   left: -100%;
   top: 0;
   bottom: 0;
   z-index: 10;
 
-  background-color: rgba(0, 0, 0, 0.9); //검은색 배경, 투명도 90%
+  background-color: rgba(245, 245, 245, 0.96); //검은색 배경, 투명도 90%
   width: 70%;
 
   left: ${(props) => (props.setIsCategoryShown ? "0" : "-100%")};
   transition: 1s;
+
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-name: ${slideIn};
+  animation-fill-mode: forwards;
 `;
 const Li = styled.li`
-  color: white;
   margin: 1rem auto;
+  &:active {
+    background-color: #7951c6;
+    color: white;
+    opacity: 0.5;
+  }
 `;
