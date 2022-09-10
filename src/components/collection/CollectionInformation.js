@@ -19,7 +19,7 @@ const CollectionInformation = ({ collectionId }) => {
 
   //!카카오톡 공유하기
   useEffect(() => {
-    if (data == undefined) {
+    if (!window.Kakao.isInitialized()) {
       window.Kakao.init("8fb951e6a91434fad955fdcf7098c44a");
     }
   }, []);
