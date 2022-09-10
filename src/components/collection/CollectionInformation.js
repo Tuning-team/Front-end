@@ -17,6 +17,27 @@ const CollectionInformation = ({ collectionId }) => {
   const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
 
+  //!카카오톡 공유하기
+  useEffect(() => {
+    if (data === undefined) {
+      window.Kakao.init("8fb951e6a91434fad955fdcf7098c44a");
+    }
+  }, []);
+
+  const shareKakao = () => {
+    window.Kakao.Link.sendCustom({
+      templateId: 82633,
+      // 내가 만든 템플릿 아이디를 넣어주면 된다
+      templateArgs: {
+        THU: data?.thumbnails[0],
+        THU2: data?.thumbnails[1],
+        THU3: data?.thumbnails[2],
+        title: data?.collectionTitle,
+        description: data?.description,
+      },
+    });
+  };
+
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
     window.confirm("정말 지울겁니까?")
@@ -76,6 +97,7 @@ const CollectionInformation = ({ collectionId }) => {
         <Button backgroundColor="white" color="black">
           댓글
         </Button>
+        <Button onClick={shareKakao}>카카오톡 공유하기</Button>
       </MakeElementsHorizontal>
     </>
   );

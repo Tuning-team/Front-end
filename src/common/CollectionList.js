@@ -17,9 +17,10 @@ const CollectionList = ({ state, setCount }) => {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 500,
-    slidesToShow: 2.5,
+    speed: 300,
+    slidesToShow: 2.2,
     slidesToScroll: 1,
+    adaptiveHeight: false,
     arrows: false,
   };
 
@@ -49,13 +50,13 @@ const CollectionList = ({ state, setCount }) => {
           return (
             <Collection key={idx}>
               <SlideWrap>
-                <Slider {...settings}>
+                <StyleSlider {...settings}>
                   {data.thumbnails?.map((src, i) => {
                     return <VideoList key={data._id} img={src}></VideoList>;
                   })}
 
                   <a>더보기...</a>
-                </Slider>
+                </StyleSlider>
               </SlideWrap>
               <div onClick={() => nav(`/collection/${data._id}`)}>
                 {" "}
@@ -95,4 +96,13 @@ const CollectionTitle = styled.h3`
   font-weight: 700;
   font-size: 16px;
   line-height: 123.8%;
+`;
+const StyleSlider = styled(Slider)`
+  /* 아이템 사이의 간격 조절 */
+  & .slick-slide > div {
+    margin: 0 0.3rem;
+  }
+  & .slick-list {
+    margin: 0 -0.3rem;
+  }
 `;
