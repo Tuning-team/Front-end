@@ -57,14 +57,13 @@ const CollectionList = ({ state, setCount }) => {
                   <a>더보기...</a>
                 </Slider>
               </SlideWrap>
-              <div onClick={() => nav(`/collection/${data._id}`)}>
-                {" "}
+              <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
                 <CollectionTitle>{data.collectionTitle}</CollectionTitle>
                 <div>
-                  <span>좋아요 {data.likes} /</span>
-                  <span>댓글 {data.commentNum}</span>
+                  <CollectionInfo>좋아요 {data.likes} /</CollectionInfo>
+                  <CollectionInfo> 댓글 {data.commentNum}</CollectionInfo>
                 </div>
-              </div>
+              </InfoWrap>
             </Collection>
           );
         })}
@@ -94,5 +93,18 @@ const CollectionTitle = styled.h3`
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  line-height: 123.8%;
+`;
+const InfoWrap = styled.div`
+  height: 4rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+`;
+const CollectionInfo = styled.span`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
   line-height: 123.8%;
 `;

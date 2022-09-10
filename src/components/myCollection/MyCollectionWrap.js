@@ -59,7 +59,7 @@ const Title = styled.h1`
   line-height: 123.8%;
 `;
 const Icon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   padding: 5px;
 `;
