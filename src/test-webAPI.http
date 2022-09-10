@@ -38,7 +38,7 @@ Content-Type: application/json
 
 
 ### 7. 내가 생성한 컬렉션 리스트 : GET /api/collections/mine
-GET	{{host}}/api/collections/mine?offset=4&limit=4
+GET	{{host}}/api/collections/mine?offset=32&limit=4
 Content-Type: application/json
 
 
@@ -96,7 +96,7 @@ GET {{host}}/api/user/6312ad8b5057863778c220ca
 
 ## ---------------------- 영상 관련 API  ------------------------
 ### 18. 특정 id 컬렉션에 포함되어 있는 영상들의 리스트 : GET /api/videos/:collection_id
-GET	{{host}}/api/videos/631a9a8a8a3971d0c7840595?offset=8&limit=4
+GET	{{host}}/api/videos/631b6acd8a3971d0c784aa31?offset=8&limit=4
 
 
 

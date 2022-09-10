@@ -40,10 +40,12 @@ export const deleteCollection = createAsyncThunk(
 export const getVideoList = createAsyncThunk(
   "get/videoList",
   async ({ collectionId, count }) => {
+    // console.log("getVideoList에 들어오는 count", count);
     try {
       const res = await instance.get(
-        `/videos/${collectionId}/?offset=${count}&limit=4`
+        `/videos/${collectionId}/?offset=${count}&limit=5`
       );
+      // console.log("서버response", res);
       return res.data;
     } catch (error) {
       return error.message;
@@ -109,11 +111,11 @@ export const collectionSlice = createSlice({
     });
     // ! getVideoList
     builder.addCase(getVideoList.pending, (state, action) => {
-      console.log("get pending");
+      // console.log("get pending");
       state.loading = true;
     });
     builder.addCase(getVideoList.fulfilled, (state, action) => {
-      console.log("get fulfilled");
+      // console.log("get fulfilled");
       state.loading = false;
       state.pageInfo = action.payload.pageInfo;
       state.videos = state.videos.concat(action.payload.data);
