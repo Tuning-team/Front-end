@@ -1,10 +1,10 @@
-import React, { Children } from "react";
+import React from "react";
 import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const Carousel = ({ children }) => {
+const Carousel = (props) => {
   const settings = {
     dots: false,
     infinite: false,
@@ -15,9 +15,16 @@ const Carousel = ({ children }) => {
     arrows: false,
   };
 
-  return <StyleSlider {...settings}>{children}</StyleSlider>;
+  return (
+    <SliderWrapper>
+      <StyleSlider {...settings}>{props.children}</StyleSlider>
+    </SliderWrapper>
+  );
 };
 export default Carousel;
+const SliderWrapper = styled.div`
+  overflow-x: hidden;
+`;
 const StyleSlider = styled(Slider)`
   /* 아이템 사이의 간격 조절 */
   & .slick-slide > div {

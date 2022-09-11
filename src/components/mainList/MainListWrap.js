@@ -11,12 +11,12 @@ import styled from "styled-components";
 // logis orders : useState > useRef > dispatch > navigate > useSelector > extra..
 const MainListWrap = () => {
   return (
-    <div style={{ overflowX: "hidden" }}>
+    <>
       <RecomendedCollections />
       <FamousCollections />
       {/* <UserCollections /> */}
       <RandomCollections />
-    </div>
+    </>
   );
 };
 
