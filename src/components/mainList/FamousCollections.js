@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { getCategoryCollection } from "../../redux/modules/collectionSlice";
 import Carousel from "../../common/Carousel";
-
+import CarouselItem from "../../common/CarouselItem";
 import { useNavigate } from "react-router-dom";
 
 const FamousCollections = () => {
@@ -61,21 +61,15 @@ const FamousCollections = () => {
   return (
     <section>
       <H1>인기있는 튜닝</H1>
-
       <Carousel>
         {collectionsData?.map((data) => (
-          <DivCard
-            className="card"
+          <CarouselItem
             key={data._id}
             onClick={() => nav(`collection/${data._id}`)}
-          >
-            <div className="card-top">
-              <img src={data.thumbnails[0]} alt={data.videos[0]} />
-            </div>
-            <div className="card-bottom">
-              <h6>{data.collectionTitle}</h6>
-            </div>
-          </DivCard>
+            src={data.thumbnails[0]}
+            alt={data.videos[0]}
+            title={data.collectionTitle}
+          />
         ))}
       </Carousel>
     </section>
