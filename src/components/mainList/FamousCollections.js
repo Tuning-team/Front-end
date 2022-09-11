@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import CollectionSlide from "../../elements/CollectionSlide";
-import { getCategoryCollection } from "../../redux/modules/collectionSlice";
 
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { getCategoryCollection } from "../../redux/modules/collectionSlice";
+import Carousel from "../../common/Carousel";
+
 import { useNavigate } from "react-router-dom";
 
 const FamousCollections = () => {
@@ -58,19 +56,13 @@ const FamousCollections = () => {
   //     },
   //   ],
   // };
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 300,
-    slidesToShow: 2.2,
-    slidesToScroll: 1,
-    adaptiveHeight: false,
-    arrows: false,
-  };
+
+  // !https://react.libhunt.com/compare-react-slick-vs-swiper => 고민해보기...
   return (
     <section>
       <H1>인기있는 튜닝</H1>
-      <StyleSlider {...settings}>
+
+      <Carousel>
         {collectionsData?.map((data) => (
           <DivCard
             className="card"
@@ -85,7 +77,7 @@ const FamousCollections = () => {
             </div>
           </DivCard>
         ))}
-      </StyleSlider>
+      </Carousel>
     </section>
   );
 };
@@ -94,16 +86,6 @@ const FamousCollections = () => {
 // todo https://www.cluemediator.com/add-space-between-carousel-items-in-react-slick 리액트슬릭 마진 추가..
 
 export default FamousCollections;
-
-const StyleSlider = styled(Slider)`
-  /* 아이템 사이의 간격 조절 */
-  & .slick-slide > div {
-    margin: 0 0.3rem;
-  }
-  & .slick-list {
-    margin: 0 -0.3rem;
-  }
-`;
 
 const DivCard = styled.div`
   border: 1px solid black;
