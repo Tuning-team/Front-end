@@ -3,11 +3,11 @@ import { instance } from "../../shared/instance";
 
 // [GET] COMMENT
 export const getComment = createAsyncThunk(
-  "GET_COMMENT",
-  async (collection_id) => {
-    const response = await instance.get(`/comments/${collection_id}`);
-    return response.data.data;
-  }
+    "GET_COMMENT",
+    async (collection_id) => {
+        const response = await instance.get(`/comments/${collection_id}`);
+        return response.data.data;
+    }
 );
 
 
@@ -16,16 +16,16 @@ export const addComment = createAsyncThunk("ADD_COMMENT", async ({ newList, coll
     const response = await instance.post(`/comments/${collectionId}`, newList);
     console.log(response);
     return response.data;
-  }
+}
 );
 
 // [DELETE] COMMENT [=>collection_id 남음]
 export const deleteComment = createAsyncThunk(
-  "DELETE_COMMENT",
-  async (commentId) => {
-    const response = await instance.delete(`/comments/${commentId}`);
-    return response.data;
-  }
+    "DELETE_COMMENT",
+    async (commentId) => {
+        const response = await instance.delete(`/comments/${commentId}`);
+        return response.data;
+    }
 );
 
 // [UPDATE] COMMENT 
@@ -54,5 +54,4 @@ export const commentSlice = createSlice({
 
 
     },
-  },
 });
