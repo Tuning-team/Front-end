@@ -132,7 +132,12 @@ const AddCollectionForm = () => {
               <Icon src={icon_add} />
             </StVideo>
             {videoList?.map((x, idx) => {
-              return <div key={idx}>{x.title}</div>;
+              return (
+                <VideoList key={idx}>
+                  <Span>- </Span>
+                  {x.title}
+                </VideoList>
+              );
             })}
           </AddVideoBox>
         </Wrap>
@@ -143,6 +148,7 @@ const AddCollectionForm = () => {
 export default AddCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.3rem 1.3rem 1.3rem 1rem;
+  // overflow: auto;
 `;
 
 const TitleBox = styled.div`
@@ -185,8 +191,8 @@ const Label = styled.label`
 const Input = styled.input`
   margin-bottom: 12px;
   border: #b295e9 solid 1px;
-  width: 343px;
-  height: 40px;
+  width: 21.438rem;
+  height: 2.5rem;
   border-radius: 3px;
 `;
 const Wrap = styled.div`
@@ -197,22 +203,22 @@ const TextArea = styled.textarea`
   margin-bottom: 12px;
   border: #b295e9 solid 1px;
   border-radius: 3px;
-  width: 343px;
-  height: 78px;
+  width: 21.438rem;
+  height: 4.875rem;
 `;
 const Select = styled.select`
   margin-bottom: 12px;
   border: #b295e9 solid 1px;
   border-radius: 3px;
-  width: 343px;
-  height: 40px;
+  width: 21.438rem;
+  height: 2.5rem;
 `;
 const Option = styled.option`
   margin-bottom: 12px;
   border: #b295e9 solid 1px;
   border-radius: 3px;
-  width: 343px;
-  height: 40px;
+  width: 21.438rem;
+  height: 2.5rem;
   background-color: none;
 `;
 const AddVideoBox = styled.div`
@@ -221,8 +227,8 @@ const AddVideoBox = styled.div`
   height: 40px;
 `;
 const StVideo = styled.div`
-  width: 164px;
-  height: 90px;
+  width: 21.438rem;
+  height: 3.125rem;
   border: #b295e9 solid 1px;
   display: flex;
   justify-content: center;
@@ -231,4 +237,14 @@ const StVideo = styled.div`
 const Icon = styled.img`
   width: 20px;
   height: 20px;
+`;
+const VideoList = styled.div`
+  margin-top: 1.5rem;
+  width: 21.438rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+const Span = styled.span`
+  color: #b295e9;
 `;

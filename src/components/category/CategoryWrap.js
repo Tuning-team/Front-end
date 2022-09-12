@@ -23,11 +23,20 @@ const CategoryWrap = () => {
   }, [param.collection_id]);
 
   return (
-    <>
+    <Wrap>
       <TitleWrap>{title[0]?.categoryName} 관련된 컬렉션</TitleWrap>
       <CollectionList state={data} />
-    </>
+    </Wrap>
   );
 };
 export default CategoryWrap;
-const TitleWrap = styled.div``;
+const Wrap = styled.div`
+  margin-left: 1rem;
+`;
+const TitleWrap = styled.div`
+  padding: 1.3rem 1.3rem 1.3rem 0rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 123.8%;
+`;
