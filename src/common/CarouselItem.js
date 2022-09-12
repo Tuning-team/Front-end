@@ -18,7 +18,7 @@ const CarouselItem = (props) => {
 export default CarouselItem;
 
 const DivCard = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   max-width: 320px;
   &:hover {
     cursor: pointer;
@@ -31,5 +31,9 @@ const DivCard = styled.div`
     max-height: 180px;
     width: 100%;
     border-radius: 3px;
+  }
+  & .card-bottom > h6 {
+    font-size: 0.75rem;
+    line-height: 1.24;
   }
 `;

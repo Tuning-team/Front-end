@@ -2,26 +2,25 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { getCategoryCollection } from "../../redux/modules/collectionSlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
 import { useNavigate } from "react-router-dom";
+import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
 
-const FamousCollections = () => {
+const FamousCollections = ({ categoryId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-
-  const popularCollections = useSelector(
-    (state) => state.myCollectionSlice.categoryCollection
-  );
-  const isLoading = popularCollections.Loading;
-  const collectionsData = popularCollections.data;
-
-  let popularCollectionId = "6319aeebd1e330e86bbade9f"; // "인기있는"카테고리에 대한 id
-
   useEffect(() => {
-    dispatch(getCategoryCollection(popularCollectionId));
-  }, [isLoading]);
+    if (finalData.length === 0) {
+      dispatch(getCategoryCollectionForMain(categoryId));
+    }
+  }, [categoryId]);
+
+  const categoryData = useSelector(
+    (state) => state.collectionSlice.categoryCollectionForMain.dataList //배열인 상태임
+  );
+  const finalData = categoryData.filter((x) => x.resName === "resOfFamous");
+
   // !-----------여기까지 기본 로직이고 아래는 반응형캐로셀
   // const settings = {
   //   dots: false,
@@ -62,7 +61,7 @@ const FamousCollections = () => {
     <section>
       <H1>인기있는 튜닝</H1>
       <Carousel slidesToShow="2.2">
-        {collectionsData?.map((data) => (
+        {finalData[0]?.resArr.map((data) => (
           <CarouselItem
             key={data._id}
             onClick={() => nav(`collection/${data._id}`)}
