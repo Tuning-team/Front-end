@@ -6,12 +6,16 @@ const More = ({ children }) => {
 export default More;
 
 const Modal = styled.div`
-  background-color: rgba(245, 245, 245, 0.96);
+  background-color: rgba(0, 0, 0, 0.5);
   border: 1px black;
   position: absolute;
-  left: 78%;
-  top: 3%;
-  width: 3rem;
-  height: 3rem;
+  top: -10%;
+  left: 0%;
+  width: 100%;
+  height: 200%;
   z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;

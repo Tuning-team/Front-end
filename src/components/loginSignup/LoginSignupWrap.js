@@ -3,6 +3,7 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 import { useCookies } from "react-cookie";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import submit from "../../common/Confirm";
 
 const LoginSignupWrap = () => {
   // const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
@@ -11,6 +12,7 @@ const LoginSignupWrap = () => {
     <>
       <Header
         onClick={() => {
+          // submit();
           nav(-1);
         }}
       >
