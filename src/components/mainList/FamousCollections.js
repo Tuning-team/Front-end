@@ -61,7 +61,7 @@ const FamousCollections = () => {
   return (
     <section>
       <H1>인기있는 튜닝</H1>
-      <Carousel>
+      <Carousel slidesToShow="2.2">
         {collectionsData?.map((data) => (
           <CarouselItem
             key={data._id}

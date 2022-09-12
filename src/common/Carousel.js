@@ -9,7 +9,7 @@ const Carousel = (props) => {
     dots: false,
     infinite: false,
     speed: 100,
-    slidesToShow: 2.2,
+    slidesToShow: props.slidesToShow || 1.2,
     slidesToScroll: 1,
     adaptiveHeight: false,
     arrows: false,
