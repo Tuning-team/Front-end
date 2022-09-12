@@ -142,7 +142,7 @@ const AddCollectionForm = () => {
 };
 export default AddCollectionForm;
 const AddCollectionWrap = styled.div`
-  padding: 1.3rem 1.3rem 1.3rem 1.3rem;
+  padding: 1.3rem 1.3rem 1.3rem 1rem;
 `;
 
 const TitleBox = styled.div`
