@@ -35,5 +35,13 @@ const DivCard = styled.div`
   & .card-bottom > h6 {
     font-size: 0.75rem;
     line-height: 1.24;
+
+    margin-top: 0.688rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* 표시하고자 하는 라인 수 */
+    -webkit-box-orient: vertical;
   }
 `;

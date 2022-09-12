@@ -9,11 +9,14 @@ import styled from "styled-components";
 // logis orders : useState > useRef > dispatch > navigate > useSelector > extra..
 const MainPage = () => {
   return (
-    <>
+    <Layout>
       <Headers />
       <MainListWrap />
       <Navbar />
-    </>
+    </Layout>
   );
 };
 export default MainPage;
+const Layout = styled.div`
+  margin-bottom: 6.625rem;
+`;

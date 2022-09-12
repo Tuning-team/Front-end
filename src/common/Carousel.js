@@ -8,7 +8,7 @@ const Carousel = (props) => {
   const settings = {
     dots: false,
     infinite: false,
-    speed: 300,
+    speed: 100,
     slidesToShow: props.slidesToShow || 1.2,
     slidesToScroll: 1,
     adaptiveHeight: false,
@@ -28,9 +28,9 @@ const SliderWrapper = styled.div`
 const StyleSlider = styled(Slider)`
   /* 아이템 사이의 간격 조절 */
   & .slick-slide > div {
-    margin: 0 0.3rem;
+    margin: 0 0.25rem;
   }
   & .slick-list {
-    margin: 0 -0.3rem;
+    margin: 0 -0.25rem;
   }
 `;
