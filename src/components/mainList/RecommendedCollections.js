@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
-import { useNavigate } from "react-router-dom";
+import { Section } from "./Style";
 
 const RecommendedCollections = ({ categoryId }) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
+
   useEffect(() => {
     if (finalData.length === 0) {
       dispatch(getCategoryCollectionForMain(categoryId));
@@ -21,9 +23,9 @@ const RecommendedCollections = ({ categoryId }) => {
   const finalData = categoryData.filter((x) => x.resName === "resOfRecommend");
 
   return (
-    <>
-      <H1>지금 추천하는 튜닝</H1>
-      <Carousel slidesToShow="2.2">
+    <Section>
+      <h1>지금 추천하는 튜닝</h1>
+      <Carousel slidesToShow={2.2}>
         {finalData[0]?.resArr.map((data) => (
           <CarouselItem
             key={data._id}
@@ -34,12 +36,7 @@ const RecommendedCollections = ({ categoryId }) => {
           />
         ))}
       </Carousel>
-    </>
+    </Section>
   );
 };
 export default RecommendedCollections;
-const H1 = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 10px 0;
-`;

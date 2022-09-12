@@ -6,7 +6,7 @@ import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
 import { useNavigate } from "react-router-dom";
 import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
-
+import { Section } from "./Style";
 const FamousCollections = ({ categoryId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -58,9 +58,9 @@ const FamousCollections = ({ categoryId }) => {
 
   // !https://react.libhunt.com/compare-react-slick-vs-swiper => 고민해보기...
   return (
-    <section>
-      <H1>인기있는 튜닝</H1>
-      <Carousel slidesToShow="2.2">
+    <Section>
+      <h1>인기있는 튜닝</h1>
+      <Carousel slidesToShow={2.2}>
         {finalData[0]?.resArr.map((data) => (
           <CarouselItem
             key={data._id}
@@ -71,7 +71,7 @@ const FamousCollections = ({ categoryId }) => {
           />
         ))}
       </Carousel>
-    </section>
+    </Section>
   );
 };
 
@@ -79,26 +79,3 @@ const FamousCollections = ({ categoryId }) => {
 // todo https://www.cluemediator.com/add-space-between-carousel-items-in-react-slick 리액트슬릭 마진 추가..
 
 export default FamousCollections;
-
-const DivCard = styled.div`
-  border: 1px solid black;
-  max-width: 320px;
-  &:hover {
-    cursor: pointer;
-  }
-  & .card-top {
-    /* background-color: white; */
-  }
-  & .card-top > img {
-    max-width: 320px;
-    max-height: 180px;
-    width: 100%;
-    border-radius: 3px;
-  }
-`;
-
-const H1 = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 10px 0;
-`;

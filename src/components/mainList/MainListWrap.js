@@ -5,11 +5,6 @@ import FamousCollections from "./FamousCollections";
 import RecentCollections from "./RecentCollections";
 import TodaysWeatherCollections from "./TodaysWeatherCollections";
 
-import styled from "styled-components";
-
-// import orders : React > package > modules > hooks > component > css
-// logis orders : useState > useRef > dispatch > navigate > useSelector > extra..
-
 const MainListWrap = () => {
   const todaysWeatherCategoryId = "631e7d7a4ae4c133c405a965"; //오늘 날씨에 추천하는
   const recommendedCategoryId = "631e7d7a4ae4c133c405a966"; // 바로 지금 추천하는
