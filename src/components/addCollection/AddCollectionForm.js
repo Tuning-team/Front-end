@@ -59,7 +59,7 @@ const AddCollectionForm = () => {
   //todo 버튼 disabled효과 주기
 
   return (
-    <>
+    <AddCollectionWrap>
       <TitleBox>
         <Title
           onClick={() => {
@@ -137,17 +137,21 @@ const AddCollectionForm = () => {
           </AddVideoBox>
         </Wrap>
       </Form>
-    </>
+    </AddCollectionWrap>
   );
 };
 export default AddCollectionForm;
+const AddCollectionWrap = styled.div`
+  padding: 1.3rem 1.3rem 1.3rem 1.3rem;
+`;
+
 const TitleBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -180,9 +184,10 @@ const Label = styled.label`
 `;
 const Input = styled.input`
   margin-bottom: 12px;
-  border: #b295e9 solid;
+  border: #b295e9 solid 1px;
   width: 343px;
   height: 40px;
+  border-radius: 3px;
 `;
 const Wrap = styled.div`
   display: flex;
@@ -190,17 +195,26 @@ const Wrap = styled.div`
 `;
 const TextArea = styled.textarea`
   margin-bottom: 12px;
-  border: #b295e9 solid;
+  border: #b295e9 solid 1px;
+  border-radius: 3px;
   width: 343px;
   height: 78px;
 `;
 const Select = styled.select`
   margin-bottom: 12px;
-  border: #b295e9 solid;
+  border: #b295e9 solid 1px;
+  border-radius: 3px;
   width: 343px;
   height: 40px;
 `;
-const Option = styled.option``;
+const Option = styled.option`
+  margin-bottom: 12px;
+  border: #b295e9 solid 1px;
+  border-radius: 3px;
+  width: 343px;
+  height: 40px;
+  background-color: none;
+`;
 const AddVideoBox = styled.div`
   border-style: solid;
   width: 343px;
@@ -209,7 +223,7 @@ const AddVideoBox = styled.div`
 const StVideo = styled.div`
   width: 164px;
   height: 90px;
-  border: #b295e9 solid;
+  border: #b295e9 solid 1px;
   display: flex;
   justify-content: center;
   align-items: center;

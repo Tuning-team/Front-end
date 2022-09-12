@@ -10,9 +10,10 @@ export const getComment = createAsyncThunk(
     }
 );
 
-
-// [ADD] COMMENT 
-export const addComment = createAsyncThunk("ADD_COMMENT", async ({ newList, collectionId }) => {
+// [ADD] COMMENT
+export const addComment = createAsyncThunk(
+  "ADD_COMMENT",
+  async ({ newList, collectionId }) => {
     const response = await instance.post(`/comments/${collectionId}`, newList);
     console.log(response);
     return response.data;
@@ -28,12 +29,14 @@ export const deleteComment = createAsyncThunk(
     }
 );
 
-// [UPDATE] COMMENT 
-export const updateComment = createAsyncThunk("UPDATE_COMMENT", async ({ commentId, editComment }) => {
+// [UPDATE] COMMENT
+export const updateComment = createAsyncThunk(
+  "UPDATE_COMMENT",
+  async ({ commentId, editComment }) => {
     const response = await instance.put(`/comments/${commentId}`, editComment);
-    console.log(response)
-}
-)
+    console.log(response);
+  }
+);
 
 export const commentSlice = createSlice({
     name: "commentList",

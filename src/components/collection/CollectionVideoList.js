@@ -12,53 +12,56 @@ const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
   const videoList = useSelector((state) => state.collectionSlice.videos);
   const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);
-  // console.log(pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
+  // console.log(videoList, pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
 
+  // ! 클릭하면 유튜브 동영상을 재생할 수 있는 모달 발생
   const [videoId, setVideoId] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  // ! 클릭하면 유튜브 동영상을 재생할 수 있는 모달 발생
   const onPlayVideo = (videoId) => {
     setVideoId(videoId);
     setShowModal(true);
   };
   // --------------------여기까지 기본 로직-----------------------
   const [count, setCount] = useState(0);
-
   const useHandleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
-    console.log(
-      "scrollTop:" + scrollTop,
-      "clientHeight:" + clientHeight,
-      "scrollHeight:" + scrollHeight
-    );
+    // console.log(
+    //   scrollTop,
+    //   clientHeight,
+    //   scrollTop + clientHeight,
+    //   scrollHeight
+    // );
     if (scrollTop + clientHeight >= scrollHeight) {
-      setCount((prev) => prev + 4);
-      console.log("페이지 끝에 스크롤이 닫았음. ");
+      if (scrollTop !== 0) {
+        setCount((prev) => prev + 5);
+      }
     }
   };
+  // console.log(count);
   const infiniteScroll = throttle(useHandleScroll, 1000);
 
   useEffect(() => {
     if (count >= pageInfo?.totalVideosView) {
       return;
+    } else {
+      dispatch(getVideoList({ collectionId, count }));
     }
-    dispatch(getVideoList({ collectionId, count }));
-
     if (count === 0) {
       dispatch(resetVideoList());
     }
   }, [count]);
 
-
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {
       window.removeEventListener("scroll", infiniteScroll);
+      setCount(0);
     };
   }, []);
+  // console.log("컴포넌트상의 count", count);
 
   return (
     <div>

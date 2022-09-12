@@ -3,21 +3,41 @@ import { useNavigate } from "react-router-dom";
 import CategoryModal from "./CategoryModal";
 import styled from "styled-components";
 
+import { ReactComponent as Icon_category } from "../svg/Icon_category.svg";
+import { ReactComponent as Icon_home } from "../svg/Icon_home.svg";
+import { ReactComponent as Icon_collection } from "../svg/Icon_collection.svg";
+import { ReactComponent as Icon_search } from "../svg/Icon_search.svg";
+
 const Navbar = () => {
   const nav = useNavigate();
 
   const [isCategoryShown, setIsCategoryShown] = useState(false);
-
+  const [chooseNav, setNav] = ["1", "1", "black", "black"];
   return (
     <>
       {isCategoryShown && (
-        <CategoryModal setIsCategoryShown={setIsCategoryShown} />
+        <CategoryModal
+          setIsCategoryShown={setIsCategoryShown}
+          isCategoryShown={isCategoryShown}
+        />
       )}
       <Nav>
-        <div onClick={() => setIsCategoryShown(!isCategoryShown)}>카테고리</div>
-        <div onClick={() => nav("/search")}>검색</div>
-        <div onClick={() => nav("/")}>메인</div>
-        <div onClick={() => nav("/mypage")}>내컬렉션</div>
+        <Wrap onClick={() => setIsCategoryShown(!isCategoryShown)}>
+          <Icon_category fill="black" />
+          <Name>카테고리</Name>
+        </Wrap>
+        <Wrap onClick={() => nav("/search")}>
+          <Icon_search fill="black" />
+          <Name>검색</Name>
+        </Wrap>
+        <Wrap onClick={() => nav("/")}>
+          <Icon_home fill="#efefef" />
+          <Name>메인</Name>
+        </Wrap>
+        <Wrap onClick={() => nav("/mypage")}>
+          <Icon_collection fill="#efefef" />
+          <Name>내튜닝</Name>
+        </Wrap>
       </Nav>
     </>
   );
@@ -38,19 +58,32 @@ const Nav = styled.nav`
 
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+
+  // border: 1px solid black;
+
+  height: 5.625rem;
+
+  background-color: #efefef;
+
+  // /* 나중에 지울 코드 */
+  // & div {
+  //   border: 1px solid red;
+  //   display: block;
+  //   width: 100%;
+  //   text-align: center;
+  //   cursor: pointer;
+  // }
+`;
+const Name = styled.span`
+  margin-top: 3px;
+`;
+const Wrap = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
   align-items: center;
-
-  border: 1px solid black;
-  height: 3rem;
-
-  background-color: white;
-
-  /* 나중에 지울 코드 */
-  & div {
-    border: 1px solid red;
-    display: block;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-  }
 `;
