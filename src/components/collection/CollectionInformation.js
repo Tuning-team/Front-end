@@ -8,10 +8,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../elements/Button";
+import icon_more from "../../svg/icon_more.svg";
+import More from "../../common/More";
 
 const CollectionInformation = ({ collectionId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
@@ -63,7 +66,18 @@ const CollectionInformation = ({ collectionId }) => {
         <div style={{ marginLeft: "0.6rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h1>{data?.collectionTitle}</h1>
-            <Button onClick={() => onDeleteThisCollection()}>삭제</Button>
+            <img
+              style={{ width: "10px", height: "10px" }}
+              src={icon_more}
+              onClick={() => {
+                setModal(!modal);
+              }}
+            ></img>
+            {modal && (
+              <More>
+                <Button onClick={() => onDeleteThisCollection()}>삭제</Button>
+              </More>
+            )}
           </div>
           <p data-testid="collection-description">{data?.description}</p>
           <br></br>
