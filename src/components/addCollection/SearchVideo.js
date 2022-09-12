@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import icon_search from "../../svg/icon_search.svg";
+import Icon_search from "../../svg/Icon_search.svg";
 import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../redux/modules/collectionSlice";
@@ -47,7 +47,7 @@ const SearchVideo = () => {
         type="text"
         placeholder="검색하기"
       />
-      <Btn onClick={onClickHandler} src={icon_search} />
+      <Btn onClick={onClickHandler} src={Icon_search} />
     </Form>
   );
 };

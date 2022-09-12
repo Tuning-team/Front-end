@@ -21,11 +21,11 @@ const CategoryModal = ({ setIsCategoryShown }) => {
     <>
       <ModalFloater setIsCategoryShown="setIsCategoryShown">
         <div style={{ margin: "1rem" }}>
-          <h1
-            style={{ color: "#7951C6", fontSize: "2rem", marginBottom: "1rem" }}
+          <Title
+          // style={{ color: "#7951C6", fontSize: "2rem", marginBottom: "1rem" }}
           >
             카테고리
-          </h1>
+          </Title>
           <ul>
             {categories?.map((elem) => {
               return (
@@ -67,7 +67,7 @@ const Div = styled.div`
 const ModalFloater = styled.div`
   position: fixed;
   // position: absolute;
-
+  overflow: scroll;
   left: -100%;
   top: 0;
   bottom: 0;
@@ -86,10 +86,16 @@ const ModalFloater = styled.div`
 `;
 const Li = styled.li`
   margin: 1rem auto;
+  font-size: 14px;
+  padding: 0.5rem;
   &:active {
     background-color: white;
-    // color: white;
     opacity: 1;
     font-weight: 900;
   }
+`;
+const Title = styled.h1`
+  color: #7951c6;
+  font-size: 24px;
+  margin-bottom: 1rem;
 `;

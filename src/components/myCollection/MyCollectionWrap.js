@@ -30,7 +30,7 @@ const MyCollectionWrap = () => {
   }, [count]);
 
   return (
-    <div>
+    <ContentsWrap>
       <TitleWrap>
         {" "}
         <Title>내 튜닝</Title>
@@ -43,14 +43,18 @@ const MyCollectionWrap = () => {
         />
       </TitleWrap>
       <CollectionList state={data} setCount={setCount} />
-    </div>
+    </ContentsWrap>
   );
 };
 export default MyCollectionWrap;
 
+const ContentsWrap = styled.div`
+  margin-left: 1rem;
+`;
 const TitleWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 1.3rem 1.3rem 1.3rem 0rem;
 `;
 const Title = styled.h1`
   font-style: normal;
@@ -59,7 +63,6 @@ const Title = styled.h1`
   line-height: 123.8%;
 `;
 const Icon = styled.img`
-  width: 25px;
-  height: 25px;
-  padding: 5px;
+  width: 1.563rem;
+  height: 1.563rem;
 `;
