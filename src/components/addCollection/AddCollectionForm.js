@@ -59,7 +59,7 @@ const AddCollectionForm = () => {
   //todo 버튼 disabled효과 주기
 
   return (
-    <>
+    <AddCollectionWrap>
       <TitleBox>
         <Title
           onClick={() => {
@@ -137,10 +137,14 @@ const AddCollectionForm = () => {
           </AddVideoBox>
         </Wrap>
       </Form>
-    </>
+    </AddCollectionWrap>
   );
 };
 export default AddCollectionForm;
+const AddCollectionWrap = styled.div`
+  padding: 1.3rem 1.3rem 1.3rem 1.3rem;
+`;
+
 const TitleBox = styled.div`
   display: flex;
   justify-content: space-between;
