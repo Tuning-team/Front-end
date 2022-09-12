@@ -46,6 +46,7 @@ const CommentList = ({ collectionId }) => {
       dispatch(updateComment({ commentId, editComment }));
       setInputValue("");
       setRefresh(true)
+      // window.location.reload();
     }
   };
   console.log(commentList);
@@ -77,8 +78,6 @@ const CommentList = ({ collectionId }) => {
               <input
                 onChange={(e) => setInputValue(e.target.value)}
               ></input>
-
-
               <button type="button" value={data.comment_id} onClick={onDelete}>
                 삭제
               </button>
