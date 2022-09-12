@@ -1,9 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import CollectionSlide from "../elements/CollectionSlide";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -80,13 +76,9 @@ const CollectionList = ({ state, setCount }) => {
 };
 export default CollectionList;
 
-const Collection = styled.section`
-  background-color: white;
-`;
+const Collection = styled.section``;
 
-const ListWrap = styled.div`
-  background-color: yellow;
-`;
+const ListWrap = styled.div``;
 const CollectionTitle = styled.h3`
   font-style: normal;
   font-weight: 700;
@@ -118,4 +110,5 @@ const IconLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 0.8rem;
 `;

@@ -9,7 +9,6 @@ import ResultVideo from "../components/addCollection/ResultVideo";
 const AddVideoSearchPage = () => {
   return (
     <>
-      <Headers />
       <SearchVideo />
       <ResultVideo />
       <Navbar />

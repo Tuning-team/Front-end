@@ -24,7 +24,7 @@ const ResultVideo = () => {
       {loading ? (
         <Loading />
       ) : data.length === 0 ? (
-        <AlertBox>결과가 없습니다.</AlertBox>
+        <AlertBox>검색 결과가 없습니다.</AlertBox>
       ) : (
         data?.map((x, idx) => {
           return (
@@ -47,18 +47,16 @@ export default ResultVideo;
 
 const ResultBox = styled.div`
   margin: 10px;
-  border: 1px solid;
+  border-bottom: 1px solid #efefef;
+  border-left: 2px solid #b295e9;
   padding: 5px;
 
-  &:hover {
-    background-color: grey;
+  &:active {
+    background-color: #efefef;
   }
 `;
 const AlertBox = styled.div`
   display: flex;
-  color: transparent;
-  background: linear-gradient(90deg, #b295e9 0%, #8179f2 100%);
-  -webkit-background-clip: text;
   justify-content: center;
   align-items: center;
   align-content: center;

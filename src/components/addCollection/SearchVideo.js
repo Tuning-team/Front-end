@@ -4,18 +4,12 @@ import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const SearchVideo = () => {
   const nav = useNavigate();
-  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  // const data = useSelector(
-  //   (state) => state.myCollectionSlice.searchResult.data
-  // );
-  // const searchResult
   const [{ keyword }, onChange, reset] = useInputs({
     keyword: "",
   });
@@ -53,6 +47,7 @@ const SearchVideo = () => {
 };
 export default SearchVideo;
 const Form = styled.div`
+  padding: 1.3rem 1.3rem 1.3rem 1rem;
   display: flex;
   justify-content: space-around;
 `;

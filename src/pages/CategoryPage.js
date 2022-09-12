@@ -7,7 +7,6 @@ import Headers from "../common/Headers";
 const CategoryPage = () => {
   return (
     <>
-      <Headers />
       <CategoryWrap />
       <Navbar />
     </>
