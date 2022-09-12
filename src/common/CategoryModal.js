@@ -87,8 +87,9 @@ const ModalFloater = styled.div`
 const Li = styled.li`
   margin: 1rem auto;
   &:active {
-    background-color: #7951c6;
-    color: white;
-    opacity: 0.5;
+    background-color: white;
+    // color: white;
+    opacity: 1;
+    font-weight: 900;
   }
 `;

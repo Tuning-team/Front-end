@@ -8,23 +8,24 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../../elements/Button";
+import icon_more from "../../svg/icon_more.svg";
+import More from "../../common/More";
 
 const CollectionInformation = ({ collectionId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
 
   //!카카오톡 공유하기
-  useEffect(() => {
+
+  const shareKakao = () => {
     if (!window.Kakao.isInitialized()) {
       window.Kakao.init("8fb951e6a91434fad955fdcf7098c44a");
     }
-  }, []);
-
-  const shareKakao = () => {
     window.Kakao.Link.sendCustom({
       templateId: 82633,
       // 내가 만든 템플릿 아이디를 넣어주면 된다
@@ -65,7 +66,18 @@ const CollectionInformation = ({ collectionId }) => {
         <div style={{ marginLeft: "0.6rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h1>{data?.collectionTitle}</h1>
-            <Button onClick={() => onDeleteThisCollection()}>삭제</Button>
+            <img
+              style={{ width: "10px", height: "10px" }}
+              src={icon_more}
+              onClick={() => {
+                setModal(!modal);
+              }}
+            ></img>
+            {modal && (
+              <More>
+                <Button onClick={() => onDeleteThisCollection()}>삭제</Button>
+              </More>
+            )}
           </div>
           <p data-testid="collection-description">{data?.description}</p>
           <br></br>

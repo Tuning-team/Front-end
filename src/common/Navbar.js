@@ -11,7 +11,10 @@ const Navbar = () => {
   return (
     <>
       {isCategoryShown && (
-        <CategoryModal setIsCategoryShown={setIsCategoryShown} />
+        <CategoryModal
+          setIsCategoryShown={setIsCategoryShown}
+          isCategoryShown={isCategoryShown}
+        />
       )}
       <Nav>
         <div onClick={() => setIsCategoryShown(!isCategoryShown)}>카테고리</div>

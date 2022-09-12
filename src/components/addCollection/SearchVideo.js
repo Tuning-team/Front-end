@@ -21,6 +21,10 @@ const SearchVideo = () => {
   });
 
   const onClickHandler = (e) => {
+    if (keyword === "") {
+      alert("검색어를 입력해주세요");
+      return;
+    }
     dispatch(getVideo(keyword));
     reset();
   };
@@ -50,8 +54,13 @@ const SearchVideo = () => {
 export default SearchVideo;
 const Form = styled.div`
   display: flex;
+  justify-content: space-around;
 `;
-const Btn = styled.img``;
+const Btn = styled.img`
+  width: 30px;
+  height: 30px;
+  padding-top: 10px;
+`;
 const Title = styled.h1`
   font-style: normal;
   font-weight: 700;
@@ -62,7 +71,8 @@ const Title = styled.h1`
 const Input = styled.input`
   background: #efefef;
   border-radius: 50px;
-  width: 311px;
+  width: 17rem;
   height: 40px;
+  border: solid #efefef;
 `;
-const Wrap = styled.div``;
+const InputWrap = styled.div``;
