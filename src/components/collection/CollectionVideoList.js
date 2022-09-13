@@ -12,7 +12,7 @@ const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
   const videoList = useSelector((state) => state.collectionSlice.videos);
   const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);
-  // console.log(videoList, pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
+  console.log(videoList, pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
 
   // ! 클릭하면 유튜브 동영상을 재생할 수 있는 모달 발생
   const [videoId, setVideoId] = useState("");
@@ -24,6 +24,7 @@ const CollectionVideoList = ({ collectionId }) => {
   };
   // --------------------여기까지 기본 로직-----------------------
   const [count, setCount] = useState(0);
+
   const useHandleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
@@ -34,7 +35,7 @@ const CollectionVideoList = ({ collectionId }) => {
     //   scrollTop + clientHeight,
     //   scrollHeight
     // );
-    if (scrollTop + clientHeight >= scrollHeight) {
+    if (scrollTop + clientHeight >= scrollHeight - 31) {
       if (scrollTop !== 0) {
         setCount((prev) => prev + 5);
       }
@@ -61,10 +62,9 @@ const CollectionVideoList = ({ collectionId }) => {
       setCount(0);
     };
   }, []);
-  // console.log("컴포넌트상의 count", count);
 
   return (
-    <div>
+    <VideoListArea>
       {videoList?.map((elem) => {
         return (
           <VideoContainer
@@ -85,21 +85,23 @@ const CollectionVideoList = ({ collectionId }) => {
       {showModal && (
         <YoutubePlayer videoId={videoId} onCloseModal={setShowModal} />
       )}
-    </div>
+    </VideoListArea>
   );
 };
 
 export default CollectionVideoList;
-
+const VideoListArea = styled.section`
+  background-color: #f8f8f8;
+  padding: 1.4rem 1rem;
+`;
 const VideoContainer = styled.div`
   display: flex;
-  margin-bottom: 1rem;
+  margin-bottom: 0.346rem;
 `;
 const Wrapper = styled.div`
   flex: none;
-  width: 50%;
+  width: 10.75rem;
   height: auto;
-  padding: 0.5rem 0;
 `;
 const Img = styled.img`
   width: 100%;
@@ -107,20 +109,31 @@ const Img = styled.img`
 `;
 
 const TextWrapper = styled.div`
-  padding: 0.5rem;
+  /* display: flex;
+  justify-content: space-between;
+  flex-direction: column; */
+  padding-left: 0.938rem;
 
   & h3 {
+    margin-bottom: 0.25rem;
+
+    font-size: 0.875rem;
     font-weight: bold;
-    font-size: 1rem;
+    line-height: 1.3;
 
     overflow: hidden;
     text-overflow: ellipsis;
 
     display: -webkit-box;
-    line-height: auto;
-    max-height: 2rem;
-    -webkit-line-clamp: 2; /* 표시하고자 하는 라인 수 */
+    max-height: 3.72;
+    -webkit-line-clamp: 3; /* 표시하고자 하는 라인 수 */
     -webkit-box-orient: vertical;
+  }
+
+  & h6 {
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1.24;
   }
 `;
 // todo https://jos39.tistory.com/211 ->나중에 css로 text overflow ...처리하려면 참고
