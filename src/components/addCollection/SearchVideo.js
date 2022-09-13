@@ -1,26 +1,24 @@
 import React, { useState } from "react";
-import icon_search from "../../svg/icon_search.svg";
+import Icon_search from "../../svg/Icon_search.svg";
 import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const SearchVideo = () => {
   const nav = useNavigate();
-  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  // const data = useSelector(
-  //   (state) => state.myCollectionSlice.searchResult.data
-  // );
-  // const searchResult
   const [{ keyword }, onChange, reset] = useInputs({
     keyword: "",
   });
 
   const onClickHandler = (e) => {
+    if (keyword === "") {
+      alert("검색어를 입력해주세요");
+      return;
+    }
     dispatch(getVideo(keyword));
     reset();
   };
@@ -43,15 +41,21 @@ const SearchVideo = () => {
         type="text"
         placeholder="검색하기"
       />
-      <Btn onClick={onClickHandler} src={icon_search} />
+      <Btn onClick={onClickHandler} src={Icon_search} />
     </Form>
   );
 };
 export default SearchVideo;
 const Form = styled.div`
+  padding: 1.3rem 1.3rem 1.3rem 1rem;
   display: flex;
+  justify-content: space-around;
 `;
-const Btn = styled.img``;
+const Btn = styled.img`
+  width: 30px;
+  height: 30px;
+  padding-top: 10px;
+`;
 const Title = styled.h1`
   font-style: normal;
   font-weight: 700;
@@ -62,7 +66,8 @@ const Title = styled.h1`
 const Input = styled.input`
   background: #efefef;
   border-radius: 50px;
-  width: 311px;
+  width: 17rem;
   height: 40px;
+  border: solid #efefef;
 `;
-const Wrap = styled.div``;
+const InputWrap = styled.div``;

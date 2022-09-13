@@ -19,25 +19,32 @@ const YoutubePlayer = ({ videoId, onCloseModal }) => {
   // todo 유튜브 재생 끝나면 화면 닫을 수 있게 해야되지 않을까?
 
   return (
-    <TestModal>
+    <ModalContainer>
       <button onClick={() => onCloseModal(false)}>닫기</button>
-      <VideoHolder>
-        <YouTube videoId={videoId} opts={opts} />
-      </VideoHolder>
-    </TestModal>
+      <Modal>
+        <VideoHolder>
+          <YouTube videoId={videoId} opts={opts} />
+        </VideoHolder>
+      </Modal>
+    </ModalContainer>
   );
 };
 export default YoutubePlayer;
 
-const TestModal = styled.div`
+const ModalContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 50;
   top: 0;
-  border: 0;
   left: 0;
+`;
+const Modal = styled.div`
+  position: absolute;
+  background-color: white;
+  width: 150px;
+  height: 150px;
 `;
 const VideoHolder = styled.div`
   position: relative;

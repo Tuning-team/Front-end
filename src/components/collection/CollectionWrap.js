@@ -27,5 +27,5 @@ const CollectionWrap = () => {
 export default CollectionWrap;
 const Layout = styled.div`
   overflow-x: hidden;
-  margin: 0.6rem;
+  /* margin: 0.6rem; */
 `;

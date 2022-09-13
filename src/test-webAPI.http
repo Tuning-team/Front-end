@@ -4,6 +4,9 @@
 ### 1. 카테고리 요소의 리스트 찾아오기 : GET /api/categories
 GET	{{host}}/api/categories
 
+### 1-2. 날씨에 맞는 카테고리로 바꿀때 (비오는/맑은/흐린으로 키워드 넣기)
+PUT {{host}}/api/collections/today?weather=비오는
+
 ## ---------------------- 컬렉션 관련 API ------------------------
 ### 2. 컬렉션 생성 : POST /api/collections
 POST {{host}}/api/collections
@@ -38,12 +41,12 @@ Content-Type: application/json
 
 
 ### 7. 내가 생성한 컬렉션 리스트 : GET /api/collections/mine
-GET	{{host}}/api/collections/mine?offset=4&limit=4
+GET	{{host}}/api/collections/mine?offset=32&limit=4
 Content-Type: application/json
 
 
 ### 8. 카테고리에 맞는 컬렉션 리스트 찾기 : GET /api/collections?category_id=
-GET	{{host}}/api/collections?category_id=6319aeebd1e330e86bbade7b&offset=0&limit=3
+GET	{{host}}/api/collections?category_id=631e7d7a4ae4c133c405a964&offset=0&limit=20
 
 
 ### 9. 검색어에 맞는 컬렉션 리스트 찾기 : GET /api/collections?keyword=
@@ -96,7 +99,7 @@ GET {{host}}/api/user/6312ad8b5057863778c220ca
 
 ## ---------------------- 영상 관련 API  ------------------------
 ### 18. 특정 id 컬렉션에 포함되어 있는 영상들의 리스트 : GET /api/videos/:collection_id
-GET	{{host}}/api/videos/631a9a8a8a3971d0c7840595?offset=8&limit=4
+GET	{{host}}/api/videos/631b6acd8a3971d0c784aa31?offset=8&limit=4
 
 
 

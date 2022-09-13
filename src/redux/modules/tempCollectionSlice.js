@@ -8,7 +8,45 @@ const initialState = {
   data: [],
   videos: [],
   error: "",
+  categoryCollectionForMain: {
+    isLoading: false,
+    data: [],
+    dataList: [],
+    error: "",
+  },
 };
+
+// 카테고리에 해당하는 컬렉션을 가져오는 thunk
+export const getCategoryCollectionForMain = createAsyncThunk(
+  "get/categoryCollectionForMain",
+  async (categoryId) => {
+    // console.log(categoryId);
+    try {
+      const res = await instance.get(
+        `/collections?category_id=${categoryId}&offset=0&limit=10`
+      );
+      if (categoryId === "631e7d7a4ae4c133c405a966") {
+        const res1 = res.data;
+        // console.log("res1", res1);
+        return { resName: "resOfRecommend", resArr: res1.data };
+      } else if (categoryId === "6319aeebd1e330e86bbade9f") {
+        const res2 = res.data;
+        // console.log("res2", res2);
+        return { resName: "resOfFamous", resArr: res2.data };
+      } else if (categoryId === "631e7d7a4ae4c133c405a964") {
+        const res3 = res.data;
+        // console.log("res3", res3);
+        return { resName: "resOfRecent", resArr: res3.data };
+      } else if (categoryId === "631e7d7a4ae4c133c405a965") {
+        const res4 = res.data;
+        // console.log("res4", res4);
+        return { resName: "resOfWeather", resArr: res4.data };
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
 
 // 컬렉션에 대한 정보를 가져오는 thunk
 export const getCollection = createAsyncThunk(
@@ -40,10 +78,12 @@ export const deleteCollection = createAsyncThunk(
 export const getVideoList = createAsyncThunk(
   "get/videoList",
   async ({ collectionId, count }) => {
+    // console.log("getVideoList에 들어오는 count", count);
     try {
       const res = await instance.get(
-        `/videos/${collectionId}/?offset=${count}&limit=4`
+        `/videos/${collectionId}/?offset=${count}&limit=5`
       );
+      // console.log("서버response", res);
       return res.data;
     } catch (error) {
       return error.message;
@@ -75,6 +115,24 @@ export const collectionSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // ! getCategoryCollectionForMain
+    builder.addCase(getCategoryCollectionForMain.pending, (state, action) => {
+      state.categoryCollectionForMain.isLoading = true;
+    });
+    builder.addCase(getCategoryCollectionForMain.fulfilled, (state, action) => {
+      state.categoryCollectionForMain.isLoading = false;
+      // console.log(action.payload);
+      state.categoryCollectionForMain.dataList = [
+        ...state.categoryCollectionForMain.dataList,
+        action.payload,
+      ];
+      console.log(state.categoryCollectionForMain.dataList);
+    });
+    builder.addCase(getCategoryCollectionForMain.rejected, (state, action) => {
+      state.categoryCollectionForMain.isLoading = false;
+      state.categoryCollectionForMain.error = action.error.message;
+    });
+
     // ! getCollection
     builder.addCase(getCollection.pending, (state, acion) => {
       state.loading = true;
@@ -109,11 +167,11 @@ export const collectionSlice = createSlice({
     });
     // ! getVideoList
     builder.addCase(getVideoList.pending, (state, action) => {
-      console.log("get pending");
+      // console.log("get pending");
       state.loading = true;
     });
     builder.addCase(getVideoList.fulfilled, (state, action) => {
-      console.log("get fulfilled");
+      // console.log("get fulfilled");
       state.loading = false;
       state.pageInfo = action.payload.pageInfo;
       state.videos = state.videos.concat(action.payload.data);

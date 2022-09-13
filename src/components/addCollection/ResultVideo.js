@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { addVideoList } from "../../redux/modules/collectionSlice";
-
+import Loading from "../../common/Loading";
 const ResultVideo = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -22,9 +22,9 @@ const ResultVideo = () => {
   return (
     <>
       {loading ? (
-        <div>로딩중입니다</div>
+        <Loading />
       ) : data.length === 0 ? (
-        <div>결과가 없습니다.</div>
+        <AlertBox>검색 결과가 없습니다.</AlertBox>
       ) : (
         data?.map((x, idx) => {
           return (
@@ -46,9 +46,19 @@ const ResultVideo = () => {
 export default ResultVideo;
 
 const ResultBox = styled.div`
-  border: 3px solid;
+  margin: 10px;
+  border-bottom: 1px solid #efefef;
+  border-left: 2px solid #b295e9;
+  padding: 5px;
 
-  &:hover {
-    background-color: grey;
+  &:active {
+    background-color: #efefef;
   }
+`;
+const AlertBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 10px;
 `;

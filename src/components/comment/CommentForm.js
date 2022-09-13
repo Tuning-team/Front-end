@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteComment, getComment, updateComment, addComment } from "../../redux/modules/commentSlice";
-import Input from "../../elements/Input"
+import {
+  deleteComment,
+  getComment,
+  updateComment,
+  addComment,
+} from "../../redux/modules/commentSlice";
+import Input from "../../elements/Input";
 
 const CommentList = ({ collectionId }) => {
   console.log(collectionId);
   const [newinputValue, setNewInputValue] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false);
   const dispatch = useDispatch();
   const commentList = useSelector((state) => state.commentSlice);
 
   useEffect(() => {
     dispatch(getComment(collectionId));
-    setRefresh(false)
+    setRefresh(false);
   }, [refresh]);
 
   const onCreate = (e) => {
@@ -22,22 +27,23 @@ const CommentList = ({ collectionId }) => {
       const newList = { comment: newinputValue };
       dispatch(addComment({ newList, collectionId }));
       setNewInputValue("");
-      setRefresh(true)
+      setRefresh(true);
     } else {
       alert("공란입니다. 댓글을 작성해주세요");
     }
   };
-
+  console.log(commentList);
 
   const onDelete = (e) => {
     e.preventDefault();
-    const commentId = e.target.value
+    const commentId = e.target.value;
     dispatch(deleteComment(commentId));
-    setRefresh(true)
+    setRefresh(true);
   };
 
   const onUpdate = (e) => {
     e.preventDefault();
+    console.log(commentList);
     const commentId = e.target.value;
     console.log(commentId);
     if (inputValue === "") {
@@ -52,8 +58,8 @@ const CommentList = ({ collectionId }) => {
   console.log(commentList);
 
   const editComment = {
-    comment: inputValue
-  }
+    comment: inputValue,
+  };
 
   return (
     <>
@@ -75,19 +81,17 @@ const CommentList = ({ collectionId }) => {
             <li key={idx}>
               <p>{data.writerName}</p>
               <p>{data.comment}</p>
-              <input
-                onChange={(e) => setInputValue(e.target.value)}
-              ></input>
+              <input onChange={(e) => setInputValue(e.target.value)}></input>
               <button type="button" value={data.comment_id} onClick={onDelete}>
                 삭제
               </button>
               <button type="button" value={data.comment_id} onClick={onUpdate}>
                 수정
               </button>
-            </li>
+            </li >
           );
         })}
-      </ul>
+      </ul >
     </>
   );
 };
@@ -97,8 +101,6 @@ export default CommentList;
 // import CommentList from "./CommentList";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getComment, addComment } from "../../redux/modules/commentSlice"
-
-
 
 // const CommentForm = ({ collectionId }) => {
 //   console.log(collectionId);

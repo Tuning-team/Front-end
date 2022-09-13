@@ -1,29 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import CollectionSlide from "../../elements/CollectionSlide";
-import { getCategoryCollection } from "../../redux/modules/collectionSlice";
 
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Carousel from "../../common/Carousel";
+import CarouselItem from "../../common/CarouselItem";
 import { useNavigate } from "react-router-dom";
-
-const FamousCollections = () => {
+import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
+import { Section } from "./Style";
+const FamousCollections = ({ categoryId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-
-  const popularCollections = useSelector(
-    (state) => state.myCollectionSlice.categoryCollection
-  );
-  const isLoading = popularCollections.Loading;
-  const collectionsData = popularCollections.data;
-
-  let popularCollectionId = "6319aeebd1e330e86bbade9f"; // "인기있는"카테고리에 대한 id
-
   useEffect(() => {
-    dispatch(getCategoryCollection(popularCollectionId));
-  }, [isLoading]);
+    if (finalData.length === 0) {
+      dispatch(getCategoryCollectionForMain(categoryId));
+    }
+  }, [categoryId]);
+
+  const categoryData = useSelector(
+    (state) => state.collectionSlice.categoryCollectionForMain.dataList //배열인 상태임
+  );
+  const finalData = categoryData.filter((x) => x.resName === "resOfFamous");
+
   // !-----------여기까지 기본 로직이고 아래는 반응형캐로셀
   // const settings = {
   //   dots: false,
@@ -58,35 +55,23 @@ const FamousCollections = () => {
   //     },
   //   ],
   // };
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 300,
-    slidesToShow: 2.2,
-    slidesToScroll: 1,
-    adaptiveHeight: false,
-    arrows: false,
-  };
+
+  // !https://react.libhunt.com/compare-react-slick-vs-swiper => 고민해보기...
   return (
-    <section>
-      <H1>인기있는 튜닝</H1>
-      <StyleSlider {...settings}>
-        {collectionsData?.map((data) => (
-          <DivCard
-            className="card"
+    <Section>
+      <h1>인기있는 튜닝</h1>
+      <Carousel slidesToShow={2.2}>
+        {finalData[0]?.resArr.map((data) => (
+          <CarouselItem
             key={data._id}
             onClick={() => nav(`collection/${data._id}`)}
-          >
-            <div className="card-top">
-              <img src={data.thumbnails[0]} alt={data.videos[0]} />
-            </div>
-            <div className="card-bottom">
-              <h6>{data.collectionTitle}</h6>
-            </div>
-          </DivCard>
+            src={data.thumbnails[0]}
+            alt={data.videos[0]}
+            title={data.collectionTitle}
+          />
         ))}
-      </StyleSlider>
-    </section>
+      </Carousel>
+    </Section>
   );
 };
 
@@ -94,36 +79,3 @@ const FamousCollections = () => {
 // todo https://www.cluemediator.com/add-space-between-carousel-items-in-react-slick 리액트슬릭 마진 추가..
 
 export default FamousCollections;
-
-const StyleSlider = styled(Slider)`
-  /* 아이템 사이의 간격 조절 */
-  & .slick-slide > div {
-    margin: 0 0.3rem;
-  }
-  & .slick-list {
-    margin: 0 -0.3rem;
-  }
-`;
-
-const DivCard = styled.div`
-  border: 1px solid black;
-  max-width: 320px;
-  &:hover {
-    cursor: pointer;
-  }
-  & .card-top {
-    /* background-color: white; */
-  }
-  & .card-top > img {
-    max-width: 320px;
-    max-height: 180px;
-    width: 100%;
-    border-radius: 3px;
-  }
-`;
-
-const H1 = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 10px 0;
-`;
