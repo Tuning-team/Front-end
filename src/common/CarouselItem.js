@@ -5,7 +5,12 @@ const CarouselItem = (props) => {
   // props로 꼭 넘겨야 되는 속성
   // key, img를 위한 src
   return (
-    <DivCard className="card" key={props.key} onClick={props.onClick}>
+    <DivCard
+      className="card"
+      key={props.key}
+      onClick={props.onClick}
+      maxwidth={props.maxwidth}
+    >
       <div className="card-top">
         <img src={props.src} alt={props.alt} />
       </div>
@@ -18,18 +23,15 @@ const CarouselItem = (props) => {
 export default CarouselItem;
 
 const DivCard = styled.div`
-  /* border: 1px solid black; */
-  max-width: 320px;
+  max-width: ${(props) => props.maxwidth || "320px"};
+
   &:hover {
     cursor: pointer;
   }
-  & .card-top {
-    /* background-color: white; */
-  }
+
   & .card-top > img {
-    max-width: 320px;
-    max-height: 180px;
     width: 100%;
+    /* max-height: 180px; */
     border-radius: 3px;
   }
   & .card-bottom > h6 {

@@ -17,6 +17,7 @@ export default Headers;
 
 const Header = styled.div`
   position: absolute;
+  z-index: 1;
   right: 0%;
   display: flex;
   justify-content: flex-end;
