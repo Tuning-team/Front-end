@@ -10,17 +10,17 @@ export const getComment = createAsyncThunk(
     }
 );
 
-// [ADD] COMMENT
+// [ADD] COMMENT 
 export const addComment = createAsyncThunk(
-  "ADD_COMMENT",
-  async ({ newList, collectionId }) => {
-    const response = await instance.post(`/comments/${collectionId}`, newList);
-    console.log(response);
-    return response.data;
-}
+    "ADD_COMMENT",
+    async ({ newList, collectionId }) => {
+        const response = await instance.post(`/comments/${collectionId}`, newList);
+        console.log(response);
+        return response.data;
+    }
 );
 
-// [DELETE] COMMENT [=>collection_id 남음]
+// [DELETE] COMMENT 
 export const deleteComment = createAsyncThunk(
     "DELETE_COMMENT",
     async (commentId) => {
@@ -30,13 +30,15 @@ export const deleteComment = createAsyncThunk(
 );
 
 // [UPDATE] COMMENT
+// return x payload x 
 export const updateComment = createAsyncThunk(
-  "UPDATE_COMMENT",
-  async ({ commentId, editComment }) => {
-    const response = await instance.put(`/comments/${commentId}`, editComment);
-    console.log(response);
-  }
+    "UPDATE_COMMENT",
+    async ({ commentId, editComment }) => {
+        const response = await instance.put(`/comments/${commentId}`, editComment);
+        console.log(response);
+    }
 );
+
 
 export const commentSlice = createSlice({
     name: "commentList",
@@ -44,9 +46,9 @@ export const commentSlice = createSlice({
     reducers: {},
     extraReducers: {
         [getComment.fulfilled]: (state, { payload }) => payload,
-        [addComment.fulfilled]: (state, { payload }) => [...state, payload],
-        [deleteComment.fulfilled]: (state, { payload }) => [...state, payload],
-        [updateComment.fulfilled]: (state, { payload }) => [...state, payload],
+        // [addComment.fulfilled]: (state, { payload }) => [...state, payload],
+        // [deleteComment.fulfilled]: (state, { payload }) => [...state, payload],
+        // [updateComment.fulfilled]: (state, { payload }) => [...state]
         // return state.map((comment) => {
         //     if (comment.id === payload.commentId) {
         //         return { ...comment, username: payload.username, comment: payload.comment };
@@ -58,3 +60,4 @@ export const commentSlice = createSlice({
 
     },
 });
+

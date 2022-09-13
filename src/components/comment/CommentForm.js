@@ -51,7 +51,8 @@ const CommentList = ({ collectionId }) => {
     } else {
       dispatch(updateComment({ commentId, editComment }));
       setInputValue("");
-      setRefresh(true);
+      setRefresh(true)
+      // window.location.reload();
     }
   };
   console.log(commentList);
@@ -81,17 +82,16 @@ const CommentList = ({ collectionId }) => {
               <p>{data.writerName}</p>
               <p>{data.comment}</p>
               <input onChange={(e) => setInputValue(e.target.value)}></input>
-
               <button type="button" value={data.comment_id} onClick={onDelete}>
                 삭제
               </button>
               <button type="button" value={data.comment_id} onClick={onUpdate}>
                 수정
               </button>
-            </li>
+            </li >
           );
         })}
-      </ul>
+      </ul >
     </>
   );
 };

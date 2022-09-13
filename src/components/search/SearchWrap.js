@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../../elements/Input"
 import { getList, searchSlice } from "../../redux/modules/searchSlice";
+import CollectionList from "../../common/CollectionList"
 
 const SearchWrap = () => {
   const [search, setSearch] = useState("");
@@ -15,7 +16,6 @@ const SearchWrap = () => {
     setSearch(e.target.value);
   };
 
-  console.log("id :", search);
 
   const onSearch = (e) => {
     e.preventDefault();
@@ -23,8 +23,12 @@ const SearchWrap = () => {
 
   };
 
+  const searchResult = searchList?.filter(data => data.collectionTitle.indexOf(search) !== -1
+    || data.description.indexOf(search) !== -1)
+
   return (
     <>
+
       <form onSubmit={onSearch}>
         <h2>Collections을 검색하세요</h2>
 
@@ -39,13 +43,7 @@ const SearchWrap = () => {
           {search === "" ?
             <div>추천검색어</div>
             :
-            searchList.filter(data => data.collectionTitle.indexOf(search) !== -1
-              || data.description.indexOf(search) !== -1).map((data) => {
-                return <div key={data._id}>
-                  <li></li>
-                  <p>{data.collectionTitle}</p>
-                </div>
-              })
+            <CollectionList state={searchResult} />
           }
         </ul>
       </div>
@@ -54,3 +52,12 @@ const SearchWrap = () => {
 };
 
 export default SearchWrap;
+
+// searchList.filter(data => data.collectionTitle.indexOf(search) !== -1
+//   || data.description.indexOf(search) !== -1).map((data) => {
+//     console.log(data)
+//     return <div key={data._id}>
+//       <li></li>
+//       <p>{data.collectionTitle}</p>
+//     </div>
+//   })
