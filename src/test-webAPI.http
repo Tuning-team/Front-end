@@ -76,7 +76,7 @@ Content-Type: application/json
 
 
 ### 13. 특정 id를 가진 댓글을 삭제하기  : DELETE /api/comments/:collection_id
-DELETE {{host}}/api/comments/631ab86b8a3971d0c7842412
+DELETE {{host}}/api/comments/63203ac0f0513723dcf3b5ea
 
 
 ## ---------------------- 영상 찾기 관련 API ------------------------
