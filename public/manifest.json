@@ -1,24 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "튜닝",
+  "name": "튜닝",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "maskable_icon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "maskable_icon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "maskable_icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://tube-tuning.com/",
   "display": "fullscreen",
   "theme_color": "#000000",
   "background_color": "#ffffff"

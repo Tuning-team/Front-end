@@ -7,14 +7,11 @@ import { ReactComponent as Icon_category } from "../svg/Icon_category.svg";
 import { ReactComponent as Icon_home } from "../svg/Icon_home.svg";
 import { ReactComponent as Icon_collection } from "../svg/Icon_collection.svg";
 import { ReactComponent as Icon_search } from "../svg/Icon_search.svg";
-import { useCookies } from "react-cookie";
 
 const Navbar = () => {
   const nav = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
   const [isCategoryShown, setIsCategoryShown] = useState(false);
   const [test, setTest] = useState(null);
-  console.log(cookies);
 
   return (
     <>
