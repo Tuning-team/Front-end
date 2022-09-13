@@ -6,6 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
 import { RecommendTitle } from "./Style";
 
+import cloudyDay from "./image/timothy-chan-FNWc_Dqsw2g-unsplash.webp";
+import sunnyDay from "./image/sonaal-bangera-kpDO0woxxec-unsplash.webp";
+import ordinaryDay from "./image/clay-banks-_wkd7XBRfU4-unsplash.webp";
+import rainnyDay from "./image/rainnyday.webp";
+
 const TodaysWeatherCollections = ({ categoryId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -22,14 +27,15 @@ const TodaysWeatherCollections = ({ categoryId }) => {
 
   const finalData = categoryData.filter((x) => x.resName === "resOfWeather");
 
-  let keyWeather = "흐린";
+  let keyWeather = "맑은";
 
   const mainImage = [
-    { keyword: "", url: "clay-banks-_wkd7XBRfU4-unsplash.jpg" },
-    { keyword: "맑은", url: "sonaal-bangera-kpDO0woxxec-unsplash.jpg" },
-    { keyword: "흐린", url: "timothy-chan-FNWc_Dqsw2g-unsplash.jpg" },
-    { keyword: "비오는", url: "rainnyday.jpg" },
+    { keyword: "", url: ordinaryDay },
+    { keyword: "맑은", url: sunnyDay },
+    { keyword: "흐린", url: cloudyDay },
+    { keyword: "비오는", url: rainnyDay },
   ];
+
   return (
     <section>
       {mainImage.map((elem) => {
