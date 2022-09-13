@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../redux/modules/collectionSlice";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+import icon_close from "../svg/icon_close.svg";
 
 const CategoryModal = ({ setIsCategoryShown }) => {
   const nav = useNavigate();
@@ -21,19 +22,18 @@ const CategoryModal = ({ setIsCategoryShown }) => {
     <>
       <ModalFloater setIsCategoryShown="setIsCategoryShown">
         <div style={{ margin: "1rem" }}>
-          <Title
-          // style={{ color: "#7951C6", fontSize: "2rem", marginBottom: "1rem" }}
-          >
-            카테고리
-          </Title>
+          <TitleWrap>
+            <Title>카테고리</Title>
+            <Icon
+              onClick={() => setIsCategoryShown((prev) => !prev)}
+              src={icon_close}
+            ></Icon>
+          </TitleWrap>
+
           <ul>
             {categories?.map((elem) => {
               return (
-                <Li
-                  key={elem._id}
-                  onClick={() => nav(`/category/${elem._id}`)}
-                  style={{ cursor: "pointer" }}
-                >
+                <Li key={elem._id} onClick={() => nav(`/category/${elem._id}`)}>
                   {elem.categoryName}
                 </Li>
               );
@@ -72,7 +72,7 @@ const ModalFloater = styled.div`
   top: 0;
   bottom: 0;
   z-index: 10;
-
+  margin-bottom: 5rem;
   background-color: rgba(245, 245, 245, 0.96); //검은색 배경, 투명도 90%
   width: 70%;
 
@@ -84,10 +84,19 @@ const ModalFloater = styled.div`
   animation-name: ${slideIn};
   animation-fill-mode: forwards;
 `;
+const TitleWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const Icon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+`;
 const Li = styled.li`
   margin: 1rem auto;
   font-size: 14px;
   padding: 0.5rem;
+  cursor: pointer;
   &:active {
     background-color: white;
     opacity: 1;

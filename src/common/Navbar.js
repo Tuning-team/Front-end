@@ -7,12 +7,15 @@ import { ReactComponent as Icon_category } from "../svg/Icon_category.svg";
 import { ReactComponent as Icon_home } from "../svg/Icon_home.svg";
 import { ReactComponent as Icon_collection } from "../svg/Icon_collection.svg";
 import { ReactComponent as Icon_search } from "../svg/Icon_search.svg";
+import { useCookies } from "react-cookie";
 
 const Navbar = () => {
   const nav = useNavigate();
-
+  const [cookies, setCookie, removeCookie] = useCookies(["connect.sid"]);
   const [isCategoryShown, setIsCategoryShown] = useState(false);
-  const [chooseNav, setNav] = ["1", "1", "black", "black"];
+  const [test, setTest] = useState(null);
+  console.log(cookies);
+
   return (
     <>
       {isCategoryShown && (
@@ -22,7 +25,13 @@ const Navbar = () => {
         />
       )}
       <Nav>
-        <Wrap onClick={() => setIsCategoryShown(!isCategoryShown)}>
+        <Wrap
+          onClick={() => {
+            setIsCategoryShown(!isCategoryShown);
+            setTest("danger");
+          }}
+          test
+        >
           <Icon_category fill="black" />
           <Name>카테고리</Name>
         </Wrap>
@@ -79,11 +88,13 @@ const Name = styled.span`
   margin-top: 3px;
 `;
 const Wrap = styled.div`
-  margin-top: 1rem;
+  padding-top: 1rem;
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   text-align: center;
   cursor: pointer;
   align-items: center;
+  background-color: ${(props) => (props.danger ? "white" : null)};
 `;

@@ -67,7 +67,7 @@ const CollectionInformation = ({ collectionId }) => {
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h1>{data?.collectionTitle}</h1>
             <img
-              style={{ width: "10px", height: "10px" }}
+              style={{ width: "15px", height: "15px" }}
               src={icon_more}
               onClick={() => {
                 setModal(!modal);
@@ -75,7 +75,17 @@ const CollectionInformation = ({ collectionId }) => {
             ></img>
             {modal && (
               <More>
-                <Button onClick={() => onDeleteThisCollection()}>삭제</Button>
+                <ChooseBtn>
+                  <Btn
+                    style={{ borderBottom: "1px solid #efefef" }}
+                    onClick={shareKakao}
+                  >
+                    공유하기
+                  </Btn>
+                  <Btn onClick={() => onDeleteThisCollection()}>삭제하기</Btn>
+                </ChooseBtn>
+
+                <Close onClick={() => setModal(!modal)}>닫기</Close>
               </More>
             )}
           </div>
@@ -109,7 +119,6 @@ const CollectionInformation = ({ collectionId }) => {
         <Button backgroundColor="white" color="black">
           댓글
         </Button>
-        <Button onClick={shareKakao}>카카오톡 공유하기</Button>
       </MakeElementsHorizontal>
     </>
   );
@@ -139,4 +148,35 @@ const MakeElementsHorizontal = styled.div`
   gap: 10px;
   justify-content: center;
   margin: 10px auto;
+`;
+const ChooseBtn = styled.div`
+  background-color: #ffffff;
+  width: 22.063rem;
+  height: 5.938rem;
+  color: #b295e9;
+
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 3px;
+`;
+const Btn = styled.div`
+  text-align: center;
+  width: 100%;
+  padding-bottom: 5px;
+`;
+const Close = styled.div`
+  background-color: #ffffff;
+  width: 22.063rem;
+  height: 3.125rem;
+  color: #b295e9;
+  margin-top: 10px;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 3px;
 `;

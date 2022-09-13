@@ -20,7 +20,7 @@ const ResultVideo = () => {
   );
 
   return (
-    <>
+    <ResultWrap>
       {loading ? (
         <Loading />
       ) : data.length === 0 ? (
@@ -40,16 +40,25 @@ const ResultVideo = () => {
           );
         })
       )}
-    </>
+    </ResultWrap>
   );
 };
 export default ResultVideo;
+const ResultWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const ResultBox = styled.div`
-  margin: 10px;
+  margin: 5px 0px 5px 0px;
   border-bottom: 1px solid #efefef;
   border-left: 2px solid #b295e9;
   padding: 5px;
+  width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:active {
     background-color: #efefef;

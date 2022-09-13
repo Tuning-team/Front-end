@@ -148,6 +148,7 @@ const AddCollectionForm = () => {
 export default AddCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.3rem 1.3rem 1.3rem 1rem;
+  margin-bottom: 5rem;
   // overflow: auto;
 `;
 
