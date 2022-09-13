@@ -46,7 +46,7 @@ Content-Type: application/json
 
 
 ### 8. 카테고리에 맞는 컬렉션 리스트 찾기 : GET /api/collections?category_id=
-GET	{{host}}/api/collections?category_id=631e7d7a4ae4c133c405a965&offset=0&limit=20
+GET	{{host}}/api/collections?category_id=631e7d7a4ae4c133c405a964&offset=0&limit=20
 
 
 ### 9. 검색어에 맞는 컬렉션 리스트 찾기 : GET /api/collections?keyword=
@@ -59,11 +59,11 @@ GET	{{host}}/api/comments/631ab86b8a3971d0c7842412
 
 
 ### 11. collection_id 컬렉션에 댓글 달기  : POST /api/comments/:collection_id
-POST {{host}}/api/comments/631ab86b8a3971d0c7842412
+POST {{host}}/api/comments/631eee06637133ed8e7ef7e3
 Content-Type: application/json
 
 {
-    "comment" : "오 짱!!"
+    "comment" : "오!!!!! 짱!!"
 }
 
 ### 12. 특정 id를 가진 댓글을 수정하기  : PUT /api/comments/:collection_id
@@ -76,7 +76,7 @@ Content-Type: application/json
 
 
 ### 13. 특정 id를 가진 댓글을 삭제하기  : DELETE /api/comments/:collection_id
-DELETE {{host}}/api/comments/63203ac0f0513723dcf3b5ea
+DELETE {{host}}/api/comments/63208fe9f0513723dcf41373
 
 
 ## ---------------------- 영상 찾기 관련 API ------------------------
@@ -85,7 +85,7 @@ GET {{host}}/api/search/videos/db?keyword=디자인
 
 
 ### 15. (더찾아보기) 유튜브API에 100점 주고 검색하기 : GET /api/search/videos/youtube?keyword=
-GET {{host}}/api/search/videos/youtube?keyword=운동
+GET {{host}}/api/search/videos/youtube?keyword=우왁굳
 
 
 ## ---------------------- 유저 정보 찾기 관련 API ------------------------
