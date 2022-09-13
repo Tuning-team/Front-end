@@ -29,7 +29,7 @@ const GlobalBtnStyle = styled.button`
   width: ${(props) => props.width || "auto"};
   height: ${(props) => props.height || "24px"};
 
-  border-radius: 12px;
+  border-radius: 3px;
   border: ${(props) => props.border || "1px solid black"};
   color: ${(props) => props.color || "black"};
   background-color: ${(props) => props.backgroundColor || "white"};

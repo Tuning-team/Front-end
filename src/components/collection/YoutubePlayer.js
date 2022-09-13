@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import YouTube from "react-youtube";
+import ReactPlayer from "react-player/youtube";
 
 const YoutubePlayer = ({ videoId, onCloseModal }) => {
   console.log(videoId);
@@ -17,15 +18,16 @@ const YoutubePlayer = ({ videoId, onCloseModal }) => {
     },
   };
   // todo 유튜브 재생 끝나면 화면 닫을 수 있게 해야되지 않을까?
-
+  let testUrl = "https://www.youtube.com/watch?v=";
   return (
     <ModalContainer>
       <button onClick={() => onCloseModal(false)}>닫기</button>
-      <Modal>
-        <VideoHolder>
-          <YouTube videoId={videoId} opts={opts} />
-        </VideoHolder>
-      </Modal>
+      {/* <Modal> */}
+      <VideoHolder>
+        <YouTube videoId={videoId} opts={opts} />
+      </VideoHolder>
+      {/* </Modal> */}
+      <ReactPlayer url={testUrl + videoId} light={true} />
     </ModalContainer>
   );
 };
