@@ -22,7 +22,10 @@ const CollectionWrap = () => {
 
   return (
     <>
-      <CollectionInformation collectionId={param.collection_id} />
+      <CollectionInformation
+        collectionId={param.collection_id}
+        tabClicked={tabClicked}
+      />
       <TabMenu tabClicked={tabClicked}>
         <div className="videoTab">
           <span onClick={onClickedVideoTab}>영상</span>
@@ -36,7 +39,6 @@ const CollectionWrap = () => {
       ) : (
         <CommentForm collectionId={param.collection_id} />
       )}
-
     </>
   );
 };
