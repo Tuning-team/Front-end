@@ -7,7 +7,13 @@ const GoogleLogin = () => {
   const nav = useNavigate();
 
   useEffect(() => {
-    setCookie("token", param.token);
+    const expires = new Date();
+    expires.setDate(Date.now() + 1000 * 60 * 60 * 24);
+    setCookie("token", param.token, {
+      path: "/",
+      expires,
+    });
+    window.location.replace("/");
     nav("/");
   }, []);
 };
