@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryModal from "./CategoryModal";
 import styled from "styled-components";
+import { getCookie } from "../hooks/cookie";
 
 import { ReactComponent as Icon_category } from "../svg/Icon_category.svg";
 import { ReactComponent as Icon_home } from "../svg/Icon_home.svg";
@@ -40,7 +41,16 @@ const Navbar = () => {
           <Icon_home fill="#efefef" />
           <Name>메인</Name>
         </Wrap>
-        <Wrap onClick={() => nav("/mypage")}>
+        <Wrap
+          onClick={() => {
+            if (getCookie("token") === undefined) {
+              alert("로그인을 해주세요");
+              nav("/login");
+            } else {
+              nav("/mypage");
+            }
+          }}
+        >
           <Icon_collection fill="#efefef" />
           <Name>내튜닝</Name>
         </Wrap>
@@ -68,7 +78,7 @@ const Nav = styled.nav`
 
   // border: 1px solid black;
 
-  height: 5.625rem;
+  height: 4.5rem;
 
   background-color: #efefef;
 

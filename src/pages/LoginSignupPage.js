@@ -7,7 +7,7 @@ const LoginSignupPage = () => {
   return (
     <>
       {/* //todo 로그인버튼 안보이게 하기 */}
-      <Headers />
+      {/* <Headers /> */}
       <LoginSignupWrap />
       <Navbar />
     </>
