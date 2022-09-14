@@ -133,7 +133,6 @@ export const collectionSlice = createSlice({
         ...state.categoryCollectionForMain.dataList,
         action.payload,
       ];
-      console.log(state.categoryCollectionForMain.dataList);
     });
     builder.addCase(getCategoryCollectionForMain.rejected, (state, action) => {
       state.categoryCollectionForMain.isLoading = false;

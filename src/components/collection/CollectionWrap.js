@@ -6,11 +6,13 @@ import CollectionVideoList from "./CollectionVideoList";
 
 import styled from "styled-components";
 import CommentForm from "../comment/CommentForm";
+import { useDispatch } from "react-redux";
+import { resetVideoId } from "../../redux/modules/tempCollectionSlice";
 
 const CollectionWrap = () => {
   const param = useParams();
   const nav = useNavigate();
-
+  const dispatch = useDispatch();
   const [tabClicked, setTabClicked] = useState(false);
 
   const onClickedVideoTab = () => {
@@ -19,7 +21,11 @@ const CollectionWrap = () => {
   const onClickedCommentTab = () => {
     setTabClicked(true);
   };
-
+  useEffect(() => {
+    return () => {
+      dispatch(resetVideoId());
+    };
+  }, []);
   return (
     <>
       <CollectionInformation
@@ -27,11 +33,11 @@ const CollectionWrap = () => {
         tabClicked={tabClicked}
       />
       <TabMenu tabClicked={tabClicked}>
-        <div className="videoTab">
-          <span onClick={onClickedVideoTab}>영상</span>
+        <div className="videoTab" onClick={onClickedVideoTab}>
+          <span>영상</span>
         </div>
-        <div className="commentTab">
-          <span onClick={onClickedCommentTab}>댓글</span>
+        <div className="commentTab" onClick={onClickedCommentTab}>
+          <span>댓글</span>
         </div>
       </TabMenu>
       {!tabClicked ? (

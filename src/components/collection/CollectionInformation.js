@@ -44,7 +44,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
 
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
-    window.confirm("정말 지울겁니까?")
+    window.confirm("삭제하시겠습니까?")
       ? dispatch(deleteCollection(collectionId))
       : console.log("no");
   };
