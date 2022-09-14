@@ -59,7 +59,8 @@ to{
 const Div = styled.div`
   width: 100%;
   z-index: 9;
-  position: absolute;
+
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -72,7 +73,7 @@ const ModalFloater = styled.div`
   top: 0;
   bottom: 0;
   z-index: 10;
-  margin-bottom: 5rem;
+  margin-bottom: 4.5rem;
   background-color: rgba(245, 245, 245, 0.96); //검은색 배경, 투명도 90%
   width: 70%;
 
