@@ -22,7 +22,7 @@ const CollectionInformation = ({ collectionId }) => {
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
-  console.log(data);
+  // console.log(data);
 
   //!카카오톡 공유하기
   const shareKakao = () => {
