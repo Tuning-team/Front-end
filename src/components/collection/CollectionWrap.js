@@ -5,7 +5,6 @@ import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
 
 import styled from "styled-components";
-import CommentList from "../comment/CommentList";
 import CommentForm from "../comment/CommentForm";
 
 const CollectionWrap = () => {
@@ -35,15 +34,9 @@ const CollectionWrap = () => {
       {!tabClicked ? (
         <CollectionVideoList collectionId={param.collection_id} />
       ) : (
-        <>
-          <CommentForm collectionId={param.collection_id} />
-          {/* <CommentList collectionId={param.collection_id} /> */}
-        </>
+        <CommentForm collectionId={param.collection_id} />
       )}
 
-      {/* Comment Component 작업 중 */}
-      {/* <CommentForm collectionId={param.collection_id} /> */}
-      {/* <CommentList collectionId={param.collection_id} /> */}
     </>
   );
 };
