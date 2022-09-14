@@ -17,9 +17,9 @@ const GlobalStyle = createGlobalStyle`
 
 
   body {
-    // font-family: 'Noto Sans KR', sans-serif;
-   font-family: 'LeferiPoint-WhiteObliqueA';
-   font-family: 'OTWelcomeBA';
+    font-family: 'Noto Sans KR', sans-serif;
+  //  font-family: 'LeferiPoint-WhiteObliqueA';
+  //  font-family: 'OTWelcomeBA';
     font-size: 12px;
     font-weight: 400;
     max-width:480px;
