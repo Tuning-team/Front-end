@@ -18,5 +18,5 @@ const MainPage = () => {
 };
 export default MainPage;
 const Layout = styled.div`
-  margin-bottom: 6.625rem;
+  margin-bottom: 5.5rem;
 `;
