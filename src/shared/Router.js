@@ -10,7 +10,6 @@ import AddVideoSearchPage from "../pages/AddVideoSearchPage";
 import CommentPage from "../pages/CommentPage";
 import CollectionPage from "../pages/CollectionPage";
 import CategoryPage from "../pages/CategoryPage";
-import Admin from "../components/mainList/Admin";
 import GoogleLogin from "../pages/GoogleLogin";
 
 function Router() {
@@ -27,7 +26,6 @@ function Router() {
         <Route path="/Comment" element={<CommentPage />} />
         <Route path="/collection/:collection_id" element={<CollectionPage />} />
         <Route path="/category/:collection_id" element={<CategoryPage />} />
-        <Route path="/admin" element={<Admin />} />
         <Route path="/google_login/:token" element={<GoogleLogin />} />
       </Routes>
     </BrowserRouter>
