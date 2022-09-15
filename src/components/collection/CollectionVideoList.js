@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getVideoList,
   resetVideoList,
+  selectedVideoId,
 } from "../../redux/modules/tempCollectionSlice";
 import YoutubePlayer from "./YoutubePlayer";
 import throttle from "lodash/throttle";
@@ -12,15 +13,17 @@ const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
   const videoList = useSelector((state) => state.collectionSlice.videos);
   const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);
-  console.log(videoList, pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
+  // console.log(videoList, pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
 
   // ! 클릭하면 유튜브 동영상을 재생할 수 있는 모달 발생
   const [videoId, setVideoId] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const onPlayVideo = (videoId) => {
-    setVideoId(videoId);
-    setShowModal(true);
+    // setVideoId(videoId);
+    // setShowModal(true);
+
+    dispatch(selectedVideoId(videoId));
   };
   // --------------------여기까지 기본 로직-----------------------
   const [count, setCount] = useState(0);
@@ -82,9 +85,9 @@ const CollectionVideoList = ({ collectionId }) => {
         );
       })}
       {/* showModal이 true면 YoutubePlayer컴포넌트 반환, false이면 null */}
-      {showModal && (
+      {/* {showModal && (
         <YoutubePlayer videoId={videoId} onCloseModal={setShowModal} />
-      )}
+      )} */}
     </VideoListArea>
   );
 };

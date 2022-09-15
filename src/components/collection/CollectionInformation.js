@@ -14,7 +14,7 @@ import FloatingIcons from "./FloatingIcons";
 import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
 import YoutubeContainer from "./YoutubeContainer";
 
-const CollectionInformation = ({ collectionId }) => {
+const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
@@ -22,7 +22,7 @@ const CollectionInformation = ({ collectionId }) => {
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
-  console.log(data);
+  // console.log(data);
 
   //!카카오톡 공유하기
   const shareKakao = () => {
@@ -44,7 +44,7 @@ const CollectionInformation = ({ collectionId }) => {
 
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
-    window.confirm("정말 지울겁니까?")
+    window.confirm("삭제하시겠습니까?")
       ? dispatch(deleteCollection(collectionId))
       : console.log("no");
   };
@@ -65,31 +65,39 @@ const CollectionInformation = ({ collectionId }) => {
 
   return (
     <>
-      <FloatingIcons setModal={setModal} />
-      <YoutubeContainer />
-      <CollectionInfoBox>
-        <h1>{data?.collectionTitle}</h1>
-        <MakeElementsHorizontal>
-          <div id="userId">{data?.user_id}</div>
-          <div id="countVideos">영상 {data?.videos.length}개</div>
-          <div id="countLikes">
-            좋아요 <span data-testid="countLikes">{data?.likes}</span>
-          </div>
-        </MakeElementsHorizontal>
-        <Button
-          backgroundColor="rgba(178, 149, 233, 0.24)"
-          border="1px solid #b295e9"
-          width="100%"
-          height="2.5rem"
-          onClick={() => onClickLikeBtn()}
-        >
-          <div style={{ fontSize: "0.875rem", color: "rgba(0, 0, 0, 0.8)" }}>
-            <LikesIcon fill="#000000" style={{ marginRight: "0.5rem" }} />
-            좋아요
-          </div>
-        </Button>
-        <p data-testid="collection-description">{data?.description}</p>
-      </CollectionInfoBox>
+      <FloatingIcons setModal={setModal} tabClicked={tabClicked} />
+      {!tabClicked ? (
+        <>
+          <YoutubeContainer />
+          <CollectionInfoBox>
+            <h1>{data?.collectionTitle}</h1>
+            <MakeElementsHorizontal>
+              <div id="userId">{data?.user_id}</div>
+              <div id="countVideos">영상 {data?.videos.length}개</div>
+              <div id="countLikes">
+                좋아요 <span data-testid="countLikes">{data?.likes}</span>
+              </div>
+            </MakeElementsHorizontal>
+            <Button
+              backgroundColor="rgba(178, 149, 233, 0.24)"
+              border="1px solid #b295e9"
+              width="100%"
+              height="2.5rem"
+              onClick={() => onClickLikeBtn()}
+            >
+              <div
+                style={{ fontSize: "0.875rem", color: "rgba(0, 0, 0, 0.8)" }}
+              >
+                <LikesIcon fill="#000000" style={{ marginRight: "0.5rem" }} />
+                좋아요
+              </div>
+            </Button>
+            <p data-testid="collection-description">{data?.description}</p>
+          </CollectionInfoBox>
+        </>
+      ) : (
+        <div style={{ height: "54px" }}></div>
+      )}
       {/* -------------------똔똔똔 누르면 발생하는 모달-------------- */}
       {modal && (
         <More>

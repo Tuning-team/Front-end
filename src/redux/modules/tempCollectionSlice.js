@@ -14,6 +14,7 @@ const initialState = {
     dataList: [],
     error: "",
   },
+  selectedVideoId: "",
 };
 
 // 카테고리에 해당하는 컬렉션을 가져오는 thunk
@@ -113,6 +114,12 @@ export const collectionSlice = createSlice({
     resetVideoList(state, action) {
       state.videos = [];
     },
+    selectedVideoId(state, action) {
+      state.selectedVideoId = action.payload;
+    },
+    resetVideoId(state, action) {
+      state.selectedVideoId = "";
+    },
   },
   extraReducers: (builder) => {
     // ! getCategoryCollectionForMain
@@ -126,7 +133,6 @@ export const collectionSlice = createSlice({
         ...state.categoryCollectionForMain.dataList,
         action.payload,
       ];
-      console.log(state.categoryCollectionForMain.dataList);
     });
     builder.addCase(getCategoryCollectionForMain.rejected, (state, action) => {
       state.categoryCollectionForMain.isLoading = false;
@@ -199,4 +205,5 @@ export const collectionSlice = createSlice({
     });
   },
 });
-export let { resetVideoList } = collectionSlice.actions;
+export let { resetVideoList, selectedVideoId, resetVideoId } =
+  collectionSlice.actions;
