@@ -24,7 +24,9 @@ export const addComment = createAsyncThunk(
 export const deleteComment = createAsyncThunk(
     "DELETE_COMMENT",
     async (commentId) => {
+        console.log(commentId);
         const response = await instance.delete(`/comments/${commentId}`);
+        console.log(response)
         return response.data;
     }
 );
