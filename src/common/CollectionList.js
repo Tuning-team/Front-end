@@ -44,7 +44,6 @@ const CollectionList = ({ state, setCount }) => {
                 {data.thumbnails?.map((src, i) => {
                   return <CarouselItem key={data._id} src={src}></CarouselItem>;
                 })}
-                <a>더보기...</a>
               </Carousel>
 
               <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>

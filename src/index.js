@@ -7,12 +7,14 @@ import reportWebVitals from "./reportWebVitals";
 import { CookiesProvider } from "react-cookie";
 import configstore from "./redux/configStore";
 import { Provider } from "react-redux";
+import PWAPrompt from "react-ios-pwa-prompt";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CookiesProvider>
     <Provider store={configstore}>
       <App />
+      {/* <PWAPrompt copyTitle="튜닝" /> */}
     </Provider>
   </CookiesProvider>
 );
