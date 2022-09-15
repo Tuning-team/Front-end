@@ -31,5 +31,5 @@ const MainPage = () => {
 };
 export default MainPage;
 const Layout = styled.div`
-  margin-bottom: 5.5rem;
+  padding-bottom: 5rem;
 `;

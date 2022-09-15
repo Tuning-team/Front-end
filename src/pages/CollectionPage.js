@@ -13,5 +13,5 @@ const CollectionPage = () => {
 };
 export default CollectionPage;
 const Layout = styled.div`
-  margin-bottom: 5.5rem;
+  padding-bottom: 4.5rem;
 `;
