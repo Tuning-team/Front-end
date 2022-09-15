@@ -13,7 +13,7 @@ import More from "../../common/More";
 import FloatingIcons from "./FloatingIcons";
 import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
 import YoutubeContainer from "./YoutubeContainer";
-
+import { getCookie } from "../../hooks/cookie";
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
-  // console.log(data);
+  // console.log(isLiked);
 
   //!카카오톡 공유하기
   const shareKakao = () => {
@@ -59,9 +59,8 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     dispatch(putLikeBtn(collectionId));
   };
 
-  // if (isDeleted) {
-  //   return nav("/mypage");
-  // }
+  // let buttonColor = isLiked?.data === "like" ? "#b295e9" : "#ECE5FA";
+  // let iconColor = buttonColor === "#b295e9" ? "#ffffff" : "#000000";
 
   return (
     <>
@@ -72,22 +71,29 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
           <CollectionInfoBox>
             <h1>{data?.collectionTitle}</h1>
             <MakeElementsHorizontal>
-              <div id="userId">{data?.user_id}</div>
-              <div id="countVideos">영상 {data?.videos.length}개</div>
+              <div id="userId">{data?.writerName} ·</div>
+              <div id="countVideos">영상 {data?.videos.length}개 ·</div>
               <div id="countLikes">
                 좋아요 <span data-testid="countLikes">{data?.likes}</span>
               </div>
             </MakeElementsHorizontal>
             <Button
-              backgroundColor="rgba(178, 149, 233, 0.24)"
+              // backgroundColor={buttonColor}
+              backgroundColor="#ECE5FA"
               border="1px solid #b295e9"
               width="100%"
               height="2.5rem"
-              onClick={() => onClickLikeBtn()}
+              onClick={() => {
+                if (getCookie("token") === undefined) {
+                  alert("로그인을 해주세요");
+                  nav("/login");
+                } else {
+                  onClickLikeBtn();
+                }
+              }}
             >
-              <div
-                style={{ fontSize: "0.875rem", color: "rgba(0, 0, 0, 0.8)" }}
-              >
+              <div style={{ fontSize: "0.875rem" }}>
+                {/* <LikesIcon fill={iconColor} style={{ marginRight: "0.5rem" }} /> */}
                 <LikesIcon fill="#000000" style={{ marginRight: "0.5rem" }} />
                 좋아요
               </div>

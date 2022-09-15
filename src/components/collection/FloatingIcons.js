@@ -12,7 +12,7 @@ const FloatingIcons = ({ setModal, tabClicked }) => {
   const dispatch = useDispatch();
   let iconColor = tabClicked ? "black" : "white";
   return (
-    <HeadIconWrapper className="floating_icons">
+    <HeadIconWrapper className="floating_icons" tabClicked={tabClicked}>
       <div className="BackspaceIconWrapper">
         <BackspaceIcon
           fill={iconColor}
@@ -41,15 +41,21 @@ const HeadIconWrapper = styled.div`
   /* position: relative; */
   z-index: 1;
   top: 0;
-  left: 1rem;
+  left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
+  padding-left: 1rem;
 
   & .BackspaceIconWrapper {
     display: flex;
     align-items: center;
   }
+
+  background: linear-gradient(
+    ${(props) =>
+      props.tabClicked ? "transparent" : "to bottom, black, transparent"}
+  );
 `;
 const MoreIconWrapper = styled.div`
   visibility: ${(props) => (props.tabClicked ? "hidden" : "visible")};
