@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../redux/modules/collectionSlice";
 import styled from "styled-components";
-import { keyframes } from "styled-components";
+import { css, keyframes } from "styled-components";
 import icon_close from "../svg/icon_close.svg";
 
 const CategoryModal = ({ setIsCategoryShown }) => {

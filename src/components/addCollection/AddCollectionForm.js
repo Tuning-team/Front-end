@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import icon_backspace_black from "../../svg/icon_backspace_black.svg";
 import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import icon_addvideo from "../../svg/icon_addvideo.svg";
@@ -61,7 +61,7 @@ const AddCollectionForm = () => {
   return (
     <AddCollectionWrap>
       <TitleBox>
-        <Title
+        <Backspace
           onClick={() => {
             nav(-1);
             localStorage.removeItem("title");
@@ -69,9 +69,8 @@ const AddCollectionForm = () => {
             localStorage.removeItem("description");
             localStorage.removeItem("category");
           }}
-        >
-          &lt;
-        </Title>
+          src={icon_backspace_black}
+        ></Backspace>
         <Title>컬렉션 만들기</Title>
 
         <Btn onClick={onClickHandler}>확인</Btn>
@@ -157,8 +156,14 @@ const TitleBox = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
-const Title = styled.h2`
+const Backspace = styled.img`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 123.8%;
+  padding: 5px;
+`;
+const Title = styled.h1`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;

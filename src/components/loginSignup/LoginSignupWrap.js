@@ -47,6 +47,16 @@ const LoginSignupWrap = () => {
               removeCookie("token");
               alert("로그아웃 되었습니다");
             }}
+            style={{
+              width: "18.75rem",
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              fontWeight: "bold",
+              backgroundColor: "#f8f8f8",
+              fontSize: "14px",
+              marginTop: "15px",
+            }}
           >
             로그아웃 하기
           </GoogleLoginButton>

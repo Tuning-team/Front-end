@@ -10,11 +10,26 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <style>
+      /* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap"); */
+      /* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap"); */
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        font-style: normal;
+        max-width: 480px;
+        height: 100vh;
+        box-sizing: border-box;
+        background-color: #fff;
+      }
+    </style>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -26,7 +41,8 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>tuning | 튜닝!</title>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
+    <!-- <link rel="/manifest" href="%PUBLIC_URL%/manifest.json" /> -->
     <!-- <script type="module">
       import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
       const el = document.createElement("pwa-update");

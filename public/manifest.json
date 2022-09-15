@@ -1,24 +1,19 @@
 {
-  "short_name": "튜닝",
   "name": "튜닝",
+  "short_name": "튜닝",
   "icons": [
     {
-      "src": "maskable_icon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "maskable_icon.png",
+      "src": "images/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "maskable_icon.png",
-      "type": "image/png",
+      "src": "images/logo512.jpeg",
+      "type": "image/jpeg",
       "sizes": "512x512"
     }
   ],
-  "start_url": "https://tube-tuning.com/",
+  "start_url": "/",
   "display": "fullscreen",
   "theme_color": "#000000",
   "background_color": "#ffffff"
