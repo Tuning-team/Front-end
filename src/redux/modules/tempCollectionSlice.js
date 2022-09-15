@@ -4,7 +4,7 @@ import { instance } from "../../shared/instance";
 const initialState = {
   loading: false,
   isDeleted: false,
-  isLiked: false,
+  isLiked: { status: false, message: "", data: "" },
   data: [],
   videos: [],
   error: "",
@@ -98,10 +98,11 @@ export const putLikeBtn = createAsyncThunk(
   async (collection_id) => {
     try {
       const res = await instance.put(`/collections/like/${collection_id}`);
-      console.log(res);
-      return res.data.message;
+      return res.data;
     } catch (error) {
-      return error.message;
+      // console.log(error.response.data.errorMessage);
+      alert(error.response.data.errorMessage);
+      return error.response;
     }
   }
 );
@@ -119,6 +120,9 @@ export const collectionSlice = createSlice({
     },
     resetVideoId(state, action) {
       state.selectedVideoId = "";
+    },
+    resetLikesData(state, action) {
+      state.isLiked.data = "";
     },
   },
   extraReducers: (builder) => {
@@ -191,13 +195,14 @@ export const collectionSlice = createSlice({
     builder.addCase(putLikeBtn.pending, (state, action) => {
       console.log("pending");
       state.loading = true;
-      state.isLiked = false;
+      state.isLiked.status = false;
     });
     builder.addCase(putLikeBtn.fulfilled, (state, action) => {
       console.log("fulfilled");
       state.loading = false;
-      state.isLiked = true;
-      alert(`${action.payload}`);
+      state.isLiked.status = true;
+      state.isLiked.data = action.payload.data;
+      alert(`${action.payload.message}`);
     });
     builder.addCase(putLikeBtn.rejected, (state, action) => {
       state.loading = false;
@@ -205,5 +210,5 @@ export const collectionSlice = createSlice({
     });
   },
 });
-export let { resetVideoList, selectedVideoId, resetVideoId } =
+export let { resetVideoList, selectedVideoId, resetVideoId, resetLikesData } =
   collectionSlice.actions;
