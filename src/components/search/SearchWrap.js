@@ -8,14 +8,9 @@ const SearchWrap = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const searchList = useSelector((state) => state.searchSlice);
-
-  console.log(searchList);
-
-
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
   };
-
 
   const onSearch = (e) => {
     e.preventDefault();
@@ -37,9 +32,6 @@ const SearchWrap = () => {
       </form>
       <div>
         <ul>
-          {/* map 쓰실 때 참고하쎄용~ */}
-          {/* map((data) => {"배고팡"})<- 괄호 들어가면 반드시 결과에 return */}
-          {/* map((data) => "배고팡")<- 괄호 안 들어가면 자동으로 return 적용 */}
           {search === "" ?
             <div>추천검색어</div>
             :
