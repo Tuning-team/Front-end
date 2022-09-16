@@ -39,8 +39,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
       window.Kakao.init("8fb951e6a91434fad955fdcf7098c44a");
     }
     window.Kakao.Link.sendCustom({
-      templateId: 82633,
-      // 내가 만든 템플릿 아이디를 넣어주면 된다
+      templateId: 82633, // 생성한 템플릿 아이디 입력
       templateArgs: {
         THU: data?.thumbnails[0],
         THU2: data?.thumbnails[1],
@@ -63,14 +62,17 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
 
   // ! 삭제 기능
   const onDeleteThisCollection = () => {
-    if (data?.user_id === userInfo._id) {
+    if (data?.user_id === userInfo?._id) {
       window.confirm("삭제하시겠습니까?")
         ? dispatch(deleteCollection(collectionId))
         : console.log("no");
+    } else if (!userInfo?._id) {
+      alert("로그인이 필요한 기능입니다.");
     } else {
       alert("삭제 권한이 없는 유저입니다.");
     }
   };
+
   return (
     <>
       <FloatingIcons setModal={setModal} tabClicked={tabClicked} />
