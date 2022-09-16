@@ -101,10 +101,7 @@ const CommentList = ({ collectionId }) => {
                 type="text"
                 onChange={(e) => setNewInputValue(e.target.value)}
                 value={newinputValue}
-                placeholder="댓글 수정해주세요 ;-)"
-                style={{
-                  position: "relative"
-                }}
+                placeholder="댓글을 수정해주세요 ;-)"
               />
               <StButton type="submit"> 수정 </StButton>
             </StInputDiv>
@@ -133,25 +130,27 @@ const CommentList = ({ collectionId }) => {
         <ul>
           {commentList?.map((data, idx) => {
             return (
-              <li key={idx}>
-                <p>{data.writerName}</p>
-                <p>{data.comment}</p>
-                <button value={data.comment_id} onClick={saveCommentData}>
-                  <FontAwesomeIcon icon={faEllipsisVertical} setModal={setModal}
-                    style={{
-                      pointerEvents: "none"
-                    }} />
-                </button>
-
-                {/* <div>
-              <button type="button" value={data.comment_id} onClick={onDelete}>
-                삭제
-              </button>
-              <button type="button" value={data.comment_id} onClick={onUpdate}>
-                수정
-                </button>
-              </div> */}
-              </li >
+              <StProfileDiv>
+                <StCommentImgDiv style={{ verticalAlign: "middle", marginTop: "5px", marginBottom: "5px", marginRight: "5px" }}>
+                  <StProfileImg src={data.writerProfilePic} alt="profileImg"></StProfileImg>
+                </StCommentImgDiv>
+                <StCommentValueDiv>
+                  <li key={idx}>
+                    <p style={{ fontSize: "14px", marginTop: "5px", marginBottom: "5px" }}>
+                      작성자 : {data.writerName}
+                    </p>
+                    <p>{data.comment}</p>
+                  </li >
+                </StCommentValueDiv>
+                <StCommentBtnDiv>
+                  <StCommentBtn value={data.comment_id} onClick={saveCommentData}>
+                    <FontAwesomeIcon icon={faEllipsisVertical} setModal={setModal}
+                      style={{
+                        pointerEvents: "none"
+                      }} />
+                  </StCommentBtn>
+                </StCommentBtnDiv>
+              </StProfileDiv>
             );
           })}
         </ul >
@@ -187,6 +186,7 @@ const StButton = styled.button`
       background: none;
       border: none;
       outline: none;
+
       position: absolute;
       right: 30px;
       top :25px;
@@ -202,6 +202,43 @@ const Smore = styled.div`
       z-index: 110;
       top: 0;
       `
+
+const StProfileDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const StCommentImgDiv = styled.div`
+    display : flex;
+    justify-content: center;
+    vertical-align: middle;
+`
+
+const StCommentBtnDiv = styled.div`
+    display : flex;
+    justify-content: center;
+    vertical-align: middle;
+`
+
+const StCommentBtn = styled.button`
+    background: none;
+    border: none;
+    outline: none;
+    
+`
+
+const StCommentValueDiv = styled.div`
+display: flex;
+flex-direction: column;
+width: 100%;
+margin-bottom: 10px;
+`
+
+const StProfileImg = styled.img`
+    width: 35px;
+    height: 35px;
+    border-radius: 70%;
+    overflow: hidden; 
+`
 
 const ChooseBtn = styled.div`
       background-color: #ffffff;
