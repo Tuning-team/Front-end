@@ -11,10 +11,12 @@ import CollectionPage from "../pages/CollectionPage";
 import CategoryPage from "../pages/CategoryPage";
 import GoogleLogin from "../pages/GoogleLogin";
 import WelcomePage from "../pages/WelcomePage";
+import ScrollTop from "./ScrollTop";
 
 function Router() {
   return (
     <BrowserRouter>
+      <ScrollTop />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginSignupPage />} />
