@@ -21,7 +21,7 @@ const Header = styled.div`
   right: 0%;
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
+  /* padding: 10px; */
   width: 1.9rem;
   height: 1.9rem;
 `;
