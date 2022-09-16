@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import CollectionList from "../../common/CollectionList";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { getCategoryCollection } from "../../redux/modules/collectionSlice";
+import CollectionList from "../../common/CollectionList";
 import icon_backspace_black from "../../svg/icon_backspace_black.svg";
 
 const CategoryWrap = () => {
@@ -14,15 +14,13 @@ const CategoryWrap = () => {
   const data = useSelector(
     (state) => state.myCollectionSlice.categoryCollection.data
   );
-
   const categories = useSelector(
     (state) => state.myCollectionSlice.category.data
   );
-  const title = categories.filter((x) => x._id === param.collection_id);
-
   useEffect(() => {
     dispatch(getCategoryCollection(param.collection_id));
   }, [param.collection_id]);
+  const title = categories.filter((x) => x._id === param.collection_id);
 
   return (
     <Wrap>

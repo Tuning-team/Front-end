@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import icon_backspace_black from "../../svg/icon_backspace_black.svg";
-import Button from "../../elements/Button";
-import useInputs from "../../hooks/useInput";
-import icon_addvideo from "../../svg/icon_addvideo.svg";
-import icon_add from "../../svg/icon_add.svg";
 import { useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategory,
   postCollection,
 } from "../../redux/modules/collectionSlice";
+import useInputs from "../../hooks/useInput";
+import icon_backspace_black from "../../svg/icon_backspace_black.svg";
+import icon_add from "../../svg/icon_add.svg";
 
 const AddCollectionForm = () => {
-  useEffect(() => {
-    dispatch(getCategory());
-  }, []);
   const nav = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector(
     (state) => state.myCollectionSlice.category.data
   );
   const videoList = useSelector((state) => state.myCollectionSlice.videoList);
+  useEffect(() => {
+    dispatch(getCategory());
+  }, []);
 
+  const videos = videoList.map((x) => x.videoId);
   const [{ collectionTitle, description, category_id }, onChange, reset] =
     useInputs({
       collectionTitle: localStorage.getItem("title")
@@ -36,7 +34,6 @@ const AddCollectionForm = () => {
         ? localStorage.getItem("category")
         : "",
     });
-  const videos = videoList.map((x) => x.videoId);
   const addData = { category_id, collectionTitle, description, videos };
 
   const onClickHandler = (e) => {
@@ -55,8 +52,6 @@ const AddCollectionForm = () => {
       localStorage.removeItem("category");
     }
   };
-  //todo required 효과넣기
-  //todo 버튼 disabled효과 주기
 
   return (
     <AddCollectionWrap>
@@ -148,7 +143,6 @@ export default AddCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.3rem 1.3rem 1.3rem 1rem;
   margin-bottom: 5rem;
-  // overflow: auto;
 `;
 
 const TitleBox = styled.div`

@@ -1,20 +1,17 @@
 import React from "react";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { addVideoList } from "../../redux/modules/collectionSlice";
 import Loading from "../../common/Loading";
+
 const ResultVideo = () => {
-  const dispatch = useDispatch();
   const nav = useNavigate();
-  //검색결과가 있을때, 없을때. 모달
-  const [add, setAdd] = useState(null);
+  const dispatch = useDispatch();
   const data = useSelector(
     (state) => state.myCollectionSlice.searchResult.data
   );
-
   const loading = useSelector(
     (state) => state.myCollectionSlice.searchResult.loading
   );

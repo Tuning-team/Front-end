@@ -1,5 +1,5 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { setCookie } from "../hooks/cookie";
 
 const GoogleLogin = () => {
