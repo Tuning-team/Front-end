@@ -39,13 +39,15 @@ const CollectionList = ({ state, setCount }) => {
         {state?.map((data, idx) => {
           return (
             <Collection key={idx}>
-              <Carousel>
-                {" "}
-                {data.thumbnails?.map((src, i) => {
-                  return <CarouselItem key={data._id} src={src}></CarouselItem>;
-                })}
-              </Carousel>
-
+              <div onClick={() => nav(`/collection/${data._id}`)}>
+                <Carousel>
+                  {data.thumbnails?.map((src, i) => {
+                    return (
+                      <CarouselItem key={data._id} src={src}></CarouselItem>
+                    );
+                  })}
+                </Carousel>
+              </div>
               <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
                 <div>
                   <CollectionTitle>{data.collectionTitle}</CollectionTitle>
@@ -79,35 +81,51 @@ const Collection = styled.section``;
 
 const ListWrap = styled.div``;
 const CollectionTitle = styled.h3`
+  font-size: 1rem;
+  font-weight: bold;
+  font-stretch: normal;
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 123.8%;
+  line-height: 1.24;
+  letter-spacing: normal;
 `;
 const InfoWrap = styled.div`
-  height: 4rem;
+  height: 3rem;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   align-items: center;
+
+  margin-bottom: 1.5rem;
 `;
 const CollectionInfo = styled.span`
+  font-size: 0.75rem;
+  font-weight: normal;
+  font-stretch: normal;
   font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 123.8%;
+  line-height: 1.24;
+  letter-spacing: normal;
 `;
 const IconWrap = styled.div`
   display: flex;
-`;
-const Icon = styled.img`
-  padding: 5px;
-  width: 15px;
-  height: 15px;
+  margin-right: 1.5rem;
 `;
 const IconLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 0.8rem;
+
+  /* margin-right: 0.8rem; */
+  & span {
+    font-size: 0.75rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.24;
+    letter-spacing: normal;
+  }
+`;
+const Icon = styled.img`
+  padding: 5px;
+  width: 15px;
+  height: 15px;
 `;

@@ -24,10 +24,9 @@ const TodaysWeatherCollections = ({ categoryId }) => {
   const categoryData = useSelector(
     (state) => state.collectionSlice.categoryCollectionForMain.dataList //배열인 상태임
   );
-
   const finalData = categoryData.filter((x) => x.resName === "resOfWeather");
-
-  let keyWeather = "맑은";
+  const categoryTitle = finalData[0]?.resArr[0].category_title;
+  let keyWeather = categoryTitle?.split(" ")[1];
 
   const mainImage = [
     { keyword: "", url: ordinaryDay },
@@ -49,16 +48,18 @@ const TodaysWeatherCollections = ({ categoryId }) => {
         <div className="recommendMark">
           <span>추천</span>
         </div>
-        <h1>{keyWeather || "보통"} 날의 튜닝</h1>
-        <h6>오늘같은 날 잘 어울리는 튜닝들</h6>
+        <h1>{keyWeather} 날의 튜닝</h1>
+        <h6>{categoryTitle} 튜닝들</h6>
       </RecommendTitle>
     </section>
   );
 };
 export default TodaysWeatherCollections;
+
 const MainImage = styled.div`
-  background-image: url(${(props) => props.url});
-  filter: brightness(0.8);
   max-width: 480px;
   height: 23.188rem;
+
+  background-image: url(${(props) => props.url});
+  filter: brightness(0.8);
 `;

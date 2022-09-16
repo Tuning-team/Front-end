@@ -13,6 +13,7 @@ const Carousel = (props) => {
     slidesToScroll: 1,
     adaptiveHeight: false,
     arrows: false,
+    // lazyLoad: true, //lazyloading
   };
 
   return (

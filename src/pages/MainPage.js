@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+
+import WelcomePage from "./WelcomePage";
 
 import Headers from "../common/Headers";
 import MainListWrap from "../components/mainList/MainListWrap";
@@ -23,3 +25,4 @@ export default MainPage;
 const Layout = styled.div`
   margin-bottom: 6.625rem;
 `;
+

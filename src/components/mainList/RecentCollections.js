@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-
-import { getCategoryCollection } from "../../redux/modules/collectionSlice";
-import Carousel from "../../common/Carousel";
-import CarouselItem from "../../common/CarouselItem";
 import { useNavigate } from "react-router-dom";
 import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
+import Carousel from "../../common/Carousel";
+import CarouselItem from "../../common/CarouselItem";
 import { Section } from "./Style";
 
 const RecentCollections = ({ categoryId }) => {
-  const nav = useNavigate();
   const dispatch = useDispatch();
+  const nav = useNavigate();
+
   useEffect(() => {
     if (finalData.length === 0) {
       dispatch(getCategoryCollectionForMain(categoryId));
