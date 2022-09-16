@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect } from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
-import { Section } from "./Style";
 
 const RecommendedCollections = ({ categoryId }) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
+  const categoryData = useSelector(
+    (state) => state.collectionSlice.categoryCollectionForMain.dataList
+  );
+  const finalData = categoryData.filter((x) => x.resName === "resOfRecommend");
   useEffect(() => {
     if (finalData.length === 0) {
       dispatch(getCategoryCollectionForMain(categoryId));
     }
   }, [categoryId]);
-
-  const categoryData = useSelector(
-    (state) => state.collectionSlice.categoryCollectionForMain.dataList //배열인 상태임
-  );
-  const finalData = categoryData.filter((x) => x.resName === "resOfRecommend");
 
   return (
     <Section>
@@ -40,3 +38,15 @@ const RecommendedCollections = ({ categoryId }) => {
   );
 };
 export default RecommendedCollections;
+const Section = styled.div`
+  margin-left: 1rem;
+  margin-top: 2.625rem;
+
+  & h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.24;
+
+    margin-bottom: 1.313rem;
+  }
+`;

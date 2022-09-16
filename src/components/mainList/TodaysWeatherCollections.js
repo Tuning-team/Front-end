@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-
-import { useNavigate } from "react-router-dom";
 import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
-import { RecommendTitle } from "./Style";
-
-import cloudyDay from "./image/timothy-chan-FNWc_Dqsw2g-unsplash.webp";
-import sunnyDay from "./image/sonaal-bangera-kpDO0woxxec-unsplash.webp";
-import ordinaryDay from "./image/clay-banks-_wkd7XBRfU4-unsplash.webp";
-import rainnyDay from "./image/rainnyday.webp";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const TodaysWeatherCollections = ({ categoryId }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+
+  const categoryData = useSelector(
+    (state) => state.collectionSlice.categoryCollectionForMain.dataList
+  );
+
+  const finalData = categoryData.filter((x) => x.resName === "resOfWeather");
+  const categoryTitle = finalData[0]?.resArr[0].category_title;
+  let keyWeather = categoryTitle?.split(" ")[1];
 
   useEffect(() => {
     if (finalData.length === 0) {
@@ -21,18 +22,20 @@ const TodaysWeatherCollections = ({ categoryId }) => {
     }
   }, [categoryId]);
 
-  const categoryData = useSelector(
-    (state) => state.collectionSlice.categoryCollectionForMain.dataList //배열인 상태임
-  );
-  const finalData = categoryData.filter((x) => x.resName === "resOfWeather");
-  const categoryTitle = finalData[0]?.resArr[0].category_title;
-  let keyWeather = categoryTitle?.split(" ")[1];
-
   const mainImage = [
-    { keyword: "", url: ordinaryDay },
-    { keyword: "맑은", url: sunnyDay },
-    { keyword: "흐린", url: cloudyDay },
-    { keyword: "비오는", url: rainnyDay },
+    {
+      keyword: "",
+      url: "/images/weatherImage/clay-banks-_wkd7XBRfU4-unsplash.webp",
+    },
+    {
+      keyword: "맑은",
+      url: "/images/weatherImage/sonaal-bangera-kpDO0woxxec-unsplash.webp",
+    },
+    {
+      keyword: "흐린",
+      url: "/images/weatherImage/timothy-chan-FNWc_Dqsw2g-unsplash.webp",
+    },
+    { keyword: "비오는", url: "/images/weatherImage/rainnyday.webp" },
   ];
 
   return (
@@ -43,7 +46,6 @@ const TodaysWeatherCollections = ({ categoryId }) => {
         }
         return null;
       })}
-
       <RecommendTitle onClick={() => nav(`/category/${categoryId}`)}>
         <div className="recommendMark">
           <span>추천</span>
@@ -62,4 +64,48 @@ const MainImage = styled.div`
 
   background-image: url(${(props) => props.url});
   filter: brightness(0.8);
+`;
+const RecommendTitle = styled.div`
+  position: absolute;
+  z-index: 1;
+  left: 1rem;
+  top: 16.2rem;
+  display: flex;
+  flex-direction: column;
+
+  & .recommendMark {
+    border: 1px solid white;
+    border-radius: 3px;
+
+    width: 2.313rem;
+    height: 1.375rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 0.438rem;
+    & span {
+      font-size: 0.75rem;
+      line-height: 1.24;
+
+      color: white;
+    }
+  }
+
+  & h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.24;
+    color: white;
+
+    margin-bottom: 0.438rem;
+  }
+
+  & h6 {
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1.24;
+    color: white;
+  }
 `;
