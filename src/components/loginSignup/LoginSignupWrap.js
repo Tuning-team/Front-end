@@ -26,7 +26,6 @@ const LoginSignupWrap = () => {
         {getCookie("token") === undefined ? (
           <GoogleLoginButton
             onClick={() => {
-              // window.location.href = "https://api.tube-tuning.com/api/google";
               window.location.href = "https://tube-tuning.com/api/google";
             }}
             style={{

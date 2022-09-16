@@ -10,6 +10,7 @@ import CommentPage from "../pages/CommentPage";
 import CollectionPage from "../pages/CollectionPage";
 import CategoryPage from "../pages/CategoryPage";
 import GoogleLogin from "../pages/GoogleLogin";
+import WelcomePage from "../pages/WelcomePage";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function Router() {
         <Route path="/collection/:collection_id" element={<CollectionPage />} />
         <Route path="/category/:collection_id" element={<CategoryPage />} />
         <Route path="/google_login/:token" element={<GoogleLogin />} />
+        <Route path="/welcome" element={<WelcomePage />} />
       </Routes>
     </BrowserRouter>
   );
