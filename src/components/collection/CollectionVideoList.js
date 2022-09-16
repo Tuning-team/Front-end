@@ -6,46 +6,15 @@ import {
   resetVideoList,
   selectedVideoId,
 } from "../../redux/modules/tempCollectionSlice";
-import YoutubePlayer from "./YoutubePlayer";
 import throttle from "lodash/throttle";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();
-  const videoList = useSelector((state) => state.collectionSlice.videos);
-  const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);
-  // console.log(videoList, pageInfo); // 이안에 hasNext랑 totalVideosView가 있음
 
-  // ! 클릭하면 유튜브 동영상을 재생할 수 있는 모달 발생
-  const [videoId, setVideoId] = useState("");
-  const [showModal, setShowModal] = useState(false);
-
-  const onPlayVideo = (videoId) => {
-    // setVideoId(videoId);
-    // setShowModal(true);
-
-    dispatch(selectedVideoId(videoId));
-  };
-  // --------------------여기까지 기본 로직-----------------------
   const [count, setCount] = useState(0);
 
-  const useHandleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-    // console.log(
-    //   scrollTop,
-    //   clientHeight,
-    //   scrollTop + clientHeight,
-    //   scrollHeight
-    // );
-    if (scrollTop + clientHeight >= scrollHeight - 31) {
-      if (scrollTop !== 0) {
-        setCount((prev) => prev + 5);
-      }
-    }
-  };
-  // console.log(count);
-  const infiniteScroll = throttle(useHandleScroll, 1000);
+  const videoList = useSelector((state) => state.collectionSlice.videos);
+  const pageInfo = useSelector((state) => state.collectionSlice.pageInfo);
 
   useEffect(() => {
     if (count >= pageInfo?.totalVideosView) {
@@ -66,6 +35,21 @@ const CollectionVideoList = ({ collectionId }) => {
     };
   }, []);
 
+  const useHandleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight >= scrollHeight - 31) {
+      if (scrollTop !== 0) {
+        setCount((prev) => prev + 5);
+      }
+    }
+  };
+  const infiniteScroll = throttle(useHandleScroll, 1000);
+
+  const onPlayVideo = (videoId) => {
+    dispatch(selectedVideoId(videoId));
+  };
   return (
     <VideoListArea>
       {videoList?.map((elem) => {
@@ -84,10 +68,6 @@ const CollectionVideoList = ({ collectionId }) => {
           </VideoContainer>
         );
       })}
-      {/* showModal이 true면 YoutubePlayer컴포넌트 반환, false이면 null */}
-      {/* {showModal && (
-        <YoutubePlayer videoId={videoId} onCloseModal={setShowModal} />
-      )} */}
     </VideoListArea>
   );
 };
@@ -112,9 +92,6 @@ const Img = styled.img`
 `;
 
 const TextWrapper = styled.div`
-  /* display: flex;
-  justify-content: space-between;
-  flex-direction: column; */
   padding-left: 0.938rem;
 
   & h3 {
@@ -129,7 +106,7 @@ const TextWrapper = styled.div`
 
     display: -webkit-box;
     max-height: 3.72;
-    -webkit-line-clamp: 3; /* 표시하고자 하는 라인 수 */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
 
@@ -139,5 +116,3 @@ const TextWrapper = styled.div`
     line-height: 1.24;
   }
 `;
-// todo https://jos39.tistory.com/211 ->나중에 css로 text overflow ...처리하려면 참고
-// todo  https://d2.naver.com/helloworld/8540176 -> flex에 대한 설명

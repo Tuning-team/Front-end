@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { getUserInfo } from "../../redux/modules/useSlice";
 import {
   getCollection,
   deleteCollection,
@@ -7,28 +8,26 @@ import {
 } from "../../redux/modules/tempCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Button from "../../elements/Button";
-
-import More from "../../common/More";
-import FloatingIcons from "./FloatingIcons";
-import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
-import YoutubeContainer from "./YoutubeContainer";
 import { getCookie } from "../../hooks/cookie";
-import { getUserInfo } from "../../redux/modules/useSlice";
+import FloatingIcons from "./FloatingIcons";
+import YoutubeContainer from "./YoutubeContainer";
+import Button from "../../elements/Button";
+import More from "../../common/More";
+import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
 
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+
   const [modal, setModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
-  const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
+  const userInfo = useSelector((state) => state.userSlice.data.user);
 
   useEffect(() => {
     dispatch(getUserInfo());
   }, []);
-  const userInfo = useSelector((state) => state.userSlice.data.user);
 
   useEffect(() => {
     dispatch(getCollection(collectionId));
@@ -52,18 +51,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     });
   };
 
-  // ! 삭제버튼 클릭시 컨펌창 열림
-  const onDeleteThisCollection = () => {
-    if (data?.user_id === userInfo._id) {
-      window.confirm("삭제하시겠습니까?")
-        ? dispatch(deleteCollection(collectionId))
-        : console.log("no");
-    } else {
-      alert("삭제 권한이 없는 유저입니다.");
-    }
-  };
-
-  // ! 좋아요버튼 클릭시 좋아요 등록/취소
+  // ! 좋아요 기능
   const onClickLikeBtn = () => {
     if (getCookie("token") === undefined) {
       alert("로그인을 해주세요");
@@ -73,9 +61,16 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     }
   };
 
-  // let buttonColor = isLiked?.data === "like" ? "#b295e9" : "#ECE5FA";
-  // let iconColor = buttonColor === "#b295e9" ? "#ffffff" : "#000000";
-
+  // ! 삭제 기능
+  const onDeleteThisCollection = () => {
+    if (data?.user_id === userInfo._id) {
+      window.confirm("삭제하시겠습니까?")
+        ? dispatch(deleteCollection(collectionId))
+        : console.log("no");
+    } else {
+      alert("삭제 권한이 없는 유저입니다.");
+    }
+  };
   return (
     <>
       <FloatingIcons setModal={setModal} tabClicked={tabClicked} />
@@ -92,7 +87,6 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
               </div>
             </MakeElementsHorizontal>
             <Button
-              // backgroundColor={buttonColor}
               backgroundColor="#ECE5FA"
               border="1px solid #b295e9"
               width="100%"
@@ -102,7 +96,6 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
               }}
             >
               <div style={{ fontSize: "0.875rem" }}>
-                {/* <LikesIcon fill={iconColor} style={{ marginRight: "0.5rem" }} /> */}
                 <LikesIcon fill="#000000" style={{ marginRight: "0.5rem" }} />
                 좋아요
               </div>

@@ -1,29 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import styled from "styled-components";
-
+import { useSelector } from "react-redux";
 import ReactPlayer from "react-player/youtube";
-import icon_play from "../../svg/icon_play.svg";
 
 const YoutubeContainer = () => {
-  const videoList = useSelector((state) => state.collectionSlice.videos);
-
-  const defaultVideoId = videoList[0]?.videoId;
   const videoId = useSelector((state) => state.collectionSlice.selectedVideoId);
-
+  const videoList = useSelector((state) => state.collectionSlice.videos);
+  const defaultVideoId = videoList[0]?.videoId;
   const baseUrl = "https://www.youtube.com/watch?v=";
 
-  // todo custom control bar를 위한 빌드업 중..
-  // const [pause, setPause] = useState(true);
-  // const [muted, setMuted] = useState(true);
-  // const onPause = () => {
-  //   setPause((prev) => !prev);
-  //   console.log(pause);
-  // };
-  // const onVolume = () => {
-  //   setMuted((prev) => !prev);
-  // };
-
+  const youtubeConfig = {
+    youtube: {
+      playerVars: {
+        rel: 0,
+        fs: 1,
+        modestbranding: 1,
+      },
+    },
+  };
   return (
     <>
       {videoId ? (
@@ -32,8 +26,8 @@ const YoutubeContainer = () => {
             return (
               <PlayerWrapper key={elem._id}>
                 <ReactPlayer
-                  className="player"
                   url={baseUrl + elem.videoId}
+                  className="player"
                   light={true}
                   width="100%"
                   height="100%"
@@ -41,16 +35,8 @@ const YoutubeContainer = () => {
                   muted={true}
                   volume={0.3}
                   controls={true}
-                  playsinline={false} //ios에서 전체화면재생
-                  conifg={{
-                    youtube: {
-                      playerVars: {
-                        rel: 0,
-                        fs: 1,
-                        modestbranding: 1,
-                      },
-                    },
-                  }}
+                  playsinline={false}
+                  conifg={youtubeConfig}
                 />
               </PlayerWrapper>
             );
@@ -59,8 +45,8 @@ const YoutubeContainer = () => {
       ) : (
         <PlayerWrapper>
           <ReactPlayer
-            className="player"
             url={baseUrl + defaultVideoId}
+            className="player"
             light={true}
             width="100%"
             height="100%"
@@ -68,15 +54,8 @@ const YoutubeContainer = () => {
             muted={true}
             volume={0.3}
             controls={true}
-            playsinline={false} //ios에서 전체화면재생
-            conifg={{
-              youtube: {
-                playerVars: {
-                  rel: 0,
-                  modestbranding: 1,
-                },
-              },
-            }}
+            playsinline={false}
+            conifg={youtubeConfig}
           />
         </PlayerWrapper>
       )}
@@ -101,16 +80,3 @@ const PlayerWrapper = styled.div`
     background-color: orange;
   }
 `;
-
-{
-  /* <button onClick={onPause}>{pause ? "일시정지" : "다시재생"}</button>
-      <button onClick={onVolume}>볼륨조절</button>
-      <img
-        src={icon_play}
-        onClick={() => {
-          onPause((prev) => !prev);
-        }}
-        alt="icon_play"
-        style={{ border: "1px solid black" }}
-      /> */
-}
