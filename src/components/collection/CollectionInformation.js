@@ -15,6 +15,7 @@ import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
 import YoutubeContainer from "./YoutubeContainer";
 import { getCookie } from "../../hooks/cookie";
 import { getUserInfo } from "../../redux/modules/useSlice";
+
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     dispatch(getUserInfo());
   }, []);
   const userInfo = useSelector((state) => state.userSlice.data.user);
-  console.log(userInfo);
+
   useEffect(() => {
     dispatch(getCollection(collectionId));
   }, [isLiked, collectionId]);
@@ -53,9 +54,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
 
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
-    if (!userInfo?._id) {
-      alert("로그인을 해주세요");
-    } else if (data?.user_id === userInfo._id) {
+    if (data?.user_id === userInfo._id) {
       window.confirm("삭제하시겠습니까?")
         ? dispatch(deleteCollection(collectionId))
         : console.log("no");
