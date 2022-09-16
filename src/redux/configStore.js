@@ -3,6 +3,7 @@ import { myCollectionSlice } from "./modules/collectionSlice";
 import { collectionSlice } from "./modules/tempCollectionSlice";
 import { commentSlice } from "./modules/commentSlice";
 import { searchSlice } from "./modules/searchSlice";
+import { userSlice } from "./modules/useSlice";
 
 export default configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export default configureStore({
     collectionSlice: collectionSlice.reducer,
     commentSlice: commentSlice.reducer,
     searchSlice: searchSlice.reducer,
+    userSlice: userSlice.reducer,
   },
   devTools: process.env.NODE_ENV !== "development",
 });
