@@ -3,8 +3,8 @@
 ## **Components**
 
 - Components 폴더 구조 : [ Components ] > [ "기능명"Components ] > UserStyled.jsx- "컴포넌트명".jsx
-- import 순서 : 패키지 > 모듈 > hooks > 컴포넌트 > CSS
-- components 내부 로직파트 코드 작성 순서 : useState > useRef > dispatch > navigate > useSelector > 추가설정
+- import 순서 : react> styled-components > 패키지 > 모듈(리덕스) > hooks > 컴포넌트 > CSS(svg)
+- components 내부 로직파트 코드 작성 순서 :  useNavigate > useDispatch > useState > useSelector > ueseEffect > 추가설정
 - 컴포넌트는 화살표함수로 시작
 - import 제일 위에 import React…..
 - use navigate = nav
@@ -36,8 +36,6 @@ height : ###;
 ```
 
 ## **Redux**
-
-- 미들웨어 함수명 시작은 \_\_
 - toolkit 사용
 - axios 사용
 - CRUD 순서로 작성
