@@ -14,6 +14,8 @@ import FloatingIcons from "./FloatingIcons";
 import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
 import YoutubeContainer from "./YoutubeContainer";
 import { getCookie } from "../../hooks/cookie";
+import { getUserInfo } from "../../redux/modules/useSlice";
+
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +24,15 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isDeleted = useSelector((state) => state.collectionSlice.isDeleted);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
-  // console.log(isLiked);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, []);
+  const userInfo = useSelector((state) => state.userSlice.data.user);
+
+  useEffect(() => {
+    dispatch(getCollection(collectionId));
+  }, [isLiked, collectionId]);
 
   //!카카오톡 공유하기
   const shareKakao = () => {
@@ -44,19 +54,23 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
 
   // ! 삭제버튼 클릭시 컨펌창 열림
   const onDeleteThisCollection = () => {
-    window.confirm("삭제하시겠습니까?")
-      ? dispatch(deleteCollection(collectionId))
-      : console.log("no");
+    if (data?.user_id === userInfo._id) {
+      window.confirm("삭제하시겠습니까?")
+        ? dispatch(deleteCollection(collectionId))
+        : console.log("no");
+    } else {
+      alert("삭제 권한이 없는 유저입니다.");
+    }
   };
-  // todo 삭제 후 페이지 이동하는 로직 리팩토링 필수!!
-
-  useEffect(() => {
-    dispatch(getCollection(collectionId));
-  }, [isLiked, collectionId]);
 
   // ! 좋아요버튼 클릭시 좋아요 등록/취소
   const onClickLikeBtn = () => {
-    dispatch(putLikeBtn(collectionId));
+    if (getCookie("token") === undefined) {
+      alert("로그인을 해주세요");
+      nav("/login");
+    } else {
+      dispatch(putLikeBtn(collectionId));
+    }
   };
 
   // let buttonColor = isLiked?.data === "like" ? "#b295e9" : "#ECE5FA";
@@ -84,12 +98,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
               width="100%"
               height="2.5rem"
               onClick={() => {
-                if (getCookie("token") === undefined) {
-                  alert("로그인을 해주세요");
-                  nav("/login");
-                } else {
-                  onClickLikeBtn();
-                }
+                onClickLikeBtn();
               }}
             >
               <div style={{ fontSize: "0.875rem" }}>
@@ -104,7 +113,6 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
       ) : (
         <div style={{ height: "54px" }}></div>
       )}
-      {/* -------------------똔똔똔 누르면 발생하는 모달-------------- */}
       {modal && (
         <More>
           <ChooseBtn>
