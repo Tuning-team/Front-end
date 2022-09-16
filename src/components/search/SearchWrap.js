@@ -44,12 +44,3 @@ const SearchWrap = () => {
 };
 
 export default SearchWrap;
-
-// searchList.filter(data => data.collectionTitle.indexOf(search) !== -1
-//   || data.description.indexOf(search) !== -1).map((data) => {
-//     console.log(data)
-//     return <div key={data._id}>
-//       <li></li>
-//       <p>{data.collectionTitle}</p>
-//     </div>
-//   })
