@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteComment,
   getComment,
@@ -61,7 +61,6 @@ const CommentList = ({ collectionId }) => {
       setRefresh(true);
       setNewInputValue("");
       setModal("read");
-      // window.location.reload();
     }
   };
 
@@ -136,7 +135,8 @@ const CommentList = ({ collectionId }) => {
         </>
       )}
 
-      <div>
+      <div style={{ marginBottom: "80px" }}>
+        {/* <div> */}
         <ul>
           {commentList.length === 0 ? (
             <div>댓글이 없습니다</div>
@@ -161,12 +161,13 @@ const CommentList = ({ collectionId }) => {
                     <li key={idx}>
                       <p
                         style={{
+                          fontWeight: "bold",
                           fontSize: "14px",
                           marginTop: "5px",
                           marginBottom: "5px",
                         }}
                       >
-                        작성자 : {data.writerName}
+                        작성자: {data.writerName}
                       </p>
                       <p>{data.comment}</p>
                     </li>
@@ -273,6 +274,7 @@ const StProfileImg = styled.img`
   height: 35px;
   border-radius: 70%;
   overflow: hidden;
+  margin-left: 5px;
 `;
 
 const ChooseBtn = styled.div`

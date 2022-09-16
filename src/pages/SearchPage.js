@@ -7,7 +7,6 @@ import Navbar from "../common/Navbar";
 const SearchPage = () => {
   return (
     <>
-      <Headers />
       <SearchWrap />
       <Navbar />
     </>
