@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../redux/modules/collectionSlice";
@@ -67,14 +67,13 @@ const Div = styled.div`
 `;
 const ModalFloater = styled.div`
   position: fixed;
-  // position: absolute;
   overflow: scroll;
   left: -100%;
   top: 0;
   bottom: 0;
   z-index: 10;
   margin-bottom: 4.5rem;
-  background-color: rgba(245, 245, 245, 0.96); //검은색 배경, 투명도 90%
+  background-color: rgba(245, 245, 245, 0.96);
   width: 70%;
 
   left: ${(props) => (props.setIsCategoryShown ? "0" : "-100%")};
