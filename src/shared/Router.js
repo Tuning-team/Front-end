@@ -12,6 +12,7 @@ import CollectionPage from "../pages/CollectionPage";
 import CategoryPage from "../pages/CategoryPage";
 import Admin from "../components/mainList/Admin";
 import GoogleLogin from "../pages/GoogleLogin";
+import WelcomePage from "../pages/WelcomePage";
 
 function Router() {
   return (
@@ -29,6 +30,7 @@ function Router() {
         <Route path="/category/:collection_id" element={<CategoryPage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/google_login/:token" element={<GoogleLogin />} />
+        <Route path="/welcome" element={<WelcomePage />} />
       </Routes>
     </BrowserRouter>
   );
