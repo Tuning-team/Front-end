@@ -7,7 +7,22 @@ const initialState = {
   error: "",
 };
 
-// [GET] COMMENT
+
+export const addComment = createAsyncThunk(
+  "ADD_COMMENT",
+  async ({ newList, collectionId }) => {
+    try {
+      const response = await instance.post(
+        `/comments/${collectionId}`,
+        newList
+      );
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
 export const getComment = createAsyncThunk(
   "GET_COMMENT",
   async (collection_id) => {
@@ -20,41 +35,8 @@ export const getComment = createAsyncThunk(
   }
 );
 
-// [ADD] COMMENT
-export const addComment = createAsyncThunk(
-  "ADD_COMMENT",
-  async ({ newList, collectionId }) => {
-    try {
-      const response = await instance.post(
-        `/comments/${collectionId}`,
-        newList
-      );
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
 
-// [DELETE] COMMENT
-export const deleteComment = createAsyncThunk(
-  "DELETE_COMMENT",
-  async (commentId) => {
-    try {
-      console.log(commentId);
-      const response = await instance.delete(`/comments/${commentId}`);
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      alert("로그인을 해주세요");
-      return error.message;
-    }
-  }
-);
 
-// [UPDATE] COMMENT
-// return x payload x
 export const updateComment = createAsyncThunk(
   "UPDATE_COMMENT",
   async ({ commentId, editComment }) => {
@@ -63,7 +45,19 @@ export const updateComment = createAsyncThunk(
         `/comments/${commentId}`,
         editComment
       );
-      console.log(response);
+    } catch (error) {
+      alert("로그인을 해주세요");
+      return error.message;
+    }
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  "DELETE_COMMENT",
+  async (commentId) => {
+    try {
+      const response = await instance.delete(`/comments/${commentId}`);
+      return response.data;
     } catch (error) {
       alert("로그인을 해주세요");
       return error.message;
@@ -76,7 +70,6 @@ export const commentSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    //getComment
     builder.addCase(getComment.pending, (state, action) => {
       state.loading = true;
     });

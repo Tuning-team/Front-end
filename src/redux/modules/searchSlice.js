@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { instance } from "../../shared/instance";
 
-// [GET] LIST 
 export const getList = createAsyncThunk("GET_LIST", async (search) => {
   const response = await instance.get(`collections?keyword=${search}&offset=0&limit=50`);
-  console.log(response.data.data)
   return response.data.data;
 
 });
