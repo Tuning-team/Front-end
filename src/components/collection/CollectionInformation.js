@@ -36,10 +36,11 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
   //!카카오톡 공유하기
   const shareKakao = () => {
     if (!window.Kakao.isInitialized()) {
-      window.Kakao.init("8fb951e6a91434fad955fdcf7098c44a");
+      window.Kakao.init("619cfb7c202434b27d1c685581b2544f");
     }
     window.Kakao.Link.sendCustom({
-      templateId: 82633, // 생성한 템플릿 아이디 입력
+      templateId: 82977,
+      // 내가 만든 템플릿 아이디를 넣어주면 된다
       templateArgs: {
         THU: data?.thumbnails[0],
         THU2: data?.thumbnails[1],
