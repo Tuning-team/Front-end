@@ -50,6 +50,7 @@ export default MyCollectionWrap;
 
 const ContentsWrap = styled.div`
   margin-left: 1rem;
+  padding-bottom: 5rem;
 `;
 const TitleWrap = styled.div`
   display: flex;
