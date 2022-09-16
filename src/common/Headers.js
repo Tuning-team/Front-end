@@ -1,7 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../elements/Button";
+import { useNavigate } from "react-router-dom";
 import icon_profile from "../svg/icon_profile.svg";
 
 const Headers = () => {
@@ -18,10 +17,10 @@ export default Headers;
 const Header = styled.div`
   position: absolute;
   z-index: 1;
-  right: 0%;
+  top: 1rem;
+  right: 1rem;
   display: flex;
   justify-content: flex-end;
-  /* padding: 10px; */
   width: 1.9rem;
   height: 1.9rem;
 `;

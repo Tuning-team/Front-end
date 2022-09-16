@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
 import Carousel from "./Carousel";
@@ -9,29 +8,23 @@ import CarouselItem from "./CarouselItem";
 import icon_like from "../svg/icon_like.svg";
 import icon_comment from "../svg/icon_comment.svg";
 
-// import useHandleScroll from "../hooks/useHandscroll";
-
 const CollectionList = ({ state, setCount }) => {
   const nav = useNavigate();
-
-  const useHandleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-    // console.log("스크롤 이벤트 발생");
-    if (scrollTop + clientHeight >= scrollHeight) {
-      // console.log("페이지 끝에 스크롤이 닫았음. ");
-      setCount((prev) => prev + 5);
-    }
-  };
-  const infiniteScroll = throttle(useHandleScroll, 2000);
-
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {
       window.removeEventListener("scroll", infiniteScroll);
     };
   }, []);
+  const useHandleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight >= scrollHeight) {
+      setCount((prev) => prev + 5);
+    }
+  };
+  const infiniteScroll = throttle(useHandleScroll, 2000);
 
   return (
     <>
@@ -114,7 +107,6 @@ const IconLayout = styled.div`
   flex-direction: column;
   align-items: center;
 
-  /* margin-right: 0.8rem; */
   & span {
     font-size: 0.75rem;
     font-weight: normal;
