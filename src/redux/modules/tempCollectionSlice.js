@@ -17,30 +17,24 @@ const initialState = {
   selectedVideoId: "",
 };
 
-// 카테고리에 해당하는 컬렉션을 가져오는 thunk
 export const getCategoryCollectionForMain = createAsyncThunk(
   "get/categoryCollectionForMain",
   async (categoryId) => {
-    // console.log(categoryId);
     try {
       const res = await instance.get(
         `/collections?category_id=${categoryId}&offset=0&limit=10`
       );
       if (categoryId === "631e7d7a4ae4c133c405a966") {
         const res1 = res.data;
-        // console.log("res1", res1);
         return { resName: "resOfRecommend", resArr: res1.data };
       } else if (categoryId === "6319aeebd1e330e86bbade9f") {
         const res2 = res.data;
-        // console.log("res2", res2);
         return { resName: "resOfFamous", resArr: res2.data };
       } else if (categoryId === "631e7d7a4ae4c133c405a964") {
         const res3 = res.data;
-        // console.log("res3", res3);
         return { resName: "resOfRecent", resArr: res3.data };
       } else if (categoryId === "631e7d7a4ae4c133c405a965") {
         const res4 = res.data;
-        // console.log("res4", res4);
         return { resName: "resOfWeather", resArr: res4.data };
       }
     } catch (error) {
@@ -49,7 +43,6 @@ export const getCategoryCollectionForMain = createAsyncThunk(
   }
 );
 
-// 컬렉션에 대한 정보를 가져오는 thunk
 export const getCollection = createAsyncThunk(
   "get/collection",
   async (collection_id) => {
@@ -62,7 +55,33 @@ export const getCollection = createAsyncThunk(
   }
 );
 
-// 컬렉션 삭제 thunk
+export const getVideoList = createAsyncThunk(
+  "get/videoList",
+  async ({ collectionId, count }) => {
+    try {
+      const res = await instance.get(
+        `/videos/${collectionId}/?offset=${count}&limit=5`
+      );
+      return res.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+export const putLikeBtn = createAsyncThunk(
+  "put/likeBtn",
+  async (collection_id) => {
+    try {
+      const res = await instance.put(`/collections/like/${collection_id}`);
+      return res.data;
+    } catch (error) {
+      alert(error.response.data.errorMessage);
+      return error.response;
+    }
+  }
+);
+
 export const deleteCollection = createAsyncThunk(
   "delete/collection",
   async (collection_id) => {
@@ -75,64 +94,29 @@ export const deleteCollection = createAsyncThunk(
   }
 );
 
-// 컬렉션 id에 해당하는 비디오 목록 가져오는 thunk
-export const getVideoList = createAsyncThunk(
-  "get/videoList",
-  async ({ collectionId, count }) => {
-    // console.log("getVideoList에 들어오는 count", count);
-    try {
-      const res = await instance.get(
-        `/videos/${collectionId}/?offset=${count}&limit=5`
-      );
-      // console.log("서버response", res);
-      return res.data;
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
-
-// 컬렉션 좋아요 thunk
-export const putLikeBtn = createAsyncThunk(
-  "put/likeBtn",
-  async (collection_id) => {
-    try {
-      const res = await instance.put(`/collections/like/${collection_id}`);
-      return res.data;
-    } catch (error) {
-      // console.log(error.response.data.errorMessage);
-      alert(error.response.data.errorMessage);
-      return error.response;
-    }
-  }
-);
-
-// 슬라이스
 export const collectionSlice = createSlice({
   name: "collection",
   initialState,
   reducers: {
-    resetVideoList(state, action) {
-      state.videos = [];
-    },
     selectedVideoId(state, action) {
       state.selectedVideoId = action.payload;
     },
-    resetVideoId(state, action) {
+    resetVideoList(state) {
+      state.videos = [];
+    },
+    resetVideoId(state) {
       state.selectedVideoId = "";
     },
-    resetLikesData(state, action) {
+    resetLikesData(state) {
       state.isLiked.data = "";
     },
   },
   extraReducers: (builder) => {
-    // ! getCategoryCollectionForMain
     builder.addCase(getCategoryCollectionForMain.pending, (state, action) => {
       state.categoryCollectionForMain.isLoading = true;
     });
     builder.addCase(getCategoryCollectionForMain.fulfilled, (state, action) => {
       state.categoryCollectionForMain.isLoading = false;
-      // console.log(action.payload);
       state.categoryCollectionForMain.dataList = [
         ...state.categoryCollectionForMain.dataList,
         action.payload,
@@ -142,8 +126,6 @@ export const collectionSlice = createSlice({
       state.categoryCollectionForMain.isLoading = false;
       state.categoryCollectionForMain.error = action.error.message;
     });
-
-    // ! getCollection
     builder.addCase(getCollection.pending, (state, acion) => {
       state.loading = true;
     });
@@ -152,11 +134,35 @@ export const collectionSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(getCollection.rejected, (state, action) => {
-      console.log("rejected");
       state.loading = false;
       state.error = action.error.message;
     });
-    // ! deleteCollection
+    builder.addCase(getVideoList.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(getVideoList.fulfilled, (state, action) => {
+      state.loading = false;
+      state.pageInfo = action.payload.pageInfo;
+      state.videos = state.videos.concat(action.payload.data);
+    });
+    builder.addCase(getVideoList.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
+    builder.addCase(putLikeBtn.pending, (state, action) => {
+      state.loading = true;
+      state.isLiked.status = false;
+    });
+    builder.addCase(putLikeBtn.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isLiked.status = true;
+      state.isLiked.data = action.payload.data;
+      alert(`${action.payload.message}`);
+    });
+    builder.addCase(putLikeBtn.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    });
     builder.addCase(deleteCollection.pending, (state, action) => {
       console.log("delete pending");
       state.loading = true;
@@ -168,47 +174,14 @@ export const collectionSlice = createSlice({
       state.isDeleted = true;
       state.data = action.payload;
       alert(`${action.payload}`);
-      return (window.location.href = "/mypage"); //에러 일어나지만 새로고침해버림..
+      return (window.location.href = "/mypage");
     });
     builder.addCase(deleteCollection.rejected, (state, action) => {
       state.loading = false;
       state.isDeleted = false;
       state.error = action.error.message;
     });
-    // ! getVideoList
-    builder.addCase(getVideoList.pending, (state, action) => {
-      // console.log("get pending");
-      state.loading = true;
-    });
-    builder.addCase(getVideoList.fulfilled, (state, action) => {
-      // console.log("get fulfilled");
-      state.loading = false;
-      state.pageInfo = action.payload.pageInfo;
-      state.videos = state.videos.concat(action.payload.data);
-    });
-    builder.addCase(getVideoList.rejected, (state, action) => {
-      console.log("rejected");
-      state.loading = false;
-      state.error = action.error.message;
-    });
-    // ! putLikeBtn
-    builder.addCase(putLikeBtn.pending, (state, action) => {
-      console.log("pending");
-      state.loading = true;
-      state.isLiked.status = false;
-    });
-    builder.addCase(putLikeBtn.fulfilled, (state, action) => {
-      console.log("fulfilled");
-      state.loading = false;
-      state.isLiked.status = true;
-      state.isLiked.data = action.payload.data;
-      alert(`${action.payload.message}`);
-    });
-    builder.addCase(putLikeBtn.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    });
   },
 });
-export let { resetVideoList, selectedVideoId, resetVideoId, resetLikesData } =
+export let { selectedVideoId, resetVideoList, resetVideoId, resetLikesData } =
   collectionSlice.actions;

@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import icon_more_white from "../../svg/icon_more_white.svg";
-
-import { useDispatch } from "react-redux";
 import { resetVideoId } from "../../redux/modules/tempCollectionSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { ReactComponent as BackspaceIcon } from "../../svg/icon_backspace.svg";
+import icon_more_white from "../../svg/icon_more_white.svg";
 
 const FloatingIcons = ({ setModal, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+
   let iconColor = tabClicked ? "black" : "white";
+
   return (
     <HeadIconWrapper className="floating_icons" tabClicked={tabClicked}>
       <div className="BackspaceIconWrapper">
@@ -38,7 +39,6 @@ const FloatingIcons = ({ setModal, tabClicked }) => {
 export default FloatingIcons;
 const HeadIconWrapper = styled.div`
   position: absolute;
-  /* position: relative; */
   z-index: 1;
   top: 0;
   left: 0;

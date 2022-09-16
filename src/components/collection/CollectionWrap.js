@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
+import styled from "styled-components";
+import { resetVideoId } from "../../redux/modules/tempCollectionSlice";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
-
-import styled from "styled-components";
 import CommentForm from "../comment/CommentForm";
-import { useDispatch } from "react-redux";
-import { resetVideoId } from "../../redux/modules/tempCollectionSlice";
 
 const CollectionWrap = () => {
   const param = useParams();
-  const nav = useNavigate();
   const dispatch = useDispatch();
+
   const [tabClicked, setTabClicked] = useState(false);
 
   const onClickedVideoTab = () => {
@@ -21,13 +19,15 @@ const CollectionWrap = () => {
   const onClickedCommentTab = () => {
     setTabClicked(true);
   };
+
   useEffect(() => {
     return () => {
       dispatch(resetVideoId());
     };
   }, []);
+
   return (
-    <>
+    <Layout>
       <CollectionInformation
         collectionId={param.collection_id}
         tabClicked={tabClicked}
@@ -45,11 +45,14 @@ const CollectionWrap = () => {
       ) : (
         <CommentForm collectionId={param.collection_id} />
       )}
-    </>
+    </Layout>
   );
 };
 export default CollectionWrap;
 
+const Layout = styled.div`
+  padding-bottom: 4.5rem;
+`;
 const TabMenu = styled.div`
   display: flex;
   position: relative;
