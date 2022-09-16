@@ -1,24 +1,25 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
-import { Section } from "./Style";
 
 const RecentCollections = ({ categoryId }) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
+
+  const categoryData = useSelector(
+    (state) => state.collectionSlice.categoryCollectionForMain.dataList
+  );
+  const finalData = categoryData.filter((x) => x.resName === "resOfRecent");
 
   useEffect(() => {
     if (finalData.length === 0) {
       dispatch(getCategoryCollectionForMain(categoryId));
     }
   }, [categoryId]);
-  const categoryData = useSelector(
-    (state) => state.collectionSlice.categoryCollectionForMain.dataList //배열인 상태임
-  );
-  const finalData = categoryData.filter((x) => x.resName === "resOfRecent");
 
   return (
     <Section>
@@ -38,3 +39,15 @@ const RecentCollections = ({ categoryId }) => {
   );
 };
 export default RecentCollections;
+const Section = styled.div`
+  margin-left: 1rem;
+  margin-top: 2.625rem;
+
+  & h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.24;
+
+    margin-bottom: 1.313rem;
+  }
+`;

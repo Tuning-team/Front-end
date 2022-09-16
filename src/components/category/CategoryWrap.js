@@ -8,8 +8,9 @@ import icon_backspace_black from "../../svg/icon_backspace_black.svg";
 
 const CategoryWrap = () => {
   const param = useParams();
-  const dispatch = useDispatch();
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
   const data = useSelector(
     (state) => state.myCollectionSlice.categoryCollection.data
   );
