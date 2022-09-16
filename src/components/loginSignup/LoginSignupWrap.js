@@ -4,9 +4,6 @@ import { getCookie, removeCookie } from "../../hooks/cookie";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import submit from "../../common/Confirm";
-import { findByLabelText } from "@testing-library/react";
-
 const LoginSignupWrap = () => {
   const nav = useNavigate();
 
@@ -14,7 +11,6 @@ const LoginSignupWrap = () => {
     <LoginWrap>
       {/* <Header
         onClick={() => {
-          // submit();
           nav(-1);
         }}
       >
@@ -45,7 +41,10 @@ const LoginSignupWrap = () => {
           <GoogleLoginButton
             onClick={() => {
               removeCookie("token");
-              alert("로그아웃 되었습니다");
+              if (getCookie("token") === undefined) {
+                alert("로그아웃 되었습니다");
+                nav("/");
+              } else window.reload();
             }}
             style={{
               width: "18.75rem",

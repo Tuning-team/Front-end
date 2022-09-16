@@ -4,14 +4,9 @@ import bg from "../svg/bg.svg";
 import logo from "../svg/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getCategoryCollectionForMain } from "../redux/modules/collectionSlice";
+import Vector from "../svg/Vector.svg";
 
 const WelcomePage = () => {
-  const todaysWeatherCategoryId = "631e7d7a4ae4c133c405a965"; //오늘 날씨에 추천하는
-  const recommendedCategoryId = "631e7d7a4ae4c133c405a966"; // 바로 지금 추천하는
-  const famousCategoryId = "6319aeebd1e330e86bbade9f"; //인기있는
-  const recentCategoryId = "631e7d7a4ae4c133c405a964"; //새로운
-
   const nav = useNavigate();
   useEffect(() => {
     setTimeout(() => {
@@ -19,23 +14,24 @@ const WelcomePage = () => {
     }, 2000);
   }, []);
 
-  // useEffect(() => {
-  //   if (finalData.length === 0) {
-  //     dispatch(getCategoryCollectionForMain(categoryId));
-  //   }
-  // }, [categoryId]);
-
   return (
     <Page>
       <Content>
         <Header>유투브를 내 마음대로</Header>
         <Main>알고리즘 튜닝</Main>
         <Sub>오직 나만을 위한 유투브 </Sub>
-        <Img src="/images/애니메이션.png"></Img>
-        <Imgs src="/images/애니메이션2.png"></Imgs>
+        <Img
+          style={{
+            width: "50px",
+            height: "50px",
+            position: "absolute",
+            bottom: "10%",
+            left: "45%",
+          }}
+          src={Vector}
+        ></Img>
+        <Imgs src="/images/Frame.png"></Imgs>
       </Content>
-
-      {/* <Logo src={logo} /> */}
     </Page>
   );
 };
@@ -54,15 +50,27 @@ const Page = styled.div`
   color: white;
 `;
 const Content = styled.div`
+  font-size: 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Header = styled.p`
   display: flex;
+  font-size: 20px;
+  margin: 7px;
+  font-weight: 100;
 `;
-const Main = styled.h1``;
-const Sub = styled.p``;
+const Main = styled.h1`
+  font-size: 24px;
+  margin: 7px;
+`;
+const Sub = styled.p`
+  font-size: 15px;
+  margin: 3px;
+  font-weight: 100;
+`;
 const Logo = styled.img`
   display: flex;
 `;
@@ -77,14 +85,12 @@ const rotation = keyframes`
 `;
 
 const Img = styled.img`
-  animation: ${rotation} 2s linear infinite;
+  animation: ${rotation} 3s linear infinite;
   z-index: 2;
 `;
 const Imgs = styled.img`
   position: absolute;
   z-index: 3;
-  bottom: 50%;
-  left: 10%;
-  right: 10%;
-  top: 50%;
+  bottom: 10%;
+  left: 40%;
 `;

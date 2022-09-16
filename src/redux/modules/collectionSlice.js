@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { instance } from "../../shared/instance";
 
 const initialState = {
@@ -59,7 +58,6 @@ export const getCategoryCollection = createAsyncThunk(
       const res = await instance(
         `/collections?category_id=${id}&offset=0&limit=20`
       );
-      console.log(res);
       return res.data.data;
     } catch (error) {
       return error.message;
@@ -89,10 +87,8 @@ export const getVideo = createAsyncThunk("get/video", async (data) => {
       const youtubeRes = await instance(
         `/search/videos/youtube?keyword=${data}`
       );
-      console.log(youtubeRes.data);
       return youtubeRes.data.data;
     } else {
-      console.log(res.data.data);
       return res.data.data;
     }
   } catch (error) {
