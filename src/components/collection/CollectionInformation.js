@@ -8,17 +8,19 @@ import {
 } from "../../redux/modules/tempCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../hooks/cookie";
+import { getCookie } from "../../shared/cookie";
 import FloatingIcons from "./FloatingIcons";
 import YoutubeContainer from "./YoutubeContainer";
 import Button from "../../elements/Button";
 import More from "../../common/More";
 import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
+import { useParams } from "react-router-dom";
 
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-
+  const param = useParams();
+  console.log(param);
   const [modal, setModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
@@ -36,21 +38,22 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
   //!카카오톡 공유하기
   const shareKakao = () => {
     if (!window.Kakao.isInitialized()) {
-      window.Kakao.init("8fb951e6a91434fad955fdcf7098c44a");
+      window.Kakao.init("619cfb7c202434b27d1c685581b2544f");
     }
     window.Kakao.Link.sendCustom({
-      templateId: 82633, // 생성한 템플릿 아이디 입력
+      templateId: 82977,
+      // 내가 만든 템플릿 아이디를 넣어주면 된다
       templateArgs: {
         THU: data?.thumbnails[0],
         THU2: data?.thumbnails[1],
         THU3: data?.thumbnails[2],
         title: data?.collectionTitle,
         description: data?.description,
+        param: param.collection_id,
       },
     });
   };
 
-  // ! 좋아요 기능
   const onClickLikeBtn = () => {
     if (getCookie("token") === undefined) {
       alert("로그인을 해주세요");
@@ -60,7 +63,6 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     }
   };
 
-  // ! 삭제 기능
   const onDeleteThisCollection = () => {
     if (data?.user_id === userInfo?._id) {
       window.confirm("삭제하시겠습니까?")

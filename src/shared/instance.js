@@ -1,6 +1,5 @@
-import React from "react";
 import axios from "axios";
-import { getCookie } from "../hooks/cookie";
+import { getCookie } from "./cookie";
 
 export const instance = axios.create({
   baseURL: "https://tube-tuning.com/api",

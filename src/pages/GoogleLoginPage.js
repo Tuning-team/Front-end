@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { setCookie } from "../hooks/cookie";
+import { useNavigate, useParams } from "react-router-dom";
+import { setCookie } from "../shared/cookie";
 
 const GoogleLogin = () => {
   const param = useParams();
@@ -8,7 +8,7 @@ const GoogleLogin = () => {
 
   useEffect(() => {
     const expires = new Date();
-    expires.setDate(Date.now() + 1000 * 60 * 60 * 24);
+    expires.setDate(Date.now() + 1000 * 60 * 60);
     setCookie("token", param.token, {
       path: "/",
       expires,

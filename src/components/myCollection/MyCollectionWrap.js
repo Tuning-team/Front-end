@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import CollectionList from "../../common/CollectionList";
-import Button from "../../elements/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteList,
@@ -11,17 +10,12 @@ import {
 import icon_add from "../../svg/icon_add.svg";
 
 const MyCollectionWrap = () => {
-  const dispatch = useDispatch();
   const nav = useNavigate();
+  const dispatch = useDispatch();
   const [count, setCount] = useState(0);
-  // const data = useSelector(
-  //   (state) => state.myCollectionSlice.myCollection.data
-  // );
-  //!데이터 push했을때
   const data = useSelector(
     (state) => state.myCollectionSlice.myCollection.dataList
   );
-
   useEffect(() => {
     if (count === 0) {
       dispatch(deleteList());
@@ -34,7 +28,6 @@ const MyCollectionWrap = () => {
       <TitleWrap>
         {" "}
         <Title>내 튜닝</Title>
-        {/* //todo 버튼은 로그인 아이디가 일치할때만 보이도록 */}
         <Icon
           src={icon_add}
           onClick={() => {

@@ -1,21 +1,14 @@
 import React from "react";
-import { GoogleLoginButton } from "react-social-login-buttons";
-import { getCookie, removeCookie } from "../../hooks/cookie";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { GoogleLoginButton } from "react-social-login-buttons";
+import { getCookie, removeCookie } from "../../shared/cookie";
 
 const LoginSignupWrap = () => {
   const nav = useNavigate();
 
   return (
     <LoginWrap>
-      {/* <Header
-        onClick={() => {
-          nav(-1);
-        }}
-      >
-        &lt;
-      </Header> */}
       <ContentWrap>
         <Title>Welcome to</Title>
         <Logo>Tuning</Logo>

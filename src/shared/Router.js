@@ -9,7 +9,7 @@ import AddVideoSearchPage from "../pages/AddVideoSearchPage";
 import CommentPage from "../pages/CommentPage";
 import CollectionPage from "../pages/CollectionPage";
 import CategoryPage from "../pages/CategoryPage";
-import GoogleLogin from "../pages/GoogleLogin";
+import GoogleLoginPage from "../pages/GoogleLoginPage";
 import WelcomePage from "../pages/WelcomePage";
 import ScrollTop from "./ScrollTop";
 
@@ -27,7 +27,7 @@ function Router() {
         <Route path="/comment" element={<CommentPage />} />
         <Route path="/collection/:collection_id" element={<CollectionPage />} />
         <Route path="/category/:collection_id" element={<CategoryPage />} />
-        <Route path="/google_login/:token" element={<GoogleLogin />} />
+        <Route path="/google_login/:token" element={<GoogleLoginPage />} />
         <Route path="/welcome" element={<WelcomePage />} />
       </Routes>
     </BrowserRouter>

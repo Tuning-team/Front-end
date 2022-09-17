@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import Icon_search from "../../svg/Icon_search.svg";
-import Button from "../../elements/Button";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
@@ -10,10 +9,10 @@ import styled from "styled-components";
 const SearchVideo = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+
   const [{ keyword }, onChange, reset] = useInputs({
     keyword: "",
   });
-
   const onClickHandler = (e) => {
     if (keyword === "") {
       alert("검색어를 입력해주세요");
