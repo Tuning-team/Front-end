@@ -8,17 +8,19 @@ import {
 } from "../../redux/modules/tempCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../hooks/cookie";
+import { getCookie } from "../../shared/cookie";
 import FloatingIcons from "./FloatingIcons";
 import YoutubeContainer from "./YoutubeContainer";
 import Button from "../../elements/Button";
 import More from "../../common/More";
 import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
+import { useParams } from "react-router-dom";
 
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-
+  const param = useParams();
+  console.log(param);
   const [modal, setModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
@@ -47,11 +49,11 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
         THU3: data?.thumbnails[2],
         title: data?.collectionTitle,
         description: data?.description,
+        param: param.collection_id,
       },
     });
   };
 
-  // ! 좋아요 기능
   const onClickLikeBtn = () => {
     if (getCookie("token") === undefined) {
       alert("로그인을 해주세요");
@@ -61,7 +63,6 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     }
   };
 
-  // ! 삭제 기능
   const onDeleteThisCollection = () => {
     if (data?.user_id === userInfo?._id) {
       window.confirm("삭제하시겠습니까?")

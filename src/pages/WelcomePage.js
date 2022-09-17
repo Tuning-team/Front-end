@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { css, keyframes } from "styled-components";
+import { keyframes } from "styled-components";
 import bg from "../svg/bg.svg";
-import logo from "../svg/logo.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Vector from "../svg/Vector.svg";

@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-//form인풋값, 온체인지, 값비워주기, 유효성검사 기능
+
 function useInputs(initialForm) {
   const [form, setForm] = useState(initialForm);
   const [toggle, setToggle] = useState(false);

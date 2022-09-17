@@ -70,12 +70,15 @@ export const postCollection = createAsyncThunk(
   async (data) => {
     try {
       const res = await instance.post("/collections", data);
-
+      console.log(data);
       alert("컬렉션이 생성되었습니다.");
       window.location.href = "/mypage";
       return res.data.success;
     } catch (error) {
-      alert(error.message);
+      console.log(data);
+      console.log(data.videos);
+      console.log(error);
+      alert(error.response.data.message);
       return error.message;
     }
   }
