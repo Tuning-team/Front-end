@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Input from "../../elements/Input"
-import Icon_search from "../../svg/Icon_search.svg";
-import { getList, searchSlice } from "../../redux/modules/searchSlice";
-import CollectionList from "../../common/CollectionList"
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getList } from "../../redux/modules/searchSlice";
+import CollectionList from "../../common/CollectionList"
+import Icon_search from "../../svg/Icon_search.svg";
 
 const SearchWrap = () => {
-  const nav = useNavigate();
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const nav = useNavigate();
   const searchList = useSelector((state) => state.searchSlice);
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
@@ -22,22 +21,20 @@ const SearchWrap = () => {
 
   };
 
-  const searchResult = searchList?.filter(data => data.collectionTitle.indexOf(search) !== -1
-    || data.description.indexOf(search) !== -1)
+  const searchResult = searchList?.filter(
+    data => data.collectionTitle.indexOf(search) !== -1
+      || data.description.indexOf(search) !== -1)
+
 
   return (
     <>
       <form style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onSubmit={onSearch}>
         <StBackH1
-          onClick={() => {
-            nav(-1);
-          }}
-        >
+          onClick={() => { nav(-1); }}>
           &lt;
         </StBackH1>
         <StInput onChange={onChangeHandler} name="search" type="text" />
         <StBtn type="submit"><StBtnImg src={Icon_search} /></StBtn>
-
       </form>
       <div>
         <h1>

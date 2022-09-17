@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteComment,
-  getComment,
-  updateComment,
-  addComment,
-} from "../../redux/modules/commentSlice";
-import Input from "../../elements/Input";
-import More from "../../common/More";
+import { deleteComment, getComment, updateComment, addComment, } from "../../redux/modules/commentSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
 const CommentList = ({ collectionId }) => {
-  console.log(collectionId);
   const [newinputValue, setNewInputValue] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [modal, setModal] = useState("read");
   const [commentData, setCommentData] = useState();
-  const dispatch = useDispatch();
   const commentList = useSelector((state) => state.commentSlice.data);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getComment(collectionId));
@@ -38,12 +30,10 @@ const CommentList = ({ collectionId }) => {
       alert("공란입니다. 댓글을 작성해주세요");
     }
   };
-  console.log(commentList);
 
   const onDelete = (e) => {
     e.preventDefault();
     const commentId = e.target.id;
-    console.log(commentId);
     dispatch(deleteComment(commentId));
     setRefresh(true);
     setModal("read");
@@ -52,7 +42,6 @@ const CommentList = ({ collectionId }) => {
   const onUpdate = (e) => {
     e.preventDefault();
     const commentId = e.target.id;
-    console.log(commentId, editComment);
     if (newinputValue === "") {
       alert("수정해주세요");
     } else {
@@ -68,7 +57,6 @@ const CommentList = ({ collectionId }) => {
     setModal("modify");
   };
 
-  console.log(commentList);
 
   function saveCommentData(e) {
     setCommentData(e.target.value);
@@ -78,8 +66,6 @@ const CommentList = ({ collectionId }) => {
   const editComment = {
     comment: newinputValue,
   };
-  console.log(commentData);
-  //!여기부터 시작
   return (
     <div
       style={{
@@ -87,18 +73,18 @@ const CommentList = ({ collectionId }) => {
       }}
     >
       {modal === "menu" ? (
-        <Smore>
-          <ChooseBtn>
+        <StMoreDiv>
+          <StChooseBtnDiv>
             {/* <input onChange={(e) => setInputValue(e.target.value)}></input> */}
-            <Btn type="button" onClick={onModify}>
+            <StBtnDiv type="button" onClick={onModify}>
               수정하기
-            </Btn>
-            <Btn type="button" id={commentData} onClick={onDelete}>
+            </StBtnDiv>
+            <StBtnDiv type="button" id={commentData} onClick={onDelete}>
               삭제하기
-            </Btn>
-          </ChooseBtn>
-          <Close onClick={() => setModal(!modal)}>닫기</Close>
-        </Smore>
+            </StBtnDiv>
+          </StChooseBtnDiv>
+          <StCloseDiv onClick={() => setModal(!modal)}>닫기</StCloseDiv>
+        </StMoreDiv>
       ) : modal === "modify" ? (
         <StCommentForm
           style={{ zIndex: "110" }}
@@ -230,7 +216,7 @@ const StButton = styled.button`
   cursor: pointer;
 `;
 
-const Smore = styled.div`
+const StMoreDiv = styled.div`
   display: block;
   height: 100vh;
   width: 375px;
@@ -277,7 +263,7 @@ const StProfileImg = styled.img`
   margin-left: 5px;
 `;
 
-const ChooseBtn = styled.div`
+const StChooseBtnDiv = styled.div`
   background-color: #ffffff;
   width: 22.063rem;
   height: 5.938rem;
@@ -295,7 +281,7 @@ const ChooseBtn = styled.div`
   margin: 9px;
 `;
 
-const Close = styled.div`
+const StCloseDiv = styled.div`
   background-color: #ffffff;
   width: 22.063rem;
   height: 3.125rem;
@@ -313,7 +299,7 @@ const Close = styled.div`
   margin: 9px;
 `;
 
-const Btn = styled.div`
+const StBtnDiv = styled.div`
   text-align: center;
   width: 100%;
   padding-bottom: 5px;

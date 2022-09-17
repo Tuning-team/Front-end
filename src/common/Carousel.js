@@ -13,7 +13,6 @@ const Carousel = (props) => {
     slidesToScroll: 1,
     adaptiveHeight: false,
     arrows: false,
-    // lazyLoad: true, //lazyloading
   };
 
   return (
@@ -23,6 +22,7 @@ const Carousel = (props) => {
   );
 };
 export default Carousel;
+
 const SliderWrapper = styled.div`
   overflow-x: hidden;
 `;

@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const CarouselItem = (props) => {
-  // props로 꼭 넘겨야 되는 속성
-  // key, img를 위한 src
   return (
     <DivCard
       className="card"
@@ -31,7 +29,6 @@ const DivCard = styled.div`
 
   & .card-top > img {
     width: 100%;
-    /* max-height: 180px; */
     border-radius: 3px;
   }
   & .card-bottom > h6 {
