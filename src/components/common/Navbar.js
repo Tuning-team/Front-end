@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../shared/cookie";
+import { getCookie } from "../../shared/cookie";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as IconCategory } from "../svg/Icon_category.svg";
-import { ReactComponent as IconHome } from "../svg/Icon_home.svg";
-import { ReactComponent as IconCollection } from "../svg/Icon_collection.svg";
-import { ReactComponent as IconSearch } from "../svg/Icon_search.svg";
+import { ReactComponent as IconCategory } from "../../shared/svg/Icon_category.svg";
+import { ReactComponent as IconHome } from "../../shared/svg/Icon_home.svg";
+import { ReactComponent as IconCollection } from "../../shared/svg/Icon_collection.svg";
+import { ReactComponent as IconSearch } from "../../shared/svg/Icon_search.svg";
 
 const Navbar = () => {
   const nav = useNavigate();
