@@ -1,5 +1,5 @@
 import React from "react";
-import CollectionWrap from "../components/collection/CollectionWrap";
+import CollectionWrap from "../components/features/collection/CollectionWrap";
 import Navbar from "../common/Navbar";
 
 const CollectionPage = () => {

@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryCollection } from "../../redux/modules/collectionSlice";
+import { getCategoryCollection } from "../../../redux/modules/collectionSlice";
 import CollectionList from "../../common/CollectionList";
-import icon_backspace_black from "../../svg/icon_backspace_black.svg";
+import icon_backspace_black from "../../../shared/svg/icon_backspace_black.svg";
 
 const CategoryWrap = () => {
   const param = useParams();

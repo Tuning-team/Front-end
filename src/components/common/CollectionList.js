@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
 import Carousel from "./Carousel";
 import CarouselItem from "./CarouselItem";
-import icon_like from "../svg/icon_like.svg";
-import icon_comment from "../svg/icon_comment.svg";
+import icon_like from "../../shared/svg/icon_like.svg";
+import icon_comment from "../../shared/svg/icon_comment.svg";
 
 const CollectionList = ({ state, setCount }) => {
   const nav = useNavigate();

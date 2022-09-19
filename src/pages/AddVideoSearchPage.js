@@ -1,7 +1,7 @@
 import React from "react";
 import SearchVideo from "../components/features/addCollection/SearchVideo";
 import ResultVideo from "../components/features/addCollection/ResultVideo";
-import Navbar from "../common/Navbar";
+import Navbar from "../components/common/Navbar";
 
 const AddVideoSearchPage = () => {
   return (
