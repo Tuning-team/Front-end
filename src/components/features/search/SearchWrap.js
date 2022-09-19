@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getList } from "../../../redux/modules/searchSlice";
-import CollectionList from "../../../common/CollectionList";
+import CollectionList from "../../common/CollectionList";
 import Icon_search from "../../../shared/svg/Icon_search.svg";
 
 const SearchWrap = () => {
