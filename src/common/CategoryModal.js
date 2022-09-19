@@ -33,7 +33,13 @@ const CategoryModal = ({ setIsCategoryShown }) => {
           <ul>
             {categories?.map((elem) => {
               return (
-                <Li key={elem._id} onClick={() => nav(`/category/${elem._id}`)}>
+                <Li
+                  key={elem._id}
+                  onClick={() => {
+                    nav(`/category/${elem._id}`);
+                    setIsCategoryShown((prev) => !prev);
+                  }}
+                >
                   {elem.categoryName}
                 </Li>
               );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../hooks/cookie";
+import { getCookie } from "../shared/cookie";
 import CategoryModal from "./CategoryModal";
 import { ReactComponent as IconCategory } from "../svg/Icon_category.svg";
 import { ReactComponent as IconHome } from "../svg/Icon_home.svg";
