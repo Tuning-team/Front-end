@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import icon_profile from "../svg/icon_profile.svg";
+import icon_profile from "../../shared/svg/icon_profile.svg";
 
 const Headers = () => {
   const nav = useNavigate();

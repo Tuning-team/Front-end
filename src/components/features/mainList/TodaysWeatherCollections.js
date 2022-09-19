@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
+import { getCategoryCollectionForMain } from "../../../redux/modules/tempCollectionSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 

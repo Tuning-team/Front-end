@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryCollectionForMain } from "../../redux/modules/tempCollectionSlice";
+import { getCategoryCollectionForMain } from "../../../redux/modules/tempCollectionSlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
 

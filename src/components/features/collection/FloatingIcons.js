@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { resetVideoId } from "../../redux/modules/tempCollectionSlice";
+import { resetVideoId } from "../../../redux/modules/tempCollectionSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { ReactComponent as BackspaceIcon } from "../../svg/icon_backspace.svg";
-import icon_more_white from "../../svg/icon_more_white.svg";
+import { ReactComponent as BackspaceIcon } from "../../../shared/svg/icon_backspace.svg";
+import icon_more_white from "../../../shared/svg/icon_more_white.svg";
 
 const FloatingIcons = ({ setModal, tabClicked }) => {
   const nav = useNavigate();
