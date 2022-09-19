@@ -23,6 +23,7 @@ export const addComment = createAsyncThunk(
   }
 );
 
+
 export const getComment = createAsyncThunk(
   "GET_COMMENT",
   async (collection_id) => {
@@ -52,6 +53,8 @@ export const updateComment = createAsyncThunk(
   }
 );
 
+
+
 export const deleteComment = createAsyncThunk(
   "DELETE_COMMENT",
   async (commentId) => {
@@ -64,6 +67,7 @@ export const deleteComment = createAsyncThunk(
     }
   }
 );
+
 
 export const commentSlice = createSlice({
   name: "commentList",
