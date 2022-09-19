@@ -12,16 +12,13 @@ const MainListWrap = () => {
   const recentCategoryId = "631e7d7a4ae4c133c405a964"; // 새로운
 
   return (
-    <Layout>
+    <>
       <TodaysWeatherCollections categoryId={todaysWeatherCategoryId} />
       <RecommendedCollections categoryId={recommendedCategoryId} />
       <FamousCollections categoryId={famousCategoryId} />
       <RecentCollections categoryId={recentCategoryId} />
-    </Layout>
+    </>
   );
 };
 
 export default MainListWrap;
-const Layout = styled.div`
-  padding-bottom: 5rem;
-`;
