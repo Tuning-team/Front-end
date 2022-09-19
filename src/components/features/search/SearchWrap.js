@@ -17,51 +17,43 @@ const SearchWrap = () => {
 
   const onSearch = (e) => {
     e.preventDefault();
-    dispatch(getList(search))
-
+    dispatch(getList(search));
   };
 
   const searchResult = searchList?.filter(
-    data => data.collectionTitle.indexOf(search) !== -1
-      || data.description.indexOf(search) !== -1)
-
+    (data) =>
+      data.collectionTitle.indexOf(search) !== -1 ||
+      data.description.indexOf(search) !== -1
+  );
 
   return (
     <>
-      <form style={{ display: "flex", flexDirection: "row", alignItems: "center" }} onSubmit={onSearch}>
-        <StBackH1
-          onClick={() => { nav(-1); }}>
-          &lt;
-        </StBackH1>
+      {/* //!검색창 */}
+      <form
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+        onSubmit={onSearch}
+      >
         <StInput onChange={onChangeHandler} name="search" type="text" />
-        <StBtn type="submit"><StBtnImg src={Icon_search} /></StBtn>
+        <StBtn type="submit">
+          <StBtnImg src={Icon_search} />
+        </StBtn>
       </form>
-      <div>
+
+      {/* //!결과부분 */}
+      {/* <div>
         <h1>
-          {search === "" ?
+          {search === "" ? (
             <StText>검색어를 입력해주세요</StText>
-            :
+          ) : (
             <CollectionList state={searchResult} />
-          }
+          )}
         </h1>
-      </div>
+      </div> */}
     </>
   );
 };
 
 export default SearchWrap;
-
-const StBackH1 = styled.h1`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-  line-height: 123.8%;
-  margin-left: 20px;
-  margin-top: 10px;
-
-  display: flex;
-  flex-direction: row;
-`
 
 const StBtn = styled.button`
   background: none;
@@ -69,16 +61,14 @@ const StBtn = styled.button`
   outline: none;
   cursor: pointer;
 
-  top: 14px;
-  right:35px;
-  position: absolute;
-
-`
+  // top: 14px;
+  // right: 35px;
+  // position: absolute;
+`;
 const StBtnImg = styled.img`
-  width: 25px;
-  height: 25px;
-  margin-top: 12px;
-
+  // width: 25px;
+  // height: 25px;
+  // margin-top: 12px;
 `;
 
 const StInput = styled.input`
@@ -94,6 +84,6 @@ const StInput = styled.input`
 `;
 
 const StText = styled.p`
-font-size: 1rem;
-text-align: center;
-`
+  font-size: 1rem;
+  text-align: center;
+`;

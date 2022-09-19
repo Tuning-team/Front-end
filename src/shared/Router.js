@@ -19,11 +19,14 @@ function Router() {
       <ScrollTop />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/login" element={<LoginSignupPage />} />
+        <Route path="/myPage" element={<LoginSignupPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/mypage" element={<MyCollectionPage />} />
-        <Route path="/mypage/add" element={<AddCollectionPage />} />
-        <Route path="/mypage/add/search" element={<AddVideoSearchPage />} />
+        <Route path="/myCollection" element={<MyCollectionPage />} />
+        <Route path="/myCollection/add" element={<AddCollectionPage />} />
+        <Route
+          path="/myCollection/add/search"
+          element={<AddVideoSearchPage />}
+        />
         <Route path="/comment" element={<CommentPage />} />
         <Route path="/collection/:collection_id" element={<CollectionPage />} />
         <Route path="/category/:collection_id" element={<CategoryPage />} />

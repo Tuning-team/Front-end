@@ -12,7 +12,6 @@ const Navbar = () => {
   const nav = useNavigate();
 
   const [isCategoryShown, setIsCategoryShown] = useState(false);
-  const [test, setTest] = useState(null);
 
   return (
     <>
@@ -26,16 +25,11 @@ const Navbar = () => {
         <Wrap
           onClick={() => {
             setIsCategoryShown(!isCategoryShown);
-            setTest("danger");
           }}
           test
         >
           <IconCategory fill="black" />
           <Name>카테고리</Name>
-        </Wrap>
-        <Wrap onClick={() => nav("/search")}>
-          <IconSearch fill="black" />
-          <Name>검색</Name>
         </Wrap>
         <Wrap onClick={() => nav("/")}>
           <IconHome fill="#efefef" />
@@ -47,7 +41,7 @@ const Navbar = () => {
               alert("로그인을 해주세요");
               nav("/login");
             } else {
-              nav("/mypage");
+              nav("/myCollection");
             }
           }}
         >
@@ -62,21 +56,16 @@ const Navbar = () => {
 export default Navbar;
 
 const Nav = styled.nav`
+  display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-
+  max-width: 360px;
   z-index: 100;
-
   box-sizing: border-box;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-
   height: 4.5rem;
-
+  margin: 0 auto;
   background-color: #efefef;
 `;
 const Name = styled.span`
