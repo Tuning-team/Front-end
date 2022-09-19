@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getCategory,
   postCollection,
-} from "../../redux/modules/collectionSlice";
+} from "../../../redux/modules/collectionSlice";
 import useInputs from "../../hooks/useInput";
 import icon_backspace_black from "../../svg/icon_backspace_black.svg";
 import icon_add from "../../svg/icon_add.svg";

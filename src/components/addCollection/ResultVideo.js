@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { addVideoList } from "../../../redux/modules/collectionSlice";
-import Loading from "../../common/Loading";
+import Loading from "../../../common/Loading";
 
 const ResultVideo = () => {
   const nav = useNavigate();
