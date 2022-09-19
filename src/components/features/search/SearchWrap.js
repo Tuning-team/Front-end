@@ -10,7 +10,7 @@ const SearchWrap = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const searchList = useSelector((state) => state.searchSlice);
+  const searchList = useSelector((state) => state.searchSlice.data);
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
   };
