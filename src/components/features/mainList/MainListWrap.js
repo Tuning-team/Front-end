@@ -4,6 +4,8 @@ import TodaysWeatherCollections from "./TodaysWeatherCollections";
 import RecommendedCollections from "./RecommendedCollections";
 import FamousCollections from "./FamousCollections";
 import RecentCollections from "./RecentCollections";
+import SearchWrap from "../search/SearchWrap";
+import RecommendedCategory from "./RecommendedCategory";
 
 const MainListWrap = () => {
   const todaysWeatherCategoryId = "631e7d7a4ae4c133c405a965"; // 오늘 날씨에 추천하는
@@ -14,6 +16,8 @@ const MainListWrap = () => {
   return (
     <>
       <TodaysWeatherCollections categoryId={todaysWeatherCategoryId} />
+      <SearchWrap />
+      <RecommendedCategory />
       <RecommendedCollections categoryId={recommendedCategoryId} />
       <FamousCollections categoryId={famousCategoryId} />
       <RecentCollections categoryId={recentCategoryId} />

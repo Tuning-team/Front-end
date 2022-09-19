@@ -31,7 +31,7 @@ const MyCollectionWrap = () => {
         <Icon
           src={icon_add}
           onClick={() => {
-            nav("/mypage/add");
+            nav("/myCollection/add");
           }}
         />
       </TitleWrap>

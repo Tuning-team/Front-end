@@ -120,7 +120,7 @@ const AddCollectionForm = () => {
                 localStorage.setItem("title", collectionTitle);
                 localStorage.setItem("description", description);
                 localStorage.setItem("category", category_id);
-                nav("/mypage/add/search");
+                nav("/myCollection/add/search");
               }}
             >
               <Icon src={icon_add} />

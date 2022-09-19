@@ -6,10 +6,10 @@ import Layout from "../components/common/Layout";
 
 const SearchPage = () => {
   return (
-    <>
+    <Layout>
       <SearchWrap />
       <Navbar />
-    </>
+    </Layout>
   );
 };
 export default SearchPage;

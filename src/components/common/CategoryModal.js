@@ -62,25 +62,16 @@ to{
 }
 `;
 
-const Div = styled.div`
-  width: 100%;
-  z-index: 9;
-
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-`;
 const ModalFloater = styled.div`
+  display: flex;
   position: fixed;
   overflow: scroll;
-  left: -100%;
-  top: 0;
-  bottom: 0;
+  left: -50vh;
+  right: 50vh;
   z-index: 10;
   margin-bottom: 4.5rem;
   background-color: rgba(245, 245, 245, 0.96);
-  width: 70%;
+  width: 50vh;
 
   left: ${(props) => (props.setIsCategoryShown ? "0" : "-100%")};
   transition: 1s;
@@ -90,6 +81,17 @@ const ModalFloater = styled.div`
   animation-name: ${slideIn};
   animation-fill-mode: forwards;
 `;
+
+const Div = styled.div`
+  width: 50vh;
+  z-index: 9;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+`;
+
 const TitleWrap = styled.div`
   display: flex;
   justify-content: space-between;

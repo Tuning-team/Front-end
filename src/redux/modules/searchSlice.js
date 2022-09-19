@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { instance } from "../../shared/instance";
 
+
 const initialState = {
   loading: false,
   data: [],
@@ -27,6 +28,7 @@ export const searchSlice = createSlice({
   name: "getList",
   initialState,
   reducers: {},
+
   extraReducers: (builder) => {
     builder.addCase(getList.pending, (state, action) => {
       state.loading = true;
@@ -40,5 +42,6 @@ export const searchSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
+
   },
-})
+});

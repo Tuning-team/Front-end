@@ -1,27 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import icon_profile from "../../shared/svg/icon_profile.svg";
+import CategoryModal from "./CategoryModal";
+import { ReactComponent as IconCategory } from "../../shared/svg/Icon_category.svg";
 
 const Headers = () => {
   const nav = useNavigate();
+  const [isCategoryShown, setIsCategoryShown] = useState(false);
+
   return (
-    <Header>
-      <Icon src={icon_profile} onClick={() => nav("/login")} />
-    </Header>
+    <Wrap>
+      {/*카테고리 모달 */}
+      {isCategoryShown && (
+        <CategoryModal
+          setIsCategoryShown={setIsCategoryShown}
+          isCategoryShown={isCategoryShown}
+        />
+      )}
+      <StLeft>
+        {/*카테고리 아이콘 */}
+        <IconCategory
+          onClick={() => {
+            setIsCategoryShown(!isCategoryShown);
+          }}
+        />
+        {/*로고*/}
+        <Logo src="/images/애니메이션2.png"></Logo>
+      </StLeft>
+      {/*마이페이지 아이콘 */}
+      <IconMyPage src={icon_profile} onClick={() => nav("/myPage")} />
+    </Wrap>
   );
 };
 
 export default Headers;
 
-const Header = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 1rem;
-  right: 1rem;
+const Wrap = styled.div`
   display: flex;
-  justify-content: flex-end;
-  width: 1.9rem;
-  height: 1.9rem;
+  justify-content: space-between;
+  width: 100%;
 `;
-const Icon = styled.img``;
+const StLeft = styled.div``;
+const Logo = styled.img`
+  max-width: 60px;
+`;
+
+const IconMyPage = styled.img``;

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import reportWebVitals from "./reportWebVitals";
 import { CookiesProvider } from "react-cookie";
 import configstore from "./redux/configStore";
 import { Provider } from "react-redux";
@@ -19,4 +18,3 @@ root.render(
 
 //serviceWorkerRegistration.unregister();
 serviceWorkerRegistration.register();
-https: reportWebVitals();
