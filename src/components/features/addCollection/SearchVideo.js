@@ -1,7 +1,7 @@
 import React from "react";
 import Icon_search from "../../svg/Icon_search.svg";
 import useInputs from "../../hooks/useInput";
-import { getVideo } from "../../redux/modules/collectionSlice";
+import { getVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
