@@ -7,12 +7,12 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const StyleLayout = styled.div`
-  max-width: 360px;
-  // min-width: 360px;
+  max-width: 500px;
+  min-height: 100vh;
+
+  position: relative;
+
   border: 1px solid green;
+
   padding-bottom: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
 `;
