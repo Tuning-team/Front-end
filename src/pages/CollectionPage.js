@@ -1,6 +1,7 @@
 import React from "react";
 import CollectionWrap from "../components/features/collection/CollectionWrap";
-import Navbar from "../common/Navbar";
+import Navbar from "../components/common/Navbar";
+
 
 const CollectionPage = () => {
   return (

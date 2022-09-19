@@ -1,7 +1,7 @@
 import React from "react";
-import Headers from "../common/Headers";
-import MainListWrap from "../components/mainList/MainListWrap";
-import Navbar from "../common/Navbar";
+import Headers from "../components/common/Headers";
+import MainListWrap from "../components/features/mainList/MainListWrap";
+import Navbar from "../components/common/Navbar";
 
 const MainPage = () => {
   return (

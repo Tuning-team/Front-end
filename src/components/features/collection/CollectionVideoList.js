@@ -5,7 +5,7 @@ import {
   getVideoList,
   resetVideoList,
   selectedVideoId,
-} from "../../redux/modules/tempCollectionSlice";
+} from "../../../redux/modules/tempCollectionSlice";
 import throttle from "lodash/throttle";
 
 const CollectionVideoList = ({ collectionId }) => {

@@ -11,9 +11,9 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../../shared/cookie";
 import FloatingIcons from "./FloatingIcons";
 import YoutubeContainer from "./YoutubeContainer";
-import Button from "../common/elements/Button";
+import Button from "../../common/elements/Button";
 import More from "../../common/More";
-import { ReactComponent as LikesIcon } from "../../svg/icon_like.svg";
+import { ReactComponent as LikesIcon } from "../../../shared/svg/icon_like.svg";
 import { useParams } from "react-router-dom";
 
 const CollectionInformation = ({ collectionId, tabClicked }) => {

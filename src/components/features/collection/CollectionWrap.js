@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { resetVideoId } from "../../redux/modules/tempCollectionSlice";
+import { resetVideoId } from "../../../redux/modules/tempCollectionSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import CollectionInformation from "./CollectionInformation";
