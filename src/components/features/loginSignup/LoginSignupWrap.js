@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
-import { getCookie, removeCookie } from "../../shared/cookie";
+import { getCookie, removeCookie } from "../../../shared/cookie";
 
 const LoginSignupWrap = () => {
   const nav = useNavigate();
