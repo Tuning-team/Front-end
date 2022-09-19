@@ -1,7 +1,7 @@
 import React from "react";
-import Headers from "../common/Headers";
-import CommentForm from "../components/comment/CommentForm";
-import Navbar from "../common/Navbar";
+import Headers from "../components/common/Headers";
+import CommentForm from "../components/features/comment/CommentForm";
+import Navbar from "../components/common/Navbar";
 
 const CommentPage = () => {
   return (

@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   deleteList,
   getMyCollection,
-} from "../../redux/modules/collectionSlice";
-import icon_add from "../../svg/icon_add.svg";
+} from "../../../redux/modules/collectionSlice";
+import icon_add from "../../../shared/svg/icon_add.svg";
 
 const MyCollectionWrap = () => {
   const nav = useNavigate();

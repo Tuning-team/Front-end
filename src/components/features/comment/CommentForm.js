@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteComment, getComment, updateComment, addComment, } from "../../redux/modules/commentSlice";
+import {
+  deleteComment,
+  getComment,
+  updateComment,
+  addComment,
+} from "../../../redux/modules/commentSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 
@@ -56,7 +61,6 @@ const CommentList = ({ collectionId }) => {
   const onModify = () => {
     setModal("modify");
   };
-
 
   function saveCommentData(e) {
     setCommentData(e.target.value);
