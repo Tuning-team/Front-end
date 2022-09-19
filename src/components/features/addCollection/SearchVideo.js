@@ -1,5 +1,5 @@
 import React from "react";
-import Icon_search from "../../svg/Icon_search.svg";
+import Icon_search from "../../../shared/svg/Icon_search.svg";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";

@@ -7,8 +7,8 @@ import {
   postCollection,
 } from "../../../redux/modules/collectionSlice";
 import useInputs from "../../hooks/useInput";
-import icon_backspace_black from "../../svg/icon_backspace_black.svg";
-import icon_add from "../../svg/icon_add.svg";
+import icon_backspace_black from "../../../shared/svg/icon_backspace.svg";
+import icon_add from "../../../shared/svg/icon_add.svg";
 
 const AddCollectionForm = () => {
   const nav = useNavigate();
