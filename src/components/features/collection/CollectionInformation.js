@@ -39,11 +39,11 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
   //!카카오톡 공유하기
   const shareHandler = () => {
     shareKakao([
-      data?.thumbnails[0],
-      data?.thumbnails[1],
-      data?.thumbnails[2],
-      data?.collectionTitle,
-      data?.description,
+      data.thumbnails[0],
+      data.thumbnails[1],
+      data.thumbnails[2],
+      data.collectionTitle,
+      data.description,
       param.collection_id,
     ]);
   };

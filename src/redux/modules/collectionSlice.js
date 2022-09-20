@@ -46,6 +46,38 @@ export const getMyCollection = createAsyncThunk(
   }
 );
 
+export const postCollection = createAsyncThunk(
+  "post/collection",
+  async (data) => {
+    try {
+      const res = await instance.post("/collections", data);
+      console.log(data);
+      alert("컬렉션이 생성되었습니다.");
+      window.location.href = "/myCollection";
+      return res.data.success;
+    } catch (error) {
+      alert(error.response.data.message);
+      return error.message;
+    }
+  }
+);
+//!컬렉션수정
+export const editCollection = createAsyncThunk(
+  "edit/collection",
+  async ({ collection_id, data }) => {
+    try {
+      const res = await instance.put(`/collections/${collection_id}`, data);
+      console.log(data);
+      alert("컬렉션이 수정되었습니다.");
+      window.location.href = `/collection/${collection_id}`;
+      return res.data.success;
+    } catch (error) {
+      alert(error.response.data.message);
+      return error.message;
+    }
+  }
+);
+
 export const getCategory = createAsyncThunk("get/category", async (id) => {
   try {
     const res = await instance("/categories");
@@ -68,24 +100,6 @@ export const getCategoryCollection = createAsyncThunk(
   }
 );
 
-export const postCollection = createAsyncThunk(
-  "post/collection",
-  async (data) => {
-    try {
-      const res = await instance.post("/collections", data);
-      console.log(data);
-      alert("컬렉션이 생성되었습니다.");
-      window.location.href = "/myCollection";
-      return res.data.success;
-    } catch (error) {
-      console.log(data);
-      console.log(data.videos);
-      console.log(error);
-      alert(error.response.data.message);
-      return error.message;
-    }
-  }
-);
 export const getVideo = createAsyncThunk(
   "get/video",
   async ({ keyword, token, key }) => {

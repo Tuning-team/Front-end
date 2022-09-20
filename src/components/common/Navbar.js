@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../shared/cookie";
+import { useDispatch } from "react-redux";
 import CategoryModal from "./CategoryModal";
 import { ReactComponent as IconCategory } from "../../shared/svg/Icon_category.svg";
 import { ReactComponent as IconHome } from "../../shared/svg/Icon_home.svg";
 import { ReactComponent as IconCollection } from "../../shared/svg/Icon_collection.svg";
 import { ReactComponent as IconSearch } from "../../shared/svg/Icon_search.svg";
+import { getUserInfo } from "../../redux/modules/useSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
-
   const [isCategoryShown, setIsCategoryShown] = useState(false);
+
+  useEffect(() => {
+    if (
+      getCookie("token") !== null &&
+      localStorage.getItem("userInfo") === null
+    ) {
+      dispatch(getUserInfo());
+    }
+  }, []);
 
   return (
     <>

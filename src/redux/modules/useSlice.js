@@ -9,6 +9,7 @@ const initialState = {
 export const getUserInfo = createAsyncThunk("get/userInfo", async () => {
   try {
     const res = await instance.get("/user");
+    localStorage.setItem("userInfo", JSON.stringify(res.data.user));
     return res.data;
   } catch (error) {
     return error.response.data.errorMessage;
