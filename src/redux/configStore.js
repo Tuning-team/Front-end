@@ -4,6 +4,7 @@ import { collectionSlice } from "./modules/tempCollectionSlice";
 import { commentSlice } from "./modules/commentSlice";
 import { searchSlice } from "./modules/searchSlice";
 import { userSlice } from "./modules/userSlice";
+import { categorySlice } from "./modules/categorySlice";
 
 export default configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export default configureStore({
     commentSlice: commentSlice.reducer,
     searchSlice: searchSlice.reducer,
     userSlice: userSlice.reducer,
+    categorySlice: categorySlice.reducer,
   },
   devTools: process.env.NODE_ENV !== "development",
 });
