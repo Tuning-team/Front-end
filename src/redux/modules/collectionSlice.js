@@ -64,10 +64,10 @@ export const postCollection = createAsyncThunk(
 //!컬렉션수정
 export const editCollection = createAsyncThunk(
   "edit/collection",
-  async ({ collection_id, data }) => {
+  async ({ collection_id, addData }) => {
     try {
-      const res = await instance.put(`/collections/${collection_id}`, data);
-      console.log(data);
+      const res = await instance.put(`/collections/${collection_id}`, addData);
+      console.log(addData);
       alert("컬렉션이 수정되었습니다.");
       window.location.href = `/collection/${collection_id}`;
       return res.data.success;
@@ -126,10 +126,18 @@ export const myCollectionSlice = createSlice({
   initialState,
   reducers: {
     addVideoList(state, action) {
-      state.videoList.push(action.payload);
+      state.videoList.push(...action.payload);
     },
-    deleteList(state, action) {
+    deleteAll(state, action) {
       state.myCollection.dataList = [];
+    },
+    deleteVideo(state, action) {
+      if (action.payload === "all") {
+        state.videoList = [];
+      }
+      state.videoList = state.videoList.filter(
+        (video) => video.id !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {
@@ -212,4 +220,4 @@ export const myCollectionSlice = createSlice({
   },
 });
 
-export let { addVideoList, deleteList } = myCollectionSlice.actions;
+export let { addVideoList, deleteAll, deleteVideo } = myCollectionSlice.actions;

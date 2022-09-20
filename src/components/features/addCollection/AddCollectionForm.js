@@ -9,33 +9,38 @@ import {
 import useInputs from "../../hooks/useInput";
 import icon_backspace_black from "../../../shared/svg/icon_backspace.svg";
 import icon_add from "../../../shared/svg/icon_add.svg";
+import {
+  editCollection,
+  deleteVideo,
+} from "../../../redux/modules/collectionSlice";
 
-const AddCollectionForm = () => {
+const AddCollectionForm = ({ btn }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector(
     (state) => state.myCollectionSlice.category.data
   );
   const videoList = useSelector((state) => state.myCollectionSlice.videoList);
+
+  //!마운트, 언마운트시
   useEffect(() => {
     dispatch(getCategory());
+    return () => {
+      localStorage.removeItem("data");
+      dispatch(deleteVideo("all"));
+    };
   }, []);
 
-  const videos = videoList.map((x) => x.id);
+  //!useInput
+  const data = JSON.parse(localStorage.getItem("data"));
   const [{ collectionTitle, description, category_id }, onChange, reset] =
     useInputs({
-      collectionTitle: localStorage.getItem("title")
-        ? localStorage.getItem("title")
-        : "",
-      description: localStorage.getItem("description")
-        ? localStorage.getItem("description")
-        : "",
-      category_id: localStorage.getItem("category")
-        ? localStorage.getItem("category")
-        : "",
+      collectionTitle: data ? data[0] : "",
+      description: data ? data[1] : "",
+      category_id: data ? data[2] : "",
     });
-  const addData = { category_id, collectionTitle, description, videos };
 
+  //!컬렉션 추가
   const onClickHandler = (e) => {
     if (
       collectionTitle === "" ||
@@ -44,31 +49,35 @@ const AddCollectionForm = () => {
       category_id === "0"
     ) {
       alert("모두 입력해주세요");
-      return;
     } else {
-      dispatch(postCollection(addData));
-      localStorage.removeItem("title");
-      localStorage.removeItem("description");
-      localStorage.removeItem("category");
+      const collection_id = data[3];
+      const videos = videoList.map((x) => x.id);
+      const addData = { category_id, collectionTitle, description, videos };
+      btn === "추가하기"
+        ? dispatch(postCollection(addData))
+        : dispatch(editCollection({ collection_id, addData }));
     }
+  };
+
+  //!비디오 추가 페이지이동
+  const addVideoHandler = () => {
+    localStorage.setItem(
+      "data",
+      JSON.stringify([collectionTitle, description, category_id])
+    );
+    nav("/myCollection/add/search");
   };
 
   return (
     <AddCollectionWrap>
       <TitleBox>
         <Backspace
-          onClick={() => {
-            nav(-1);
-            localStorage.removeItem("title");
-            localStorage.removeItem("description");
-            localStorage.removeItem("description");
-            localStorage.removeItem("category");
-          }}
+          onClick={() => nav(-1)}
           src={icon_backspace_black}
         ></Backspace>
         <Title>컬렉션 만들기</Title>
 
-        <Btn onClick={onClickHandler}>확인</Btn>
+        <Btn onClick={onClickHandler}>{btn}</Btn>
       </TitleBox>
 
       <Form>
@@ -115,22 +124,18 @@ const AddCollectionForm = () => {
             영상추가<Required>*</Required>
           </Label>
           <AddVideoBox>
-            <StVideo
-              onClick={() => {
-                localStorage.setItem("title", collectionTitle);
-                localStorage.setItem("description", description);
-                localStorage.setItem("category", category_id);
-                nav("/myCollection/add/search");
-              }}
-            >
+            <StVideo onClick={addVideoHandler}>
               <Icon src={icon_add} />
             </StVideo>
             {videoList?.map((x, idx) => {
               return (
-                <VideoList key={idx}>
-                  <Span>- </Span>
-                  {x.title}
-                </VideoList>
+                <div key={idx}>
+                  <VideoList>
+                    <Span>- </Span>
+                    {x.title}
+                  </VideoList>
+                  <button onClick={() => dispatch(deleteVideo(x.id))}>X</button>
+                </div>
               );
             })}
           </AddVideoBox>
@@ -240,7 +245,7 @@ const Icon = styled.img`
 `;
 const VideoList = styled.div`
   margin-top: 1.5rem;
-  width: 21.438rem;
+  width: 17rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

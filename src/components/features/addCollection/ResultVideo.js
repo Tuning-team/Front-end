@@ -38,7 +38,8 @@ const ResultVideo = () => {
             <ResultBox
               key={idx}
               onClick={() => {
-                dispatch(addVideoList(x.video));
+                const video_id = [x.video];
+                dispatch(addVideoList(video_id));
                 nav(-1);
               }}
             >

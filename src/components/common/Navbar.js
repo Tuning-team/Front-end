@@ -7,7 +7,6 @@ import CategoryModal from "./CategoryModal";
 import { ReactComponent as IconCategory } from "../../shared/svg/Icon_category.svg";
 import { ReactComponent as IconHome } from "../../shared/svg/Icon_home.svg";
 import { ReactComponent as IconCollection } from "../../shared/svg/Icon_collection.svg";
-import { ReactComponent as IconSearch } from "../../shared/svg/Icon_search.svg";
 import { getUserInfo } from "../../redux/modules/useSlice";
 
 const Navbar = () => {

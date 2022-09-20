@@ -71,9 +71,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
 
   //!수정하기
   const onEditThisCollection = () => {
-    nav("/myCollection/edit", {
-      state: param.collection_id,
-    });
+    nav("/myCollection/edit");
   };
 
   return (
