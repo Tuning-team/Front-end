@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getUserInfo } from "../../../redux/modules/useSlice";
+import { getUserInfo } from "../../../redux/modules/userSlice";
 import {
   getCollection,
   deleteCollection,

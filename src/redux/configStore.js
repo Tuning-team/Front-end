@@ -3,7 +3,7 @@ import { myCollectionSlice } from "./modules/collectionSlice";
 import { collectionSlice } from "./modules/tempCollectionSlice";
 import { commentSlice } from "./modules/commentSlice";
 import { searchSlice } from "./modules/searchSlice";
-import { userSlice } from "./modules/useSlice";
+import { userSlice } from "./modules/userSlice";
 
 export default configureStore({
   reducer: {
