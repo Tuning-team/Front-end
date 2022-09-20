@@ -75,6 +75,14 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     }
   };
 
+  const onEditThisCollection = () => {
+    //! 페이지 이동
+    //!파람스로 아이디도 같이 전송
+    nav("/myCollection/edit", {
+      state: param.collection_id,
+    });
+  };
+
   return (
     <>
       <FloatingIcons setModal={setModal} tabClicked={tabClicked} />
@@ -120,6 +128,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
               공유하기
             </Btn>
             <Btn onClick={() => onDeleteThisCollection()}>삭제하기</Btn>
+            <Btn onClick={() => onEditThisCollection()}>수정하기</Btn>
           </ChooseBtn>
 
           <Close onClick={() => setModal(!modal)}>닫기</Close>

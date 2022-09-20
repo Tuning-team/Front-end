@@ -12,6 +12,7 @@ import CategoryPage from "../pages/CategoryPage";
 import GoogleLoginPage from "../pages/GoogleLoginPage";
 import WelcomePage from "../pages/WelcomePage";
 import ScrollTop from "./ScrollTop";
+import EditCollectionPage from "../pages/EditCollectionPage";
 
 function Router() {
   return (
@@ -32,6 +33,7 @@ function Router() {
         <Route path="/category/:collection_id" element={<CategoryPage />} />
         <Route path="/google_login/:token" element={<GoogleLoginPage />} />
         <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/myCollection/edit" element={<EditCollectionPage />} />
       </Routes>
     </BrowserRouter>
   );
