@@ -21,7 +21,7 @@ const AddCollectionForm = () => {
     dispatch(getCategory());
   }, []);
 
-  const videos = videoList.map((x) => x.videoId);
+  const videos = videoList.map((x) => x.id);
   const [{ collectionTitle, description, category_id }, onChange, reset] =
     useInputs({
       collectionTitle: localStorage.getItem("title")
@@ -142,7 +142,7 @@ const AddCollectionForm = () => {
 export default AddCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.3rem 1.3rem 1.3rem 1rem;
-  margin-bottom: 5rem;
+  margin-bottom: 7rem;
 `;
 
 const TitleBox = styled.div`

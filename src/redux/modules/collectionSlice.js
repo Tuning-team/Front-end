@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../shared/instance";
+import axios from "axios";
 
 const initialState = {
   myCollection: {
@@ -72,7 +73,7 @@ export const postCollection = createAsyncThunk(
       const res = await instance.post("/collections", data);
       console.log(data);
       alert("컬렉션이 생성되었습니다.");
-      window.location.href = "/mypage";
+      window.location.href = "/myCollection";
       return res.data.success;
     } catch (error) {
       console.log(data);
@@ -85,15 +86,9 @@ export const postCollection = createAsyncThunk(
 );
 export const getVideo = createAsyncThunk("get/video", async (data) => {
   try {
-    const res = await instance(`/search/videos/db?keyword=${data}`);
-    if (res.data.data.length === 0) {
-      const youtubeRes = await instance(
-        `/search/videos/youtube?keyword=${data}`
-      );
-      return youtubeRes.data.data;
-    } else {
-      return res.data.data;
-    }
+    const res = await axios(`http://3.34.136.55:8080/api/search?q=${data}`);
+    console.log(res);
+    return res.data.results;
   } catch (error) {
     return error.message;
   }

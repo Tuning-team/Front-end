@@ -1,8 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addVideoList } from "../../../redux/modules/collectionSlice";
 import Loading from "../../common/Loading";
 
@@ -15,7 +14,8 @@ const ResultVideo = () => {
   const loading = useSelector(
     (state) => state.myCollectionSlice.searchResult.loading
   );
-
+  // const resultList = data.video;
+  console.log(data);
   return (
     <ResultWrap>
       {loading ? (
@@ -28,11 +28,11 @@ const ResultVideo = () => {
             <ResultBox
               key={idx}
               onClick={() => {
-                dispatch(addVideoList(x));
+                dispatch(addVideoList(x.video));
                 nav(-1);
               }}
             >
-              {x.title}
+              {x.video?.title}
             </ResultBox>
           );
         })
@@ -45,6 +45,7 @@ const ResultWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 5rem;
 `;
 
 const ResultBox = styled.div`
