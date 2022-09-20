@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addVideoList } from "../../../redux/modules/collectionSlice";
 import Loading from "../../common/Loading";
+import SeeMore from "./SeeMore";
+import { getVideo } from "../../../redux/modules/collectionSlice";
 
 const ResultVideo = () => {
   const nav = useNavigate();
@@ -14,8 +16,16 @@ const ResultVideo = () => {
   const loading = useSelector(
     (state) => state.myCollectionSlice.searchResult.loading
   );
-  // const resultList = data.video;
-  console.log(data);
+  const token = useSelector(
+    (state) => state.myCollectionSlice.searchResult.nextPageToken
+  );
+  const key = useSelector((state) => state.myCollectionSlice.searchResult.key);
+
+  const seeMore = () => {
+    const keyword = localStorage.getItem("keyword");
+    dispatch(getVideo({ keyword, token, key }));
+  };
+
   return (
     <ResultWrap>
       {loading ? (
@@ -37,6 +47,9 @@ const ResultVideo = () => {
           );
         })
       )}
+      {/* //todo 더보기 버튼 다음페이지가 없을때 안보이게 //todo 기존데이터 쌓이게?
+      사라지게? 정하기 */}
+      {data.length === 0 ? "" : <div onClick={seeMore}>더보기</div>}
     </ResultWrap>
   );
 };

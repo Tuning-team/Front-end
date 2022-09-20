@@ -18,7 +18,10 @@ const SearchVideo = () => {
       alert("검색어를 입력해주세요");
       return;
     }
-    dispatch(getVideo(keyword));
+    const token = null;
+    const key = null;
+    dispatch(getVideo({ keyword, token, key }));
+    localStorage.setItem("keyword", keyword);
     reset();
   };
 

@@ -22,6 +22,8 @@ const initialState = {
   searchResult: {
     loading: false,
     data: [],
+    nextPageToken: "",
+    key: "",
     error: "",
   },
   videoList: [],
@@ -84,15 +86,26 @@ export const postCollection = createAsyncThunk(
     }
   }
 );
-export const getVideo = createAsyncThunk("get/video", async (data) => {
-  try {
-    const res = await axios(`http://3.34.136.55:8080/api/search?q=${data}`);
-    console.log(res);
-    return res.data.results;
-  } catch (error) {
-    return error.message;
+export const getVideo = createAsyncThunk(
+  "get/video",
+  async ({ keyword, token, key }) => {
+    try {
+      if (!token) {
+        const res = await axios(
+          `http://3.34.136.55:8080/api/search?q=${keyword}`
+        );
+        return res.data;
+      } else {
+        const res = await axios(
+          `http://3.34.136.55:8080/api/search?q=${keyword}&key=${key}&pageToken=${token}`
+        );
+        return res.data;
+      }
+    } catch (error) {
+      return error.message;
+    }
   }
-});
+);
 
 export const myCollectionSlice = createSlice({
   name: "myCollection",
@@ -158,7 +171,9 @@ export const myCollectionSlice = createSlice({
     });
     builder.addCase(getVideo.fulfilled, (state, action) => {
       state.searchResult.loading = false;
-      state.searchResult.data = action.payload;
+      state.searchResult.data = action.payload.results;
+      state.searchResult.key = action.payload.key;
+      state.searchResult.nextPageToken = action.payload.nextPageToken;
       state.searchResult.error = "";
     });
     builder.addCase(getVideo.rejected, (state, action) => {
