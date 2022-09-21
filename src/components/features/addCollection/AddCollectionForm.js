@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getCategory,
-  postCollection,
-} from "../../../redux/modules/collectionSlice";
+import { postCollection } from "../../../redux/modules/collectionSlice";
+import { getCategory } from "../../../redux/modules/categorySlice";
 import useInputs from "../../hooks/useInput";
 import icon_backspace_black from "../../../shared/svg/icon_backspace.svg";
 import icon_add from "../../../shared/svg/icon_add.svg";
@@ -17,9 +15,7 @@ import {
 const AddCollectionForm = ({ btn }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const categories = useSelector(
-    (state) => state.myCollectionSlice.category.data
-  );
+  const categories = useSelector((state) => state.categorySlice.category.data);
   const videoList = useSelector((state) => state.myCollectionSlice.videoList);
 
   //!마운트, 언마운트시

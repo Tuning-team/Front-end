@@ -22,7 +22,6 @@ export default CarouselItem;
 
 const DivCard = styled.div`
   max-width: ${(props) => props.maxwidth || "320px"};
-
   &:hover {
     cursor: pointer;
   }

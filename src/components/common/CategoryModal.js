@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategory } from "../../redux/modules/collectionSlice";
+import { getCategory } from "../../redux/modules/categorySlice";
 import styled from "styled-components";
 import { css, keyframes } from "styled-components";
 import icon_close from "../../shared/svg/icon_close.svg";
@@ -9,9 +9,7 @@ import icon_close from "../../shared/svg/icon_close.svg";
 const CategoryModal = ({ setIsCategoryShown }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const categories = useSelector(
-    (state) => state.myCollectionSlice.category.data
-  );
+  const categories = useSelector((state) => state.categorySlice.category.data);
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(getCategory());

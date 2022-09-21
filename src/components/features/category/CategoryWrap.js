@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryCollection } from "../../../redux/modules/collectionSlice";
+import { getCategoryCollection } from "../../../redux/modules/categorySlice";
 import CollectionList from "../../common/CollectionList";
 import icon_backspace_black from "../../../shared/svg/icon_backspace_black.svg";
 
@@ -12,11 +12,9 @@ const CategoryWrap = () => {
   const dispatch = useDispatch();
 
   const data = useSelector(
-    (state) => state.myCollectionSlice.categoryCollection.data
+    (state) => state.categorySlice.categoryCollection.data
   );
-  const categories = useSelector(
-    (state) => state.myCollectionSlice.category.data
-  );
+  const categories = useSelector((state) => state.categorySlice.category.data);
   useEffect(() => {
     dispatch(getCategoryCollection(param.collection_id));
   }, [param.collection_id]);
