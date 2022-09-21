@@ -43,27 +43,27 @@ export const getMyCollection = createAsyncThunk(
   }
 );
 
-export const getCategory = createAsyncThunk("get/category", async (id) => {
-  try {
-    const res = await instance("/categories");
-    return res.data.data;
-  } catch (error) {
-    return error.message;
-  }
-});
-export const getCategoryCollection = createAsyncThunk(
-  "get/categoryCollection",
-  async (id) => {
-    try {
-      const res = await instance(
-        `/collections?category_id=${id}&offset=0&limit=20`
-      );
-      return res.data.data;
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
+// export const getCategory = createAsyncThunk("get/category", async (id) => {
+//   try {
+//     const res = await instance("/categories");
+//     return res.data.data;
+//   } catch (error) {
+//     return error.message;
+//   }
+// });
+// export const getCategoryCollection = createAsyncThunk(
+//   "get/categoryCollection",
+//   async (id) => {
+//     try {
+//       const res = await instance(
+//         `/collections?category_id=${id}&offset=0&limit=20`
+//       );
+//       return res.data.data;
+//     } catch (error) {
+//       return error.message;
+//     }
+//   }
+// );
 
 export const postCollection = createAsyncThunk(
   "post/collection",
@@ -129,20 +129,20 @@ export const myCollectionSlice = createSlice({
       state.myCollection.data = [];
       state.myCollection.error = action.error.message;
     });
-    //!getCategory
-    builder.addCase(getCategory.pending, (state) => {
-      state.category.loading = true;
-    });
-    builder.addCase(getCategory.fulfilled, (state, action) => {
-      state.category.loading = false;
-      state.category.data = action.payload;
-      state.category.error = "";
-    });
-    builder.addCase(getCategory.rejected, (state, action) => {
-      state.category.loading = false;
-      state.category.data = "";
-      state.category.error = action.error.message;
-    });
+    // //!getCategory
+    // builder.addCase(getCategory.pending, (state) => {
+    //   state.category.loading = true;
+    // });
+    // builder.addCase(getCategory.fulfilled, (state, action) => {
+    //   state.category.loading = false;
+    //   state.category.data = action.payload;
+    //   state.category.error = "";
+    // });
+    // builder.addCase(getCategory.rejected, (state, action) => {
+    //   state.category.loading = false;
+    //   state.category.data = "";
+    //   state.category.error = action.error.message;
+    // });
     //!postCollection
     builder.addCase(postCollection.pending, (state) => {
       state.newCollection.loading = true;
@@ -171,20 +171,20 @@ export const myCollectionSlice = createSlice({
       state.searchResult.success = "";
       state.searchResult.error = action.error.message;
     });
-    //!getCategoryCollection
-    builder.addCase(getCategoryCollection.pending, (state) => {
-      state.categoryCollection.loading = true;
-    });
-    builder.addCase(getCategoryCollection.fulfilled, (state, action) => {
-      state.categoryCollection.loading = false;
-      state.categoryCollection.data = action.payload;
-      state.categoryCollection.error = "";
-    });
-    builder.addCase(getCategoryCollection.rejected, (state, action) => {
-      state.categoryCollection.loading = false;
-      state.categoryCollection.success = "";
-      state.categoryCollection.error = action.error.message;
-    });
+    // //!getCategoryCollection
+    // builder.addCase(getCategoryCollection.pending, (state) => {
+    //   state.categoryCollection.loading = true;
+    // });
+    // builder.addCase(getCategoryCollection.fulfilled, (state, action) => {
+    //   state.categoryCollection.loading = false;
+    //   state.categoryCollection.data = action.payload;
+    //   state.categoryCollection.error = "";
+    // });
+    // builder.addCase(getCategoryCollection.rejected, (state, action) => {
+    //   state.categoryCollection.loading = false;
+    //   state.categoryCollection.success = "";
+    //   state.categoryCollection.error = action.error.message;
+    // });
   },
 });
 

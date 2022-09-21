@@ -1,20 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-const Modal = ({ children }) => {
-  // if (!show) {
-  //   return null;
-  // }
+const Modal = ({ children, setModal, modal }) => {
+  const closeModal = () => {
+    setModal((prev) => !prev);
+  };
+
+  if (!modal) {
+    return null;
+  }
   return (
-    <ModalBackground>
-      <ModalContainer>
-        <CloseModalButton>&times;</CloseModalButton>
-        {children}
+    <ModalBackground onClick={closeModal}>
+      <ModalContainer onClick={(e) => e.stopPropagation()}>
+        <CloseModalButton onClick={closeModal}>&times;</CloseModalButton>
+        <ModalDesc>{children}</ModalDesc>
       </ModalContainer>
     </ModalBackground>
   );
 };
 export default Modal;
+
 const ModalBackground = styled.div`
   position: fixed;
   top: 0;
@@ -25,22 +30,33 @@ const ModalBackground = styled.div`
   text-align: center;
 
   background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
 `;
 const ModalContainer = styled.div`
   position: relative;
-  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
   padding: 1rem;
   background-color: white;
   border-radius: 6px;
   user-select: none;
+  max-width: calc(100% - 5rem);
 `;
 
 const CloseModalButton = styled.div`
   position: absolute;
   right: 10px;
   top: 6px;
+  display: inline-block;
   background: transparent;
   border: none;
   font-size: 30px;
   cursor: pointer;
+`;
+
+const ModalDesc = styled.div`
+  display: block;
+  margin: 2rem auto;
 `;

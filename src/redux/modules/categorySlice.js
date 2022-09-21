@@ -12,6 +12,11 @@ const initialState = {
     data: [],
     error: "",
   },
+  mainCategoryCollection: {
+    loading: false,
+    data: [],
+    error: "",
+  },
 };
 
 export const getCategory = createAsyncThunk("get/category", async (id) => {
@@ -30,6 +35,22 @@ export const getCategoryCollection = createAsyncThunk(
       const res = await instance(
         `/collections?category_id=${id}&offset=0&limit=20`
       );
+      return res.data.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+export const getMainCategoryCollection = createAsyncThunk(
+  "get/mainCategoryCollection",
+  async (id) => {
+    // console.log(id);
+    try {
+      const res = await instance(
+        `/collections?category_id=${id}&offset=0&limit=10`
+      );
+      // console.log(res.data);
       return res.data.data;
     } catch (error) {
       return error.message;
@@ -69,6 +90,23 @@ export const categorySlice = createSlice({
       state.categoryCollection.loading = false;
       state.categoryCollection.success = "";
       state.categoryCollection.error = action.error.message;
+    });
+    //!getMainCategoryCollection
+    builder.addCase(getMainCategoryCollection.pending, (state) => {
+      state.mainCategoryCollection.loading = true;
+    });
+    builder.addCase(getMainCategoryCollection.fulfilled, (state, action) => {
+      state.mainCategoryCollection.loading = false;
+      state.mainCategoryCollection.data = [
+        ...state.mainCategoryCollection.data,
+        ...action.payload,
+      ];
+      state.mainCategoryCollection.error = "";
+    });
+    builder.addCase(getMainCategoryCollection.rejected, (state, action) => {
+      state.mainCategoryCollection.loading = false;
+      state.mainCategoryCollection.success = "";
+      state.mainCategoryCollection.error = action.error.message;
     });
   },
 });
