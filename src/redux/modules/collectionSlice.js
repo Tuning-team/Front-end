@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../shared/instance";
+import axios from "axios";
 
 const initialState = {
   myCollection: {
@@ -21,6 +22,8 @@ const initialState = {
   searchResult: {
     loading: false,
     data: [],
+    nextPageToken: "",
+    key: "",
     error: "",
   },
   videoList: [],
@@ -43,28 +46,6 @@ export const getMyCollection = createAsyncThunk(
   }
 );
 
-// export const getCategory = createAsyncThunk("get/category", async (id) => {
-//   try {
-//     const res = await instance("/categories");
-//     return res.data.data;
-//   } catch (error) {
-//     return error.message;
-//   }
-// });
-// export const getCategoryCollection = createAsyncThunk(
-//   "get/categoryCollection",
-//   async (id) => {
-//     try {
-//       const res = await instance(
-//         `/collections?category_id=${id}&offset=0&limit=20`
-//       );
-//       return res.data.data;
-//     } catch (error) {
-//       return error.message;
-//     }
-//   }
-// );
-
 export const postCollection = createAsyncThunk(
   "post/collection",
   async (data) => {
@@ -72,42 +53,91 @@ export const postCollection = createAsyncThunk(
       const res = await instance.post("/collections", data);
       console.log(data);
       alert("컬렉션이 생성되었습니다.");
-      window.location.href = "/mypage";
+      window.location.href = "/myCollection";
       return res.data.success;
     } catch (error) {
-      console.log(data);
-      console.log(data.videos);
-      console.log(error);
       alert(error.response.data.message);
       return error.message;
     }
   }
 );
-export const getVideo = createAsyncThunk("get/video", async (data) => {
-  try {
-    const res = await instance(`/search/videos/db?keyword=${data}`);
-    if (res.data.data.length === 0) {
-      const youtubeRes = await instance(
-        `/search/videos/youtube?keyword=${data}`
-      );
-      return youtubeRes.data.data;
-    } else {
-      return res.data.data;
+//!컬렉션수정
+export const editCollection = createAsyncThunk(
+  "edit/collection",
+  async ({ collection_id, addData }) => {
+    try {
+      const res = await instance.put(`/collections/${collection_id}`, addData);
+      console.log(addData);
+      alert("컬렉션이 수정되었습니다.");
+      window.location.href = `/collection/${collection_id}`;
+      return res.data.success;
+    } catch (error) {
+      alert(error.response.data.message);
+      return error.message;
     }
+  }
+);
+
+export const getCategory = createAsyncThunk("get/category", async (id) => {
+  try {
+    const res = await instance("/categories");
+    return res.data.data;
   } catch (error) {
     return error.message;
   }
 });
+export const getCategoryCollection = createAsyncThunk(
+  "get/categoryCollection",
+  async (id) => {
+    try {
+      const res = await instance(
+        `/collections?category_id=${id}&offset=0&limit=20`
+      );
+      return res.data.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+
+export const getVideo = createAsyncThunk(
+  "get/video",
+  async ({ keyword, token, key }) => {
+    try {
+      if (!token) {
+        const res = await axios(
+          `http://3.34.136.55:8080/api/search?q=${keyword}`
+        );
+        return res.data;
+      } else {
+        const res = await axios(
+          `http://3.34.136.55:8080/api/search?q=${keyword}&key=${key}&pageToken=${token}`
+        );
+        return res.data;
+      }
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
 
 export const myCollectionSlice = createSlice({
   name: "myCollection",
   initialState,
   reducers: {
     addVideoList(state, action) {
-      state.videoList.push(action.payload);
+      state.videoList.push(...action.payload);
     },
-    deleteList(state, action) {
+    deleteAll(state, action) {
       state.myCollection.dataList = [];
+    },
+    deleteVideo(state, action) {
+      if (action.payload === "all") {
+        state.videoList = [];
+      }
+      state.videoList = state.videoList.filter(
+        (video) => video.id !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {
@@ -163,7 +193,9 @@ export const myCollectionSlice = createSlice({
     });
     builder.addCase(getVideo.fulfilled, (state, action) => {
       state.searchResult.loading = false;
-      state.searchResult.data = action.payload;
+      state.searchResult.data = action.payload.results;
+      state.searchResult.key = action.payload.key;
+      state.searchResult.nextPageToken = action.payload.nextPageToken;
       state.searchResult.error = "";
     });
     builder.addCase(getVideo.rejected, (state, action) => {
@@ -188,4 +220,4 @@ export const myCollectionSlice = createSlice({
   },
 });
 
-export let { addVideoList, deleteList } = myCollectionSlice.actions;
+export let { addVideoList, deleteAll, deleteVideo } = myCollectionSlice.actions;

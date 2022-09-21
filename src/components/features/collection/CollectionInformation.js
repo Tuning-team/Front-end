@@ -15,6 +15,7 @@ import Button from "../../common/elements/Button";
 import More from "../../common/More";
 import { ReactComponent as LikesIcon } from "../../../shared/svg/icon_like.svg";
 import { useParams } from "react-router-dom";
+import shareKakao from "../../../shared/shareKakao";
 
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
@@ -36,22 +37,15 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
   }, [isLiked, collectionId]);
 
   //!카카오톡 공유하기
-  const shareKakao = () => {
-    if (!window.Kakao.isInitialized()) {
-      window.Kakao.init("619cfb7c202434b27d1c685581b2544f");
-    }
-    window.Kakao.Link.sendCustom({
-      templateId: 82977,
-      // 내가 만든 템플릿 아이디를 넣어주면 된다
-      templateArgs: {
-        THU: data?.thumbnails[0],
-        THU2: data?.thumbnails[1],
-        THU3: data?.thumbnails[2],
-        title: data?.collectionTitle,
-        description: data?.description,
-        param: param.collection_id,
-      },
-    });
+  const shareHandler = () => {
+    shareKakao([
+      data.thumbnails[0],
+      data.thumbnails[1],
+      data.thumbnails[2],
+      data.collectionTitle,
+      data.description,
+      param.collection_id,
+    ]);
   };
 
   const onClickLikeBtn = () => {
@@ -73,6 +67,11 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     } else {
       alert("삭제 권한이 없는 유저입니다.");
     }
+  };
+
+  //!수정하기
+  const onEditThisCollection = () => {
+    nav("/myCollection/edit");
   };
 
   return (
@@ -115,11 +114,12 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
           <ChooseBtn>
             <Btn
               style={{ borderBottom: "1px solid #efefef" }}
-              onClick={shareKakao}
+              onClick={shareHandler}
             >
               공유하기
             </Btn>
             <Btn onClick={() => onDeleteThisCollection()}>삭제하기</Btn>
+            <Btn onClick={() => onEditThisCollection()}>수정하기</Btn>
           </ChooseBtn>
 
           <Close onClick={() => setModal(!modal)}>닫기</Close>
