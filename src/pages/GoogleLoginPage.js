@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { setCookie } from "../shared/cookie";
 
 const GoogleLogin = () => {
   const param = useParams();
-  const nav = useNavigate();
 
   useEffect(() => {
     const expires = new Date();
@@ -14,7 +13,6 @@ const GoogleLogin = () => {
       expires,
     });
     window.location.replace("/");
-    nav("/");
   }, []);
 };
 export default GoogleLogin;

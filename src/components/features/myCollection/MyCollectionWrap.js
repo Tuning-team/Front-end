@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CollectionList from "../../common/CollectionList";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteList,
+  deleteAll,
   getMyCollection,
 } from "../../../redux/modules/collectionSlice";
 import icon_add from "../../../shared/svg/icon_add.svg";
@@ -18,7 +18,7 @@ const MyCollectionWrap = () => {
   );
   useEffect(() => {
     if (count === 0) {
-      dispatch(deleteList());
+      dispatch(deleteAll());
     }
     dispatch(getMyCollection(count));
   }, [count]);
