@@ -13,6 +13,7 @@ import GoogleLoginPage from "../pages/GoogleLoginPage";
 import WelcomePage from "../pages/WelcomePage";
 import ScrollTop from "./ScrollTop";
 import EditCollectionPage from "../pages/EditCollectionPage";
+import MyPage from "../pages/MyPage";
 
 function Router() {
   return (
@@ -20,7 +21,8 @@ function Router() {
       <ScrollTop />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/myPage" element={<LoginSignupPage />} />
+        <Route path="/myPage" element={<MyPage />} />
+        <Route path="/login" element={<LoginSignupPage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/myCollection" element={<MyCollectionPage />} />
         <Route path="/myCollection/add" element={<AddCollectionPage />} />

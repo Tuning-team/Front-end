@@ -9,6 +9,11 @@ const initialState = {
     data: [],
     error: "",
   },
+  userInterested: {
+    loading: false,
+    data: [],
+    error: "",
+  },
 };
 
 export const getUserInfo = createAsyncThunk("get/userInfo", async () => {
@@ -56,6 +61,18 @@ export const deleteUserInterest = createAsyncThunk(
     }
   }
 );
+//!내가 담은 컬렉션확인 (no.30)
+export const getUserInterested = createAsyncThunk(
+  "get/userInterested",
+  async (id) => {
+    try {
+      const res = await instance(`/user/keep`);
+      return res.data.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "userInfo",
@@ -79,6 +96,16 @@ export const userSlice = createSlice({
     builder.addCase(deleteUserInterest.fulfilled, (state, action) => {
       console.log(action.payload);
       state.userInterest.data = action.payload;
+    });
+    builder.addCase(getUserInterested.pending, (state, action) => {
+      state.userInterested.loading = true;
+    });
+    builder.addCase(getUserInterested.fulfilled, (state, action) => {
+      state.userInterested.loading = false;
+      state.userInterested.data = action.payload;
+    });
+    builder.addCase(getUserInterested.rejected, (state, action) => {
+      state.userInterested.error = action.payload;
     });
   },
 });

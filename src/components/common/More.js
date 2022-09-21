@@ -8,7 +8,7 @@ export default More;
 const Modal = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   border: 1px black;
-  position: absolute;
+  position: fixed;
   top: -10%;
   left: 0%;
   width: 100%;

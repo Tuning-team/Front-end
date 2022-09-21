@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editCollection } from "../../../redux/modules/collectionSlice";
 import AddCollectionForm from "../addCollection/AddCollectionForm";
-import { addVideoList } from "../../../redux/modules/collectionSlice";
+import {
+  addVideoList,
+  rememberData,
+} from "../../../redux/modules/collectionSlice";
 import { useNavigate } from "react-router-dom";
 
 const EditCollectionWrap = () => {
@@ -15,7 +18,7 @@ const EditCollectionWrap = () => {
   const add = useSelector((state) => state.myCollectionSlice.videoList);
   //!키값 변경로직
   const test = videoList.map((list) => {
-    return { id: list._id, title: list.videoTitle };
+    return { id: list.videoId, title: list.videoTitle };
   });
 
   useEffect(() => {
@@ -33,13 +36,15 @@ const EditCollectionWrap = () => {
     }
   }, []);
 
-  console.log(videoList);
-
   //!수정된 데이터 전송
 
   return (
     <>
-      <AddCollectionForm btn="수정하기" />
+      <AddCollectionForm
+        btn="수정하기"
+        id={data._id}
+        title={data.collectionTitle}
+      />
     </>
   );
 };
