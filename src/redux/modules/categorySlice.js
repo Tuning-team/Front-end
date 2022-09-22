@@ -12,9 +12,15 @@ const initialState = {
     data: [],
     error: "",
   },
-  mainCategoryCollection: {
+  mainCategories: {
     loading: false,
     data: [],
+    error: "",
+  },
+  categoryCollectionForMain: {
+    isLoading: false,
+    data: [],
+    dataList: [],
     error: "",
   },
 };
@@ -42,16 +48,39 @@ export const getCategoryCollection = createAsyncThunk(
   }
 );
 
-export const getMainCategoryCollection = createAsyncThunk(
-  "get/mainCategoryCollection",
-  async (id) => {
-    // console.log(id);
+export const getMainCategories = createAsyncThunk(
+  "get/mainCategories",
+  async (ids) => {
     try {
-      const res = await instance(
-        `/collections?category_id=${id}&offset=0&limit=10`
-      );
-      // console.log(res.data);
+      const res = await instance.post(`/collections/recommendation`, ids);
       return res.data.data;
+    } catch (error) {
+      console.log(error);
+      return error.message;
+    }
+  }
+);
+
+export const getCategoryCollectionForMain = createAsyncThunk(
+  "get/categoryCollectionForMain",
+  async (categoryId) => {
+    try {
+      const res = await instance.get(
+        `/collections?category_id=${categoryId}&offset=0&limit=10`
+      );
+      if (categoryId === "631e7d7a4ae4c133c405a966") {
+        const res1 = res.data;
+        return { resName: "resOfRecommend", resArr: res1.data };
+      } else if (categoryId === "6319aeebd1e330e86bbade9f") {
+        const res2 = res.data;
+        return { resName: "resOfFamous", resArr: res2.data };
+      } else if (categoryId === "631e7d7a4ae4c133c405a964") {
+        const res3 = res.data;
+        return { resName: "resOfRecent", resArr: res3.data };
+      } else if (categoryId === "631e7d7a4ae4c133c405a965") {
+        const res4 = res.data;
+        return { resName: "resOfWeather", resArr: res4.data };
+      }
     } catch (error) {
       return error.message;
     }
@@ -91,22 +120,31 @@ export const categorySlice = createSlice({
       state.categoryCollection.success = "";
       state.categoryCollection.error = action.error.message;
     });
-    //!getMainCategoryCollection
-    builder.addCase(getMainCategoryCollection.pending, (state) => {
-      state.mainCategoryCollection.loading = true;
+    // !getMainCategory
+    builder.addCase(getMainCategories.pending, (state, action) => {
+      state.mainCategories.loading = true;
     });
-    builder.addCase(getMainCategoryCollection.fulfilled, (state, action) => {
-      state.mainCategoryCollection.loading = false;
-      state.mainCategoryCollection.data = [
-        ...state.mainCategoryCollection.data,
-        ...action.payload,
+    builder.addCase(getMainCategories.fulfilled, (state, action) => {
+      state.mainCategories.loading = false;
+      state.mainCategories.data = action.payload;
+    });
+    builder.addCase(getMainCategories.rejected, (state, action) => {
+      state.mainCategories.loading = false;
+    });
+    builder.addCase(getCategoryCollectionForMain.pending, (state, action) => {
+      state.categoryCollectionForMain.isLoading = true;
+    });
+    // !임시
+    builder.addCase(getCategoryCollectionForMain.fulfilled, (state, action) => {
+      state.categoryCollectionForMain.isLoading = false;
+      state.categoryCollectionForMain.dataList = [
+        ...state.categoryCollectionForMain.dataList,
+        action.payload,
       ];
-      state.mainCategoryCollection.error = "";
     });
-    builder.addCase(getMainCategoryCollection.rejected, (state, action) => {
-      state.mainCategoryCollection.loading = false;
-      state.mainCategoryCollection.success = "";
-      state.mainCategoryCollection.error = action.error.message;
+    builder.addCase(getCategoryCollectionForMain.rejected, (state, action) => {
+      state.categoryCollectionForMain.isLoading = false;
+      state.categoryCollectionForMain.error = action.error.message;
     });
   },
 });

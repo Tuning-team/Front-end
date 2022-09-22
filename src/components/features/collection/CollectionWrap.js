@@ -27,7 +27,7 @@ const CollectionWrap = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <CollectionInformation
         collectionId={param.collection_id}
         tabClicked={tabClicked}
@@ -45,14 +45,11 @@ const CollectionWrap = () => {
       ) : (
         <CommentForm collectionId={param.collection_id} />
       )}
-    </Layout>
+    </>
   );
 };
 export default CollectionWrap;
 
-const Layout = styled.div`
-  padding-bottom: 4.5rem;
-`;
 const TabMenu = styled.div`
   display: flex;
   position: relative;

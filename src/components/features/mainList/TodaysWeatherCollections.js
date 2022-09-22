@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { getCategoryCollectionForMain } from "../../../redux/modules/tempCollectionSlice";
+import { getCategoryCollectionForMain } from "../../../redux/modules/categorySlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,7 +9,7 @@ const TodaysWeatherCollections = ({ categoryId }) => {
   const dispatch = useDispatch();
 
   const categoryData = useSelector(
-    (state) => state.collectionSlice.categoryCollectionForMain.dataList
+    (state) => state.categorySlice.categoryCollectionForMain.dataList
   );
 
   const finalData = categoryData.filter((x) => x.resName === "resOfWeather");
