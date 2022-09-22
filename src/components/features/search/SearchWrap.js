@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getList } from "../../../redux/modules/searchSlice";
+import Loading from "../../common/Loading";
 import CollectionList from "../../common/CollectionList";
 import Icon_search from "../../../shared/svg/Icon_search.svg";
 
@@ -10,7 +11,11 @@ const SearchWrap = () => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const nav = useNavigate();
-  const searchList = useSelector((state) => state.searchSlice.data);
+  const searchList = useSelector(
+    (state) => state.searchSlice.data);
+  const loading = useSelector(
+    (state) => state.searchSlice.loading);
+
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
   };
@@ -27,7 +32,7 @@ const SearchWrap = () => {
   );
 
   return (
-    <>
+    <div>
       {/* //!검색창 */}
       <form
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
@@ -40,16 +45,30 @@ const SearchWrap = () => {
       </form>
 
       {/* //!결과부분 */}
-      {/* <div>
-        <h1>
-          {search === "" ? (
-            <StText>검색어를 입력해주세요</StText>
-          ) : (
-            <CollectionList state={searchResult} />
-          )}
-        </h1>
-      </div> */}
-    </>
+      <div>
+        {loading ? (
+          <Loading />
+        ) : search === 0 ? (
+          <StText>검색 결과가 없습니다.</StText>
+        ) : (
+          <CollectionList state={searchResult} />
+        )
+        }
+      </div>
+    </div >
+
+
+    //   //!결과부분
+    //   <div>
+    //     <h1>
+    //       {search === "" ? (
+    //         <StText>검색어를 입력해주세요</StText>
+    //       ) : (
+    //         <CollectionList state={searchResult} />
+    //       )}
+    //     </h1>
+    //   </div>
+    // </div >
   );
 };
 
