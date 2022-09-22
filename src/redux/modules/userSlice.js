@@ -14,6 +14,12 @@ const initialState = {
     data: [],
     error: "",
   },
+  userNum: {
+    loading: false,
+    likes: "",
+    comments: "",
+    error: "",
+  },
 };
 
 export const getUserInfo = createAsyncThunk("get/userInfo", async () => {
@@ -77,6 +83,15 @@ export const getUserInterested = createAsyncThunk(
     }
   }
 );
+//!좋아요, 댓글 갯수(no.30)
+export const getUserNum = createAsyncThunk("get/userNum", async () => {
+  try {
+    const res = await instance(`/collections/mine?offset=0&limit=500`);
+    return res.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export const userSlice = createSlice({
   name: "userInfo",
@@ -110,6 +125,25 @@ export const userSlice = createSlice({
     });
     builder.addCase(getUserInterested.rejected, (state, action) => {
       state.userInterested.error = action.payload;
+    });
+    //!좋아요
+    builder.addCase(getUserNum.pending, (state, action) => {
+      state.userNum.loading = true;
+    });
+    builder.addCase(getUserNum.fulfilled, (state, action) => {
+      state.userNum.loading = false;
+      if (action.payload === []) {
+        state.userNum.likes = 0;
+        state.userNum.comments = 0;
+      } else {
+        const array1 = action.payload.map((x) => x.likes);
+        state.userNum.likes = array1.reduce((a, b) => a + b);
+        const array2 = action.payload.map((x) => x.commentNum);
+        state.userNum.comments = array2.reduce((a, b) => a + b);
+      }
+    });
+    builder.addCase(getUserNum.rejected, (state, action) => {
+      state.userNum.error = action.payload;
     });
   },
 });

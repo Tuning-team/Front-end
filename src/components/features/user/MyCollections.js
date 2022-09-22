@@ -1,30 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
-import Carousel from "../../common/Carousel";
-import CarouselItem from "../../common/CarouselItem";
+import MyVideo from "./MyVideo";
 import icon_like from "../../../shared/svg/icon_like.svg";
 import icon_comment from "../../../shared/svg/icon_comment.svg";
-import {
-  deleteAll,
-  getMyCollection,
-} from "../../../redux/modules/collectionSlice";
 
-const MyCollections = () => {
+const MyCollections = ({ state, setCount }) => {
   const nav = useNavigate();
-  const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
-  const data = useSelector(
-    (state) => state.myCollectionSlice.myCollection.dataList
-  );
-  useEffect(() => {
-    if (count === 0) {
-      dispatch(deleteAll());
-    }
-    dispatch(getMyCollection(count));
-  }, [count]);
+
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {
@@ -44,17 +28,14 @@ const MyCollections = () => {
   return (
     <>
       <ListWrap>
-        {data?.map((data, idx) => {
+        {state?.map((data, idx) => {
           return (
             <Collection key={idx}>
               <div onClick={() => nav(`/collection/${data._id}`)}>
-                <Carousel>
-                  {data.thumbnails?.map((src, i) => {
-                    return (
-                      <CarouselItem key={data._id} src={src}></CarouselItem>
-                    );
-                  })}
-                </Carousel>
+                <MyVideo
+                  src={data.thumbnails[0]}
+                  videoNum={data.thumbnails.length}
+                />
               </div>
               <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
                 <div>
@@ -85,7 +66,9 @@ const MyCollections = () => {
 };
 export default MyCollections;
 
-const Collection = styled.section``;
+const Collection = styled.section`
+  display: flex;
+`;
 
 const ListWrap = styled.div``;
 const CollectionTitle = styled.h3`

@@ -17,12 +17,8 @@ const UserInfo = () => {
   const saves = useSelector(
     (state) => state.userSlice.userInterested.data.kept_collections
   );
-  const likes = useSelector(
-    (state) => state.myCollectionSlice.myCollection.likes
-  );
-  const comments = useSelector(
-    (state) => state.myCollectionSlice.myCollection.comments
-  );
+  const likes = useSelector((state) => state.userSlice.userNum.likes);
+  const comments = useSelector((state) => state.userSlice.userNum.comments);
 
   const logoutHandler = () => {
     setModal(false);
