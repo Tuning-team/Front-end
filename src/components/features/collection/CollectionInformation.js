@@ -72,6 +72,9 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
   const onEditThisCollection = () => {
     nav("/myCollection/edit");
   };
+  //!좋아요기능 컬러
+  // const userLiked = JSON.parse(localStorage.getItem("userInfo")).myCollections
+  // const 테스트 = userLiked.filter((x) => x === collectionId)
 
   return (
     <>

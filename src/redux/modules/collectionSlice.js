@@ -155,8 +155,6 @@ export const getKeptCollection = createAsyncThunk(
       const res = await instance(
         `/collections/mykeeps?offset=${count}&limit=5`
       );
-      console.log(res);
-      console.log(res.data.pageInfo.hasNext);
       return res.data;
     } catch (error) {
       return error.message;

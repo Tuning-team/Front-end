@@ -7,6 +7,7 @@ const initialState = {
   userInterest: {
     loading: false,
     data: [],
+    userCategory: [],
     error: "",
   },
   userInterested: {
@@ -104,12 +105,14 @@ export const userSlice = createSlice({
     builder.addCase(getUserInterest.fulfilled, (state, action) => {
       // console.log(action.payload);
       state.userInterest.data = action.payload;
+      state.userInterest.userCategory = action.payload.categories.map(
+        (list) => list.categoryName
+      );
     });
     builder.addCase(getUserInterest.rejected, (state, action) => {
       state.userInterest.error = action.error.message;
     });
     builder.addCase(postUserInterest.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.userInterest.data = action.payload;
     });
     builder.addCase(deleteUserInterest.fulfilled, (state, action) => {
@@ -132,7 +135,8 @@ export const userSlice = createSlice({
     });
     builder.addCase(getUserNum.fulfilled, (state, action) => {
       state.userNum.loading = false;
-      if (action.payload === []) {
+      console.log(action.payload.length === 0);
+      if (action.payload.length === 0) {
         state.userNum.likes = 0;
         state.userNum.comments = 0;
       } else {
@@ -144,6 +148,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(getUserNum.rejected, (state, action) => {
       state.userNum.error = action.payload;
+      state.userNum.loading = false;
     });
   },
 });
