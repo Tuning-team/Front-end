@@ -7,6 +7,8 @@ const initialState = {
     loading: false,
     data: [],
     dataList: [],
+    likes: "",
+    comments: "",
     error: "",
   },
   category: {
@@ -27,6 +29,7 @@ const initialState = {
     error: "",
   },
   videoList: [],
+  editData: [],
   categoryCollection: {
     loading: false,
     data: [],
@@ -69,7 +72,7 @@ export const editCollection = createAsyncThunk(
       const res = await instance.put(`/collections/${collection_id}`, addData);
       console.log(addData);
       alert("컬렉션이 수정되었습니다.");
-      window.location.href = `/collection/${collection_id}`;
+      // window.location.href = `/collection/${collection_id}`;
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);
@@ -82,6 +85,7 @@ export const getCategory = createAsyncThunk("get/category", async (id) => {
   try {
     const res = await instance("/categories");
     return res.data.data;
+    console.log(res);
   } catch (error) {
     return error.message;
   }
@@ -139,6 +143,9 @@ export const myCollectionSlice = createSlice({
         (video) => video.id !== action.payload
       );
     },
+    rememberData(state, action) {
+      state.editData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     //!getMyCollection
@@ -152,6 +159,11 @@ export const myCollectionSlice = createSlice({
         ...state.myCollection.dataList,
         ...action.payload,
       ];
+      const array1 = action.payload.map((x) => x.likes);
+      state.myCollection.likes = array1.reduce((a, b) => a + b);
+      const array2 = action.payload.map((x) => x.commentNum);
+      state.myCollection.comments = array2.reduce((a, b) => a + b);
+
       state.myCollection.error = "";
     });
     builder.addCase(getMyCollection.rejected, (state, action) => {
@@ -159,20 +171,6 @@ export const myCollectionSlice = createSlice({
       state.myCollection.data = [];
       state.myCollection.error = action.error.message;
     });
-    // //!getCategory
-    // builder.addCase(getCategory.pending, (state) => {
-    //   state.category.loading = true;
-    // });
-    // builder.addCase(getCategory.fulfilled, (state, action) => {
-    //   state.category.loading = false;
-    //   state.category.data = action.payload;
-    //   state.category.error = "";
-    // });
-    // builder.addCase(getCategory.rejected, (state, action) => {
-    //   state.category.loading = false;
-    //   state.category.data = "";
-    //   state.category.error = action.error.message;
-    // });
     //!postCollection
     builder.addCase(postCollection.pending, (state) => {
       state.newCollection.loading = true;
@@ -203,21 +201,8 @@ export const myCollectionSlice = createSlice({
       state.searchResult.success = "";
       state.searchResult.error = action.error.message;
     });
-    // //!getCategoryCollection
-    // builder.addCase(getCategoryCollection.pending, (state) => {
-    //   state.categoryCollection.loading = true;
-    // });
-    // builder.addCase(getCategoryCollection.fulfilled, (state, action) => {
-    //   state.categoryCollection.loading = false;
-    //   state.categoryCollection.data = action.payload;
-    //   state.categoryCollection.error = "";
-    // });
-    // builder.addCase(getCategoryCollection.rejected, (state, action) => {
-    //   state.categoryCollection.loading = false;
-    //   state.categoryCollection.success = "";
-    //   state.categoryCollection.error = action.error.message;
-    // });
   },
 });
 
-export let { addVideoList, deleteAll, deleteVideo } = myCollectionSlice.actions;
+export let { addVideoList, deleteAll, deleteVideo, rememberData } =
+  myCollectionSlice.actions;

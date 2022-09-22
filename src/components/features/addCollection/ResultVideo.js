@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addVideoList } from "../../../redux/modules/collectionSlice";
 import Loading from "../../common/Loading";
-import SeeMore from "./SeeMore";
 import { getVideo } from "../../../redux/modules/collectionSlice";
 
 const ResultVideo = () => {
@@ -39,6 +38,7 @@ const ResultVideo = () => {
               key={idx}
               onClick={() => {
                 const video_id = [x.video];
+                console.log(video_id);
                 dispatch(addVideoList(video_id));
                 nav(-1);
               }}

@@ -34,6 +34,7 @@ const LoginSignupWrap = () => {
           <GoogleLoginButton
             onClick={() => {
               removeCookie("token");
+              localStorage.removeItem("userInfo");
               if (getCookie("token") === undefined) {
                 alert("로그아웃 되었습니다");
                 nav("/");

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import icon_profile from "../../shared/svg/icon_profile.svg";
 import CategoryModal from "./CategoryModal";
 import { ReactComponent as IconCategory } from "../../shared/svg/Icon_category.svg";
+import { getCookie } from "../../shared/cookie";
 
 const Headers = () => {
   const nav = useNavigate();
@@ -29,7 +30,12 @@ const Headers = () => {
         <Logo src="/images/애니메이션2.png"></Logo>
       </StLeft>
       {/*마이페이지 아이콘 */}
-      <IconMyPage src={icon_profile} onClick={() => nav("/myPage")} />
+      <IconMyPage
+        src={icon_profile}
+        onClick={() =>
+          getCookie("token") === undefined ? nav("/login") : nav("/myPage")
+        }
+      />
     </Wrap>
   );
 };

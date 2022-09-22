@@ -16,7 +16,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (
-      getCookie("token") !== null &&
+      getCookie("token") !== undefined &&
       localStorage.getItem("userInfo") === null
     ) {
       dispatch(getUserInfo());
@@ -49,7 +49,7 @@ const Navbar = () => {
           onClick={() => {
             if (getCookie("token") === undefined) {
               alert("로그인을 해주세요");
-              nav("/myPage");
+              nav("/login");
             } else {
               nav("/myCollection");
             }

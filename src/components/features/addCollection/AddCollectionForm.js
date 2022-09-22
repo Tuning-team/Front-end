@@ -12,18 +12,19 @@ import {
   deleteVideo,
 } from "../../../redux/modules/collectionSlice";
 
-const AddCollectionForm = ({ btn }) => {
+const AddCollectionForm = ({ btn, title }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categorySlice.category.data);
+  console.log(categories);
   const videoList = useSelector((state) => state.myCollectionSlice.videoList);
 
   //!마운트, 언마운트시
   useEffect(() => {
     dispatch(getCategory());
     return () => {
-      localStorage.removeItem("data");
-      dispatch(deleteVideo("all"));
+      // localStorage.removeItem("data");
+      // dispatch(deleteVideo("all"));
     };
   }, []);
 
@@ -31,9 +32,9 @@ const AddCollectionForm = ({ btn }) => {
   const data = JSON.parse(localStorage.getItem("data"));
   const [{ collectionTitle, description, category_id }, onChange, reset] =
     useInputs({
-      collectionTitle: data ? data[0] : "",
-      description: data ? data[1] : "",
-      category_id: data ? data[2] : "",
+      collectionTitle: data[0] || "",
+      description: data[1] || "",
+      category_id: data[2] || "",
     });
 
   //!컬렉션 추가
