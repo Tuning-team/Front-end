@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-
+//todo 영상이 한개도 업을때.... 예외처리 필요...
 import {
   deleteAll,
   getMyCollection,
@@ -69,12 +69,22 @@ const MyTab = () => {
           <span>담아온 튜닝</span>
         </div>
       </TabMenu>
-      {tab === 1 && <MyCollections state={myCollection} setCount={setCount1} />}
+      {tab === 1 && (
+        <MyCollections state={myCollection} setCount={setCount1} title="my" />
+      )}
       {tab === 2 && (
-        <MyCollections state={likedCollection.data} setCount={setCount2} />
+        <MyCollections
+          state={likedCollection.data}
+          setCount={setCount2}
+          title="liked"
+        />
       )}
       {tab === 3 && (
-        <MyCollections data={keptCollection.data} setCount={setCount3} />
+        <MyCollections
+          data={keptCollection.data}
+          setCount={setCount3}
+          title="keeping"
+        />
       )}
     </>
   );

@@ -16,7 +16,6 @@ const AddCollectionForm = ({ btn, title }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categorySlice.category.data);
-  console.log(categories);
   const videoList = useSelector((state) => state.myCollectionSlice.videoList);
 
   //!마운트, 언마운트시

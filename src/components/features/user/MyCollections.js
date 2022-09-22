@@ -5,8 +5,9 @@ import throttle from "lodash/throttle";
 import MyVideo from "./MyVideo";
 import icon_like from "../../../shared/svg/icon_like.svg";
 import icon_comment from "../../../shared/svg/icon_comment.svg";
+import icon_next from "../../../shared/svg/icon_next.svg";
 
-const MyCollections = ({ state, setCount }) => {
+const MyCollections = ({ state, setCount, title }) => {
   const nav = useNavigate();
 
   useEffect(() => {
@@ -28,10 +29,18 @@ const MyCollections = ({ state, setCount }) => {
   return (
     <>
       <ListWrap>
+        <div>
+          {title} Tuning <span>{state?.length}</span>
+        </div>
+
         {state?.map((data, idx) => {
           return (
             <Collection key={idx}>
               <div onClick={() => nav(`/collection/${data._id}`)}>
+                <ClickBox>
+                  <IconNext src={icon_next} alt="icon"></IconNext>
+                  <VideoNum>{data.thumbnails.length}</VideoNum>
+                </ClickBox>
                 <MyVideo
                   src={data.thumbnails[0]}
                   videoNum={data.thumbnails.length}
@@ -40,12 +49,10 @@ const MyCollections = ({ state, setCount }) => {
               <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
                 <div>
                   <CollectionTitle>{data.collectionTitle}</CollectionTitle>
-                  <div>
-                    <CollectionInfo>좋아요 {data.likes} /</CollectionInfo>
-                    <CollectionInfo> 댓글 {data.commentNum}</CollectionInfo>
-                  </div>
+                  <CollectionDescription>
+                    {data.description}
+                  </CollectionDescription>
                 </div>
-
                 <IconWrap>
                   <IconLayout>
                     <Icon src={icon_like} />
@@ -118,4 +125,28 @@ const Icon = styled.img`
   padding: 5px;
   width: 15px;
   height: 15px;
+`;
+const ClickBox = styled.div`
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  width: 4rem;
+  height: 6.8rem;
+  left: 36vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const IconNext = styled.img`
+  width: 2rem;
+`;
+const VideoNum = styled.span`
+  color: white;
+  padding-top: 10px;
+`;
+const CollectionDescription = styled.span`
+  width: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
