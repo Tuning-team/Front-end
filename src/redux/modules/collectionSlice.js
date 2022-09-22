@@ -64,7 +64,6 @@ export const postCollection = createAsyncThunk(
   async (data) => {
     try {
       const res = await instance.post("/collections", data);
-      console.log(data);
       alert("컬렉션이 생성되었습니다.");
       window.location.href = "/myCollection";
       return res.data.success;
@@ -82,7 +81,7 @@ export const editCollection = createAsyncThunk(
       const res = await instance.put(`/collections/${collection_id}`, addData);
       console.log(addData);
       alert("컬렉션이 수정되었습니다.");
-      // window.location.href = `/collection/${collection_id}`;
+      window.location.href = `/collection/${collection_id}`;
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);

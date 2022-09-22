@@ -7,6 +7,7 @@ import {
   rememberData,
 } from "../../../redux/modules/collectionSlice";
 import { useNavigate } from "react-router-dom";
+import EditCollectionForm from "./EditCollectionForm";
 
 const EditCollectionWrap = () => {
   const nav = useNavigate();
@@ -39,13 +40,17 @@ const EditCollectionWrap = () => {
   //!수정된 데이터 전송
 
   return (
-    <>
-      <AddCollectionForm
-        btn="수정하기"
-        id={data._id}
-        title={data.collectionTitle}
-      />
-    </>
+    <EditCollectionForm
+      btn="수정하기"
+      id={data._id}
+      title={data.collectionTitle}
+      data={[
+        data.collectionTitle,
+        data.description,
+        data.category_id[0],
+        data._id,
+      ]}
+    />
   );
 };
 export default EditCollectionWrap;
