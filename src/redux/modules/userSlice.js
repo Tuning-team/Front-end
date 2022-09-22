@@ -33,6 +33,7 @@ export const getUserInterest = createAsyncThunk(
       const res = await instance.get("/user/interest");
       return res.data.data;
     } catch (error) {
+      console.log(error);
       throw new Error(error.response.data.errorMessage);
     }
   }
@@ -40,9 +41,10 @@ export const getUserInterest = createAsyncThunk(
 
 export const postUserInterest = createAsyncThunk(
   "post/userInterest",
-  async (id) => {
+  async (ids) => {
     try {
-      const res = await instance.put(`/user/interest/${id}`);
+      const res = await instance.put(`/user/interest/${ids}`);
+      console.log(res);
       return res.data.data;
     } catch (error) {
       console.log(error);
@@ -53,8 +55,10 @@ export const postUserInterest = createAsyncThunk(
 export const deleteUserInterest = createAsyncThunk(
   "delete/userInterest",
   async (id) => {
+    console.log(id);
     try {
       const res = await instance.delete(`/user/interest/${id}`);
+      console.log(res);
       return res.data.data;
     } catch (error) {
       console.log(error);
@@ -83,7 +87,7 @@ export const userSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(getUserInterest.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.userInterest.data = action.payload;
     });
     builder.addCase(getUserInterest.rejected, (state, action) => {

@@ -22,7 +22,7 @@ const RecommendedCollections = () => {
   //   }
   // }, [categoryId]);
   useEffect(() => {
-    dispatch(getMainCategoryCollection("631e7d7a4ae4c133c405a966"));
+    // dispatch(getMainCategoryCollection("631e7d7a4ae4c133c405a966"));
   }, []);
   const data = useSelector(
     (state) => state.categorySlice.mainCategoryCollection.data

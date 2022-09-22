@@ -30,7 +30,7 @@ export default Carousel;
 
 const SliderWrapper = styled.div`
   overflow-x: hidden;
-  /* background-color: gray; */
+  background-color: gray;
 `;
 const StyleSlider = styled(Slider)`
   /* 아이템 사이의 간격 조절 */
@@ -48,6 +48,5 @@ const StyleSlider = styled(Slider)`
   /* 센터모드일때 가운데 이미지 강조 */
   & .slick-slide.slick-center img {
     transform: scale(1.2);
-    border: 1px solid red;
   }
 `;

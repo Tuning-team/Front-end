@@ -80,6 +80,7 @@ mark,
 audio,
 video {
   padding: 0;
+  /* margin: 0; */
   border: 0;
   font-size: 100%;
   /* font: inherit; */
@@ -156,3 +157,11 @@ table {
     url("styles/fonts/NotoSansKR-Bold.woff") format("woff"),
     url("styles/fonts/NotoSansKR-Bold.otf") format("truetype");
 } */
+
+/* y축 스크롤바 안보이게하는 css */
+html {
+  overflow-y: scroll;
+}
+html::-webkit-scrollbar {
+  display: none;
+}

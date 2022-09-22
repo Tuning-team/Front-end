@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCategoryCollectionForMain } from "../../../redux/modules/tempCollectionSlice";
+import { getCategoryCollectionForMain } from "../../../redux/modules/categorySlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
 
@@ -11,7 +11,7 @@ const RecentCollections = ({ categoryId }) => {
   const nav = useNavigate();
 
   const categoryData = useSelector(
-    (state) => state.collectionSlice.categoryCollectionForMain.dataList
+    (state) => state.categorySlice.categoryCollectionForMain.dataList
   );
   const finalData = categoryData.filter((x) => x.resName === "resOfRecent");
 
