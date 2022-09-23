@@ -131,10 +131,10 @@ export const categorySlice = createSlice({
     builder.addCase(getMainCategories.rejected, (state, action) => {
       state.mainCategories.loading = false;
     });
+    // !임시
     builder.addCase(getCategoryCollectionForMain.pending, (state, action) => {
       state.categoryCollectionForMain.isLoading = true;
     });
-    // !임시
     builder.addCase(getCategoryCollectionForMain.fulfilled, (state, action) => {
       state.categoryCollectionForMain.isLoading = false;
       state.categoryCollectionForMain.dataList = [

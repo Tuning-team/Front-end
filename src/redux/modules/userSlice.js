@@ -8,6 +8,7 @@ const initialState = {
     loading: false,
     data: [],
     userCategory: [],
+    msg: "",
     error: "",
   },
   userInterested: {
@@ -52,21 +53,20 @@ export const postUserInterest = createAsyncThunk(
     try {
       const res = await instance.put(`/user/interest/${ids}`);
       console.log(res);
-      return res.data.data;
+      return res.data;
     } catch (error) {
       console.log(error);
     }
   }
 );
-
+//! 관심사 삭제
 export const deleteUserInterest = createAsyncThunk(
   "delete/userInterest",
   async (id) => {
     console.log(id);
     try {
       const res = await instance.delete(`/user/interest/${id}`);
-      console.log(res);
-      return res.data.data;
+      return res.data;
     } catch (error) {
       console.log(error);
     }
@@ -113,11 +113,11 @@ export const userSlice = createSlice({
       state.userInterest.error = action.error.message;
     });
     builder.addCase(postUserInterest.fulfilled, (state, action) => {
-      state.userInterest.data = action.payload;
+      state.userInterest.data = action.payload.data;
+      state.userInterest.msg = action.payload.message;
     });
     builder.addCase(deleteUserInterest.fulfilled, (state, action) => {
       console.log(action.payload);
-      state.userInterest.data = action.payload;
     });
     builder.addCase(getUserInterested.pending, (state, action) => {
       state.userInterested.loading = true;
