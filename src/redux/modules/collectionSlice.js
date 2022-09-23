@@ -140,7 +140,7 @@ export const getLikedCollection = createAsyncThunk(
       const res = await instance(
         `/collections/mylikes?offset=${count}&limit=5`
       );
-
+      console.log(count);
       return res.data;
     } catch (error) {
       return error.message;
@@ -155,6 +155,19 @@ export const getKeptCollection = createAsyncThunk(
       const res = await instance(
         `/collections/mykeeps?offset=${count}&limit=5`
       );
+      return res.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+//!컬렉션 담기 (no.28)
+export const keepCollection = createAsyncThunk(
+  "put/keepCollection",
+  async (collectionId) => {
+    try {
+      const res = await instance.put(`/user/keep/${collectionId}`);
+      alert("담아졌습니다.");
       return res.data;
     } catch (error) {
       return error.message;
@@ -254,12 +267,9 @@ export const myCollectionSlice = createSlice({
       state.keptCollection.loading = true;
     });
     builder.addCase(getKeptCollection.fulfilled, (state, action) => {
+      console.log(action.payload.data);
       state.keptCollection.loading = false;
-      if (action.payload.length === 0) {
-        state.keptCollection.data = [false];
-      } else {
-        state.keptCollection.data.push(...action.payload.data);
-      }
+      state.keptCollection.data.push(...action.payload.data);
       state.keptCollection.hasNext = action.payload.pageInfo.totalContents;
       state.keptCollection.error = "";
     });

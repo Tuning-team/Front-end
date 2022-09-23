@@ -9,7 +9,6 @@ import icon_next from "../../../shared/svg/icon_next.svg";
 
 const MyCollections = ({ state, setCount, title }) => {
   const nav = useNavigate();
-
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {

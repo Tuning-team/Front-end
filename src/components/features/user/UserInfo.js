@@ -57,7 +57,6 @@ const UserInfo = () => {
       setInterests(interests.filter((elem) => elem !== e.target.value));
     }
   };
-
   const onSubmit = () => {
     if (interests.length === 4) {
       dispatch(postUserInterest(interests.join(",")));
