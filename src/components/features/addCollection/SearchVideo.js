@@ -1,15 +1,16 @@
 import React from "react";
-import Icon_search from "../../../shared/svg/Icon_search.svg";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import icon_search_enabled from "../../../shared/svg/icon_search_enabled.svg";
+import Frame from "../../../shared/svg/Frame.svg";
+import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const SearchVideo = () => {
-  const nav = useNavigate();
   const dispatch = useDispatch();
-
+  const nav = useNavigate();
   const [{ keyword }, onChange, reset] = useInputs({
     keyword: "",
   });
@@ -26,13 +27,11 @@ const SearchVideo = () => {
   };
 
   return (
-    <Form>
-      <Title
-        onClick={() => {
-          nav(-1);
-        }}
-      >
-        &lt;
+    <>
+      <Title>
+        <IconBack src={icon_back_enabled} alt="icon" onClick={() => nav(-1)} />
+        <TitleLogo src={Frame} alt="icon" />
+        <TitleSubmit>확인</TitleSubmit>
       </Title>
       <InputWrap>
         <Input
@@ -41,42 +40,57 @@ const SearchVideo = () => {
           required
           value={keyword}
           type="text"
-          placeholder="검색하기"
+          placeholder="찾고싶은 영상을 검색해보세요."
         />
-        <Btn onClick={onClickHandler} src={Icon_search} />
+        <Btn onClick={onClickHandler} src={icon_search_enabled} />
       </InputWrap>
-    </Form>
+    </>
   );
 };
 export default SearchVideo;
-const Form = styled.div`
-  padding: 1.3rem 1.3rem 1.3rem 1rem;
+const Title = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%
+  height: 3rem;
+  padding: 0.688rem 0 0;
+  background-color: #fff;
+  border-bottom: 1px solid #EEEEF6;
 `;
-const Btn = styled.img`
-  width: 30px;
-  height: 30px;
-  padding-top: 10px;
+const IconBack = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
 `;
-const Title = styled.h1`
+
+const TitleLogo = styled.img``;
+const TitleSubmit = styled.div`
+  font-size: 0.813rem;
+  font-weight: 500;
+  font-stretch: normal;
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 123.8%;
-  padding: 5px;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #adadad;
+  margin: 0 3px 0 0;
+`;
+
+const Btn = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
 `;
 const Input = styled.input`
-  width: 15rem;
+  width: 12rem;
   height: 2rem;
   border: unset;
   background-color: transparent;
 `;
 const InputWrap = styled.div`
   display: flex;
-  width: 20.438rem;
+  width: 18rem;
   height: 2.25rem;
-  margin: 1.25rem 1.5rem 1rem;
+  margin: 1rem;
   padding: 0.375rem 1rem;
   border-radius: 25px;
   background-color: var(--color-background);

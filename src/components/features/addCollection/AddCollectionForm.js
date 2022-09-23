@@ -24,6 +24,7 @@ const AddCollectionForm = () => {
   );
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
   const [modal, setModal] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
 
   //!마운트, 언마운트시
   useEffect(() => {
@@ -66,7 +67,7 @@ const AddCollectionForm = () => {
       <FormTitle
         onClickHandler={onClickHandler}
         title="컬렉션 만들기"
-        btn="추가하기"
+        btn="확인"
       />
       <Form>
         <FormInput onChange={onChange} collectionTitle={collectionTitle} />
@@ -90,10 +91,7 @@ const AddCollectionForm = () => {
   );
 };
 export default AddCollectionForm;
-const AddCollectionWrap = styled.div`
-  padding: 1.3rem 1.3rem 1.3rem 1rem;
-  margin-bottom: 7rem;
-`;
+const AddCollectionWrap = styled.div``;
 const Form = styled.div`
   display: flex;
   flex-direction: column;
