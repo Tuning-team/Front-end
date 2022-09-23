@@ -7,11 +7,18 @@ const initialState = {
   userInterest: {
     loading: false,
     data: [],
+    userCategory: [],
     error: "",
   },
   userInterested: {
     loading: false,
     data: [],
+    error: "",
+  },
+  userNum: {
+    loading: false,
+    likes: "",
+    comments: "",
     error: "",
   },
 };
@@ -77,6 +84,15 @@ export const getUserInterested = createAsyncThunk(
     }
   }
 );
+//!좋아요, 댓글 갯수(no.30)
+export const getUserNum = createAsyncThunk("get/userNum", async () => {
+  try {
+    const res = await instance(`/collections/mine?offset=0&limit=500`);
+    return res.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 export const userSlice = createSlice({
   name: "userInfo",
@@ -89,12 +105,14 @@ export const userSlice = createSlice({
     builder.addCase(getUserInterest.fulfilled, (state, action) => {
       // console.log(action.payload);
       state.userInterest.data = action.payload;
+      state.userInterest.userCategory = action.payload.categories.map(
+        (list) => list.categoryName
+      );
     });
     builder.addCase(getUserInterest.rejected, (state, action) => {
       state.userInterest.error = action.error.message;
     });
     builder.addCase(postUserInterest.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.userInterest.data = action.payload;
     });
     builder.addCase(deleteUserInterest.fulfilled, (state, action) => {
@@ -110,6 +128,27 @@ export const userSlice = createSlice({
     });
     builder.addCase(getUserInterested.rejected, (state, action) => {
       state.userInterested.error = action.payload;
+    });
+    //!좋아요
+    builder.addCase(getUserNum.pending, (state, action) => {
+      state.userNum.loading = true;
+    });
+    builder.addCase(getUserNum.fulfilled, (state, action) => {
+      state.userNum.loading = false;
+      console.log(action.payload.length === 0);
+      if (action.payload.length === 0) {
+        state.userNum.likes = 0;
+        state.userNum.comments = 0;
+      } else {
+        const array1 = action.payload.map((x) => x.likes);
+        state.userNum.likes = array1.reduce((a, b) => a + b);
+        const array2 = action.payload.map((x) => x.commentNum);
+        state.userNum.comments = array2.reduce((a, b) => a + b);
+      }
+    });
+    builder.addCase(getUserNum.rejected, (state, action) => {
+      state.userNum.error = action.payload;
+      state.userNum.loading = false;
     });
   },
 });

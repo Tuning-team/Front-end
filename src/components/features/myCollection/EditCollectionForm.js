@@ -3,55 +3,50 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  postCollection,
   rememberData,
+  deleteVideo,
 } from "../../../redux/modules/collectionSlice";
 import { getCategory } from "../../../redux/modules/categorySlice";
 import useInputs from "../../hooks/useInput";
+import { editCollection } from "../../../redux/modules/collectionSlice";
 import Modal from "../../common/Modal";
-import FormTitle from "../myCollection/FormTitle";
-import FormInput from "../myCollection/FormInput";
-import FormOption from "../myCollection/FormOption";
-import FormTextarea from "../myCollection/FormTextarea";
-import FormVideo from "../myCollection/FormVideo";
+import FormTitle from "./FormTitle";
+import FormInput from "./FormInput";
+import FormOption from "./FormOption";
+import FormTextarea from "./FormTextarea";
+import FormVideo from "./FormVideo";
 
-const AddCollectionForm = () => {
+const EditCollectionForm = ({ data }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
   const categories = useSelector((state) => state.categorySlice.category.data);
   const addVideoList = useSelector(
     (state) => state.myCollectionSlice.videoList
   );
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
-  const [modal, setModal] = useState(false);
-
-  //!마운트, 언마운트시
+  //!마운트
   useEffect(() => {
     dispatch(getCategory());
   }, []);
 
   //!useInput
-  const [{ collectionTitle, description, category_id }, onChange, reset] =
-    useInputs({
-      collectionTitle: inputData[0] || "",
-      description: inputData[1] || "",
-      category_id: inputData[2] || "",
-    });
-
+  const [{ collectionTitle, description, category_id }, onChange] = useInputs({
+    collectionTitle: inputData[0] || data[0],
+    description: inputData[1] || data[1],
+    category_id: inputData[2] || data[2],
+  });
   //!컬렉션 추가
   const onClickHandler = (e) => {
-    if (
-      collectionTitle === "" ||
-      description === "" ||
-      addVideoList.length === 0 ||
-      category_id === "0"
-    ) {
+    const collection_id = data[3];
+    const videos = addVideoList.map((x) => x.id);
+    const addData = { category_id, collectionTitle, description, videos };
+    if (Object.values(addData).every((x) => x == "")) {
       setModal(true);
     } else {
-      const videos = addVideoList.map((x) => x.id);
-      const addData = { category_id, collectionTitle, description, videos };
-      dispatch(postCollection(addData));
+      dispatch(editCollection({ collection_id, addData }));
       dispatch(rememberData([]));
+      dispatch(deleteVideo("all"));
     }
   };
 
@@ -65,8 +60,8 @@ const AddCollectionForm = () => {
     <AddCollectionWrap>
       <FormTitle
         onClickHandler={onClickHandler}
-        title="컬렉션 만들기"
-        btn="추가하기"
+        title="컬렉션 수정하기"
+        btn="수정하기"
       />
       <Form>
         <FormInput onChange={onChange} collectionTitle={collectionTitle} />
@@ -89,11 +84,13 @@ const AddCollectionForm = () => {
     </AddCollectionWrap>
   );
 };
-export default AddCollectionForm;
+
+export default EditCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.3rem 1.3rem 1.3rem 1rem;
   margin-bottom: 7rem;
 `;
+
 const Form = styled.div`
   display: flex;
   flex-direction: column;

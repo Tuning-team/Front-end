@@ -1,30 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
-import Carousel from "../../common/Carousel";
-import CarouselItem from "../../common/CarouselItem";
+import MyVideo from "./MyVideo";
 import icon_like from "../../../shared/svg/icon_like.svg";
 import icon_comment from "../../../shared/svg/icon_comment.svg";
-import {
-  deleteAll,
-  getMyCollection,
-} from "../../../redux/modules/collectionSlice";
+import icon_next from "../../../shared/svg/icon_next.svg";
 
-const MyCollections = () => {
+const MyCollections = ({ state, setCount, title }) => {
   const nav = useNavigate();
-  const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
-  const data = useSelector(
-    (state) => state.myCollectionSlice.myCollection.dataList
-  );
-  useEffect(() => {
-    if (count === 0) {
-      dispatch(deleteAll());
-    }
-    dispatch(getMyCollection(count));
-  }, [count]);
+
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {
@@ -44,27 +29,30 @@ const MyCollections = () => {
   return (
     <>
       <ListWrap>
-        {data?.map((data, idx) => {
+        <div>
+          {title} Tuning <span>{state?.length}</span>
+        </div>
+
+        {state?.map((data, idx) => {
           return (
             <Collection key={idx}>
               <div onClick={() => nav(`/collection/${data._id}`)}>
-                <Carousel>
-                  {data.thumbnails?.map((src, i) => {
-                    return (
-                      <CarouselItem key={data._id} src={src}></CarouselItem>
-                    );
-                  })}
-                </Carousel>
+                <ClickBox>
+                  <IconNext src={icon_next} alt="icon"></IconNext>
+                  <VideoNum>{data.thumbnails.length}</VideoNum>
+                </ClickBox>
+                <MyVideo
+                  src={data.thumbnails[0]}
+                  videoNum={data.thumbnails.length}
+                />
               </div>
               <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
                 <div>
                   <CollectionTitle>{data.collectionTitle}</CollectionTitle>
-                  <div>
-                    <CollectionInfo>좋아요 {data.likes} /</CollectionInfo>
-                    <CollectionInfo> 댓글 {data.commentNum}</CollectionInfo>
-                  </div>
+                  <CollectionDescription>
+                    {data.description}
+                  </CollectionDescription>
                 </div>
-
                 <IconWrap>
                   <IconLayout>
                     <Icon src={icon_like} />
@@ -85,7 +73,9 @@ const MyCollections = () => {
 };
 export default MyCollections;
 
-const Collection = styled.section``;
+const Collection = styled.section`
+  display: flex;
+`;
 
 const ListWrap = styled.div``;
 const CollectionTitle = styled.h3`
@@ -135,4 +125,28 @@ const Icon = styled.img`
   padding: 5px;
   width: 15px;
   height: 15px;
+`;
+const ClickBox = styled.div`
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  width: 4rem;
+  height: 6.8rem;
+  left: 36vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const IconNext = styled.img`
+  width: 2rem;
+`;
+const VideoNum = styled.span`
+  color: white;
+  padding-top: 10px;
+`;
+const CollectionDescription = styled.span`
+  width: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

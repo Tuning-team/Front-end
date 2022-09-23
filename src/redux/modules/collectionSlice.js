@@ -7,8 +7,6 @@ const initialState = {
     loading: false,
     data: [],
     dataList: [],
-    likes: "",
-    comments: "",
     error: "",
   },
   category: {
@@ -35,6 +33,18 @@ const initialState = {
     data: [],
     error: "",
   },
+  likedCollection: {
+    loading: false,
+    data: [],
+    hasNext: 1,
+    error: "",
+  },
+  keptCollection: {
+    loading: false,
+    data: [],
+    hasNext: 1,
+    error: "",
+  },
 };
 
 export const getMyCollection = createAsyncThunk(
@@ -54,7 +64,6 @@ export const postCollection = createAsyncThunk(
   async (data) => {
     try {
       const res = await instance.post("/collections", data);
-      console.log(data);
       alert("컬렉션이 생성되었습니다.");
       window.location.href = "/myCollection";
       return res.data.success;
@@ -72,7 +81,7 @@ export const editCollection = createAsyncThunk(
       const res = await instance.put(`/collections/${collection_id}`, addData);
       console.log(addData);
       alert("컬렉션이 수정되었습니다.");
-      // window.location.href = `/collection/${collection_id}`;
+      window.location.href = `/collection/${collection_id}`;
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);
@@ -85,7 +94,6 @@ export const getCategory = createAsyncThunk("get/category", async (id) => {
   try {
     const res = await instance("/categories");
     return res.data.data;
-    console.log(res);
   } catch (error) {
     return error.message;
   }
@@ -124,6 +132,35 @@ export const getVideo = createAsyncThunk(
     }
   }
 );
+//!좋아요한 컬렉션
+export const getLikedCollection = createAsyncThunk(
+  "get/likedCollection",
+  async (count) => {
+    try {
+      const res = await instance(
+        `/collections/mylikes?offset=${count}&limit=5`
+      );
+
+      return res.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+//!내가 담은 컬렉션
+export const getKeptCollection = createAsyncThunk(
+  "get/keptCollection",
+  async (count) => {
+    try {
+      const res = await instance(
+        `/collections/mykeeps?offset=${count}&limit=5`
+      );
+      return res.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
 
 export const myCollectionSlice = createSlice({
   name: "myCollection",
@@ -134,6 +171,8 @@ export const myCollectionSlice = createSlice({
     },
     deleteAll(state, action) {
       state.myCollection.dataList = [];
+      state.likedCollection.data = [];
+      state.keptCollection.data = [];
     },
     deleteVideo(state, action) {
       if (action.payload === "all") {
@@ -159,11 +198,6 @@ export const myCollectionSlice = createSlice({
         ...state.myCollection.dataList,
         ...action.payload,
       ];
-      const array1 = action.payload.map((x) => x.likes);
-      state.myCollection.likes = array1.reduce((a, b) => a + b);
-      const array2 = action.payload.map((x) => x.commentNum);
-      state.myCollection.comments = array2.reduce((a, b) => a + b);
-
       state.myCollection.error = "";
     });
     builder.addCase(getMyCollection.rejected, (state, action) => {
@@ -200,6 +234,38 @@ export const myCollectionSlice = createSlice({
       state.searchResult.loading = false;
       state.searchResult.success = "";
       state.searchResult.error = action.error.message;
+    });
+    //!getLiked
+    builder.addCase(getLikedCollection.pending, (state) => {
+      state.likedCollection.loading = true;
+    });
+    builder.addCase(getLikedCollection.fulfilled, (state, action) => {
+      state.likedCollection.loading = false;
+      state.likedCollection.data.push(...action.payload.data);
+      state.likedCollection.hasNext = action.payload.pageInfo.totalContents;
+      state.likedCollection.error = "";
+    });
+    builder.addCase(getLikedCollection.rejected, (state, action) => {
+      state.likedCollection.loading = false;
+      state.likedCollection.error = action.error.message;
+    });
+    //!getKept
+    builder.addCase(getKeptCollection.pending, (state) => {
+      state.keptCollection.loading = true;
+    });
+    builder.addCase(getKeptCollection.fulfilled, (state, action) => {
+      state.keptCollection.loading = false;
+      if (action.payload.length === 0) {
+        state.keptCollection.data = [false];
+      } else {
+        state.keptCollection.data.push(...action.payload.data);
+      }
+      state.keptCollection.hasNext = action.payload.pageInfo.totalContents;
+      state.keptCollection.error = "";
+    });
+    builder.addCase(getKeptCollection.rejected, (state, action) => {
+      state.keptCollection.loading = false;
+      state.keptCollection.error = action.error.message;
     });
   },
 });

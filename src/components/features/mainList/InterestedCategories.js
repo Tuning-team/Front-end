@@ -37,7 +37,7 @@ const InterestedCategories = () => {
       setInterests(interests.filter((elem) => elem !== e.target.value));
     }
   };
-  console.log(interests);
+
   const onSubmit = () => {
     if (interests.length === 4) {
       dispatch(postUserInterest(interests.join(",")));
