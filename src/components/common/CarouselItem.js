@@ -28,7 +28,7 @@ const DivCard = styled.div`
 
   & .card-top > img {
     width: 100%;
-    border-radius: 3px;
+    border-radius: 6px;
   }
   & .card-bottom > h6 {
     font-size: 0.75rem;

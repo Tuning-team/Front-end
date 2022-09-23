@@ -46,6 +46,7 @@ const Wrap = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 3rem;
 `;
 const StLeft = styled.div``;
 const Logo = styled.img`
