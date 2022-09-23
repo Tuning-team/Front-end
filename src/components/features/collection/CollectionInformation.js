@@ -16,6 +16,7 @@ import More from "../../common/More";
 import { ReactComponent as LikesIcon } from "../../../shared/svg/icon_like.svg";
 import { useParams } from "react-router-dom";
 import shareKakao from "../../../shared/shareKakao";
+import { keepCollection } from "../../../redux/modules/collectionSlice";
 
 const CollectionInformation = ({ collectionId, tabClicked }) => {
   const nav = useNavigate();
@@ -73,8 +74,14 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
     nav("/myCollection/edit");
   };
   //!좋아요기능 컬러
+
   // const userLiked = JSON.parse(localStorage.getItem("userInfo")).myCollections
   // const 테스트 = userLiked.filter((x) => x === collectionId)
+  //!담기기능
+  const onKeepThisCollection = () => {
+    //!디스패치에 추가하기
+    dispatch(keepCollection(collectionId));
+  };
 
   return (
     <>
@@ -105,6 +112,7 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
                 좋아요
               </div>
             </Button>
+            <button onClick={onKeepThisCollection}>담기</button>
             <p data-testid="collection-description">{data?.description}</p>
           </CollectionInfoBox>
         </>

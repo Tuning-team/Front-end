@@ -16,9 +16,11 @@ const Navbar = () => {
 
   useEffect(() => {
     if (
-      getCookie("token") !== undefined &&
-      localStorage.getItem("userInfo") === null
+      getCookie("token") !== undefined
+      // &&
+      // localStorage.getItem("userInfo") === null
     ) {
+      console.log("렌더");
       dispatch(getUserInfo());
     }
   }, []);

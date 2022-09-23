@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { keyframes } from "styled-components";
-import bg from "../shared/svg/bg.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Vector from "../shared/svg/Vector.svg";
-
+import Frame from "../shared/svg/Frame.svg";
+import Layout from "../components/common/Layout";
 const WelcomePage = () => {
   const nav = useNavigate();
   useEffect(() => {
@@ -14,82 +14,56 @@ const WelcomePage = () => {
   }, []);
 
   return (
-    <Page>
+    <Layout>
       <Content>
-        <Header>유투브를 내 마음대로</Header>
-        <Main>알고리즘 튜닝</Main>
-        <Sub>오직 나만을 위한 유투브 </Sub>
-        <Img
-          style={{
-            width: "50px",
-            height: "50px",
-            position: "absolute",
-            bottom: "10%",
-            left: "45%",
-          }}
-          src={Vector}
-        ></Img>
-        <Imgs src="/images/Frame.png"></Imgs>
+        <Header>Welcome to</Header>
+
+        <Img src={Vector}></Img>
+        <Imgs src={Frame}></Imgs>
       </Content>
-    </Page>
+    </Layout>
   );
 };
 export default WelcomePage;
 
-const Page = styled.div`
-  background-image: url("${bg}");
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
   justify-content: center;
-  align-items: center;
-  background-size: cover;
-  color: white;
-`;
-const Content = styled.div`
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
-const Header = styled.p`
+const Header = styled.span`
   display: flex;
-  font-size: 20px;
-  margin: 7px;
-  font-weight: 100;
-`;
-const Main = styled.h1`
-  font-size: 24px;
-  margin: 7px;
-`;
-const Sub = styled.p`
-  font-size: 15px;
-  margin: 3px;
-  font-weight: 100;
-`;
-const Logo = styled.img`
-  display: flex;
+  font: normal normal bold 24px Roboto;
 `;
 
 const rotation = keyframes`
   from{
-    transform: rotate(0deg)
+    //transform: scale(1.1);
+    // transform: rotate(0deg)
   }
   to{
-    transform: rotate(360deg)
+    // transform: rotate(360deg)
   }
 `;
 
 const Img = styled.img`
-  animation: ${rotation} 3s linear infinite;
+  //animation: ${rotation} 1s infinite;
   z-index: 2;
+  width: 11rem;
+  position: absolute;
+  padding: 17.887rem 3.012rem 20.137rem 3rem;
+  transform: rotate(250deg);
+  right: 23%;
+  left: 23%;
+  top: 7%;
+  bottom: 7%;
 `;
 const Imgs = styled.img`
-  position: absolute;
-  z-index: 3;
-  bottom: 10%;
-  left: 40%;
+  width: 17.414rem;
+  height: 5.682rem;
+  margin: 0.502rem 0 2.179rem 0.012rem;
 `;

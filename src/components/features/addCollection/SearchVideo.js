@@ -34,16 +34,17 @@ const SearchVideo = () => {
       >
         &lt;
       </Title>
-
-      <Input
-        onChange={onChange}
-        name="keyword"
-        required
-        value={keyword}
-        type="text"
-        placeholder="검색하기"
-      />
-      <Btn onClick={onClickHandler} src={Icon_search} />
+      <InputWrap>
+        <Input
+          onChange={onChange}
+          name="keyword"
+          required
+          value={keyword}
+          type="text"
+          placeholder="검색하기"
+        />
+        <Btn onClick={onClickHandler} src={Icon_search} />
+      </InputWrap>
     </Form>
   );
 };
@@ -66,10 +67,19 @@ const Title = styled.h1`
   padding: 5px;
 `;
 const Input = styled.input`
-  background: #efefef;
-  border-radius: 50px;
-  width: 17rem;
-  height: 40px;
-  border: solid #efefef;
+  width: 15rem;
+  height: 2rem;
+  border: unset;
+  background-color: transparent;
 `;
-const InputWrap = styled.div``;
+const InputWrap = styled.div`
+  display: flex;
+  width: 20.438rem;
+  height: 2.25rem;
+  margin: 1.25rem 1.5rem 1rem;
+  padding: 0.375rem 1rem;
+  border-radius: 25px;
+  background-color: var(--color-background);
+  justify-content: space-around;
+  align-items: center;
+`;

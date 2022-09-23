@@ -45,7 +45,6 @@ const CommentList = ({ collectionId }) => {
   };
 
   const onUpdate = (e) => {
-    e.preventDefault();
     const commentId = e.target.id;
     if (newinputValue === "") {
       alert("수정해주세요");

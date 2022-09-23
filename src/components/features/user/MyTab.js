@@ -23,6 +23,7 @@ const MyTab = () => {
   const keptCollection = useSelector(
     (state) => state.myCollectionSlice.keptCollection
   );
+
   //!usestate
   const [tab, setTab] = useState(1);
   const [count1, setCount1] = useState(0);
@@ -81,7 +82,7 @@ const MyTab = () => {
       )}
       {tab === 3 && (
         <MyCollections
-          data={keptCollection.data}
+          state={keptCollection.data}
           setCount={setCount3}
           title="keeping"
         />

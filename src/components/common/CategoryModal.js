@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../../redux/modules/categorySlice";
 import styled from "styled-components";
-import { css, keyframes } from "styled-components";
+import { keyframes } from "styled-components";
 import icon_close from "../../shared/svg/icon_close.svg";
 
 const CategoryModal = ({ setIsCategoryShown }) => {
@@ -72,12 +72,12 @@ const ModalFloater = styled.div`
   width: 50vh;
 
   left: ${(props) => (props.setIsCategoryShown ? "0" : "-100%")};
-  transition: 1s;
+  transition: all 1s ease-in-out;
 
-  animation-duration: 0.3s;
-  animation-timing-function: ease-out;
-  animation-name: ${slideIn};
-  animation-fill-mode: forwards;
+  // animation-duration: 0.3s;
+  // animation-timing-function: ease-out;
+  // animation-name: ${slideIn};
+  // animation-fill-mode: forwards;
 `;
 
 const Div = styled.div`
