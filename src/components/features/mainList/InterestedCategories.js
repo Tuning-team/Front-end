@@ -63,12 +63,12 @@ const InterestedCategories = () => {
       </Title>
       <BodyContainer>
         {!isLoggedIn ? (
-          <div>로그인이 필요한 기능입니다.</div>
+          <TextContent>로그인이 필요한 기능입니다.</TextContent>
         ) : userInterestArr.length === 0 ? (
-          <div>
+          <TextContent>
             아직 관심사 설정을 하지 않았습니다.
-            <button onClick={showModal}>설정하러가기</button>
-          </div>
+            <span onClick={showModal}>설정하러가기</span>
+          </TextContent>
         ) : (
           <>
             {userInterestArr?.map((elem) => (
@@ -113,7 +113,6 @@ const Title = styled.div`
   margin-bottom: 0.938rem;
   height: 2.188rem;
   & h1 {
-    font-family: NotoSansCJKKR;
     font-size: 1.5rem;
     font-weight: bold;
     font-stretch: normal;
@@ -122,32 +121,86 @@ const Title = styled.div`
     letter-spacing: -1.2px;
     text-align: left;
   }
+  & p {
+    margin: auto 0 0 0;
+    font-size: 0.75rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.3px;
+    color: #572cff;
+  }
 `;
 
 const BodyContainer = styled.div`
-  border: 1px solid red;
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
+  gap: 0.813rem;
   & > div {
     min-height: 10.25rem;
   }
 `;
+
+const TextContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  & span {
+    color: #707070;
+    border-bottom: 1px solid #707070;
+    padding-bottom: 3px;
+    margin-top: 0.5rem;
+  }
+`;
 const CategoryCard = styled.div`
-  width: 9.063rem;
+  width: calc(51.5% - 0.813rem);
   height: 10.25rem;
-  margin: 0.625rem 0.813rem 0.813rem 0;
-  padding: 1rem 2rem 1.25rem;
+  padding-top: 1rem;
+  text-align: center;
   border-radius: 12px;
-  box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.08);
   border: solid 1px #eee;
   background-color: #fff;
 
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: pointer;
+    box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.08);
+  }
   & h6 {
-    margin: 0;
+    margin: 0.5rem 0 0.625rem 0;
+    font-size: 0.875rem;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.29;
+    letter-spacing: normal;
+    text-align: center;
+    color: #191919;
+  }
+  & button {
+    width: 5.063rem;
+    height: 1.75rem;
+    padding: 0.375rem 0.875rem;
+    border: none;
+    border-radius: 14px;
+    background-color: #572cff;
+    color: white;
+    font-size: 0.813rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    text-align: center;
   }
 `;
 const Img = styled.div`
+  display: inline-block;
   border-radius: 100%;
   width: 4.063rem;
   height: 4.063rem;
