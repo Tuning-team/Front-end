@@ -32,43 +32,33 @@ const SearchWrap = () => {
   );
 
   return (
-    <div>
-      {/* //!검색창 */}
-      <form
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-        onSubmit={onSearch}
-      >
-        <StInput onChange={onChangeHandler} name="search" type="text" />
-        <StBtn type="submit">
-          <StBtnImg src={Icon_search} />
-        </StBtn>
-      </form>
+    <div >
+      <div >
+        {/* //!검색창 */}
+        <form
+          style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+          onSubmit={onSearch}
+        >
+          <StInput onChange={onChangeHandler} name="search" type="text" />
+          <StBtn type="submit">
+            <StBtnImg src={Icon_search} />
+          </StBtn>
+        </form>
 
-      {/* //!결과부분 */}
-      <div>
-        {loading ? (
-          <Loading />
-        ) : search === 0 ? (
-          <StText>검색 결과가 없습니다.</StText>
-        ) : (
-          <CollectionList state={searchResult} />
-        )
-        }
-      </div>
+        {/* //!결과부분 */}
+        <div>
+          {loading ? (
+            <Loading />
+          ) : search === 0 ? (
+            <StText>검색 결과가 없습니다.</StText>
+          ) : (
+            <CollectionList state={searchResult} />
+          )
+          }
+        </div>
+      </div >
     </div >
 
-
-    //   //!결과부분
-    //   <div>
-    //     <h1>
-    //       {search === "" ? (
-    //         <StText>검색어를 입력해주세요</StText>
-    //       ) : (
-    //         <CollectionList state={searchResult} />
-    //       )}
-    //     </h1>
-    //   </div>
-    // </div >
   );
 };
 
@@ -79,7 +69,8 @@ const StBtn = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-
+  ;
+  
   // top: 14px;
   // right: 35px;
   // position: absolute;
