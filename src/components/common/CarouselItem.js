@@ -31,11 +31,14 @@ const DivCard = styled.div`
     border-radius: 6px;
   }
   & .card-bottom > h6 {
-    font-size: 0.75rem;
-    line-height: 1.24;
+    font-size: 0.875rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.35px;
 
-    margin-top: 0.688rem;
-
+    margin: 0.5rem 0 0 0.219rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

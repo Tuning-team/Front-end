@@ -99,7 +99,7 @@ export default InterestedCategories;
 const Wrap = styled.div`
   /* width: 20.938rem; */
   /* height: 25.875rem; */
-  margin: 2.375rem 1.219rem 2.5rem 1.25rem;
+  margin-top: 2.5rem;
   padding: 0.75rem 1rem;
   border-radius: 15px;
   box-shadow: 5px 5px 15px 0 rgba(24, 32, 74, 0.1);
@@ -165,7 +165,6 @@ const CategoryCard = styled.div`
   border: solid 1px #eee;
   background-color: #fff;
 
-  &:hover,
   &:focus,
   &:active {
     cursor: pointer;

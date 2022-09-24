@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import icon_profile from "../../shared/svg/icon_profile.svg";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as IconCategory } from "../../shared/svg/24_ena_category.svg";
+import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category.svg";
+import { ReactComponent as Logo } from "../../shared/svg/Frame.svg";
 import { getCookie } from "../../shared/cookie";
 
 const Headers = () => {
@@ -21,15 +21,14 @@ const Headers = () => {
       )}
 
       {/*카테고리 아이콘 */}
-      <StyleIconCategory
+      <StyleCategoryIcon
         onClick={() => {
           setIsCategoryShown(!isCategoryShown);
         }}
       />
 
       {/*로고*/}
-      <Logo src="/images/애니메이션2.png"></Logo>
-
+      <StyleLogo />
       {/* 로그인/로그아웃 */}
       <StyleLogin
         onClick={() =>
@@ -53,11 +52,7 @@ const Wrap = styled.div`
   position: relative;
 `;
 
-const Logo = styled.img`
-  max-width: 60px;
-`;
-
-const StyleIconCategory = styled(IconCategory)`
+const StyleCategoryIcon = styled(CategoryIcon)`
   height: 2.5rem;
   width: 2.5rem;
 
@@ -65,7 +60,10 @@ const StyleIconCategory = styled(IconCategory)`
   padding: 0.5rem;
   box-sizing: border-box;
 `;
-
+const StyleLogo = styled(Logo)`
+  margin-top: 0.688rem;
+  height: 1.625rem;
+`;
 const StyleLogin = styled.div`
   font-size: 0.813rem;
   font-weight: 500;

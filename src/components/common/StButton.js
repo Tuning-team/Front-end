@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import ScrollTop from "../../shared/ScrollTop";
+import { ReactComponent as UpIcon } from "../../shared/svg/24_ena_floating_up.svg";
+import { ReactComponent as MakeTuningIcon } from "../../shared/svg/ena_floating_make tuning.svg";
 
 const StButton = () => {
   const nav = useNavigate();
@@ -10,31 +11,41 @@ const StButton = () => {
       behavior: "smooth",
     });
   };
+
   return (
-    <Div>
-      <Btn onClick={() => nav("/myCollection/add")} bottom="16%" color="purple">
-        컬렉션
+    <FloatingIconContainer>
+      <Btn onClick={() => nav("/myCollection/add")}>
+        <MakeTuningIcon />
       </Btn>
-      <Btn bottom="11%" color="pink" onClick={ScrollTop}>
-        top
+      <Btn onClick={ScrollTop}>
+        <UpIcon />
       </Btn>
-    </Div>
+    </FloatingIconContainer>
   );
 };
 export default StButton;
-
-const Btn = styled.div`
-  position: fixed;
-  font-size: 5px;
-  border-radius: 50px;
-  border: 1px solid;
-  width: 25px;
-  height: 25px;
-  right: 33%;
-  bottom: ${(props) => props.bottom};
-  background-color: ${(props) => props.color};
-  z-index: 999;
+const FloatingIconContainer = styled.div`
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 100;
+  bottom: 5rem;
+  margin-left: 85%;
 `;
-const Div = styled.div`
-  display: flex;
+const Btn = styled.div`
+  box-sizing: border-box;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.23);
+  background-color: #fff;
+  &:nth-child(1) {
+    background-color: #572cff;
+    margin-bottom: 0.5rem;
+  }
+  & svg {
+    box-sizing: border-box;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+  }
 `;
