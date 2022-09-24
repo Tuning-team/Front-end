@@ -157,15 +157,15 @@ const UserInfo = () => {
       <Info>
         <InfoWrap>
           <InfoNum>{likes}</InfoNum>
-          <div>likes</div>
+          <InfoText>likes</InfoText>
         </InfoWrap>
         <InfoWrap>
           <InfoNum>{comments}</InfoNum>
-          <div>comments</div>
+          <InfoText>comments</InfoText>
         </InfoWrap>
         <InfoWrap>
           {saves && <InfoNum>{saves.length}</InfoNum>}
-          <div>saves</div>
+          <InfoText>saves</InfoText>
         </InfoWrap>
       </Info>
     </Wrap>
@@ -241,6 +241,10 @@ const InfoNum = styled.p`
   letter-spacing: normal;
   height: 1.7rem;
   margin: 0 auto;
+`;
+const InfoText = styled.div`
+  font-size: 0.875rem;
+  color: #505050;
 `;
 const ModalContents = styled.div`
   display: flex;

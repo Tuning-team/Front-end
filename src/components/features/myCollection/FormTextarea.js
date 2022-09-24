@@ -28,6 +28,9 @@ const TextArea = styled.textarea`
   width: 20.938rem;
   height: 8.75rem;
   font-size: 1.125rem;
+  &:focus {
+    outline-color: var(--color-primary);
+  }
 `;
 const Label = styled.label`
   display: flex;

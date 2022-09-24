@@ -70,20 +70,20 @@ const MyTab = () => {
         </div>
       </TabMenu>
       {tab === 1 && (
-        <MyCollections state={myCollection} setCount={setCount1} title="my" />
+        <MyCollections state={myCollection} setCount={setCount1} title="My" />
       )}
       {tab === 2 && (
         <MyCollections
           state={likedCollection.data}
           setCount={setCount2}
-          title="liked"
+          title="Liked"
         />
       )}
       {tab === 3 && (
         <MyCollections
           state={keptCollection.data}
           setCount={setCount3}
-          title="keeping"
+          title="Keeping"
         />
       )}
     </>

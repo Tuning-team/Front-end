@@ -6,6 +6,7 @@ import MyVideo from "./MyVideo";
 import icon_like_black from "../../../shared/svg/icon_like_black.svg";
 import icon_comment from "../../../shared/svg/icon_comment.svg";
 import icon_next_white from "../../../shared/svg/icon_next_white.svg";
+import NoData from "../../common/NoData";
 
 const MyCollections = ({ state, setCount, title }) => {
   const nav = useNavigate();
@@ -26,48 +27,46 @@ const MyCollections = ({ state, setCount, title }) => {
   const infiniteScroll = throttle(useHandleScroll, 2000);
 
   return (
-    <>
-      <ListWrap>
-        <VideoInfo>
-          {title} Tuning <Num>{state?.length}</Num>
-        </VideoInfo>
-
-        {state?.map((data, idx) => {
-          return (
-            <Collection key={idx}>
-              <div onClick={() => nav(`/collection/${data._id}`)}>
-                <ClickBox>
-                  <IconNext src={icon_next_white} alt="icon"></IconNext>
-                  <VideoNum>{data.thumbnails.length}</VideoNum>
-                </ClickBox>
-                <MyVideo
-                  src={data.thumbnails[0]}
-                  videoNum={data.thumbnails.length}
-                />
-              </div>
-              <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
-                <InfoText>
-                  <CollectionTitle>{data.collectionTitle}</CollectionTitle>
-                  <CollectionDescription>
-                    {data.description}
-                  </CollectionDescription>
-                </InfoText>
-                <IconWrap>
-                  <IconLayout>
-                    <Icon src={icon_like_black} />
-                    <IconNum>{data.likes}</IconNum>
-                  </IconLayout>
-                  <IconLayout>
-                    <Icon src={icon_comment} />
-                    <IconNum>{data.commentNum}</IconNum>
-                  </IconLayout>
-                </IconWrap>
-              </InfoWrap>
-            </Collection>
-          );
-        })}
-      </ListWrap>
-    </>
+    <ListWrap>
+      <VideoInfo>
+        {title} Tuning <Num>{state?.length}</Num>
+      </VideoInfo>
+      {state?.length === 0 && <NoData />}
+      {state?.map((data, idx) => {
+        return (
+          <Collection key={idx}>
+            <div onClick={() => nav(`/collection/${data._id}`)}>
+              <ClickBox>
+                <IconNext src={icon_next_white} alt="icon"></IconNext>
+                <VideoNum>{data.thumbnails.length}</VideoNum>
+              </ClickBox>
+              <MyVideo
+                src={data.thumbnails[0]}
+                videoNum={data.thumbnails.length}
+              />
+            </div>
+            <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
+              <InfoText>
+                <CollectionTitle>{data.collectionTitle}</CollectionTitle>
+                <CollectionDescription>
+                  {data.description}
+                </CollectionDescription>
+              </InfoText>
+              <IconWrap>
+                <IconLayout>
+                  <Icon src={icon_like_black} />
+                  <IconNum>{data.likes}</IconNum>
+                </IconLayout>
+                <IconLayout>
+                  <Icon src={icon_comment} />
+                  <IconNum>{data.commentNum}</IconNum>
+                </IconLayout>
+              </IconWrap>
+            </InfoWrap>
+          </Collection>
+        );
+      })}
+    </ListWrap>
   );
 };
 export default MyCollections;
