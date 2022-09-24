@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import SlideupModal from "./SlideupModal";
-import icon_backspace_black from "../../../shared/svg/icon_backspace_black.svg";
+import icon_back from "../../../shared/svg/icon_back_enabled.svg";
 import { useNavigate } from "react-router-dom";
 import icon_setting from "../../../shared/svg/icon_setting.svg";
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ import {
   postUserInterest,
 } from "../../../redux/modules/userSlice";
 import { getCategory } from "../../../redux/modules/collectionSlice";
+import icon_star from "../../../shared/svg/icon_star.svg";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
@@ -70,33 +71,41 @@ const UserInfo = () => {
       <Header>
         {modal && (
           <SlideupModal setModal={setModal}>
-            <div onClick={interestedHandler}>나의 관심사설정</div>
-            <div onClick={logoutHandler}>
-              {" "}
-              <img src={icon_setting} alt="icon_setting" />
-              계정관리
-            </div>
+            <ButtonWrap>
+              <ModalBtn onClick={interestedHandler}>
+                <ModalIcon src={icon_star} alt="icon_setting" />
+                나의 관심사설정
+              </ModalBtn>
+              <Line />
+              <ModalBtn onClick={logoutHandler}>
+                <ModalIcon src={icon_setting} alt="icon_setting" />
+                계정관리
+              </ModalBtn>
+            </ButtonWrap>
           </SlideupModal>
         )}
         {loginModal && (
           <Modal setModal={setLoginModal} modal={loginModal}>
-            <Profile>
-              <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
-              <UserName>{info.displayName}</UserName>
-            </Profile>
-            <div>구글 로그인됨</div>
-            <div
-              onClick={() => {
-                removeCookie("token");
-                localStorage.removeItem("userInfo");
-                if (getCookie("token") === undefined) {
-                  alert("로그아웃 되었습니다");
-                  nav("/");
-                } else window.reload();
-              }}
-            >
-              로그아웃
-            </div>
+            <ProfileLayout>
+              <Profile>
+                <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
+                <UserName>{info.displayName}</UserName>
+
+                <LoginInfo>구글계정으로 로그인됨</LoginInfo>
+              </Profile>
+              <Logout
+                onClick={() => {
+                  removeCookie("token");
+                  localStorage.removeItem("userInfo");
+                  if (getCookie("token") === undefined) {
+                    alert("로그아웃 되었습니다");
+                    nav("/");
+                  } else window.reload();
+                }}
+              >
+                로그아웃
+              </Logout>
+            </ProfileLayout>
           </Modal>
         )}
         {/* //!여기부터 */}
@@ -129,8 +138,9 @@ const UserInfo = () => {
             </ModalContents>
           </Modal>
         )}
-        <img
-          src={icon_backspace_black}
+        {/* //!모달끝 */}
+        <HeaderIcon
+          src={icon_back}
           alt="icon_backspace_black"
           onClick={() => nav(-1)}
         />
@@ -138,7 +148,7 @@ const UserInfo = () => {
           <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
           <UserName>{info.displayName}</UserName>
         </Profile>
-        <img
+        <HeaderIcon
           src={icon_setting}
           alt="icon_setting"
           onClick={() => setModal(!modal)}
@@ -146,15 +156,15 @@ const UserInfo = () => {
       </Header>
       <Info>
         <InfoWrap>
-          <div>{likes}</div>
+          <InfoNum>{likes}</InfoNum>
           <div>likes</div>
         </InfoWrap>
         <InfoWrap>
-          <div>{comments}</div>
+          <InfoNum>{comments}</InfoNum>
           <div>comments</div>
         </InfoWrap>
         <InfoWrap>
-          {saves && <div>{saves.length}</div>}
+          {saves && <InfoNum>{saves.length}</InfoNum>}
           <div>saves</div>
         </InfoWrap>
       </Info>
@@ -166,26 +176,71 @@ const Wrap = styled.div`
   width: 360px;
 `;
 const Header = styled.section`
+  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  height: 9rem;
 `;
-const Profile = styled.div``;
+const HeaderIcon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+`;
+const ProfileLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+`;
+const Profile = styled.div`
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const ProfileImg = styled.img`
-  border-radius: 50px;
+  border-radius: 40px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  margin: 5px;
 `;
-const UserName = styled.p``;
+const UserName = styled.p`
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0 auto;
+`;
+const LoginInfo = styled.span`
+  font-size: 0.813rem;
+  color: var(--color-disabled);
+`;
+const Logout = styled.div`
+  font-size: 0.813rem;
+  color: var(--color-primary);
+  cursor: pointer;
+`;
 const Info = styled.section`
   display: flex;
   justify-content: space-around;
+  height: 4.8rem;
+  align-items: center;
 `;
 const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+const InfoNum = styled.p`
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  height: 1.7rem;
+  margin: 0 auto;
 `;
 const ModalContents = styled.div`
   display: flex;
@@ -205,4 +260,32 @@ const ModalContents = styled.div`
     width: 100%;
     text-align: left;
   }
+`;
+
+const ButtonWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20.938rem;
+  text-align: left;
+`;
+const ModalBtn = styled.div`
+  align-items: center;
+  display: flex;
+  width: 20.938rem;
+  height: 2.313rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.7px;
+  text-align: left;
+`;
+const ModalIcon = styled.img`
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-right: 3px;
+`;
+const Line = styled.hr`
+  width: 19.688rem;
+  border: 0.5px solid #eee;
+  margin: 0 auto;
 `;

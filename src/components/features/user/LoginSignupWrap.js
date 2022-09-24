@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "react-social-login-buttons";
 import { getCookie, removeCookie } from "../../../shared/cookie";
+import Frame from "../../../shared/svg/Frame.svg";
+import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 
 const LoginSignupWrap = () => {
   const nav = useNavigate();
@@ -10,28 +12,18 @@ const LoginSignupWrap = () => {
   return (
     <LoginWrap>
       <ContentWrap>
-        <Title>Welcome to</Title>
-        <Logo>Tuning</Logo>
+        <Header>로그인</Header>
         {getCookie("token") === undefined ? (
-          <GoogleLoginButton
+          <LoginBtn
             onClick={() => {
               window.location.href = "https://tube-tuning.com/api/google";
             }}
-            style={{
-              width: "18.75rem",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-              fontWeight: "bold",
-              backgroundColor: "#f8f8f8",
-              fontSize: "14px",
-              marginTop: "15px",
-            }}
           >
-            구글 로그인
-          </GoogleLoginButton>
+            <Logo src="./images/logo_google.png" alt="logo" />
+            SIGN WITH GOOGLE
+          </LoginBtn>
         ) : (
-          <GoogleLoginButton
+          <LoginBtn
             onClick={() => {
               removeCookie("token");
               localStorage.removeItem("userInfo");
@@ -40,19 +32,10 @@ const LoginSignupWrap = () => {
                 nav("/");
               } else window.reload();
             }}
-            style={{
-              width: "18.75rem",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
-              fontWeight: "bold",
-              backgroundColor: "#f8f8f8",
-              fontSize: "14px",
-              marginTop: "15px",
-            }}
           >
-            로그아웃 하기
-          </GoogleLoginButton>
+            <Logo src="./images/logo_google.png" alt="logo" />
+            SIGNOUT WITH GOOGLE
+          </LoginBtn>
         )}
       </ContentWrap>
     </LoginWrap>
@@ -61,47 +44,44 @@ const LoginSignupWrap = () => {
 export default LoginSignupWrap;
 
 const LoginWrap = styled.div`
-  // align-items: center;
-  // margin: auto;
-  // display: flex;
-  // justify-content: center;
-  // flex-direction: column;
-  // position: absolute;
-  // position: absolute;
-  // left: 10%;
-  // right: 10%;
-  // top: 50;
-  // top: 35%;
+  width: 22.438rem;
+  height: 30.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ContentWrap = styled.div`
-  // display: flex;
-  // flex-direction: column;
-  // align-items: flex-start;
-  // width: 18.75rem;
-  // height: 12.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 18.75rem;
 `;
-const Header = styled.h1`
-  // font-style: normal;
-  // font-weight: 700;
-  // font-size: 24px;
-  // line-height: 123.8%;
-  // padding: 5px;
+const Header = styled.div`
+  font-size: 1.938rem;
+  font-weight: 900;
+  letter-spacing: 1.55px;
+  width: 18.75rem;
+  text-align: center;
 `;
-const Title = styled.h1`
-  font-style: normal;
-  font-weight: 100;
-  font-size: 40px;
-  line-height: 123.8%;
-  padding: 5px;
+
+const LoginBtn = styled.div`
+  width: 14.625rem;
+  height: 2.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.75rem;
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  color: #adadad;
 `;
-const Logo = styled.h1`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 123.8%;
-  padding: 5px;
-  color: transparent;
-  background: linear-gradient(90deg, #b295e9 0%, #8179f2 100%);
-  -webkit-background-clip: text;
+const Logo = styled.img`
+  width: 1.375rem;
+  height: 1.375rem;
 `;

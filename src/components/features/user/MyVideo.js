@@ -5,7 +5,8 @@ const MyVideo = ({ src, videoNum }) => {
 };
 export default MyVideo;
 const Img = styled.img`
-  width: 12rem;
+  width: 10.781rem;
+  height: 6.125rem;
   left: 36vw;
   display: flex;
   align-items: center;

@@ -5,7 +5,6 @@ import Layout from "../components/common/Layout";
 const MyPage = () => {
   return (
     <Layout>
-      <Headers />
       <MyPageWrap />
       <Navbar />
     </Layout>

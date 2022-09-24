@@ -24,7 +24,7 @@ const AddCollectionForm = () => {
   );
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
   const [modal, setModal] = useState(false);
-  // const [isDisabled, setDisabled] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
 
   //!마운트, 언마운트시
   useEffect(() => {
@@ -38,18 +38,25 @@ const AddCollectionForm = () => {
       description: inputData[1] || "",
       category_id: inputData[2] || "",
     });
+
   //!컬렉션 추가
   const onClickHandler = (e) => {
-    const videos = addVideoList.map((x) => x.id);
-    const addData = { category_id, collectionTitle, description, videos };
-    if (Object.values(addData).every((x) => x == "")) {
-      setModal(2);
+    if (
+      collectionTitle === "" ||
+      description === "" ||
+      addVideoList.length === 0 ||
+      category_id === "0"
+    ) {
+      setModal(true);
     } else {
-      setModal(3);
-      // dispatch(postCollection(addData));
-      // dispatch(rememberData([]));
+      const videos = addVideoList.map((x) => x.id);
+      const addData = { category_id, collectionTitle, description, videos };
+      dispatch(postCollection(addData));
+      dispatch(rememberData([]));
     }
   };
+
+  console.log(modal);
 
   //!비디오 추가 페이지이동
   const addVideoHandler = () => {
