@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import SlideupModal from "../user/SlideupModal";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteComment,
@@ -7,8 +8,7 @@ import {
   updateComment,
   addComment,
 } from "../../../redux/modules/commentSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { ReactComponent as IconMore } from "../../../shared/svg/icon_moreicon.svg"
 
 const CommentList = ({ collectionId }) => {
   const [newinputValue, setNewInputValue] = useState("");
@@ -70,25 +70,83 @@ const CommentList = ({ collectionId }) => {
     comment: newinputValue,
   };
   return (
-    <div
-      style={{
-        position: "relative",
-      }}
-    >
-      {modal === "menu" ? (
-        <StMoreDiv>
-          <StChooseBtnDiv>
-            {/* <input onChange={(e) => setInputValue(e.target.value)}></input> */}
-            <StBtnDiv type="button" onClick={onModify}>
-              수정하기
-            </StBtnDiv>
-            <StBtnDiv type="button" id={commentData} onClick={onDelete}>
-              삭제하기
-            </StBtnDiv>
-          </StChooseBtnDiv>
-          <StCloseDiv onClick={() => setModal(!modal)}>닫기</StCloseDiv>
-        </StMoreDiv>
-      ) : modal === "modify" ? (
+    <StContainer>
+      <StWrap>
+        {modal === "menu" ? (
+          <StMoreDiv>
+            <StChooseBtnDiv>
+              {/* <input onChange={(e) => setInputValue(e.target.value)}></input> */}
+              <StBtnDiv type="button" onClick={onModify}>
+                수정하기
+              </StBtnDiv>
+              <StBtnDiv type="button" id={commentData} onClick={onDelete}>
+                삭제하기
+              </StBtnDiv>
+            </StChooseBtnDiv>
+            <StCloseDiv onClick={() => setModal(!modal)}>닫기</StCloseDiv>
+          </StMoreDiv>
+        ) : ""}
+
+        <div /* style={{ marginBottom: "40px" }} */>
+          <ul>
+            {commentList.length === 0 ? (
+              <div>댓글이 없습니다</div>
+            ) : (
+              commentList?.map((data, idx) => {
+                return (
+                  <StProfileDiv key={data.comment_id}>
+                    <StCommentImgDiv
+                      style={{
+                        verticalAlign: "middle",
+                        marginTop: "5px",
+                        marginBottom: "5px",
+                        marginRight: "5px",
+                      }}
+                    >
+                      <StProfileImg
+                        src={data.writerProfilePic}
+                        alt="profileImg"
+                      ></StProfileImg>
+                    </StCommentImgDiv>
+                    <StCommentValueDiv>
+                      <li key={idx}>
+                        <p
+                          style={{
+                            fontWeight: "bold",
+                            fontSize: "14px",
+                            marginTop: "5px",
+                            marginBottom: "5px",
+                          }}
+                        >
+                          작성자: {data.writerName}
+                        </p>
+                        <p>{data.comment}</p>
+                      </li>
+                    </StCommentValueDiv>
+                    <StCommentBtnDiv>
+                      <StCommentBtn
+                        value={data.comment_id}
+                        onClick={saveCommentData}
+                      >
+                        <IconMore
+                          setModal={setModal}
+                          style={{
+                            pointerEvents: "none",
+                            width: "1.125rem",
+                            height: "1.125rem"
+                          }}
+                        />
+                      </StCommentBtn>
+                    </StCommentBtnDiv>
+                  </StProfileDiv>
+                );
+              })
+            )}
+          </ul>
+        </div>
+      </StWrap>
+
+      {modal === "modify" ? (
         <StCommentForm
           style={{ zIndex: "110" }}
           action=""
@@ -113,197 +171,161 @@ const CommentList = ({ collectionId }) => {
                 type="text"
                 onChange={(e) => setNewInputValue(e.target.value)}
                 value={newinputValue}
+                maxlength="40"
                 placeholder="댓글을 입력해주세요 :D"
-                style={{
-                  position: "relative",
-                }}
               />
               <StButton type="submit"> 등록 </StButton>
             </StInputDiv>
           </StCommentForm>
         </>
       )}
-
-      <div style={{ marginBottom: "80px" }}>
-        {/* <div> */}
-        <ul>
-          {commentList.length === 0 ? (
-            <div>댓글이 없습니다</div>
-          ) : (
-            commentList?.map((data, idx) => {
-              return (
-                <StProfileDiv key={data.comment_id}>
-                  <StCommentImgDiv
-                    style={{
-                      verticalAlign: "middle",
-                      marginTop: "5px",
-                      marginBottom: "5px",
-                      marginRight: "5px",
-                    }}
-                  >
-                    <StProfileImg
-                      src={data.writerProfilePic}
-                      alt="profileImg"
-                    ></StProfileImg>
-                  </StCommentImgDiv>
-                  <StCommentValueDiv>
-                    <li key={idx}>
-                      <p
-                        style={{
-                          fontWeight: "bold",
-                          fontSize: "14px",
-                          marginTop: "5px",
-                          marginBottom: "5px",
-                        }}
-                      >
-                        작성자: {data.writerName}
-                      </p>
-                      <p>{data.comment}</p>
-                    </li>
-                  </StCommentValueDiv>
-                  <StCommentBtnDiv>
-                    <StCommentBtn
-                      value={data.comment_id}
-                      onClick={saveCommentData}
-                    >
-                      <FontAwesomeIcon
-                        icon={faEllipsisVertical}
-                        setModal={setModal}
-                        style={{
-                          pointerEvents: "none",
-                        }}
-                      />
-                    </StCommentBtn>
-                  </StCommentBtnDiv>
-                </StProfileDiv>
-              );
-            })
-          )}
-        </ul>
-      </div>
-    </div>
+    </StContainer>
   );
 };
 export default CommentList;
 
+
+const StContainer = styled.div`
+  border-radius: 16px;
+  background-color: #fff;
+`
+const StWrap = styled.div`
+  height: 30.5rem;
+  width: 360px;
+      background-color: transparent;
+      overflow: scroll;
+      overflow-x: hidden;
+      `;
+
+
 const StCommentForm = styled.form`
-  position: fixed;
-  z-index: 90;
-  bottom: 4.5rem;
-`;
+      /* position: fixed; */
+      z-index: 90;
+      bottom: 4.5rem;
+      padding: 0.688rem 1.25rem 2.375rem 1.25rem;
+      `;
 
 const StInput = styled.input`
-  position: relative;
-  display: flex;
-  width: 100%;
-  font-size: 16px;
-  padding: 0.5rem 3.5rem 0.5rem 0.5rem;
-`;
+      display: flex;
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.5rem 3.5rem 0.5rem 0.5rem;
+      width: 20.938rem;
+  
+      height: 2.25rem;
+  margin: 0 1.25rem 0.25rem;
+  padding: 0.563rem 1.75rem 0 1rem;
+  border-radius: 18px;
+  background-color: #f5f5f5;
+      
+      
+      `;
+
+
 
 const StInputDiv = styled.div`
-  position: relative;
-  display: flex;
-  width: 344px;
-  padding: 1rem;
-  background-color: white;
-`;
+      display: flex;
+      background-color: white;
+      `;
 
 const StButton = styled.button`
-  background: none;
-  border: none;
-  outline: none;
-
-  position: absolute;
-  right: 30px;
-  top: 25px;
-  cursor: pointer;
-`;
+      background: none;
+      border: none;
+      outline: none;
+      display: none;
+      right: 30px;
+      top: 25px;
+      cursor: pointer;
+      `;
 
 const StMoreDiv = styled.div`
-  display: block;
-  height: 100vh;
-  width: 375px;
-  background: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  z-index: 110;
-  top: 0;
-`;
+      display: block;
+      height: 100vh;
+      width: 375px;
+      background: rgba(0, 0, 0, 0.3);
+      position: fixed;
+      z-index: 110;
+      top: 0;
+      `;
 
 const StProfileDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+      display: flex;
+      flex-direction: row;
+      padding: 1.375rem 1.25rem 0;
+  background-color: #fff;
+      `;
 const StCommentImgDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-`;
+      display: flex;
+      justify-content: center;
+      vertical-align: middle;
+      `;
 
 const StCommentBtnDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-`;
+      display: flex;
+      justify-content: center;
+      vertical-align: middle;
+      `;
 
 const StCommentBtn = styled.button`
-  background: none;
-  border: none;
-  outline: none;
-`;
+      background: none;
+      border: none;
+      outline: none;
+      `;
 
 const StCommentValueDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 10px;
-`;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 10px;
+      `;
 
 const StProfileImg = styled.img`
-  width: 35px;
-  height: 35px;
-  border-radius: 70%;
-  overflow: hidden;
-  margin-left: 5px;
-`;
+      width: 35px;
+      height: 35px;
+      border-radius: 70%;
+      overflow: hidden;
+      margin-left: 5px;
+      `;
 
 const StChooseBtnDiv = styled.div`
-  background-color: #ffffff;
-  width: 22.063rem;
-  height: 5.938rem;
-  color: #b295e9;
+      background-color: #ffffff;
+      width: 22.063rem;
+      height: 5.938rem;
+      color: #b295e9;
 
-  font-size: 1.25rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 3px;
+      font-size: 1.25rem;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 3px;
 
-  position: fixed;
-  bottom: 4.5rem;
-  margin: 9px;
-`;
+      margin: 170% auto 0 ;
+      /* position: fixed;
+      bottom: 4.5rem;
+      margin: 9px; */
+      `;
 
 const StCloseDiv = styled.div`
-  background-color: #ffffff;
-  width: 22.063rem;
-  height: 3.125rem;
-  color: #b295e9;
-  margin-top: 10px;
-  font-size: 1.25rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 3px;
+      background-color: #ffffff;
+      width: 22.063rem;
+      height: 3.125rem;
+      color: #b295e9;
+      margin-top: 10px;
+      font-size: 1.25rem;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-direction: column;
+      border-radius: 3px;
 
-  position: fixed;
-  bottom: 0.5rem;
-  margin: 9px;
-`;
+      /* position: fixed; */
+      bottom: 0.5rem;
+      margin: 9px;
+      `;
 
 const StBtnDiv = styled.div`
-  text-align: center;
-  width: 100%;
-  padding-bottom: 5px;
-`;
+      text-align: center;
+      width: 100%;
+      padding-bottom: 5px;
+      `;

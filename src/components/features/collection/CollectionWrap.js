@@ -40,11 +40,19 @@ const CollectionWrap = () => {
           <span>댓글</span>
         </div>
       </TabMenu>
-      {!tabClicked ? (
-        <CollectionVideoList collectionId={param.collection_id} />
-      ) : (
+
+      <CollectionVideoList collectionId={param.collection_id} />
+
+      <div style={{
+        position: "fixed",
+        zIndex: "99999",
+        width: "360px",
+        bottom: tabClicked ? "0" : "-100%",
+        transition: "all 1s ease-in-out"
+      }}>
         <CommentForm collectionId={param.collection_id} />
-      )}
+      </div>
+
     </>
   );
 };
