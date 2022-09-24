@@ -17,36 +17,33 @@ const CategoryModal = ({ setIsCategoryShown }) => {
   }, []);
 
   return (
-    <>
-      <ModalFloater setIsCategoryShown="setIsCategoryShown">
-        <div style={{ margin: "1rem" }}>
-          <TitleWrap>
-            <Title>카테고리</Title>
-            <Icon
-              onClick={() => setIsCategoryShown((prev) => !prev)}
-              src={icon_close}
-            ></Icon>
-          </TitleWrap>
+    <ModalFloater setIsCategoryShown="setIsCategoryShown">
+      <div style={{ margin: "1rem" }}>
+        <TitleWrap>
+          <Title>카테고리</Title>
+          <Icon
+            onClick={() => setIsCategoryShown((prev) => !prev)}
+            src={icon_close}
+          ></Icon>
+        </TitleWrap>
 
-          <ul>
-            {categories?.map((elem) => {
-              return (
-                <Li
-                  key={elem._id}
-                  onClick={() => {
-                    nav(`/category/${elem._id}`);
-                    setIsCategoryShown((prev) => !prev);
-                  }}
-                >
-                  {elem.categoryName}
-                </Li>
-              );
-            })}
-          </ul>
-        </div>
-      </ModalFloater>
-      <Div onClick={(prev) => setIsCategoryShown(!prev)}></Div>
-    </>
+        <ul>
+          {categories?.map((elem) => {
+            return (
+              <Li
+                key={elem._id}
+                onClick={() => {
+                  nav(`/category/${elem._id}`);
+                  setIsCategoryShown((prev) => !prev);
+                }}
+              >
+                {elem.categoryName}
+              </Li>
+            );
+          })}
+        </ul>
+      </div>
+    </ModalFloater>
   );
 };
 export default CategoryModal;
@@ -62,38 +59,34 @@ to{
 
 const ModalFloater = styled.div`
   display: flex;
-  position: fixed;
-  overflow: scroll;
-  left: -50vh;
-  right: 50vh;
-  z-index: 10;
-  margin-bottom: 4.5rem;
-  background-color: rgba(245, 245, 245, 0.96);
-  width: 50vh;
+  position: absolute;
+  top: 0;
+
+  z-index: 200;
+
+  background-color: white;
+  width: 100%;
 
   left: ${(props) => (props.setIsCategoryShown ? "0" : "-100%")};
-  transition: all 1s ease-in-out;
 
-  // animation-duration: 0.3s;
-  // animation-timing-function: ease-out;
-  // animation-name: ${slideIn};
-  // animation-fill-mode: forwards;
-`;
-
-const Div = styled.div`
-  width: 50vh;
-  z-index: 9;
-
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-name: ${slideIn};
+  animation-fill-mode: forwards;
 `;
 
 const TitleWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  border: 1px solid red;
 `;
+
+const Title = styled.h1`
+  color: #7951c6;
+  font-size: 24px;
+  margin-bottom: 1rem;
+`;
+
 const Icon = styled.img`
   width: 1.5rem;
   height: 1.5rem;
@@ -108,9 +101,4 @@ const Li = styled.li`
     opacity: 1;
     font-weight: 900;
   }
-`;
-const Title = styled.h1`
-  color: #7951c6;
-  font-size: 24px;
-  margin-bottom: 1rem;
 `;

@@ -19,7 +19,6 @@ const Carousel = (props) => {
     centerPadding: props.centerPadding || "0px",
     autoPlay: props.autoPlay || false,
   };
-
   return (
     <SliderWrapper height={props.height}>
       <StyleSlider {...settings}>{props.children}</StyleSlider>
@@ -31,6 +30,8 @@ export default Carousel;
 const SliderWrapper = styled.div`
   overflow-x: hidden;
   height: ${(props) => props.height};
+
+  /* backdrop-filter: blur(2px); */
 `;
 const StyleSlider = styled(Slider)`
   /* 아이템 사이의 간격 조절 */

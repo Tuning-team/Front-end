@@ -45,9 +45,7 @@ const MainListWrap = () => {
   return (
     <>
       {loading ? (
-        <div style={{ minHeight: "180px", width: "100%" }}>
-          <Loading />
-        </div>
+        <Loading />
       ) : (
         <div style={{ position: "relative" }}>
           <Carousel
@@ -60,7 +58,7 @@ const MainListWrap = () => {
             className={"center"}
             height={"15.625rem"}
           >
-            {recommend?.collections.map((collection) => (
+            {popular?.collections.map((collection) => (
               <CarouselItem
                 key={collection._id}
                 src={collection.thumbnails[0]}
@@ -70,8 +68,8 @@ const MainListWrap = () => {
             ))}
           </Carousel>
           <CarouselDesc>
-            <h2>가이드 텍스트</h2>
-            <p>일주일동안 최다 좋아요를 보유한 음악컬렉션</p>
+            <h2>인기 튜닝</h2>
+            <p>가장 많은 좋아요와 댓글을 획득한 튜닝들</p>
           </CarouselDesc>
         </div>
       )}
@@ -96,7 +94,7 @@ const CarouselDesc = styled.div`
   width: 23.438rem;
   height: 5.969rem;
   margin: 7.406rem 0 0;
-  padding: 2.281rem 6.063rem 0.625rem 1.25rem;
+  padding: 2.281rem 0 0 1.25rem;
   /* mix-blend-mode: multiply; */
   background-image: linear-gradient(
     to bottom,
@@ -107,9 +105,9 @@ const CarouselDesc = styled.div`
     #000
   );
   & h2 {
-    height: 1.781rem;
-    margin: 0 7.938rem 0.031rem 0;
-
+    height: 1.813rem;
+    margin-bottom: 0;
+    padding-top: 0.6rem;
     font-size: 1.5rem;
     font-weight: bold;
     font-stretch: normal;
@@ -121,8 +119,7 @@ const CarouselDesc = styled.div`
   }
   & p {
     height: 1.25rem;
-    margin: 0.031rem 0 0;
-
+    margin: 0.6rem 0 0 0;
     font-size: 0.875rem;
     font-weight: normal;
     font-stretch: normal;
