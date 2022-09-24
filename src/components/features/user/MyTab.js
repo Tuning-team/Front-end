@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-//todo 영상이 한개도 업을때.... 예외처리 필요...
 import {
   deleteAll,
   getMyCollection,
@@ -95,10 +94,10 @@ const TabMenu = styled.div`
   display: flex;
   position: relative;
   justify-content: space-evenly;
-  border-bottom: 0.235rem solid #eaeaea;
+  border-bottom: 0.235rem solid #ffffff;
   padding: 0 1rem;
   height: 2.5rem;
-
+  border-top: 0.1rem solid #eaeaea;
   & > div {
     position: relative;
     z-index: 1;
@@ -112,25 +111,31 @@ const TabMenu = styled.div`
 
   & .myCollection {
     border-bottom: 0.235rem solid
-      ${(props) => (props.tab === 1 ? "#b295e9" : "transparent")};
+      ${(props) => (props.tab === 1 ? "var(--color-primary)" : "transparent")};
+    color: ${(props) =>
+      props.tab === 1 ? "var(--color-primary)" : "var(--color-disabled)"};
   }
   & .likedCollection {
     border-bottom: 0.235rem solid
-      ${(props) => (props.tab === 2 ? "#b295e9" : "transparent")};
+      ${(props) => (props.tab === 2 ? "var(--color-primary)" : "transparent")};
+    color: ${(props) =>
+      props.tab === 2 ? "var(--color-primary)" : "var(--color-disabled)"};
   }
   & .interestedCollection {
     border-bottom: 0.235rem solid
-      ${(props) => (props.tab === 3 ? "#b295e9" : "transparent")};
+      ${(props) => (props.tab === 3 ? "var(--color-primary)" : "transparent")};
+    color: ${(props) =>
+      props.tab === 3 ? "var(--color-primary)" : "var(--color-disabled)"};
   }
 
   & span {
     display: inline-block;
-
-    font-size: 0.875rem;
-    font-weight: normal;
+    font-size: 0.813rem;
+    font-weight: 500;
     font-stretch: normal;
     font-style: normal;
-    line-height: 1.24;
+    line-height: normal;
     letter-spacing: normal;
+    text-align: center;
   }
 `;

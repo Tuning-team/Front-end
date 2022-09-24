@@ -41,7 +41,12 @@ const EditCollectionForm = ({ data }) => {
     const collection_id = data[3];
     const videos = addVideoList.map((x) => x.id);
     const addData = { category_id, collectionTitle, description, videos };
-    if (Object.values(addData).every((x) => x == "")) {
+    if (
+      collectionTitle === "" ||
+      description === "" ||
+      addVideoList.length === 0 ||
+      category_id === "0"
+    ) {
       setModal(true);
     } else {
       dispatch(editCollection({ collection_id, addData }));

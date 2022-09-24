@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryCollection } from "../../../redux/modules/categorySlice";
-import CollectionList from "../../common/CollectionList";
-import icon_backspace_black from "../../../shared/svg/icon_backspace_black.svg";
+import MyCollections from "../user/MyCollections";
+import Frame from "../../../shared/svg/Frame.svg";
+import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 
 const CategoryWrap = () => {
   const param = useParams();
@@ -22,31 +23,41 @@ const CategoryWrap = () => {
 
   return (
     <Wrap>
-      <TitleWrap>
-        <img
-          src={icon_backspace_black}
-          alt="icon_backspace_black"
-          onClick={() => nav(-1)}
-        />
-        {title[0]?.categoryName || "오늘의"} 튜닝
-      </TitleWrap>
-      <CollectionList state={data} />
+      <Title>
+        <IconBack src={icon_back_enabled} alt="icon" onClick={() => nav(-1)} />
+        <TitleLogo src={Frame} alt="icon" />
+        <TitleSubmit></TitleSubmit>
+      </Title>
+      <MyCollections title={title[0]?.categoryName || "오늘의"} state={data} />
     </Wrap>
   );
 };
 export default CategoryWrap;
-const Wrap = styled.div`
-  margin-left: 1rem;
-  padding-bottom: 5.5rem;
-
-  & img {
-    margin-right: 0.6rem;
-  }
+const Wrap = styled.div``;
+const Title = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%
+  height: 3rem;
+  padding:0.688rem 0 0.688rem
+  background-color: #fff;
+  border-bottom: 1px solid #EEEEF6;
 `;
-const TitleWrap = styled.div`
-  padding: 1.3rem 1.3rem 1.3rem 0rem;
+const IconBack = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+`;
+
+const TitleLogo = styled.img``;
+const TitleSubmit = styled.div`
+  font-size: 0.813rem;
+  font-weight: 500;
+  font-stretch: normal;
   font-style: normal;
-  font-weight: 700;
-  font-size: 1.7rem;
-  line-height: 123.8%;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #adadad;
+  margin: 0 3px 0 0;
 `;
