@@ -45,4 +45,7 @@ const Input = styled.input`
   border: solid 1px #eee;
   background-color: #fff;
   font-size: 1.125rem;
+  &:focus {
+    outline-color: var(--color-primary);
+  }
 `;

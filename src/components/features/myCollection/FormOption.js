@@ -44,6 +44,9 @@ const Select = styled.select`
   border-radius: 3px;
   width: 21.438rem;
   height: 2.5rem;
+  &:focus {
+    outline-color: var(--color-primary);
+  }
 `;
 const Option = styled.option`
   width: 20.938rem;
