@@ -6,6 +6,7 @@ import { getCategoryCollection } from "../../../redux/modules/categorySlice";
 import MyCollections from "../user/MyCollections";
 import Frame from "../../../shared/svg/Frame.svg";
 import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
+import NoData from "../../common/NoData";
 
 const CategoryWrap = () => {
   const param = useParams();
@@ -29,6 +30,7 @@ const CategoryWrap = () => {
         <TitleSubmit></TitleSubmit>
       </Title>
       <MyCollections title={title[0]?.categoryName || "오늘의"} state={data} />
+      {/* {data?.length === 0 && <NoData />} */}
     </Wrap>
   );
 };

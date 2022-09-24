@@ -18,7 +18,7 @@ const CategoryModal = ({ setIsCategoryShown }) => {
 
   return (
     <ModalFloater setIsCategoryShown="setIsCategoryShown">
-      <div style={{ margin: "1rem" }}>
+      <ContentsWrap style={{ margin: "1rem" }}>
         <TitleWrap>
           <Title>카테고리</Title>
           <Icon
@@ -42,7 +42,7 @@ const CategoryModal = ({ setIsCategoryShown }) => {
             );
           })}
         </ul>
-      </div>
+      </ContentsWrap>
     </ModalFloater>
   );
 };
@@ -61,12 +61,10 @@ const ModalFloater = styled.div`
   display: flex;
   position: absolute;
   top: 0;
-
   z-index: 200;
-
-  background-color: white;
+  background-color: white !important;
   width: 100%;
-
+  // height: 100%;
   left: ${(props) => (props.setIsCategoryShown ? "0" : "-100%")};
 
   animation-duration: 0.3s;
@@ -74,17 +72,22 @@ const ModalFloater = styled.div`
   animation-name: ${slideIn};
   animation-fill-mode: forwards;
 `;
-
+const ContentsWrap = styled.div`
+  width: 22rem;
+`;
 const TitleWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
+  border-bottom: 1px solid #eeeeee;
 `;
 
 const Title = styled.h1`
-  color: #7951c6;
-  font-size: 24px;
-  margin-bottom: 1rem;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 0.75;
+  letter-spacing: -1.2px;
+  text-align: left;
 `;
 
 const Icon = styled.img`
@@ -93,8 +96,12 @@ const Icon = styled.img`
 `;
 const Li = styled.li`
   margin: 1rem auto;
-  font-size: 14px;
+  font-size: 1.125rem;
+  font-weight: bold;
+  letter-spacing: -0.9px;
+  text-align: left;
   padding: 0.5rem;
+  border-bottom: 1px solid #eeeeee;
   cursor: pointer;
   &:active {
     background-color: white;

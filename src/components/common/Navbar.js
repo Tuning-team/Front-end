@@ -80,17 +80,16 @@ const Nav = styled.nav`
   left: 0;
   right: 0;
   max-width: 360px;
-  z-index: 100;
+  z-index: 300;
   box-sizing: border-box;
-  height: 4.5rem;
+  height: 4.7rem;
   margin: 0 auto;
-  background-color: #efefef;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
 `;
-const Name = styled.span`
-  margin-top: 3px;
-`;
+
 const Wrap = styled.div`
-  padding-top: 1rem;
+  // padding-top: 1rem;
   display: flex;
   flex-direction: column;
   width: 100%;

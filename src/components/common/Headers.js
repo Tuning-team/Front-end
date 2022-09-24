@@ -30,11 +30,7 @@ const Headers = () => {
       {/*로고*/}
       <StyleLogo />
       {/* 로그인/로그아웃 */}
-      <StyleLogin
-        onClick={() =>
-          getCookie("token") === undefined ? nav("/login") : nav("/myPage")
-        }
-      >
+      <StyleLogin onClick={() => nav("/login")}>
         {getCookie("token") === undefined ? "로그인" : "로그아웃"}
       </StyleLogin>
     </Wrap>

@@ -30,7 +30,9 @@ const LoginSignupWrap = () => {
               if (getCookie("token") === undefined) {
                 alert("로그아웃 되었습니다");
                 nav("/");
-              } else window.reload();
+              } else {
+                window.reload();
+              }
             }}
           >
             <Logo src="./images/logo_google.png" alt="logo" />
@@ -84,4 +86,5 @@ const LoginBtn = styled.div`
 const Logo = styled.img`
   width: 1.375rem;
   height: 1.375rem;
+  margin: 5px;
 `;

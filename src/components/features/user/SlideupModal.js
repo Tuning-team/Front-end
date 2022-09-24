@@ -29,11 +29,11 @@ const Modal = styled.div`
   left: 0%;
   width: 100%;
   height: 200%;
-  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 400;
 `;
 const SlideupBox = styled.div`
   background-color: #ffffff;
