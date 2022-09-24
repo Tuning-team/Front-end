@@ -3,37 +3,42 @@ import styled from "styled-components";
 import icon_add from "../../../shared/svg/icon_add.svg";
 import { deleteVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const FormVideo = ({ addVideoHandler, addVideoList }) => {
   const dispatch = useDispatch();
+  const [hasVideo, setVideo] = useState(true);
+
   return (
     <Wrap>
-      <Label>
-        영상추가<Required>*</Required>
-      </Label>
+      <Label>영상추가</Label>
       <AddVideoBox>
-        <StVideo onClick={addVideoHandler}>
-          <Icon src={icon_add} />
+        <StVideo hasVideo>
+          {addVideoList?.map((x, idx) => {
+            return (
+              <VideoBox key={idx}>
+                <VideoList>{x.title}</VideoList>
+                <DeleteBtn onClick={() => dispatch(deleteVideo(x.id))}>
+                  X
+                </DeleteBtn>
+              </VideoBox>
+            );
+          })}
+          <Icon src={icon_add} onClick={addVideoHandler} />
         </StVideo>
-        {addVideoList?.map((x, idx) => {
-          return (
-            <div key={idx}>
-              <VideoList>
-                <Span>- </Span>
-                {x.title}
-              </VideoList>
-              <button onClick={() => dispatch(deleteVideo(x.id))}>X</button>
-            </div>
-          );
-        })}
       </AddVideoBox>
     </Wrap>
   );
 };
 export default FormVideo;
 const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
+display: flex;
+flex-direction: column;
+align-items
+width: 20.938rem;
+height: 10.5rem;
+margin:0 0 1.25rem 0
 `;
 
 const AddVideoBox = styled.div`
@@ -42,37 +47,56 @@ const AddVideoBox = styled.div`
   height: 40px;
 `;
 const StVideo = styled.div`
-  width: 21.438rem;
-  height: 3.125rem;
-  border: #b295e9 solid 1px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20.938rem;
+  height: {hasVideo ? 0 : "8.75rem"};
+  border-radius: 8px;
+  border: ${(props) => (props.hasVideo ? "solid 1px #eee" : "unset")};
+  flex-direction: column;
+`;
+const Icon = styled.img`
+  width: 3.25rem;
+  height: 3.25rem;
+  margin: 1.5rem 0 1.5rem 0;
+`;
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.9px;
+  text-align: left;
+`;
+const VideoBox = styled.div`
+  display: flex;
+  width: 20.938rem;
+  height: 2.844rem;
+  border-radius: 8px;
+  border: solid 1px #eee;
   justify-content: center;
   align-items: center;
 `;
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
+const DeleteBtn = styled.button`
+  all: unset;
 `;
 const VideoList = styled.div`
-  margin-top: 1.5rem;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.06;
+  letter-spacing: normal;
+  text-align: left;
+  color: #adadad;
   width: 17rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
-const Span = styled.span`
-  color: #b295e9;
-`;
-const Label = styled.label`
-  display: flex;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 123.8%;
-  margin-bottom: 12px;
-`;
-
-const Required = styled.p`
-  color: #b295e9;
-  margin-left: 5px;
+  z-index: 10;
 `;

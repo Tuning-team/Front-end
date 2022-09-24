@@ -24,6 +24,7 @@ const AddCollectionForm = () => {
   );
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
   const [modal, setModal] = useState(false);
+  // const [isDisabled, setDisabled] = useState(false);
 
   //!마운트, 언마운트시
   useEffect(() => {
@@ -37,21 +38,16 @@ const AddCollectionForm = () => {
       description: inputData[1] || "",
       category_id: inputData[2] || "",
     });
-
   //!컬렉션 추가
   const onClickHandler = (e) => {
-    if (
-      collectionTitle === "" ||
-      description === "" ||
-      addVideoList.length === 0 ||
-      category_id === "0"
-    ) {
-      setModal(true);
+    const videos = addVideoList.map((x) => x.id);
+    const addData = { category_id, collectionTitle, description, videos };
+    if (Object.values(addData).every((x) => x == "")) {
+      setModal(2);
     } else {
-      const videos = addVideoList.map((x) => x.id);
-      const addData = { category_id, collectionTitle, description, videos };
-      dispatch(postCollection(addData));
-      dispatch(rememberData([]));
+      setModal(3);
+      // dispatch(postCollection(addData));
+      // dispatch(rememberData([]));
     }
   };
 
@@ -66,7 +62,7 @@ const AddCollectionForm = () => {
       <FormTitle
         onClickHandler={onClickHandler}
         title="컬렉션 만들기"
-        btn="추가하기"
+        btn="확인"
       />
       <Form>
         <FormInput onChange={onChange} collectionTitle={collectionTitle} />
@@ -90,10 +86,7 @@ const AddCollectionForm = () => {
   );
 };
 export default AddCollectionForm;
-const AddCollectionWrap = styled.div`
-  padding: 1.3rem 1.3rem 1.3rem 1rem;
-  margin-bottom: 7rem;
-`;
+const AddCollectionWrap = styled.div``;
 const Form = styled.div`
   display: flex;
   flex-direction: column;

@@ -4,9 +4,7 @@ import styled from "styled-components";
 const FormInput = ({ onChange, collectionTitle }) => {
   return (
     <Wrap>
-      <Label>
-        제목 <Required>*</Required>
-      </Label>
+      <Label>제목</Label>
       <Input
         placeholder="컬랙션 제목을 입력하세요"
         name="collectionTitle"
@@ -17,26 +15,34 @@ const FormInput = ({ onChange, collectionTitle }) => {
   );
 };
 export default FormInput;
-const Label = styled.label`
-  display: flex;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 123.8%;
-  margin-bottom: 12px;
-`;
-const Input = styled.input`
-  margin-bottom: 12px;
-  border: #b295e9 solid 1px;
-  width: 21.438rem;
-  height: 2.5rem;
-  border-radius: 3px;
-`;
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
+  align-items
+  width: 23.438rem;
+  height: 6rem;
+  margin:1.25rem 0 1.25rem 0
+
 `;
-const Required = styled.p`
-  color: #b295e9;
-  margin-left: 5px;
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.9px;
+  text-align: left;
+`;
+
+const Input = styled.input`
+  width: 20.938rem;
+  height: 3rem;
+  margin: 0.125rem 0 0;
+  border-radius: 8px;
+  border: solid 1px #eee;
+  background-color: #fff;
+  font-size: 1.125rem;
 `;

@@ -6,51 +6,57 @@ import {
   rememberData,
 } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import icon_backspace_black from "../../../shared/svg/icon_backspace_black.svg";
-
+import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
+//!enabled만들것!!!!!!!!!11
 const FormTitle = ({ onClickHandler, btn, title }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   return (
-    <TitleBox>
-      <Backspace
+    <Title>
+      <IconBack
         onClick={() => {
           dispatch(rememberData([]));
           dispatch(deleteVideo("all"));
           nav(-1);
         }}
-        src={icon_backspace_black}
-      ></Backspace>
-      <Title>{title}</Title>
+        src={icon_back_enabled}
+      ></IconBack>
+      <TitleLogo>{title}</TitleLogo>
 
-      <Btn onClick={onClickHandler}>{btn}</Btn>
-    </TitleBox>
+      <TitleSubmit onClick={onClickHandler}>{btn}</TitleSubmit>
+    </Title>
   );
 };
 export default FormTitle;
-const Title = styled.h1`
+const TitleLogo = styled.h1`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 123.8%;
   padding: 5px;
 `;
-const Backspace = styled.img`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 123.8%;
-  padding: 5px;
+const IconBack = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
 `;
-const TitleBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const Title = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%
+height: 3rem;
+padding: 0.688rem 0 0;
+background-color: #fff;
+border-bottom: 1px solid #EEEEF6;
 `;
-const Btn = styled.p`
+const TitleSubmit = styled.p`
+  font-size: 0.813rem;
+  font-weight: 500;
+  font-stretch: normal;
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 123.8%;
-  padding: 5px;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #adadad;
+  margin: 0 3px 0 0;
 `;

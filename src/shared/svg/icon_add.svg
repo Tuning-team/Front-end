@@ -1,1 +1,10 @@
-<svg clip-rule="evenodd" fill="#b295e9" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.002 2c5.518 0 9.998 4.48 9.998 9.998 0 5.517-4.48 9.997-9.998 9.997-5.517 0-9.997-4.48-9.997-9.997 0-5.518 4.48-9.998 9.997-9.998zm-.747 9.25h-3.5c-.414 0-.75.336-.75.75s.336.75.75.75h3.5v3.5c0 .414.336.75.75.75s.75-.336.75-.75v-3.5h3.5c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-3.5v-3.5c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" viewBox="0 0 104 104">
+    <g data-name="Ellipse 14" style="fill:#f5f5f5;stroke:#572cff;stroke-width:2px">
+        <circle cx="52" cy="52" r="52" style="stroke:none"/>
+        <circle cx="52" cy="52" r="51" style="fill:none"/>
+    </g>
+    <g data-name="Group 5960">
+        <path data-name="Rectangle 2906" transform="translate(29 28)" style="fill:none" d="M0 0h48v48H0z"/>
+        <path data-name="Path 4053" d="M-2509-4647h-20v-20a2 2 0 0 0-2-2 2 2 0 0 0-2 2v20h-20a2 2 0 0 0-2 2 2 2 0 0 0 2 2h20v20a2 2 0 0 0 2 2 2 2 0 0 0 2-2v-20h20a2 2 0 0 0 2-2 2 2 0 0 0-2-2z" transform="translate(2584 4697)" style="fill:#572cff"/>
+    </g>
+</svg>

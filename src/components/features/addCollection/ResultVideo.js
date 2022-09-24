@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { addVideoList } from "../../../redux/modules/collectionSlice";
 import Loading from "../../common/Loading";
 import { getVideo } from "../../../redux/modules/collectionSlice";
+import icon_bottom from "../../../shared/svg/icon_bottom.svg";
 
 const ResultVideo = () => {
   const nav = useNavigate();
@@ -12,6 +13,7 @@ const ResultVideo = () => {
   const data = useSelector(
     (state) => state.myCollectionSlice.searchResult.data
   );
+  console.log(data);
   const loading = useSelector(
     (state) => state.myCollectionSlice.searchResult.loading
   );
@@ -38,19 +40,26 @@ const ResultVideo = () => {
               key={idx}
               onClick={() => {
                 const video_id = [x.video];
-                console.log(video_id);
                 dispatch(addVideoList(video_id));
                 nav(-1);
               }}
             >
-              {x.video?.title}
+              <Thumbnail src={x.video?.thumbnail_src} />
+              <VideoInfo>
+                {x.uploader?.username} <VideoTitle>{x.video?.title}</VideoTitle>
+              </VideoInfo>
             </ResultBox>
           );
         })
       )}
-      {/* //todo 더보기 버튼 다음페이지가 없을때 안보이게 //todo 기존데이터 쌓이게?
-      사라지게? 정하기 */}
-      {data.length === 0 ? "" : <div onClick={seeMore}>더보기</div>}
+      {data.length === 0 || loading ? (
+        ""
+      ) : (
+        <More onClick={seeMore}>
+          <img src={icon_bottom} alt="icon" />
+          <p>더보기</p>
+        </More>
+      )}
     </ResultWrap>
   );
 };
@@ -63,14 +72,12 @@ const ResultWrap = styled.div`
 `;
 
 const ResultBox = styled.div`
+  display: flex;
   margin: 5px 0px 5px 0px;
   border-bottom: 1px solid #efefef;
-  border-left: 2px solid #b295e9;
   padding: 5px;
-  width: 22rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 20.938rem;
+  height: 5rem;
 
   &:active {
     background-color: #efefef;
@@ -82,4 +89,36 @@ const AlertBox = styled.div`
   align-items: center;
   align-content: center;
   margin-top: 10px;
+`;
+const Thumbnail = styled.img`
+  width: 8.781rem;
+  height: 5rem;
+  &:active {
+    opacity: 0.5;
+  }
+`;
+
+const VideoInfo = styled.p`
+  font-style: bold;
+  padding: 3px;
+  width: 15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+const VideoTitle = styled.span`
+  font-size: 0.75rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+  text-align: left;
+  color: #adadad;
+`;
+const More = styled.div`
+  color: #adadad;
+  display: flex;
+  width: 20rem;
+  justify-content: center;
 `;

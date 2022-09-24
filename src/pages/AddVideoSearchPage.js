@@ -2,18 +2,14 @@ import React, { useState } from "react";
 import SearchVideo from "../components/features/addCollection/SearchVideo";
 import ResultVideo from "../components/features/addCollection/ResultVideo";
 import Navbar from "../components/common/Navbar";
-import SeeMore from "../components/features/addCollection/SeeMore";
-
+import Layout from "../components/common/Layout";
 const AddVideoSearchPage = () => {
-  const seeMore = useState(false);
-
   return (
-    <>
+    <Layout>
       <SearchVideo />
       <ResultVideo />
-      {/* <SeeMore onClick={()=>} /> */}
       <Navbar />
-    </>
+    </Layout>
   );
 };
 export default AddVideoSearchPage;
