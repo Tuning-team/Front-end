@@ -37,25 +37,25 @@ const Modal = styled.div`
 `;
 const SlideupBox = styled.div`
   background-color: #ffffff;
-  width: 22.063rem;
-  height: 8.938rem;
-  color: #b295e9;
+  width: 23.438rem;
+  height: 9.438rem;
 
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  border-radius: 10px 10px 0 0;
-
-  animation-duration: 0.3s;
+  border-radius: 20px 20px 0 0;
+  // transition all 1s ease-in-out;
+  animation-duration: 0.5s;
   // animation-timing-function: ease-out;
   animation-name: ${slideUp};
   animation-fill-mode: forwards;
 `;
 const CloseBtn = styled.div`
-  width: 40px;
-  height: 3px;
-  background-color: gray;
+  width: 3.625rem;
+  height: 0.25rem;
+  border-radius: 2px;
+  background-color: #adadad;
 `;
 const Children = styled.div`
   margin-bottom: 30px;

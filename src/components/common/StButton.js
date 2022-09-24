@@ -11,14 +11,14 @@ const StButton = () => {
     });
   };
   return (
-    <>
+    <Div>
       <Btn onClick={() => nav("/myCollection/add")} bottom="16%" color="purple">
         컬렉션
       </Btn>
       <Btn bottom="11%" color="pink" onClick={ScrollTop}>
         top
       </Btn>
-    </>
+    </Div>
   );
 };
 export default StButton;
@@ -33,4 +33,8 @@ const Btn = styled.div`
   right: 33%;
   bottom: ${(props) => props.bottom};
   background-color: ${(props) => props.color};
+  z-index: 999;
+`;
+const Div = styled.div`
+  display: flex;
 `;

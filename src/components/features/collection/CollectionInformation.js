@@ -143,12 +143,10 @@ export default CollectionInformation;
 
 const CollectionInfoBox = styled.div`
   margin: 1.313rem 1rem 0.375rem 1rem;
-
   & h1 {
     font-size: 1.5rem;
     font-weight: bold;
     line-height: 1.24;
-
     margin-bottom: 0.375rem;
   }
   & p {
@@ -158,7 +156,6 @@ const CollectionInfoBox = styled.div`
     font-style: normal;
     line-height: 1.24;
     letter-spacing: normal;
-
     margin: 0.813rem 0;
   }
 `;
