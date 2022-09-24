@@ -56,7 +56,7 @@ const StInput = styled.input`
     color: #adadad;
   }
   &:focus {
-    outline: none;
+    outline-color: var(--color-primary);
   }
 `;
 

@@ -2,15 +2,13 @@ import React from "react";
 import AddCollectionWrap from "../components/features/addCollection/AddCollectionWrap";
 import Navbar from "../components/common/Navbar";
 import Layout from "../components/common/Layout";
-import StButton from "../components/common/StButton";
+import StButton from "../components/common/StickyButtons";
 const AddCollectionPage = () => {
   return (
-    <>
-      <Layout>
-        <AddCollectionWrap />
-        <Navbar />
-      </Layout>
-    </>
+    <Layout>
+      <AddCollectionWrap />
+      <Navbar />
+    </Layout>
   );
 };
 export default AddCollectionPage;
