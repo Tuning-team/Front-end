@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as UpIcon } from "../../shared/svg/24_ena_floating_up.svg";
 import { ReactComponent as MakeTuningIcon } from "../../shared/svg/ena_floating_make tuning.svg";
 
-const StButton = () => {
+const StickyButtons = () => {
   const nav = useNavigate();
   const ScrollTop = () => {
     window.scroll({
@@ -13,18 +13,18 @@ const StButton = () => {
   };
 
   return (
-    <FloatingIconContainer>
+    <StickyContainer>
       <Btn onClick={() => nav("/myCollection/add")}>
         <MakeTuningIcon />
       </Btn>
       <Btn onClick={ScrollTop}>
         <UpIcon />
       </Btn>
-    </FloatingIconContainer>
+    </StickyContainer>
   );
 };
-export default StButton;
-const FloatingIconContainer = styled.div`
+export default StickyButtons;
+const StickyContainer = styled.div`
   position: sticky;
   position: -webkit-sticky;
   z-index: 100;
