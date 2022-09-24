@@ -15,5 +15,5 @@ const StyleLayout = styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  overflow-x: hidden;
+  position: relative;
 `;

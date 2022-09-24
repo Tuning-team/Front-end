@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_floating_up">
+        <path data-name="Rectangle 285" transform="rotate(90 24 24)" style="fill:none" d="M0 0h48v48H0z"/>
+        <g data-name="Group 5582">
+            <g data-name="Group 5583">
+                <path data-name="Path 4048" d="M-1715-6876a1.99 1.99 0 0 1-1.414-.586l-16-16a2 2 0 0 1 0-2.828l16-16a2 2 0 0 1 2.828 0 2 2 0 0 1 0 2.828l-14.585 14.586 14.585 14.586a2 2 0 0 1 0 2.828 1.99 1.99 0 0 1-1.414.586z" transform="rotate(90 -4304.5 -2565.5)" style="fill:#505050"/>
+                <path data-name="Path 4049" d="M-1715-6876a1.99 1.99 0 0 1-1.414-.586l-16-16a2 2 0 0 1 0-2.828l16-16a2 2 0 0 1 2.828 0 2 2 0 0 1 0 2.828l-14.585 14.586 14.585 14.586a2 2 0 0 1 0 2.828 1.99 1.99 0 0 1-1.414.586z" transform="rotate(90 -4312.5 -2557.5)" style="fill:#505050"/>
+            </g>
+        </g>
+    </g>
+</svg>

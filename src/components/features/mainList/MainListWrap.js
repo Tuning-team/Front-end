@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TodaysWeatherCollections from "./TodaysWeatherCollections";
-import RecommendedCollections from "./RecommendedCollections";
-import FamousCollections from "./FamousCollections";
-import RecentCollections from "./RecentCollections";
-import SearchWrap from "../search/SearchWrap";
+import ChildrenCategories from "./ChildrenCategories";
+import SearchInput from "../../common/elements/SearchInput";
 import InterestedCategories from "./InterestedCategories";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
@@ -12,8 +9,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCategories } from "../../../redux/modules/categorySlice";
 import { useNavigate } from "react-router-dom";
-import Modal from "../../common/Modal";
-import { getUserInterest } from "../../../redux/modules/userSlice";
 import Loading from "../../common/Loading";
 
 const MainListWrap = () => {
@@ -68,19 +63,20 @@ const MainListWrap = () => {
             ))}
           </Carousel>
           <CarouselDesc>
-            <h2>인기 튜닝</h2>
+            <h2>인기있는 튜닝</h2>
             <p>가장 많은 좋아요와 댓글을 획득한 튜닝들</p>
           </CarouselDesc>
         </div>
       )}
       <StyleBackground>
-        <SearchWrap />
+        <SearchInput backgroundColor={"#ffffff"} width={"auto"} />
         <InterestedCategories />
       </StyleBackground>
+      <ChildrenCategories recommend={recommend} recent={recent} />
+
       {/* --------------- mvp때 썼던 코드... ----------------------------------- */}
       {/* <TodaysWeatherCollections categoryId={weatherCategoryId} /> */}
       {/* <RecommendedCollections categoryId={recommendedCategoryId} /> */}
-      <FamousCollections popular={popular} />
       {/* <RecentCollections /> */}
     </>
   );
@@ -91,7 +87,8 @@ const CarouselDesc = styled.div`
   position: absolute;
   pointer-events: none;
   top: 0;
-  width: 23.438rem;
+  right: 0;
+  left: 0;
   height: 5.969rem;
   margin: 7.406rem 0 0;
   padding: 2.281rem 0 0 1.25rem;
@@ -136,4 +133,5 @@ const StyleBackground = styled.div`
   /* margin: 15.625rem 0 1.875rem; */
   /* padding: 1.125rem 0.031rem 2.5rem 0; */
   background-color: #eeeef6;
+  padding: 1.25rem 1.5rem 2.5rem 1.5rem;
 `;

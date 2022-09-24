@@ -7,12 +7,14 @@ import StButton from "../components/common/StButton";
 
 const MainPage = () => {
   return (
-    <Layout>
-      <Headers />
-      <MainListWrap />
-      <StButton />
-      <Navbar />
-    </Layout>
+    <>
+      <Layout>
+        <Headers />
+        <MainListWrap />
+        <Navbar />
+        <StButton />
+      </Layout>
+    </>
   );
 };
 export default MainPage;

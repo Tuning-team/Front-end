@@ -30,16 +30,14 @@ export default Carousel;
 const SliderWrapper = styled.div`
   overflow-x: hidden;
   height: ${(props) => props.height};
-
-  /* backdrop-filter: blur(2px); */
 `;
 const StyleSlider = styled(Slider)`
   /* 아이템 사이의 간격 조절 */
   & .slick-slide > div {
-    margin: 0 0.25rem;
+    margin: 0 0.5rem;
   }
   & .slick-list {
-    margin: 0 -0.25rem;
+    margin: 0 -0.5rem;
   }
   & .slick-slide {
     /* 센터모드일때만 작동 */
