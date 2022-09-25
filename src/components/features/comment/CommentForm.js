@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SlideupModal from "../user/SlideupModal";
 import { useDispatch, useSelector } from "react-redux";
+import icon_go from "../../../shared/svg/icon_go.svg";
 import {
   deleteComment,
   getComment,
@@ -90,7 +91,12 @@ const CommentList = ({ collectionId }) => {
         <div /* style={{ marginBottom: "40px" }} */>
           <ul>
             {commentList.length === 0 ? (
-              <div>댓글이 없습니다</div>
+              <div style={{
+                marginTop: "3rem",
+                display: "flex",
+                justifyContent: "center",
+                fontSize: "1rem"
+              }}>ㅤ댓글이 없습니다ㅤ</div>
             ) : (
               commentList?.map((data, idx) => {
                 return (
@@ -98,8 +104,7 @@ const CommentList = ({ collectionId }) => {
                     <StCommentImgDiv
                       style={{
                         verticalAlign: "middle",
-                        marginTop: "5px",
-                        marginBottom: "5px",
+                        marginTop: "0.3rem",
                         marginRight: "5px",
                       }}
                     >
@@ -113,14 +118,29 @@ const CommentList = ({ collectionId }) => {
                         <p
                           style={{
                             fontWeight: "bold",
-                            fontSize: "14px",
-                            marginTop: "5px",
-                            marginBottom: "5px",
+                            fontSize: "0.87",
+                            marginTop: "0px",
+                            display: "block",
+                            marginBlockStart: "0em",
+                            marginBlockEnd: "0em",
+                            marginInlineStart: "0px",
+                            marginInlineEnd: "0px",
                           }}
                         >
-                          작성자: {data.writerName}
+                          {/* 작성자 */}
+                          {data.writerName}
                         </p>
-                        <p>{data.comment}</p>
+                        <span style={{
+                          fontSize: "0.8rem",
+                          marginBottom: "0.5rem",
+                          color: "#adadad",
+                          display: "-webkit-box",
+                          webkitBoxOrient: "vertical",
+                          WebkitLineClamp: "3",
+                          overflow: "hidden",
+                        }}>
+                          {/* 댓 내용 */}
+                          {data.comment}</span>
                       </li>
                     </StCommentValueDiv>
                     <StCommentBtnDiv>
@@ -128,15 +148,15 @@ const CommentList = ({ collectionId }) => {
                         value={data.comment_id}
                         onClick={saveCommentData}
                       >
-                        <IconMore
-                          setModal={setModal}
-                          style={{
-                            pointerEvents: "none",
-                            width: "1.125rem",
-                            height: "1.125rem"
-                          }}
-                        />
                       </StCommentBtn>
+                      <IconMore
+                        setModal={setModal}
+                        style={{
+                          pointerEvents: "none",
+                          width: "1.125rem",
+                          height: "1.125rem"
+                        }}
+                      />
                     </StCommentBtnDiv>
                   </StProfileDiv>
                 );
@@ -158,9 +178,12 @@ const CommentList = ({ collectionId }) => {
               type="text"
               onChange={(e) => setNewInputValue(e.target.value)}
               value={newinputValue}
-              placeholder="댓글을 수정해주세요 ;-)"
+              placeholder="ㅤ댓글을 수정해주세요 ;-)"
             />
-            <StButton type="submit"> 수정 </StButton>
+
+            <StButton type="submit">
+              <Icon src={icon_go} />
+            </StButton>
           </StInputDiv>
         </StCommentForm>
       ) : (
@@ -171,10 +194,12 @@ const CommentList = ({ collectionId }) => {
                 type="text"
                 onChange={(e) => setNewInputValue(e.target.value)}
                 value={newinputValue}
-                maxlength="40"
-                placeholder="댓글을 입력해주세요 :D"
-              />
-              <StButton type="submit"> 등록 </StButton>
+                placeholder="ㅤ댓글을 작성해주세요 :-D"
+              >
+              </StInput>
+              <StButton type="submit">
+                <Icon src={icon_go} />
+              </StButton>
             </StInputDiv>
           </StCommentForm>
         </>
@@ -208,17 +233,13 @@ const StCommentForm = styled.form`
 const StInput = styled.input`
       display: flex;
       width: 100%;
-      font-size: 1rem;
-      padding: 0.5rem 3.5rem 0.5rem 0.5rem;
-      width: 20.938rem;
-  
       height: 2.25rem;
-  margin: 0 1.25rem 0.25rem;
-  padding: 0.563rem 1.75rem 0 1rem;
-  border-radius: 18px;
-  background-color: #f5f5f5;
-      
-      
+      font-size: 1rem;
+      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+      border: none;
+      outline: none;
+      border-radius: 1rem;
+      background-color: #f5f5f5;
       `;
 
 
@@ -232,11 +253,14 @@ const StButton = styled.button`
       background: none;
       border: none;
       outline: none;
-      display: none;
+      /* display: none; */
       right: 30px;
       top: 25px;
       cursor: pointer;
       `;
+const Icon = styled.img`
+  height: 1.2rem;
+`;
 
 const StMoreDiv = styled.div`
       display: block;
@@ -251,7 +275,7 @@ const StMoreDiv = styled.div`
 const StProfileDiv = styled.div`
       display: flex;
       flex-direction: row;
-      padding: 1.375rem 1.25rem 0;
+      padding: 0.1rem 1.5rem 0;
   background-color: #fff;
       `;
 const StCommentImgDiv = styled.div`
@@ -280,8 +304,8 @@ const StCommentValueDiv = styled.div`
       `;
 
 const StProfileImg = styled.img`
-      width: 35px;
-      height: 35px;
+      width: 2.25rem;
+      height: 2.25rem;
       border-radius: 70%;
       overflow: hidden;
       margin-left: 5px;
