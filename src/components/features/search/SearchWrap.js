@@ -55,7 +55,7 @@ const SearchWrap = (props) => {
         ) : (
           <CollectionList
             state={searchResult}
-            title="검색한"
+            title="ㅤ검색한"
           />
         )
         }
