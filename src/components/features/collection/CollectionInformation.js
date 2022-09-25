@@ -9,20 +9,25 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../../shared/cookie";
-import FloatingIcons from "./FloatingIcons";
-import YoutubeContainer from "./YoutubeContainer";
+
 import Button from "../../common/elements/Button";
 import More from "../../common/More";
-import { ReactComponent as LikesIcon } from "../../../shared/svg/icon_like.svg";
+import { ReactComponent as LikeIcon } from "../../../shared/svg/icon_like.svg";
+import { ReactComponent as SaveIcon } from "../../../shared/svg/icon_cart.svg";
 import { useParams } from "react-router-dom";
 import shareKakao from "../../../shared/shareKakao";
 import { keepCollection } from "../../../redux/modules/collectionSlice";
 
-const CollectionInformation = ({ collectionId, tabClicked }) => {
+const CollectionInformation = ({
+  collectionId,
+  tabClicked,
+  modal,
+  setModal,
+}) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const param = useParams();
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
@@ -85,40 +90,25 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
 
   return (
     <>
-      <FloatingIcons setModal={setModal} tabClicked={tabClicked} />
-      {!tabClicked ? (
-        <>
-          <YoutubeContainer />
-          <CollectionInfoBox>
-            <h1>{data?.collectionTitle}</h1>
-            <MakeElementsHorizontal>
-              <div id="userId">{data?.writerName} ·</div>
-              <div id="countVideos">영상 {data?.videos.length}개 ·</div>
-              <div id="countLikes">
-                좋아요 <span data-testid="countLikes">{data?.likes}</span>
-              </div>
-            </MakeElementsHorizontal>
-            <Button
-              backgroundColor="#ECE5FA"
-              border="1px solid #b295e9"
-              width="100%"
-              height="2.5rem"
-              onClick={() => {
-                onClickLikeBtn();
-              }}
-            >
-              <div style={{ fontSize: "0.875rem" }}>
-                <LikesIcon fill="#000000" style={{ marginRight: "0.5rem" }} />
-                좋아요
-              </div>
-            </Button>
-            <button onClick={onKeepThisCollection}>담기</button>
-            <p data-testid="collection-description">{data?.description}</p>
-          </CollectionInfoBox>
-        </>
-      ) : (
-        <div style={{ height: "54px" }}></div>
-      )}
+      <CollectionInfoBox>
+        <UserNameAndVideoNums>
+          {data?.writerName}
+          <span> {data?.videos.length}개</span>
+        </UserNameAndVideoNums>
+        <h1 id="collectionTitle">{data?.collectionTitle}</h1>
+        <p className="collectionExplanation">{data?.description}</p>
+
+        <SaveAndLikeContainer>
+          <IconSection>
+            <StyleSaveIcon onClick={onKeepThisCollection} />
+            <span>***</span>
+          </IconSection>
+          <IconSection>
+            <StyleLikeIcon fill="#505050" onClick={onClickLikeBtn} />
+            <span data-testid="countLikes">{data?.likes}</span>
+          </IconSection>
+        </SaveAndLikeContainer>
+      </CollectionInfoBox>
       {modal && (
         <More>
           <ChooseBtn>
@@ -142,40 +132,66 @@ const CollectionInformation = ({ collectionId, tabClicked }) => {
 export default CollectionInformation;
 
 const CollectionInfoBox = styled.div`
-  margin: 1.313rem 1rem 0.375rem 1rem;
+  border-bottom: 1px solid #eee;
+  padding: 1.313rem 1.25rem;
+  box-sizing: border-box;
+  position: relative;
   & h1 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: bold;
-    line-height: 1.24;
-    margin-bottom: 0.375rem;
+    letter-spacing: -0.9px;
+    color: #191919;
+    margin: 0.125rem 0;
   }
-  & p {
+  & .collectionExplanation {
     font-size: 0.75rem;
     font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.24;
-    letter-spacing: normal;
-    margin: 0.813rem 0;
+    color: #999;
   }
 `;
 
-const MakeElementsHorizontal = styled.div`
+const UserNameAndVideoNums = styled.div`
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: #505050;
+  & span {
+    font-size: 0.813rem;
+    font-weight: normal;
+    color: #adadad;
+    margin: 0;
+  }
+`;
+const SaveAndLikeContainer = styled.div`
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
   display: flex;
-  justify-content: left;
-  gap: 0.5rem;
-  margin-bottom: 0.875rem;
-  & > div {
+  gap: 5px;
+`;
+const IconSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & span {
     font-size: 0.75rem;
-    line-height: 1.24;
     font-weight: normal;
-  }
-  & #userId,
-  #countVideos {
-    color: rgba(0, 0, 0, 0.6);
+    color: #505050;
+    text-align: center;
   }
 `;
+const StyleLikeIcon = styled(LikeIcon)`
+  box-sizing: border-box;
 
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+`;
+const StyleSaveIcon = styled(SaveIcon)`
+  box-sizing: border-box;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+`;
 const ChooseBtn = styled.div`
   background-color: #ffffff;
   width: 22.063rem;

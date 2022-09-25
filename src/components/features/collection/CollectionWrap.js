@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { resetVideoId } from "../../../redux/modules/tempCollectionSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import FloatingIcons from "./FloatingIcons";
+import YoutubeContainer from "./YoutubeContainer";
 import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
 import CommentForm from "../comment/CommentForm";
@@ -11,13 +13,11 @@ const CollectionWrap = () => {
   const param = useParams();
   const dispatch = useDispatch();
 
+  const [modal, setModal] = useState(false);
   const [tabClicked, setTabClicked] = useState(false);
 
-  const onClickedVideoTab = () => {
-    setTabClicked(false);
-  };
-  const onClickedCommentTab = () => {
-    setTabClicked(true);
+  const onClickedCommentBtn = () => {
+    setTabClicked((prev) => !prev);
   };
 
   useEffect(() => {
@@ -28,72 +28,52 @@ const CollectionWrap = () => {
 
   return (
     <>
+      <FloatingIcons setModal={setModal} />
+      <YoutubeContainer />
       <CollectionInformation
         collectionId={param.collection_id}
         tabClicked={tabClicked}
+        modal={modal}
+        setModal={setModal}
       />
-      <TabMenu tabClicked={tabClicked}>
-        <div className="videoTab" onClick={onClickedVideoTab}>
-          <span>영상</span>
-        </div>
-        <div className="commentTab" onClick={onClickedCommentTab}>
-          <span>댓글</span>
-        </div>
-      </TabMenu>
-
+      <CommnetSection>
+        <OpenCommentBox onClick={onClickedCommentBtn}>
+          댓글 <span>***</span>
+        </OpenCommentBox>
+      </CommnetSection>
       <CollectionVideoList collectionId={param.collection_id} />
-
-      <div style={{
-        position: "fixed",
-        zIndex: "99999",
-        width: "360px",
-        bottom: tabClicked ? "0" : "-100%",
-        transition: "all 1s ease-in-out"
-      }}>
+      <div
+        style={{
+          position: "fixed",
+          zIndex: "99999",
+          width: "360px",
+          bottom: tabClicked ? "0" : "-100%",
+          transition: "all 1s ease-in-out",
+        }}
+      >
         <CommentForm collectionId={param.collection_id} />
       </div>
-
     </>
   );
 };
 export default CollectionWrap;
+const CommnetSection = styled.div`
+  border-bottom: 0.5rem solid #f5f5f5;
+  padding: 0.625rem 1.25rem;
+`;
 
-const TabMenu = styled.div`
-  display: flex;
-  position: relative;
-  justify-content: space-evenly;
-  border-bottom: 0.235rem solid #eaeaea;
-  padding: 0 1rem;
-  height: 2.5rem;
-
-  & > div {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  & .videoTab {
-    border-bottom: 0.235rem solid
-      ${(props) => (props.tabClicked ? "transparent" : "#b295e9")};
-  }
-  & .commentTab {
-    border-bottom: 0.235rem solid
-      ${(props) => (props.tabClicked ? "#b295e9" : "transparent")};
-  }
-
+const OpenCommentBox = styled.div`
+  box-sizing: border-box;
+  height: 2.25rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-radius: 18px;
+  background-color: #f5f5f5;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #505050;
+  cursor: pointer;
   & span {
-    display: inline-block;
-
-    font-size: 0.875rem;
     font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.24;
-    letter-spacing: normal;
+    color: #adadad;
   }
 `;

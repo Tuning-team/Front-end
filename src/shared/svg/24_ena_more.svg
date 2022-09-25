@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_more" transform="translate(0 .014)">
+        <g data-name="Group 5731">
+            <path data-name="Rectangle 2722" transform="translate(0 -.014)" style="fill:none" d="M0 0h48v48H0z"/>
+            <path data-name="Rectangle 2723" transform="translate(6 5.986)" style="fill:none" d="M0 0h36v36H0z"/>
+        </g>
+        <rect data-name="Rectangle 2724" width="6" height="6" rx="3" transform="translate(6 20.986)" style="fill:#505050"/>
+        <rect data-name="Rectangle 2725" width="6" height="6" rx="3" transform="translate(36 20.986)" style="fill:#505050"/>
+        <rect data-name="Rectangle 2726" width="6" height="6" rx="3" transform="translate(21 20.986)" style="fill:#505050"/>
+    </g>
+</svg>

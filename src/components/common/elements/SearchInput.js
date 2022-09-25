@@ -48,10 +48,6 @@ const StInput = styled.input`
   border: none;
   font-size: 1rem;
   font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
   &::placeholder {
     color: #adadad;
   }

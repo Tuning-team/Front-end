@@ -10,7 +10,7 @@ const StyleLayout = styled.div`
   max-width: 360px;
   /* min-width: 360px; */
   border: 1px solid green;
-  padding-bottom: 5rem;
+  /* padding-bottom: 5rem; */
   display: flex;
   flex-direction: column;
   align-content: center;
