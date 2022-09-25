@@ -29,34 +29,42 @@ const FormTitle = ({ onClickHandler, btn, title }) => {
 };
 export default FormTitle;
 const TitleLogo = styled.h1`
+  margin-top: 0.688rem;
+  height: 1.625rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-stretch: normal;
   font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 123.8%;
-  padding: 5px;
+  line-height: 0.75;
+  letter-spacing: -1.2px;
 `;
 const IconBack = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+  height: 2.5rem;
+  width: 2.5rem;
+
+  margin: 0.25rem 0 0.25rem 0.75rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
 `;
 const Title = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%
-height: 3rem;
-padding: 0.688rem 0 0;
-background-color: #fff;
-border-bottom: 1px solid #EEEEF6;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 3rem;
+  position: relative;
 `;
 const TitleSubmit = styled.p`
-  font-size: 0.813rem;
+  font-size: 0.625rem;
   font-weight: 500;
+  width: 2.5rem;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #adadad;
-  margin: 0 3px 0 0;
+  letter-spacing: -0.5px;
+  color: #572cff;
+
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
 `;
