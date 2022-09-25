@@ -35,7 +35,11 @@ function Router() {
         <Route path="/category/:collection_id" element={<CategoryPage />} />
         <Route path="/google_login/:token" element={<GoogleLoginPage />} />
         <Route path="/welcome" element={<WelcomePage />} />
-        <Route path="/myCollection/edit" element={<EditCollectionPage />} />
+        <Route
+          path="/myCollection/edit"
+          replace={false}
+          element={<EditCollectionPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

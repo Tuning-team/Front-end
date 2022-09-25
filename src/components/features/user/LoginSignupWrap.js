@@ -34,7 +34,9 @@ const LoginSignupWrap = () => {
                 alert("로그아웃 되었습니다");
                 nav("/");
               } else {
-                window.reload();
+                removeCookie("token");
+                // alert("새로고침해주세요")
+                window.location.href = "/";
               }
             }}
           >

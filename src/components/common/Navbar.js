@@ -17,7 +17,6 @@ const Navbar = () => {
 
   useEffect(() => {
     if (getCookie("token") !== undefined) {
-      console.log("렌더");
       dispatch(getUserInfo());
     }
   }, []);
