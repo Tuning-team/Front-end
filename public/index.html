@@ -1,6 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-P5BJ32B");
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <!-- 모바일 input에 focus되었을 때 확대 방지  -->
@@ -8,24 +23,52 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1"
     />
+    <!-- 검색엔진최적화를 위한 메타태그 -->
     <meta name="theme-color" content="#000000" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="좋아하는 유투브영상들을 공유하고, 내만대로 컬렉션을 만들 수 있는 사이트입니다. "
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <title>tuning | 튜닝!</title>
+
     <link rel="manifest" href="/manifest.json" />
     <!-- <script type="module">
       import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
       const el = document.createElement("pwa-update");
       document.body.appendChild(el);
     </script> -->
+    <!-- http오류 -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-V8WD67QMM9"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-V8WD67QMM9");
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P5BJ32B"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- <noscript>You need to enable JavaScript to run this app.</noscript> -->
     <div id="root"></div>
   </body>
 </html>

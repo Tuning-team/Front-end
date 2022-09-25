@@ -17,22 +17,31 @@ const HeaderLogo = () => {
 export default HeaderLogo;
 
 const Title = styled.div`
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // width: 100%
+  // height: 3rem;
+  // padding: 0.688rem 0 0;
+  // background-color: #fff;
+  // border-bottom: 1px solid #EEEEF6;
+  // margin-bottom:5px
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%
+  width: 100%;
   height: 3rem;
-  padding: 0.688rem 0 0;
-  background-color: #fff;
-  border-bottom: 1px solid #EEEEF6;
-  margin-bottom:5px
+  position: relative;
 `;
 const IconBack = styled.img`
   width: 1.5rem;
   height: 1.5rem;
 `;
 
-const TitleLogo = styled.img``;
+const TitleLogo = styled.img`
+  margin-top: 0.688rem;
+  height: 1.625rem;
+`;
 const TitleSubmit = styled.div`
   font-size: 0.813rem;
   font-weight: 500;

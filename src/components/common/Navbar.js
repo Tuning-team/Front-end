@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../shared/cookie";
 import { useDispatch } from "react-redux";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as HomeIcon } from "../../shared/svg/Icon_home.svg";
+import { ReactComponent as HomeIcon } from "../../shared/svg/icon_home.svg";
 import { getUserInfo } from "../../redux/modules/userSlice";
 import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category.svg";
 import { ReactComponent as MyIcon } from "../../shared/svg/24_ena_my.svg";
@@ -17,7 +17,6 @@ const Navbar = () => {
 
   useEffect(() => {
     if (getCookie("token") !== undefined) {
-      console.log("렌더");
       dispatch(getUserInfo());
     }
   }, []);
@@ -56,12 +55,12 @@ const Navbar = () => {
         </Wrap>
         <Wrap
           onClick={() => {
-            if (getCookie("token") === undefined) {
-              alert("로그인을 해주세요");
-              nav("/login");
-            } else {
-              nav("/myPage");
-            }
+            //   if (getCookie("token") === undefined) {
+            //     alert("로그인을 해주세요");
+            //     nav("/login");
+            //   } else {
+            nav("/myPage");
+            //   }
           }}
         >
           <StyleMyIcon />

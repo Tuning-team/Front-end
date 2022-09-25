@@ -8,38 +8,46 @@ import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 
 const LoginSignupWrap = () => {
   const nav = useNavigate();
-
+  console.log(getCookie("token"));
   return (
     <LoginWrap>
-      <ContentWrap>
-        <Header>로그인</Header>
-        {getCookie("token") === undefined ? (
+      {getCookie("token") === undefined ? (
+        <ContentWrap>
+          <Header>로그인</Header>
           <LoginBtn
             onClick={() => {
               window.location.href = "https://tube-tuning.com/api/google";
             }}
           >
             <Logo src="./images/logo_google.png" alt="logo" />
-            SIGN WITH GOOGLE
-          </LoginBtn>
-        ) : (
+            SIGN IN WITH GOOGLE
+          </LoginBtn>{" "}
+        </ContentWrap>
+      ) : (
+        <ContentWrap>
+          <Header>로그아웃</Header>
           <LoginBtn
             onClick={() => {
               removeCookie("token");
               localStorage.removeItem("userInfo");
+              console.log(getCookie("token"));
               if (getCookie("token") === undefined) {
                 alert("로그아웃 되었습니다");
                 nav("/");
               } else {
-                window.reload();
+                alert("로그인오류");
+                console.log(getCookie("token"));
+                removeCookie("token");
+                localStorage.removeItem("userInfo");
+                window.location.href = "/";
               }
             }}
           >
             <Logo src="./images/logo_google.png" alt="logo" />
-            SIGNOUT WITH GOOGLE
+            SIGN OUT WITH GOOGLE
           </LoginBtn>
-        )}
-      </ContentWrap>
+        </ContentWrap>
+      )}
     </LoginWrap>
   );
 };
@@ -62,8 +70,8 @@ const ContentWrap = styled.div`
   width: 18.75rem;
 `;
 const Header = styled.div`
-  font-size: 1.938rem;
-  font-weight: 900;
+  font-size: 1.638rem;
+  font-weight: 700;
   letter-spacing: 1.55px;
   width: 18.75rem;
   text-align: center;
@@ -82,9 +90,14 @@ const LoginBtn = styled.div`
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   color: #adadad;
+  &:active {
+    background-color: white;
+    opacity: 1;
+    font-weight: 900;
+  }
 `;
 const Logo = styled.img`
   width: 1.375rem;
   height: 1.375rem;
-  margin: 5px;
+  margin: 0 1.5rem 0 0;
 `;

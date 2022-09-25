@@ -47,9 +47,10 @@ const SlideupBox = styled.div`
   border-radius: 20px 20px 0 0;
   // transition all 1s ease-in-out;
   animation-duration: 0.5s;
-  // animation-timing-function: ease-out;
+  animation-timing-function: ease-in-out;
   animation-name: ${slideUp};
   animation-fill-mode: forwards;
+  //transition: visibility 300ms,left 300ms ease-in
 `;
 const CloseBtn = styled.div`
   width: 3.625rem;

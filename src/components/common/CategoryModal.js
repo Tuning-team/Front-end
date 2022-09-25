@@ -71,6 +71,15 @@ const ModalFloater = styled.div`
   animation-timing-function: ease-out;
   animation-name: ${slideIn};
   animation-fill-mode: forwards;
+  /*테스트*/
+  height: 100%;
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  transition: visibility 300ms, left 300ms ease-in;
+  width: calc(100% -3px);
+  will-change: left;
+  z-index: 1002;
 `;
 const ContentsWrap = styled.div`
   width: 22rem;

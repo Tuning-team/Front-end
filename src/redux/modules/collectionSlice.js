@@ -268,7 +268,6 @@ export const myCollectionSlice = createSlice({
       state.keptCollection.loading = true;
     });
     builder.addCase(getKeptCollection.fulfilled, (state, action) => {
-      console.log(action.payload.data);
       state.keptCollection.loading = false;
       state.keptCollection.data.push(...action.payload.data);
       state.keptCollection.hasNext = action.payload.pageInfo.totalContents;

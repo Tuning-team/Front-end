@@ -93,6 +93,7 @@ const CommentList = ({ collectionId }) => {
         <div /* style={{ marginBottom: "40px" }} */>
           <ul>
             {commentList.length === 0 ? (
+
               <div
                 style={{
                   marginTop: "3rem",
@@ -103,6 +104,7 @@ const CommentList = ({ collectionId }) => {
               >
                 ㅤ댓글이 없습니다ㅤ
               </div>
+
             ) : (
               commentList?.map((data, idx) => {
                 return (
@@ -136,6 +138,7 @@ const CommentList = ({ collectionId }) => {
                           {/* 작성자 */}
                           {data.writerName}
                         </p>
+
                         <span
                           style={{
                             fontSize: "0.8rem",
@@ -150,19 +153,24 @@ const CommentList = ({ collectionId }) => {
                           {/* 댓 내용 */}
                           {data.comment}
                         </span>
+
                       </li>
                     </StCommentValueDiv>
                     <StCommentBtnDiv>
                       <StCommentBtn
                         value={data.comment_id}
                         onClick={saveCommentData}
+
                       ></StCommentBtn>
+
                       <IconMore
                         setModal={setModal}
                         style={{
                           pointerEvents: "none",
                           width: "1.125rem",
+
                           height: "1.125rem",
+
                         }}
                       />
                     </StCommentBtnDiv>

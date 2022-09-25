@@ -76,15 +76,15 @@ const ListWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  max-width: 360px;
 `;
 const VideoInfo = styled.div`
   display: flex;
-  margin: 1.25rem 0 1.25rem 0;
+  margin: 1.25rem 0 1.25rem 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
   text-align: left;
-  width: 100%;
+  width: 360px;
 `;
 const Num = styled.span`
   font-size: 0.875rem;

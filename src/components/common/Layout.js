@@ -16,4 +16,5 @@ const StyleLayout = styled.div`
   align-content: center;
   justify-content: center;
   position: relative;
+  // align-items: center;
 `;
