@@ -6,7 +6,7 @@ import MyVideo from "../features/user/MyVideo";
 import icon_like_black from "../../shared/svg/icon_like_black.svg";
 import icon_comment from "../../shared/svg/icon_comment.svg";
 import icon_next_white from "../../shared/svg/icon_next_white.svg";
-import NoData from "./NoData";
+import SearchNoData from "../features/search/SearchNodata";
 
 const MyCollections = ({ state, setCount, title }) => {
   const nav = useNavigate();
@@ -31,7 +31,7 @@ const MyCollections = ({ state, setCount, title }) => {
       <VideoInfo>
         {title} Tuning <Num>{state?.length}</Num>
       </VideoInfo>
-      {state?.length === 0 && <NoData />}
+      {/* {state?.length === 0 && <SearchNoData />} */}
       {state?.map((data, idx) => {
         return (
           <Collection key={idx}>

@@ -11,14 +11,10 @@ const SearchHeaders = () => {
 
   return (
     <Wrap>
-      {/*카테고리 아이콘 */}
       <StBackIcon
         src={BackIcon}
         alt="icon" onClick={() => nav(-1)} />
-
-      {/*로고*/}
       <StLogo />
-      {/* 로그인/로그아웃 */}
       <StyleLogin onClick={() => nav("/login")}>
         {getCookie("token") === undefined ? "로그인" : "로그아웃"}
       </StyleLogin>
