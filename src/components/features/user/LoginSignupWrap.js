@@ -16,7 +16,7 @@ const LoginSignupWrap = () => {
           <Header>로그인</Header>
           <LoginBtn
             onClick={() => {
-              window.location.href = "https://tube-tuning.com/api/google";
+              window.location.href = "https://api.tube-tuning.com/api/google";
             }}
           >
             <Logo src="./images/logo_google.png" alt="logo" />
