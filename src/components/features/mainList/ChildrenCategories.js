@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategoryCollectionForMain } from "../../../redux/modules/categorySlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
-
+import SeeMore from "../../common/elements/SeeMore";
 const ChildrenCategories = (props) => {
   const nav = useNavigate();
 
@@ -14,7 +14,16 @@ const ChildrenCategories = (props) => {
 
   return (
     <Section>
-      <h1>{recommend?.categoryInfo.category_name} 튜닝</h1>
+      <h1>
+        {recommend?.categoryInfo.category_name} 튜닝
+        <SeeMore
+          onClick={() =>
+            nav(`/category/${recommend?.categoryInfo.category_id}`)
+          }
+        >
+          더보기
+        </SeeMore>
+      </h1>
       <Carousel slidesToShow={1.3}>
         {recommend?.collections.map((collection) => (
           <CarouselItem
@@ -26,7 +35,14 @@ const ChildrenCategories = (props) => {
           />
         ))}
       </Carousel>
-      <h1>{recent?.categoryInfo.category_name} 튜닝</h1>
+      <h1>
+        {recent?.categoryInfo.category_name} 튜닝
+        <SeeMore
+          onClick={() => nav(`/category/${recent?.categoryInfo.category_id}`)}
+        >
+          더보기
+        </SeeMore>
+      </h1>
       <Carousel slidesToShow={1.3}>
         {recent?.collections.map((collection) => (
           <CarouselItem
@@ -56,8 +72,9 @@ const Section = styled.div`
     line-height: normal;
     letter-spacing: -0.6px;
     height: 2.25rem;
-    margin-top: 0;
-    margin-bottom: 0.625rem;
+    margin: 0 1.25rem 0.625rem 0;
+    display: flex;
+    justify-content: space-between;
   }
   & h1:not(:first-of-type) {
     margin-top: 1.875rem;

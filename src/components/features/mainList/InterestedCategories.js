@@ -12,6 +12,7 @@ import {
 import Modal from "../../common/Modal";
 import { categoryList } from "./categoryData";
 import SetUserInterestForm from "../myCollection/SetUserInterestForm";
+import SeeMore from "../../common/elements/SeeMore";
 
 const InterestedCategories = () => {
   const nav = useNavigate();
@@ -58,8 +59,8 @@ const InterestedCategories = () => {
   return (
     <Wrap>
       <Title>
-        <h1>추천 카테고리</h1>
-        <p>더보기</p>
+        <h1>관심있는 카테고리</h1>
+        {/* <SeeMore>더보기</SeeMore> */}
       </Title>
       <BodyContainer>
         {!isLoggedIn ? (
@@ -113,23 +114,10 @@ const Title = styled.div`
   margin-bottom: 0.938rem;
   height: 2.188rem;
   & h1 {
+    margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 0.75;
     letter-spacing: -1.2px;
-    text-align: left;
-  }
-  & p {
-    margin: auto 0 0 0;
-    font-size: 0.75rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.3px;
-    color: #572cff;
   }
 `;
 
@@ -205,4 +193,5 @@ const Img = styled.div`
   height: 4.063rem;
   background-image: url(${(props) => props.url});
   background-position: center;
+  background-size: cover;
 `;
