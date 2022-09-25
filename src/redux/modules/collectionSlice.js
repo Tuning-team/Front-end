@@ -45,6 +45,7 @@ const initialState = {
     hasNext: 1,
     error: "",
   },
+  isKept: { status: false, message: "", data: "" },
 };
 
 export const getMyCollection = createAsyncThunk(
@@ -140,7 +141,6 @@ export const getLikedCollection = createAsyncThunk(
       const res = await instance(
         `/collections/mylikes?offset=${count}&limit=5`
       );
-      console.log(count);
       return res.data;
     } catch (error) {
       return error.message;
@@ -166,8 +166,9 @@ export const keepCollection = createAsyncThunk(
   "put/keepCollection",
   async (collectionId) => {
     try {
-      const res = await instance.put(`/user/keep/${collectionId}`);
-      alert("담아졌습니다.");
+      const res = await instance.put(`/collections/keep/${collectionId}`);
+      // alert("담아졌습니다.");
+      console.log(res.data);
       return res.data;
     } catch (error) {
       return error.message;
@@ -276,6 +277,16 @@ export const myCollectionSlice = createSlice({
     builder.addCase(getKeptCollection.rejected, (state, action) => {
       state.keptCollection.loading = false;
       state.keptCollection.error = action.error.message;
+    });
+    builder.addCase(keepCollection.pending, (state, action) => {
+      state.loading = true;
+      state.isKept.status = false;
+    });
+    builder.addCase(keepCollection.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isKept.status = true;
+      state.isKept.data = action.payload.data;
+      alert(`${action.payload.message}`);
     });
   },
 });
