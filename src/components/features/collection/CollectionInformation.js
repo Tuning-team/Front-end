@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { getUserInfo } from "../../../redux/modules/userSlice";
 import {
@@ -6,40 +6,38 @@ import {
   deleteCollection,
   putLikeBtn,
 } from "../../../redux/modules/tempCollectionSlice";
+import { keepCollection } from "../../../redux/modules/collectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../../shared/cookie";
-
-import Button from "../../common/elements/Button";
+import shareKakao from "../../../shared/shareKakao";
 import More from "../../common/More";
 import { ReactComponent as LikeIcon } from "../../../shared/svg/icon_like.svg";
 import { ReactComponent as SaveIcon } from "../../../shared/svg/icon_cart.svg";
-import { useParams } from "react-router-dom";
-import shareKakao from "../../../shared/shareKakao";
-import { keepCollection } from "../../../redux/modules/collectionSlice";
 
-const CollectionInformation = ({
-  collectionId,
-  tabClicked,
-  modal,
-  setModal,
-}) => {
+const CollectionInformation = ({ collectionId, modal, setModal }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const param = useParams();
-  // const [modal, setModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
+  const isKept = useSelector((state) => state.myCollectionSlice.isKept);
   const userInfo = useSelector((state) => state.userSlice.data.user);
 
-  useEffect(() => {
-    dispatch(getUserInfo());
-  }, []);
+  const likeStatus = userInfo?.myLikingCollections.filter(
+    (id) => id === collectionId
+  ).length;
+  const keepStatus = userInfo?.myKeepingCollections.filter(
+    (id) => id === collectionId
+  ).length;
+
+  const userLiked = likeStatus ? "#572cff" : "#505050";
+  const userKept = keepStatus ? "#572cff" : "#505050";
 
   useEffect(() => {
     dispatch(getCollection(collectionId));
-  }, [isLiked, collectionId]);
+    dispatch(getUserInfo());
+  }, [isLiked, isKept, collectionId]);
 
   //!카카오톡 공유하기
   const shareHandler = () => {
@@ -49,10 +47,11 @@ const CollectionInformation = ({
       data.thumbnails[2],
       data.collectionTitle,
       data.description,
-      param.collection_id,
+      collectionId,
     ]);
   };
 
+  //!좋아요기능
   const onClickLikeBtn = () => {
     if (getCookie("token") === undefined) {
       alert("로그인을 해주세요");
@@ -62,6 +61,17 @@ const CollectionInformation = ({
     }
   };
 
+  //!담기기능
+  const onKeepThisCollection = () => {
+    if (getCookie("token") === undefined) {
+      alert("로그인을 해주세요");
+      nav("/login");
+    } else {
+      dispatch(keepCollection(collectionId));
+    }
+  };
+
+  //!삭제기능
   const onDeleteThisCollection = () => {
     if (data?.user_id === userInfo?._id) {
       window.confirm("삭제하시겠습니까?")
@@ -76,16 +86,13 @@ const CollectionInformation = ({
 
   //!수정하기
   const onEditThisCollection = () => {
-    nav("/myCollection/edit");
-  };
-  //!좋아요기능 컬러
-
-  // const userLiked = JSON.parse(localStorage.getItem("userInfo")).myCollections
-  // const 테스트 = userLiked.filter((x) => x === collectionId)
-  //!담기기능
-  const onKeepThisCollection = () => {
-    //!디스패치에 추가하기
-    dispatch(keepCollection(collectionId));
+    if (data?.user_id === userInfo?._id) {
+      nav("/myCollection/edit");
+    } else if (!userInfo?._id) {
+      alert("로그인이 필요한 기능입니다.");
+    } else {
+      alert("수정 권한이 없는 유저입니다.");
+    }
   };
 
   return (
@@ -100,11 +107,11 @@ const CollectionInformation = ({
 
         <SaveAndLikeContainer>
           <IconSection>
-            <StyleSaveIcon onClick={onKeepThisCollection} />
-            <span>***</span>
+            <StyleSaveIcon fill={userKept} onClick={onKeepThisCollection} />
+            <span data-testid="countKeep">{data?.keptBy.length}</span>
           </IconSection>
           <IconSection>
-            <StyleLikeIcon fill="#505050" onClick={onClickLikeBtn} />
+            <StyleLikeIcon fill={userLiked} onClick={onClickLikeBtn} />
             <span data-testid="countLikes">{data?.likes}</span>
           </IconSection>
         </SaveAndLikeContainer>

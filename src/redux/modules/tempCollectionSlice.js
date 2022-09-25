@@ -48,6 +48,7 @@ export const putLikeBtn = createAsyncThunk(
   async (collection_id) => {
     try {
       const res = await instance.put(`/collections/like/${collection_id}`);
+      console.log(res.data);
       return res.data;
     } catch (error) {
       alert(error.response.data.errorMessage);
