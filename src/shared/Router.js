@@ -25,6 +25,7 @@ function Router() {
     <BrowserRouter>
       <ScrollTop />
       <Routes>
+        {/* //!publicPage */}
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginSignupPage />} />
         <Route path="/search" element={<SearchPage />} />

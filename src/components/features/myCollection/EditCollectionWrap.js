@@ -18,9 +18,6 @@ const EditCollectionWrap = () => {
   });
 
   useEffect(() => {
-    if (data === undefined) {
-      nav("/");
-    }
     if (add.length === 0) {
       dispatch(addVideoList(test));
     }

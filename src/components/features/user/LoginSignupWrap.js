@@ -8,7 +8,7 @@ import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 
 const LoginSignupWrap = () => {
   const nav = useNavigate();
-
+  console.log(getCookie("token"));
   return (
     <LoginWrap>
       {getCookie("token") === undefined ? (
@@ -30,11 +30,13 @@ const LoginSignupWrap = () => {
             onClick={() => {
               removeCookie("token");
               localStorage.removeItem("userInfo");
+              console.log(getCookie("token"));
               if (getCookie("token") === undefined) {
                 alert("로그아웃 되었습니다");
                 nav("/");
               } else {
                 alert("로그인오류");
+                console.log(getCookie("token"));
                 removeCookie("token");
                 localStorage.removeItem("userInfo");
                 window.location.href = "/";
