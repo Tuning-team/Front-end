@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { getList } from "../../../redux/modules/searchSlice";
 import Loading from "../../common/Loading";
 import CollectionList from "../../common/CollectionList";
-import Icon_search from "../../../shared/svg/Icon_search.svg";
+import Icon_search from "../../../shared/svg/24_ena_search.svg";
 
-const SearchWrap = () => {
+const SearchWrap = (props) => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -32,65 +32,84 @@ const SearchWrap = () => {
   );
 
   return (
-    <div >
-      <div >
-        {/* //!검색창 */}
-        <form
-          style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-          onSubmit={onSearch}
-        >
-          <StInput onChange={onChangeHandler} name="search" type="text" />
-          <StBtn type="submit">
-            <StBtnImg src={Icon_search} />
-          </StBtn>
-        </form>
+    <StSearchDiv >
+      <StForm
+        onSubmit={onSearch} width={props.width}>
+        <StInput
+          onChange={onChangeHandler}
+          name="search"
+          type="text"
+          placeholder="찾고싶은 컬렉션을 검색해보세요"
+        />
+        <StBtn type="submit">
+          <StBtnImg src={Icon_search} />
+        </StBtn>
+      </StForm>
 
-        {/* //!결과부분 */}
-        <div>
-          {loading ? (
-            <Loading />
-          ) : search === 0 ? (
-            <StText>검색 결과가 없습니다.</StText>
-          ) : (
-            <CollectionList state={searchResult} />
-          )
-          }
-        </div>
-      </div >
-    </div >
+      {/* //!결과부분 */}
+      <div>
+        {loading ? (
+          <Loading />
+        ) : search === 0 ? (
+          <StText>검색 결과가 없습니다.</StText>
+        ) : (
+          <CollectionList
+            state={searchResult}
+            title="검색한"
+          />
+        )
+        }
+      </div>
+    </StSearchDiv >
 
   );
 };
 
 export default SearchWrap;
 
+const StSearchDiv = styled.div`
+height:100vh;
+width: 100%;
+  background: ${(props) => props.backgroundColor || "#eeeef6"};
+`
+const StForm = styled.form`
+  position: relative;
+  width: ${(props) => props.width || "20.438rem"};
+  margin-top: 2rem;
+`;
+
+
 const StBtn = styled.button`
   background: none;
   border: none;
   outline: none;
   cursor: pointer;
-  ;
-  
-  // top: 14px;
-  // right: 35px;
-  // position: absolute;
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translate(0, -50%);
 `;
 const StBtnImg = styled.img`
-  // width: 25px;
-  // height: 25px;
-  // margin-top: 12px;
+  width: 1.5rem;
+  height: 1.5rem;
 `;
 
 const StInput = styled.input`
-  background: #efefef;
-  border-radius: 50px;
-  width: 19rem;
-  height: 35px;
-  border: solid #efefef;
-  margin: 5px;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  position: relative;
+  background: #ffffff;
+  padding: 0.375rem 1rem;
+  border-radius: 18px;
+  width: 100%;
+  height: 2.25rem;
+  box-sizing: border-box;
+  border: none;
+  font-size: 1rem;
+  font-weight: normal;
+  &::placeholder {
+    color: #adadad;
+  }
+  &:focus {
+    outline-color: var(--color-primary);
+  }
 `;
 
 const StText = styled.p`
