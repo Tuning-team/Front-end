@@ -65,7 +65,9 @@ const YoutubeContainer = () => {
 
 export default YoutubeContainer;
 const PlayerWrapper = styled.div`
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
   padding-top: 56.25%;
 
   & .player,

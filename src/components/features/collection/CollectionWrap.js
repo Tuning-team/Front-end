@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { resetVideoId } from "../../../redux/modules/tempCollectionSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import FloatingIcons from "./FloatingIcons";
 import YoutubeContainer from "./YoutubeContainer";
@@ -20,6 +20,8 @@ const CollectionWrap = () => {
     setTabClicked((prev) => !prev);
   };
 
+  const data = useSelector((state) => state.collectionSlice.data[0]);
+
   useEffect(() => {
     return () => {
       dispatch(resetVideoId());
@@ -32,15 +34,14 @@ const CollectionWrap = () => {
       <YoutubeContainer />
       <CollectionInformation
         collectionId={param.collection_id}
-        tabClicked={tabClicked}
         modal={modal}
         setModal={setModal}
       />
-      <CommnetSection>
+      <CommentSection>
         <OpenCommentBox onClick={onClickedCommentBtn}>
-          댓글 <span>***</span>
+          댓글 <span>{data?.commentNum}</span>
         </OpenCommentBox>
-      </CommnetSection>
+      </CommentSection>
       <CollectionVideoList collectionId={param.collection_id} />
       <div
         style={{
@@ -57,7 +58,7 @@ const CollectionWrap = () => {
   );
 };
 export default CollectionWrap;
-const CommnetSection = styled.div`
+const CommentSection = styled.div`
   border-bottom: 0.5rem solid #f5f5f5;
   padding: 0.625rem 1.25rem;
 `;
