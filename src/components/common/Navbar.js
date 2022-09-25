@@ -55,12 +55,12 @@ const Navbar = () => {
         </Wrap>
         <Wrap
           onClick={() => {
-            if (getCookie("token") === undefined) {
-              alert("로그인을 해주세요");
-              nav("/login");
-            } else {
-              nav("/myPage");
-            }
+            //   if (getCookie("token") === undefined) {
+            //     alert("로그인을 해주세요");
+            //     nav("/login");
+            //   } else {
+            nav("/myPage");
+            //   }
           }}
         >
           <StyleMyIcon />

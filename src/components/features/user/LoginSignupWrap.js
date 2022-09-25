@@ -16,7 +16,7 @@ const LoginSignupWrap = () => {
           <Header>로그인</Header>
           <LoginBtn
             onClick={() => {
-              window.location.href = "https://api.tube-tuning.com/api/google";
+              window.location.href = "https://tube-tuning.com/api/google";
             }}
           >
             <Logo src="./images/logo_google.png" alt="logo" />
@@ -34,8 +34,9 @@ const LoginSignupWrap = () => {
                 alert("로그아웃 되었습니다");
                 nav("/");
               } else {
+                alert("로그인오류");
                 removeCookie("token");
-                // alert("새로고침해주세요")
+                localStorage.removeItem("userInfo");
                 window.location.href = "/";
               }
             }}
