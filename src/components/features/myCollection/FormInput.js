@@ -6,7 +6,7 @@ const FormInput = ({ onChange, collectionTitle }) => {
     <Wrap>
       <Label>제목</Label>
       <Input
-        placeholder="컬랙션 제목을 입력하세요"
+        placeholder="컬렉션 제목을 입력하세요"
         name="collectionTitle"
         onChange={onChange}
         value={collectionTitle}
@@ -39,7 +39,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   width: 20.938rem;
-  height: 3rem;
+  height: 2.5rem;
   margin: 0.125rem 0 0;
   border-radius: 8px;
   border: solid 1px #eee;

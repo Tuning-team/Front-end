@@ -76,7 +76,7 @@ const ListWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 23rem;
 `;
 const VideoInfo = styled.div`
   display: flex;
