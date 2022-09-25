@@ -51,68 +51,79 @@ const CollectionVideoList = ({ collectionId }) => {
     dispatch(selectedVideoId(videoId));
   };
   return (
-    <VideoListArea>
+    <>
       {videoList?.map((elem) => {
         return (
           <VideoContainer
             key={elem._id}
             onClick={() => onPlayVideo(elem.videoId)}
           >
-            <Wrapper>
+            <div>
+              {/* <Wrapper> */}
               <Img src={elem.thumbnails} alt={elem._id} />
-            </Wrapper>
-            <TextWrapper>
-              <h3>{elem.videoTitle}</h3>
-              <h6>{elem.channelTitle}</h6>
-            </TextWrapper>
+              {/* </Wrapper> */}
+              <TextWrapper>
+                <h3>{elem.videoTitle}</h3>
+                <h6>{elem.channelTitle}</h6>
+              </TextWrapper>
+            </div>
           </VideoContainer>
         );
       })}
-    </VideoListArea>
+    </>
   );
 };
 
 export default CollectionVideoList;
-const VideoListArea = styled.section`
-  background-color: #f8f8f8;
-  padding: 1.4rem 1rem;
-`;
+
 const VideoContainer = styled.div`
-  display: flex;
-  margin-bottom: 0.346rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0.5rem 0;
+  & > div {
+    display: flex;
+    margin: 0 1.25rem;
+  }
 `;
+
 const Wrapper = styled.div`
-  flex: none;
-  width: 10.75rem;
+  /* flex: none; */
+  width: 9.063rem;
   height: auto;
 `;
 const Img = styled.img`
-  width: 100%;
-  border-radius: 4px;
+  width: 9.063rem;
+  height: 5.125rem;
+  /* border-radius: 4px; */
 `;
 
 const TextWrapper = styled.div`
-  padding-left: 0.938rem;
+  padding-left: 0.75rem;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   & h3 {
-    margin-bottom: 0.25rem;
+    margin: 0;
 
     font-size: 0.875rem;
     font-weight: bold;
-    line-height: 1.3;
+    letter-spacing: -0.7px;
 
     overflow: hidden;
     text-overflow: ellipsis;
 
     display: -webkit-box;
     max-height: 3.72;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
 
   & h6 {
-    font-size: 0.75rem;
+    margin: 0;
+    font-size: 0.625rem;
     font-weight: normal;
-    line-height: 1.24;
+    letter-spacing: -0.25px;
+    color: #adadad;
   }
 `;

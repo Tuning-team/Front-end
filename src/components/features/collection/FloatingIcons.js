@@ -1,62 +1,57 @@
 import React from "react";
 import styled from "styled-components";
-import { resetVideoId } from "../../../redux/modules/tempCollectionSlice";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { ReactComponent as BackspaceIcon } from "../../../shared/svg/icon_backspace.svg";
-import icon_more_white from "../../../shared/svg/icon_more_white.svg";
-
-const FloatingIcons = ({ setModal, tabClicked }) => {
+import { ReactComponent as BackIcon } from "../../../shared/svg/icon_back_enabled.svg";
+import { ReactComponent as Logo } from "../../../shared/svg/Frame.svg";
+import { ReactComponent as MoreIcon } from "../../../shared/svg/24_ena_more.svg";
+const FloatingIcons = ({ setModal }) => {
   const nav = useNavigate();
-  const dispatch = useDispatch();
-
-  let iconColor = tabClicked ? "black" : "white";
 
   return (
-    <HeadIconWrapper className="floating_icons" tabClicked={tabClicked}>
-      <div className="BackspaceIconWrapper">
-        <BackspaceIcon
-          fill={iconColor}
-          onClick={() => {
-            dispatch(resetVideoId());
-            nav(-1);
-          }}
-        />
-      </div>
-      <MoreIconWrapper tabClicked={tabClicked}>
-        <img
-          src={icon_more_white}
-          onClick={() => {
-            setModal((prev) => !prev);
-          }}
-          alt="icon_more_white"
-        />
-      </MoreIconWrapper>
-    </HeadIconWrapper>
+    <HeaderContainer>
+      <StyleBackIcon
+        onClick={() => {
+          nav(-1);
+        }}
+      />
+      <StyleLogo />
+      <StyleMoreIcon
+        onClick={() => {
+          setModal((prev) => !prev);
+        }}
+      />
+    </HeaderContainer>
   );
 };
 
 export default FloatingIcons;
-const HeadIconWrapper = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
+
+const HeaderContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  padding-left: 1rem;
-
-  & .BackspaceIconWrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  background: linear-gradient(
-    ${(props) =>
-      props.tabClicked ? "transparent" : "to bottom, black, transparent"}
-  );
+  width: 100%;
+  height: 3rem;
+  position: relative;
 `;
-const MoreIconWrapper = styled.div`
-  visibility: ${(props) => (props.tabClicked ? "hidden" : "visible")};
+
+const StyleBackIcon = styled(BackIcon)`
+  height: 2.5rem;
+  width: 2.5rem;
+
+  margin: 0.25rem 0 0.25rem 0.75rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+`;
+const StyleLogo = styled(Logo)`
+  margin-top: 0.688rem;
+  height: 1.625rem;
+`;
+const StyleMoreIcon = styled(MoreIcon)`
+  height: 2.5rem;
+  width: 2.5rem;
+
+  margin: 0.25rem 0.75rem 0.25rem 0;
+  padding: 0.5rem;
+  box-sizing: border-box;
 `;

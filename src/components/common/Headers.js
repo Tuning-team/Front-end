@@ -61,12 +61,13 @@ const StyleLogo = styled(Logo)`
   height: 1.625rem;
 `;
 const StyleLogin = styled.div`
-  font-size: 0.813rem;
+  font-size: 0.625rem;
   font-weight: 500;
+  width: 2.5rem;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: normal;
+  letter-spacing: -0.5px;
   color: #572cff;
 
   margin-right: 0.75rem;
