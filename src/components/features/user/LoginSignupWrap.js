@@ -87,6 +87,11 @@ const LoginBtn = styled.div`
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.25);
   color: #adadad;
+  &:active {
+    background-color: white;
+    opacity: 1;
+    font-weight: 900;
+  }
 `;
 const Logo = styled.img`
   width: 1.375rem;

@@ -7,6 +7,8 @@ import Frame from "../../../shared/svg/Frame.svg";
 import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import SearchInput from "../../common/elements/SearchInput";
+import Icon_search from "../../../shared/svg/24_ena_search.svg";
 
 const SearchVideo = () => {
   const dispatch = useDispatch();
@@ -33,8 +35,8 @@ const SearchVideo = () => {
         <TitleLogo src={Frame} alt="icon" />
         <TitleSubmit>확인</TitleSubmit>
       </Title>
-      <InputWrap>
-        <Input
+      <Form width="auto">
+        <StInput
           onChange={onChange}
           name="keyword"
           required
@@ -42,8 +44,10 @@ const SearchVideo = () => {
           type="text"
           placeholder="찾고싶은 영상을 검색해보세요."
         />
-        <Btn onClick={onClickHandler} src={icon_search_enabled} />
-      </InputWrap>
+        <StBtn type="submit">
+          <StBtnImg onClick={onClickHandler} src={Icon_search} />
+        </StBtn>
+      </Form>
     </>
   );
 };
@@ -84,24 +88,43 @@ const TitleSubmit = styled.div`
   align-items: center;
 `;
 
-const Btn = styled.img`
+const Form = styled.div`
+  border-top: solid var(--color-background) 1px;
+  border-bottom: solid var(--color-background) 1px;
+  padding: 1rem 0 1rem 0;
+  position: relative;
+  width: ${(props) => props.width || "20.438rem"};
+`;
+
+const StInput = styled.input`
+  background: ${(props) => props.backgroundColor || "var(--color-background)"};
+  padding: 0.375rem 1rem;
+  border-radius: 18px;
+  width: 20.438rem;
+  height: 2.25rem;
+  box-sizing: border-box;
+  border: none;
+  font-size: 1rem;
+  font-weight: normal;
+  &::placeholder {
+    color: #adadad;
+  }
+  &:focus {
+    outline-color: var(--color-primary);
+  }
+`;
+
+const StBtn = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translate(0, -50%);
+`;
+const StBtnImg = styled.img`
   width: 1.5rem;
   height: 1.5rem;
-`;
-const Input = styled.input`
-  width: 12rem;
-  height: 2rem;
-  border: unset;
-  background-color: transparent;
-`;
-const InputWrap = styled.div`
-  display: flex;
-  width: 18rem;
-  height: 2.25rem;
-  margin: 1rem;
-  padding: 0.375rem 1rem;
-  border-radius: 25px;
-  background-color: var(--color-background);
-  justify-content: space-around;
-  align-items: center;
 `;

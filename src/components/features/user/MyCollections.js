@@ -25,7 +25,7 @@ const MyCollections = ({ state, setCount, title }) => {
     }
   };
   const infiniteScroll = throttle(useHandleScroll, 2000);
-  console.log(state);
+
   return (
     <ListWrap>
       <VideoInfo>
