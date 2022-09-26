@@ -35,7 +35,10 @@ const CategoryWrap = ({ Children }) => {
   );
 };
 export default CategoryWrap;
-const Wrap = styled.div``;
+const Wrap = styled.div`
+  min-height: 100vh;
+  background-color: var(--color-background);
+`;
 const Title = styled.div`
   box-sizing: border-box;
   display: flex;

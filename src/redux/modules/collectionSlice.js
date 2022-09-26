@@ -285,7 +285,7 @@ export const myCollectionSlice = createSlice({
       state.loading = false;
       state.isKept.status = true;
       state.isKept.data = action.payload.data;
-      alert(`${action.payload.message}`);
+      state.isKept.message = action.payload.message;
     });
   },
 });

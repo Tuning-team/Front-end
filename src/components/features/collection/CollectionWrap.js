@@ -29,7 +29,7 @@ const CollectionWrap = () => {
   }, []);
 
   return (
-    <>
+    <div style={{ minHeight: "100vh" }}>
       <FloatingIcons setModal={setModal} />
       <YoutubeContainer />
       <CollectionInformation
@@ -54,7 +54,7 @@ const CollectionWrap = () => {
       >
         <CommentForm collectionId={param.collection_id} />
       </div>
-    </>
+    </div>
   );
 };
 export default CollectionWrap;
