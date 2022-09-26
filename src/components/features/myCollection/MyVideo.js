@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const MyVideo = ({ src, videoNum }) => {
-  return <Img src={src} alt="thumbnail" />;
+  return <Img loading="lazy" src={src} alt="thumbnail" />;
 };
 export default MyVideo;
 const Img = styled.img`
