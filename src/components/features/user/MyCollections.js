@@ -8,7 +8,7 @@ import icon_comment from "../../../shared/svg/icon_comment.svg";
 import icon_next_white from "../../../shared/svg/icon_next_white.svg";
 import NoData from "../../common/NoData";
 
-const MyCollections = ({ state, setCount, title }) => {
+const MyCollections = ({ state, setCount, title, loading }) => {
   const nav = useNavigate();
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);

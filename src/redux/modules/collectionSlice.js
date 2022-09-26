@@ -119,12 +119,12 @@ export const getVideo = createAsyncThunk(
     try {
       if (!token) {
         const res = await axios(
-          `http://3.34.136.55:8080/api/search?q=${keyword}`
+          `https://api.tube-tuning.com/youtubesearch?q=${keyword}`
         );
         return res.data;
       } else {
         const res = await axios(
-          `http://3.34.136.55:8080/api/search?q=${keyword}&key=${key}&pageToken=${token}`
+          `https://api.tube-tuning.com/youtubesearch?q=${keyword}&key=${key}&pageToken=${token}`
         );
         return res.data;
       }

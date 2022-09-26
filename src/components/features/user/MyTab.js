@@ -16,6 +16,9 @@ const MyTab = () => {
   const myCollection = useSelector(
     (state) => state.myCollectionSlice.myCollection.dataList
   );
+  const myCollectionLoading = useSelector(
+    (state) => state.myCollectionSlice.myCollection.loading
+  );
   const likedCollection = useSelector(
     (state) => state.myCollectionSlice.likedCollection
   );
@@ -70,7 +73,12 @@ const MyTab = () => {
         </div>
       </TabMenu>
       {tab === 1 && (
-        <MyCollections state={myCollection} setCount={setCount1} title="My" />
+        <MyCollections
+          state={myCollection}
+          loading={myCollectionLoading}
+          setCount={setCount1}
+          title="My"
+        />
       )}
       {tab === 2 && (
         <MyCollections
