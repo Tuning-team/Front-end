@@ -86,7 +86,7 @@ const DeleteBtn = styled.button`
   all: unset;
 `;
 const VideoList = styled.div`
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
