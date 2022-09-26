@@ -1,28 +1,22 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { instance } from "../../shared/instance";
 
-
 const initialState = {
   loading: false,
   data: [],
   error: "",
 };
 
-
-export const getList = createAsyncThunk(
-  "GET_LIST",
-  async (search) => {
-    try {
-      const response = await instance.get(
-        `collections?keyword=${search}&offset=0&limit=50`
-      );
-      return response.data.data;
-    } catch (error) {
-      return error.message;
-    }
+export const getList = createAsyncThunk("GET_LIST", async (search) => {
+  try {
+    const response = await instance.get(
+      `collections?keyword=${search}&offset=0&limit=50`
+    );
+    return response.data.data;
+  } catch (error) {
+    return error.message;
   }
-);
-
+});
 
 export const searchSlice = createSlice({
   name: "getList",
@@ -42,6 +36,5 @@ export const searchSlice = createSlice({
       state.loading = false;
       state.error = action.error.message;
     });
-
   },
 });

@@ -10,10 +10,8 @@ import { GlobalStyle } from "./shared/GlobalStyle";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={configstore}>
-    <CookiesProvider>
-      <GlobalStyle />
-      <App />
-    </CookiesProvider>
+    <GlobalStyle />
+    <App />
   </Provider>
 );
 
