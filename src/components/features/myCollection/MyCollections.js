@@ -9,7 +9,7 @@ import icon_next_white from "../../../shared/svg/icon_next_white.svg";
 import NoData from "../../common/NoData";
 import MyCollectionsLoading from "./Skeleton";
 
-const MyCollections = ({ state, setCount, title, hasNext }) => {
+const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
   const nav = useNavigate();
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
@@ -29,7 +29,7 @@ const MyCollections = ({ state, setCount, title, hasNext }) => {
   return (
     <ListWrap>
       <VideoInfo>
-        {title} Tuning <Num>{state?.length}</Num>
+        {title} Tuning <Num>{totalContents}</Num>
       </VideoInfo>
       {state?.length === 0 && <NoData />}
       {state?.map((data, idx) => {

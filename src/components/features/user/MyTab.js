@@ -76,6 +76,7 @@ const MyTab = () => {
       {tab === 1 && (
         <MyCollections
           state={myCollection.dataList}
+          totalContents={myCollection.totalContents}
           hasNext={myCollection.hasNext}
           setCount={setCount1}
           title="My"
@@ -84,6 +85,7 @@ const MyTab = () => {
       {tab === 2 && (
         <MyCollections
           hasNext={likedCollection.hasNext}
+          totalContents={likedCollection.totalContents}
           state={likedCollection.data}
           setCount={setCount2}
           title="Liked"
@@ -92,6 +94,7 @@ const MyTab = () => {
       {tab === 3 && (
         <MyCollections
           state={keptCollection.data}
+          totalContents={keptCollection.totalContents}
           hasNext={keptCollection.hasNext}
           setCount={setCount3}
           title="Keeping"
