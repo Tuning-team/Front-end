@@ -17,6 +17,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
       window.removeEventListener("scroll", infiniteScroll);
     };
   }, []);
+
   const useHandleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
@@ -66,7 +67,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
           </Collection>
         );
       })}
-      {hasNext && <MyCollectionsLoading />}
+      {hasNext && state?.length !== 0 && <MyCollectionsLoading />}
     </ListWrap>
   );
 };
