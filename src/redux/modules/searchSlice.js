@@ -10,7 +10,7 @@ const initialState = {
 export const getList = createAsyncThunk("GET_LIST", async (search) => {
   try {
     const response = await instance.get(
-      `collections?keyword=${search}&offset=0&limit=50`
+      `collections/search?keyword=${search}&offset=0&limit=50`
     );
     return response.data.data;
   } catch (error) {

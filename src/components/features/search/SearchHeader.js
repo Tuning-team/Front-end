@@ -1,59 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../../../shared/svg/Frame.svg";
 import { ReactComponent as BackIcon } from "../../../shared/svg/icon_back.svg";
-import { getCookie } from "../../../shared/cookie";
 
 const SearchHeaders = () => {
   const nav = useNavigate();
-  const [isCategoryShown, setIsCategoryShown] = useState(false);
 
   return (
-    <Wrap>
-      <StBackIcon
-        src={BackIcon}
-        alt="icon" onClick={() => nav(-1)} />
-      <StLogo />
-      <StyleLogin onClick={() => nav("/login")}>
-        {getCookie("token") === undefined ? "로그인" : "로그아웃"}
-      </StyleLogin>
-    </Wrap>
+    <HeaderContainer>
+      <StyleBackIcon
+        onClick={() => {
+          nav(-1);
+        }}
+      />
+      <StyleLogo />
+      <StyleIcon />
+    </HeaderContainer>
   );
 };
 
 export default SearchHeaders;
 
-const Wrap = styled.div`
+const HeaderContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 3rem;
   position: relative;
-  margin-top: 0.75rem;
 `;
 
-const StBackIcon = styled(BackIcon)`
-  margin-top: 0.688rem;
-  width: 1.5rem;
-  height: 1.5rem;
+const StyleBackIcon = styled(BackIcon)`
+  height: 2.5rem;
+  width: 2.5rem;
+
+  margin: 0.25rem 0 0.25rem 0.75rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
 `;
-const StLogo = styled(Logo)`
+const StyleLogo = styled(Logo)`
   margin-top: 0.688rem;
   height: 1.625rem;
 `;
-const StyleLogin = styled.div`
-  font-size: 0.625rem;
-  font-weight: 500;
+const StyleIcon = styled.div`
+  height: 2.5rem;
   width: 2.5rem;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: -0.5px;
-  color: #572cff;
 
-  margin-right: 0.75rem;
-  display: flex;
-  align-items: center;
+  margin: 0.25rem 0.75rem 0.25rem 0;
+  padding: 0.5rem;
+  box-sizing: border-box;
 `;
