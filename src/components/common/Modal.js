@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Modal = ({ children, setModal, modal }) => {
+const Modal = ({ children, setModal }) => {
   const closeModal = () => {
     setModal((prev) => !prev);
   };
 
-  if (!modal) {
-    return null;
-  }
   return (
     <ModalBackground onClick={closeModal}>
       <ModalContainer onClick={(e) => e.stopPropagation()}>
