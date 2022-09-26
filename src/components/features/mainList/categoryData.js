@@ -123,7 +123,7 @@ export const categoryList = [
     _id: "6319aeebd1e330e86bbade9d",
     name: "운동",
     createdAt: "2022-09-08T08:59:23.751Z",
-    img: "/images/categoryImg/cate_21_enter.jpg",
+    img: "/images/categoryImg/cate_21_undong.jpg",
   },
 ];
 // https://via.placeholder.com/130x130
