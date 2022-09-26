@@ -8,13 +8,13 @@ import {
   getKeptCollection,
 } from "../../../redux/modules/collectionSlice";
 
-import MyCollections from "./MyCollections";
+import MyCollections from "../myCollection/MyCollections";
 
 const MyTab = () => {
   const dispatch = useDispatch();
   //!useselector
   const myCollection = useSelector(
-    (state) => state.myCollectionSlice.myCollection.dataList
+    (state) => state.myCollectionSlice.myCollection
   );
   const myCollectionLoading = useSelector(
     (state) => state.myCollectionSlice.myCollection.loading
@@ -38,14 +38,16 @@ const MyTab = () => {
     if (count1 === 0) {
       dispatch(deleteAll());
     }
-    dispatch(getMyCollection(count1));
+    if (myCollection.totalContents > count1) {
+      dispatch(getMyCollection(count1));
+    }
   }, [count1]);
   //!2. 좋아요한컬렉션
   useEffect(() => {
     if (count2 === 0) {
       dispatch(deleteAll());
     }
-    if (likedCollection.hasNext > count2) {
+    if (likedCollection.totalContents > count2) {
       dispatch(getLikedCollection(count2));
     }
   }, [count2]);
@@ -54,11 +56,10 @@ const MyTab = () => {
     if (count3 === 0) {
       dispatch(deleteAll());
     }
-    if (keptCollection.hasNext > count3) {
+    if (keptCollection.totalContents > count3) {
       dispatch(getKeptCollection(count3));
     }
   }, [count3]);
-
   return (
     <>
       <TabMenu tab={tab}>
@@ -74,14 +75,15 @@ const MyTab = () => {
       </TabMenu>
       {tab === 1 && (
         <MyCollections
-          state={myCollection}
-          loading={myCollectionLoading}
+          state={myCollection.dataList}
+          hasNext={myCollection.hasNext}
           setCount={setCount1}
           title="My"
         />
       )}
       {tab === 2 && (
         <MyCollections
+          hasNext={likedCollection.hasNext}
           state={likedCollection.data}
           setCount={setCount2}
           title="Liked"
@@ -90,6 +92,7 @@ const MyTab = () => {
       {tab === 3 && (
         <MyCollections
           state={keptCollection.data}
+          hasNext={keptCollection.hasNext}
           setCount={setCount3}
           title="Keeping"
         />
