@@ -1,17 +1,38 @@
 import logo_blur from "../../shared/svg/logo_blur.svg";
 import styled from "styled-components";
 import { getCookie } from "../../shared/cookie";
+import icon_add from "../../shared/svg/icon_add.svg";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 const NoData = () => {
+  const nav = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
+  const [page, setPage] = useState(false);
+  console.log(location);
+  useEffect(() => {
+    pathname === "/myPage" ? setPage(true) : setPage(false);
+  }, [pathname]);
+
   return (
-    <Wrap>
-      <P>아직 만들어진 튜닝이 없습니다 =_= </P>
-      <img src={logo_blur}></img>
-      <A
-        href={getCookie("token") === undefined ? "/login" : "/myCollection/add"}
-      >
-        내튜닝 만들러 가기{" "}
-      </A>
-    </Wrap>
+    <>
+      {page ? (
+        <Wrap>
+          <Icon
+            src={icon_add}
+            onClick={() =>
+              nav(!getCookie("token") ? "/login" : "/myCollection/add")
+            }
+          ></Icon>
+          <A>컬렉션 만들기</A>
+        </Wrap>
+      ) : (
+        <Wrap>
+          <A>컬렉션이 없습니다.</A>
+        </Wrap>
+      )}
+    </>
   );
 };
 export default NoData;
@@ -32,5 +53,10 @@ const P = styled.p`
 `;
 const A = styled.a`
   color: var(--color-disabled);
+  margin-top: 2rem;
+`;
+const Icon = styled.img`
   margin-top: 3rem;
+  width: 3rem;
+  height: 3rem;
 `;

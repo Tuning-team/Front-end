@@ -82,10 +82,12 @@ const ListWrap = styled.div`
 const VideoInfo = styled.div`
   display: flex;
   margin: 1.25rem 0 1.25rem 0.5rem;
+  padding-bottom: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
   text-align: left;
   width: 360px;
+  border-bottom: solid 1px #ffffff;
 `;
 const Num = styled.span`
   font-size: 0.875rem;
