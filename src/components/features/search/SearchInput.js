@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getList } from "../../../redux/modules/searchSlice";
 import Icon_search from "../../../shared/svg/24_ena_search.svg";
+import ToastNotification from "../../common/ToastNotification";
 
 const SearchInput = (props) => {
   const nav = useNavigate();
@@ -14,6 +15,8 @@ const SearchInput = (props) => {
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
   };
+  // toastState가 true면 보여줌
+  const [toastState, setToastState] = useState(false);
 
   const onSearch = (e) => {
     e.preventDefault();
@@ -21,23 +24,30 @@ const SearchInput = (props) => {
       dispatch(getList(search));
       nav("/search");
     } else {
-      alert("검색어를 입력해주세요");
+      setToastState(true);
     }
   };
 
   return (
-    <Form onSubmit={onSearch} width={props.width}>
-      <StInput
-        onChange={onChangeHandler}
-        name="search"
-        type="text"
-        placeholder="찾고싶은 컬렉션을 검색해보세요"
-        backgroundColor={props.backgroundColor}
-      />
-      <StBtn type="submit">
-        <StBtnImg src={Icon_search} />
-      </StBtn>
-    </Form>
+    <>
+      <Form onSubmit={onSearch} width={props.width}>
+        <StInput
+          onChange={onChangeHandler}
+          name="search"
+          type="text"
+          placeholder="찾고싶은 컬렉션을 검색해보세요"
+          backgroundColor={props.backgroundColor}
+        />
+        <StBtn type="submit">
+          <StBtnImg src={Icon_search} />
+        </StBtn>
+      </Form>
+      {toastState && (
+        <ToastNotification setToastState={setToastState}>
+          검색어를 입력해주세요
+        </ToastNotification>
+      )}
+    </>
   );
 };
 export default SearchInput;

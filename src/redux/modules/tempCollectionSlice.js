@@ -48,7 +48,6 @@ export const putLikeBtn = createAsyncThunk(
   async (collection_id) => {
     try {
       const res = await instance.put(`/collections/like/${collection_id}`);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       alert(error.response.data.errorMessage);
@@ -118,7 +117,7 @@ export const collectionSlice = createSlice({
       state.loading = false;
       state.isLiked.status = true;
       state.isLiked.data = action.payload.data;
-      alert(`${action.payload.message}`);
+      state.isLiked.message = action.payload.message;
     });
     builder.addCase(putLikeBtn.rejected, (state, action) => {
       state.loading = false;
@@ -134,8 +133,7 @@ export const collectionSlice = createSlice({
       state.loading = false;
       state.isDeleted = true;
       state.data = action.payload;
-      alert(`${action.payload}`);
-      return (window.location.href = "/mypage");
+      return (window.location.href = "/myPage");
     });
     builder.addCase(deleteCollection.rejected, (state, action) => {
       state.loading = false;

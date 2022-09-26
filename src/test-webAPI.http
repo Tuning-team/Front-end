@@ -10,8 +10,8 @@ PUT {{host}}/api/collections/today
 GET https://goweather.herokuapp.com/weather/Seoul
 
 ### 크롤링 유튜브 외부서버
-GET http://3.34.136.55:8080/api/search?q=bts
-
+# GET http://3.34.136.55:8080/api/search?q=bts
+GET {{host}}/youtubesearch?q=원지
 
 
 ## ---------------------- 카테고리 관련 API ------------------------

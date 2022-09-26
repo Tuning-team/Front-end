@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getUserInfo } from "../../../redux/modules/userSlice";
 import {
@@ -12,12 +12,18 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../../shared/cookie";
 import shareKakao from "../../../shared/shareKakao";
 import More from "../../common/More";
+import ToastNotification from "../../common/ToastNotification";
 import { ReactComponent as LikeIcon } from "../../../shared/svg/icon_like.svg";
 import { ReactComponent as SaveIcon } from "../../../shared/svg/icon_cart.svg";
+import Modal from "../../common/Modal";
 
 const CollectionInformation = ({ collectionId, modal, setModal }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+
+  const [toastState, setToastState] = useState(false);
+  const [toastText, setToastText] = useState("로그인이 필요한 기능입니다");
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
   const isLiked = useSelector((state) => state.collectionSlice.isLiked);
@@ -37,7 +43,17 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
   useEffect(() => {
     dispatch(getCollection(collectionId));
     dispatch(getUserInfo());
-  }, [isLiked, isKept, collectionId]);
+  }, [collectionId]);
+
+  useEffect(() => {
+    setToastText(isLiked.message);
+    dispatch(getUserInfo());
+  }, [isLiked]);
+
+  useEffect(() => {
+    setToastText(isKept.message);
+    dispatch(getUserInfo());
+  }, [isKept]);
 
   //!카카오톡 공유하기
   const shareHandler = () => {
@@ -54,34 +70,44 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
   //!좋아요기능
   const onClickLikeBtn = () => {
     if (getCookie("token") === undefined) {
-      alert("로그인을 해주세요");
-      nav("/login");
+      setToastState(true);
     } else {
       dispatch(putLikeBtn(collectionId));
+      setToastState(true);
     }
   };
 
   //!담기기능
   const onKeepThisCollection = () => {
     if (getCookie("token") === undefined) {
-      alert("로그인을 해주세요");
-      nav("/login");
+      setToastState(true);
     } else {
       dispatch(keepCollection(collectionId));
+      setToastState(true);
     }
   };
 
   //!삭제기능
   const onDeleteThisCollection = () => {
     if (data?.user_id === userInfo?._id) {
-      window.confirm("삭제하시겠습니까?")
-        ? dispatch(deleteCollection(collectionId))
-        : console.log("no");
+      setModal(false);
+      setDeleteModal(true);
     } else if (!userInfo?._id) {
-      alert("로그인이 필요한 기능입니다.");
+      setModal(false);
+      setToastState(true);
     } else {
-      alert("삭제 권한이 없는 유저입니다.");
+      setModal(false);
+      setToastText("삭제 권한이 없는 유저입니다");
+      setToastState(true);
     }
+  };
+  const onConfirmDelete = () => {
+    setDeleteModal(false);
+    setToastText("삭제를 완료했습니다");
+    setToastState(true);
+    setTimeout(() => {
+      dispatch(deleteCollection(collectionId));
+    }, 1000);
   };
 
   //!수정하기
@@ -89,9 +115,12 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
     if (data?.user_id === userInfo?._id) {
       nav("/myCollection/edit");
     } else if (!userInfo?._id) {
-      alert("로그인이 필요한 기능입니다.");
+      setModal(false);
+      setToastState(true);
     } else {
-      alert("수정 권한이 없는 유저입니다.");
+      setModal(false);
+      setToastText("수정 권한이 없는 유저입니다");
+      setToastState(true);
     }
   };
 
@@ -131,6 +160,25 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
 
           <Close onClick={() => setModal(!modal)}>닫기</Close>
         </More>
+      )}
+      {deleteModal && (
+        <Modal setModal={setDeleteModal} modal={deleteModal}>
+          해당 튜닝을 삭제하시겠습니까?
+          <DetailInfo>* 삭제시 복구할 수 없습니다.</DetailInfo>
+          <AnswerContainer>
+            <div className="delete" onClick={() => onConfirmDelete()}>
+              삭제
+            </div>
+            <div className="cancel" onClick={() => setDeleteModal(false)}>
+              취소
+            </div>
+          </AnswerContainer>
+        </Modal>
+      )}
+      {toastState && (
+        <ToastNotification setToastState={setToastState}>
+          {toastText}
+        </ToastNotification>
       )}
     </>
   );
@@ -229,4 +277,23 @@ const Close = styled.div`
   align-items: center;
   flex-direction: column;
   border-radius: 3px;
+`;
+const DetailInfo = styled.span`
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.5rem;
+  color: #505050;
+`;
+const AnswerContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  & div {
+    font-weight: bold;
+    padding: 0 0.5rem;
+    color: #505050;
+  }
+  & .delete {
+    color: #b4130c;
+  }
 `;
