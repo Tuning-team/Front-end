@@ -63,7 +63,7 @@ export const categoryList = [
     _id: "6319aeebd1e330e86bbade8f",
     name: "스포츠",
     createdAt: "2022-09-08T08:59:23.749Z",
-    img: "/images/categoryImg/cate_11_spo.jpg",
+    img: "/images/categoryImg/cate_11_sports.jpg",
   },
   {
     _id: "6319aeebd1e330e86bbade91",
@@ -123,7 +123,7 @@ export const categoryList = [
     _id: "6319aeebd1e330e86bbade9d",
     name: "운동",
     createdAt: "2022-09-08T08:59:23.751Z",
-    img: "https://via.placeholder.com/130x130",
+    img: "/images/categoryImg/cate_21_enter.jpg",
   },
 ];
 // https://via.placeholder.com/130x130

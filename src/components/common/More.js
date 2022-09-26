@@ -7,6 +7,7 @@ export default More;
 
 const Modal = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
   border: 1px black;
   position: fixed;
   top: -10%;

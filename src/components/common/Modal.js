@@ -26,14 +26,14 @@ const ModalBackground = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 90;
+  z-index: 500;
   text-align: center;
 
   background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
 `;
 const ModalContainer = styled.div`
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -42,7 +42,7 @@ const ModalContainer = styled.div`
   background-color: white;
   border-radius: 6px;
   user-select: none;
-  max-width: calc(100% - 5rem);
+  width: 18.5rem;
 `;
 
 const CloseModalButton = styled.div`

@@ -68,77 +68,77 @@ const UserInfo = () => {
 
   return (
     <Wrap>
-      <Header>
-        {modal && (
-          <SlideupModal setModal={setModal}>
-            <ButtonWrap>
-              <ModalBtn onClick={interestedHandler}>
-                <ModalIcon src={icon_star} alt="icon_setting" />
-                나의 관심사설정
-              </ModalBtn>
-              <Line />
-              <ModalBtn onClick={logoutHandler}>
-                <ModalIcon src={icon_setting} alt="icon_setting" />
-                계정관리
-              </ModalBtn>
-            </ButtonWrap>
-          </SlideupModal>
-        )}
-        {loginModal && (
-          <Modal setModal={setLoginModal} modal={loginModal}>
-            <ProfileLayout>
-              <Profile>
-                <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
-                <UserName>{info.displayName}</UserName>
+      {modal && (
+        <SlideupModal setModal={setModal}>
+          <ButtonWrap>
+            <ModalBtn onClick={interestedHandler}>
+              <ModalIcon src={icon_star} alt="icon_setting" />
+              나의 관심사설정
+            </ModalBtn>
+            <Line />
+            <ModalBtn onClick={logoutHandler}>
+              <ModalIcon src={icon_setting} alt="icon_setting" />
+              계정관리
+            </ModalBtn>
+          </ButtonWrap>
+        </SlideupModal>
+      )}
+      {loginModal && (
+        <Modal setModal={setLoginModal} modal={loginModal}>
+          <ProfileLayout>
+            <Profile>
+              <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
+              <UserName>{info.displayName}</UserName>
 
-                <LoginInfo>구글계정으로 로그인됨</LoginInfo>
-              </Profile>
-              <Logout
-                onClick={() => {
-                  removeCookie("token");
-                  localStorage.removeItem("userInfo");
-                  if (getCookie("token") === undefined) {
-                    alert("로그아웃 되었습니다");
-                    nav("/");
-                  } else window.reload();
-                }}
-              >
-                로그아웃
-              </Logout>
-            </ProfileLayout>
-          </Modal>
-        )}
-        {/* //!여기부터 */}
-        {interestedModal && (
-          <Modal setModal={setInterestedModal} modal={interestedModal}>
-            <ModalContents>
-              <h1>관심사 수정하기</h1>
-              <div>
-                나의 관심사
-                {userCategory.map((x, idx) => (
-                  <div key={idx}>{x}</div>
-                ))}
-              </div>
-              <p>선택된 관심사 {interests.length}개</p>
-              <div>
-                {categories?.map((elem) => {
-                  return (
-                    <label key={elem._id}>
-                      <input
-                        type="checkbox"
-                        onChange={onChecked}
-                        value={elem._id}
-                      />
-                      {elem.categoryName}
-                    </label>
-                  );
-                })}
-              </div>
-              <button onClick={onSubmit}>확인</button>
-            </ModalContents>
-          </Modal>
-        )}
-        {/* //!모달끝 */}
+              <LoginInfo>구글계정으로 로그인됨</LoginInfo>
+            </Profile>
+            <Logout
+              onClick={() => {
+                removeCookie("token");
+                localStorage.removeItem("userInfo");
+                if (getCookie("token") === undefined) {
+                  alert("로그아웃 되었습니다");
+                  nav("/");
+                } else window.reload();
+              }}
+            >
+              로그아웃
+            </Logout>
+          </ProfileLayout>
+        </Modal>
+      )}
+      {/* //!여기부터 */}
+      {interestedModal && (
+        <Modal setModal={setInterestedModal} modal={interestedModal}>
+          <ModalContents>
+            <h1>관심사 수정하기</h1>
+            <div>
+              나의 관심사
+              {userCategory.map((x, idx) => (
+                <div key={idx}>{x}</div>
+              ))}
+            </div>
+            <p>선택된 관심사 {interests.length}개</p>
+            <div>
+              {categories?.map((elem) => {
+                return (
+                  <label key={elem._id}>
+                    <input
+                      type="checkbox"
+                      onChange={onChecked}
+                      value={elem._id}
+                    />
+                    {elem.categoryName}
+                  </label>
+                );
+              })}
+            </div>
+            <button onClick={onSubmit}>확인</button>
+          </ModalContents>
+        </Modal>
+      )}
+      {/* //!모달끝 */}
+      <Header>
         <HeaderIcon
           src={icon_back}
           alt="icon_backspace_black"
