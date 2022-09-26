@@ -7,7 +7,7 @@ import icon_like_black from "../../../shared/svg/icon_like_black.svg";
 import icon_comment from "../../../shared/svg/icon_comment.svg";
 import icon_next_white from "../../../shared/svg/icon_next_white.svg";
 import NoData from "../../common/NoData";
-import MyCollectionsLoading from "./MyCollectionsLoading";
+import MyCollectionsLoading from "./Skeleton";
 
 const MyCollections = ({ state, setCount, title, hasNext }) => {
   const nav = useNavigate();
