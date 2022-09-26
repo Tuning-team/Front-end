@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryCollection } from "../../../redux/modules/categorySlice";
-import MyCollections from "../user/MyCollections";
+import MyCollections from "../myCollection/MyCollections";
 import Frame from "../../../shared/svg/Frame.svg";
 import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 import NoData from "../../common/NoData";

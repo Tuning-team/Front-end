@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
-import MyVideo from "../features/user/MyVideo";
+import MyVideo from "../features/myCollection/MyVideo";
 import icon_like_black from "../../shared/svg/icon_like_black.svg";
 import icon_comment from "../../shared/svg/icon_comment.svg";
 import icon_next_white from "../../shared/svg/icon_next_white.svg";

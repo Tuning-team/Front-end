@@ -7,6 +7,8 @@ const initialState = {
     loading: false,
     data: [],
     dataList: [],
+    hasNext: true,
+    totalContents: 1,
     error: "",
   },
   category: {
@@ -36,24 +38,26 @@ const initialState = {
   likedCollection: {
     loading: false,
     data: [],
-    hasNext: 1,
+    hasNext: true,
+    totalContents: 1,
     error: "",
   },
   keptCollection: {
     loading: false,
     data: [],
-    hasNext: 1,
+    hasNext: true,
+    totalContents: 1,
     error: "",
   },
   isKept: { status: false, message: "", data: "" },
 };
-
+//!내가 만든 컬렉션
 export const getMyCollection = createAsyncThunk(
   "get/myCollection",
   async (count) => {
     try {
       const res = await instance(`/collections/mine?offset=${count}&limit=5`);
-      return res.data.data;
+      return res.data;
     } catch (error) {
       return error.message;
     }
@@ -80,7 +84,6 @@ export const editCollection = createAsyncThunk(
   async ({ collection_id, addData }) => {
     try {
       const res = await instance.put(`/collections/${collection_id}`, addData);
-      console.log(addData);
       alert("컬렉션이 수정되었습니다.");
       window.location.href = `/collection/${collection_id}`;
       return res.data.success;
@@ -155,6 +158,7 @@ export const getKeptCollection = createAsyncThunk(
       const res = await instance(
         `/collections/mykeeps?offset=${count}&limit=5`
       );
+
       return res.data;
     } catch (error) {
       return error.message;
@@ -167,8 +171,6 @@ export const keepCollection = createAsyncThunk(
   async (collectionId) => {
     try {
       const res = await instance.put(`/collections/keep/${collectionId}`);
-      // alert("담아졌습니다.");
-      console.log(res.data);
       return res.data;
     } catch (error) {
       return error.message;
@@ -187,7 +189,11 @@ export const myCollectionSlice = createSlice({
       state.myCollection.dataList = [];
       state.likedCollection.data = [];
       state.keptCollection.data = [];
+      state.myCollection.hasNext = true;
+      state.likedCollection.hasNext = true;
+      state.keptCollection.hasNext = true;
     },
+
     deleteVideo(state, action) {
       if (action.payload === "all") {
         state.videoList = [];
@@ -207,11 +213,13 @@ export const myCollectionSlice = createSlice({
     });
     builder.addCase(getMyCollection.fulfilled, (state, action) => {
       state.myCollection.loading = false;
-      state.myCollection.data = action.payload;
+      state.myCollection.data = action.payload.data;
       state.myCollection.dataList = [
         ...state.myCollection.dataList,
-        ...action.payload,
+        ...action.payload.data,
       ];
+      state.myCollection.hasNext = action.payload.pageInfo.hasNext;
+      state.myCollection.totalContents = action.payload.pageInfo.totalContents;
       state.myCollection.error = "";
     });
     builder.addCase(getMyCollection.rejected, (state, action) => {
@@ -256,7 +264,9 @@ export const myCollectionSlice = createSlice({
     builder.addCase(getLikedCollection.fulfilled, (state, action) => {
       state.likedCollection.loading = false;
       state.likedCollection.data.push(...action.payload.data);
-      state.likedCollection.hasNext = action.payload.pageInfo.totalContents;
+      state.likedCollection.hasNext = action.payload.pageInfo.hasNext;
+      state.likedCollection.totalContents =
+        action.payload.pageInfo.totalContents;
       state.likedCollection.error = "";
     });
     builder.addCase(getLikedCollection.rejected, (state, action) => {
@@ -270,13 +280,16 @@ export const myCollectionSlice = createSlice({
     builder.addCase(getKeptCollection.fulfilled, (state, action) => {
       state.keptCollection.loading = false;
       state.keptCollection.data.push(...action.payload.data);
-      state.keptCollection.hasNext = action.payload.pageInfo.totalContents;
+      state.keptCollection.hasNext = action.payload.pageInfo.hasNext;
+      state.keptCollection.totalContents =
+        action.payload.pageInfo.totalContents;
       state.keptCollection.error = "";
     });
     builder.addCase(getKeptCollection.rejected, (state, action) => {
       state.keptCollection.loading = false;
       state.keptCollection.error = action.error.message;
     });
+    //!getkeep
     builder.addCase(keepCollection.pending, (state, action) => {
       state.loading = true;
       state.isKept.status = false;
