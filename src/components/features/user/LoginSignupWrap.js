@@ -27,6 +27,8 @@ const LoginSignupWrap = () => {
       } else {
         setToastState(true);
         window.location.href = "/";
+        removeCookie("token");
+        localStorage.removeItem("userInfo");
       }
     }, 1500);
     console.log(getCookie("token"));
