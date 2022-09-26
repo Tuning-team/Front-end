@@ -28,17 +28,14 @@ const LoginSignupWrap = () => {
           <Header>로그아웃</Header>
           <LoginBtn
             onClick={() => {
+              alert("로그아웃 되었습니다");
+              window.location.href = "/";
               removeCookie("token");
               localStorage.removeItem("userInfo");
               console.log(getCookie("token"));
-              if (getCookie("token") === undefined) {
-                alert("로그아웃 되었습니다");
-                nav("/");
-              } else {
+              if (getCookie("token") !== undefined) {
                 alert("로그인오류");
                 console.log(getCookie("token"));
-                removeCookie("token");
-                localStorage.removeItem("userInfo");
                 window.location.href = "/";
               }
             }}

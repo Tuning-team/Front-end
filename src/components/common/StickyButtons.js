@@ -2,9 +2,13 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as UpIcon } from "../../shared/svg/24_ena_floating_up.svg";
 import { ReactComponent as MakeTuningIcon } from "../../shared/svg/ena_floating_make tuning.svg";
+import { deleteVideo } from "../../redux/modules/collectionSlice";
+import { useDispatch } from "react-redux";
 
 const StickyButtons = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
   const ScrollTop = () => {
     window.scroll({
       top: 0,
@@ -14,7 +18,12 @@ const StickyButtons = () => {
 
   return (
     <StickyContainer>
-      <Btn onClick={() => nav("/myCollection/add")}>
+      <Btn
+        onClick={() => {
+          dispatch(deleteVideo("all"));
+          nav("/myCollection/add");
+        }}
+      >
         <MakeTuningIcon />
       </Btn>
       <Btn onClick={ScrollTop}>
