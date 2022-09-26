@@ -74,6 +74,10 @@ const ModalFloater = styled.div`
   /*테스트*/
   height: 100%;
   overflow: scroll;
+  /* 스크롤바 숨겨주는 css */
+  &::-webkit-scrollbar {
+    display: none;
+  }
   position: fixed;
   top: 0;
   transition: visibility 300ms, left 300ms ease-in;
