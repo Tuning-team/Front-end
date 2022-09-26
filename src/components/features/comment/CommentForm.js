@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import SlideupModal from "../user/SlideupModal";
 import { useDispatch, useSelector } from "react-redux";
 import icon_go from "../../../shared/svg/icon_go.svg";
 import {
@@ -10,6 +9,8 @@ import {
   addComment,
 } from "../../../redux/modules/commentSlice";
 import { ReactComponent as IconMore } from "../../../shared/svg/icon_moreicon.svg";
+import SlideUpModal from "../../common/SlideUpModal";
+import Modal from "../../common/Modal";
 
 const CommentList = ({ collectionId }) => {
   const [newinputValue, setNewInputValue] = useState("");
@@ -74,37 +75,24 @@ const CommentList = ({ collectionId }) => {
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          <StMoreDiv>
-            <StChooseBtnDiv>
-              {/* <input onChange={(e) => setInputValue(e.target.value)}></input> */}
-              <StBtnDiv type="button" onClick={onModify}>
-                수정하기
-              </StBtnDiv>
-              <StBtnDiv type="button" id={commentData} onClick={onDelete}>
-                삭제하기
-              </StBtnDiv>
-            </StChooseBtnDiv>
-            <StCloseDiv onClick={() => setModal(!modal)}>닫기</StCloseDiv>
-          </StMoreDiv>
+          // <SlideUpModal setModal={setModal}>
+          //   <StBtn onClick={onModify}>수정하기</StBtn>
+          //   <StBtn onClick={onDelete} id={commentData}>삭제하기</StBtn>
+          //   <StBtn onClick={() => setModal(!modal)}>닫기</StBtn>
+          // </SlideUpModal>
+          <Modal setModal={setModal}>
+            <StBtn onClick={onModify}>수정하기</StBtn>
+            <StBtn onClick={onDelete} id={commentData}>삭제하기</StBtn>
+            {/* <StBtn onClick={() => setModal(!modal)}>닫기</StBtn> */}
+          </Modal>
         ) : (
           ""
         )}
 
-        <div /* style={{ marginBottom: "40px" }} */>
+        <div>
           <ul>
             {commentList.length === 0 ? (
-
-              <div
-                style={{
-                  marginTop: "3rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  fontSize: "1rem",
-                }}
-              >
-                ㅤ댓글이 없습니다ㅤ
-              </div>
-
+              <StNoCommentDiv> 댓글이 없습니다 </StNoCommentDiv>
             ) : (
               commentList?.map((data, idx) => {
                 return (
@@ -182,47 +170,72 @@ const CommentList = ({ collectionId }) => {
         </div>
       </StWrap>
 
-      {modal === "modify" ? (
-        <StCommentForm
-          style={{ zIndex: "110" }}
-          action=""
-          id={commentData}
-          onSubmit={onUpdate}
-        >
-          <StInputDiv>
-            <StInput
-              type="text"
-              onChange={(e) => setNewInputValue(e.target.value)}
-              value={newinputValue}
-              placeholder="ㅤ댓글을 수정해주세요 ;-)"
-            />
-
-            <StButton type="submit">
-              <Icon src={icon_go} />
-            </StButton>
-          </StInputDiv>
-        </StCommentForm>
-      ) : (
-        <>
-          <StCommentForm action="" onSubmit={onCreate}>
+      {
+        modal === "modify" ? (
+          <StCommentForm
+            style={{ zIndex: "110" }}
+            action=""
+            id={commentData}
+            onSubmit={onUpdate}
+          >
             <StInputDiv>
               <StInput
                 type="text"
                 onChange={(e) => setNewInputValue(e.target.value)}
                 value={newinputValue}
-                placeholder="ㅤ댓글을 작성해주세요 :-D"
-              ></StInput>
+                placeholder="수정할 내용을 입력해주세요 ;)"
+              />
+
               <StButton type="submit">
                 <Icon src={icon_go} />
               </StButton>
             </StInputDiv>
           </StCommentForm>
-        </>
-      )}
-    </StContainer>
+        ) : (
+          <>
+            <StCommentForm action="" onSubmit={onCreate}>
+              <StInputDiv>
+                <StInput
+                  type="text"
+                  onChange={(e) => setNewInputValue(e.target.value)}
+                  value={newinputValue}
+                  placeholder="ㅤ댓글을 작성해주세요 :-D"
+                ></StInput>
+                <StButton type="submit">
+                  <Icon src={icon_go} />
+                </StButton>
+              </StInputDiv>
+            </StCommentForm>
+          </>
+        )
+      }
+    </StContainer >
   );
 };
 export default CommentList;
+
+
+
+const StBtn = styled.div`
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  text-align: center;
+  padding: 7px;
+  border-bottom: 1px solid #eee;
+  &:nth-child(2) {
+    padding-bottom: 0;
+    border: none;
+  }
+`;
+
+const StNoCommentDiv = styled.div`
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+`;
+
 
 const StContainer = styled.div`
   border-radius: 16px;
