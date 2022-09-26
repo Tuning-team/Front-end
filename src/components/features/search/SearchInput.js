@@ -6,17 +6,25 @@ import { getList } from "../../../redux/modules/searchSlice";
 import Icon_search from "../../../shared/svg/24_ena_search.svg";
 
 const SearchInput = (props) => {
-  const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  const [search, setSearch] = useState("");
+
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
   };
+
   const onSearch = (e) => {
     e.preventDefault();
-    dispatch(getList(search));
-    nav("/search");
+    if (search) {
+      dispatch(getList(search));
+      nav("/search");
+    } else {
+      alert("검색어를 입력해주세요");
+    }
   };
+
   return (
     <Form onSubmit={onSearch} width={props.width}>
       <StInput
@@ -35,11 +43,11 @@ const SearchInput = (props) => {
 export default SearchInput;
 const Form = styled.form`
   position: relative;
-  width: ${(props) => props.width || "20.438rem"};
+  width: ${(props) => props.width || "19.5rem"};
 `;
 
 const StInput = styled.input`
-  background: ${(props) => props.backgroundColor || "#efefef"};
+  background: ${(props) => props.backgroundColor || "#ffffff"};
   padding: 0.375rem 1rem;
   border-radius: 18px;
   width: 100%;

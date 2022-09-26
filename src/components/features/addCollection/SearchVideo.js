@@ -7,7 +7,7 @@ import Frame from "../../../shared/svg/Frame.svg";
 import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import SearchInput from "../../common/elements/SearchInput";
+import SearchInput from "../search/SearchInput";
 import Icon_search from "../../../shared/svg/24_ena_search.svg";
 
 const SearchVideo = () => {
