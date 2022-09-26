@@ -13,9 +13,10 @@ import { getCookie } from "../../../shared/cookie";
 import shareKakao from "../../../shared/shareKakao";
 import More from "../../common/More";
 import ToastNotification from "../../common/ToastNotification";
-import { ReactComponent as LikeIcon } from "../../../shared/svg/icon_like.svg";
+import { ReactComponent as LikeIcon } from "../../../shared/svg/28_ena_like.svg";
 import { ReactComponent as SaveIcon } from "../../../shared/svg/icon_cart.svg";
 import Modal from "../../common/Modal";
+import SlideUpModal from "../../common/SlideUpModal";
 
 const CollectionInformation = ({ collectionId, modal, setModal }) => {
   const nav = useNavigate();
@@ -47,11 +48,13 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
 
   useEffect(() => {
     setToastText(isLiked.message);
+    dispatch(getCollection(collectionId));
     dispatch(getUserInfo());
   }, [isLiked]);
 
   useEffect(() => {
     setToastText(isKept.message);
+    dispatch(getCollection(collectionId));
     dispatch(getUserInfo());
   }, [isKept]);
 
@@ -146,27 +149,18 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
         </SaveAndLikeContainer>
       </CollectionInfoBox>
       {modal && (
-        <More>
-          <ChooseBtn>
-            <Btn
-              style={{ borderBottom: "1px solid #efefef" }}
-              onClick={shareHandler}
-            >
-              공유하기
-            </Btn>
-            <Btn onClick={() => onDeleteThisCollection()}>삭제하기</Btn>
-            <Btn onClick={() => onEditThisCollection()}>수정하기</Btn>
-          </ChooseBtn>
-
-          <Close onClick={() => setModal(!modal)}>닫기</Close>
-        </More>
+        <SlideUpModal setModal={setModal}>
+          <Btn onClick={shareHandler}>공유하기</Btn>
+          <Btn onClick={onDeleteThisCollection}>삭제하기</Btn>
+          <Btn onClick={onEditThisCollection}>수정하기</Btn>
+        </SlideUpModal>
       )}
       {deleteModal && (
         <Modal setModal={setDeleteModal} modal={deleteModal}>
           해당 튜닝을 삭제하시겠습니까?
           <DetailInfo>* 삭제시 복구할 수 없습니다.</DetailInfo>
           <AnswerContainer>
-            <div className="delete" onClick={() => onConfirmDelete()}>
+            <div className="delete" onClick={onConfirmDelete}>
               삭제
             </div>
             <div className="cancel" onClick={() => setDeleteModal(false)}>
@@ -236,7 +230,6 @@ const IconSection = styled.div`
 `;
 const StyleLikeIcon = styled(LikeIcon)`
   box-sizing: border-box;
-
   width: 2.5rem;
   height: 2.5rem;
   padding: 0.5rem 0.5rem 0 0.5rem;
@@ -247,36 +240,17 @@ const StyleSaveIcon = styled(SaveIcon)`
   height: 2.5rem;
   padding: 0.5rem 0.5rem 0 0.5rem;
 `;
-const ChooseBtn = styled.div`
-  background-color: #ffffff;
-  width: 22.063rem;
-  height: 5.938rem;
-  color: #b295e9;
-
-  font-size: 1.25rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 3px;
-`;
 const Btn = styled.div`
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.7px;
   text-align: center;
-  width: 100%;
-  padding-bottom: 5px;
-`;
-const Close = styled.div`
-  background-color: #ffffff;
-  width: 22.063rem;
-  height: 3.125rem;
-  color: #b295e9;
-  margin-top: 10px;
-  font-size: 1.25rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 3px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  &:nth-child(3) {
+    padding-bottom: 0;
+    border: none;
+  }
 `;
 const DetailInfo = styled.span`
   display: block;
