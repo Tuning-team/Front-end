@@ -14,7 +14,6 @@ const GoogleLogin = () => {
       path: "/",
       expires: after1d,
     });
-
     window.location.replace("/");
   }, []);
 };

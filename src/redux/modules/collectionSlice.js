@@ -66,10 +66,10 @@ export const getMyCollection = createAsyncThunk(
 
 export const postCollection = createAsyncThunk(
   "post/collection",
-  async (data) => {
+  async ({ addData, setToastState }) => {
     try {
-      const res = await instance.post("/collections", data);
-      alert("컬렉션이 생성되었습니다.");
+      const res = await instance.post("/collections", addData);
+      setToastState(true);
       window.location.href = "/myCollection";
       return res.data.success;
     } catch (error) {
