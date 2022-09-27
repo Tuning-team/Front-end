@@ -6,7 +6,10 @@ import {
   deleteCollection,
   putLikeBtn,
 } from "../../../redux/modules/tempCollectionSlice";
-import { keepCollection } from "../../../redux/modules/collectionSlice";
+import {
+  editCollection,
+  keepCollection,
+} from "../../../redux/modules/collectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../../shared/cookie";
@@ -17,6 +20,7 @@ import { ReactComponent as LikeIcon } from "../../../shared/svg/28_ena_like.svg"
 import { ReactComponent as SaveIcon } from "../../../shared/svg/icon_cart.svg";
 import Modal from "../../common/Modal";
 import SlideUpModal from "../../common/SlideUpModal";
+import { editVideoList } from "../../../redux/modules/collectionSlice";
 
 const CollectionInformation = ({ collectionId, modal, setModal }) => {
   const nav = useNavigate();
@@ -42,6 +46,7 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
   const userKept = keepStatus ? "#572cff" : "#505050";
 
   useEffect(() => {
+    dispatch(editVideoList(collectionId));
     dispatch(getCollection(collectionId));
     dispatch(getUserInfo());
   }, [collectionId]);

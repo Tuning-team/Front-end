@@ -15,7 +15,7 @@ const GoogleLogin = () => {
       expires: after1d,
     });
 
-    window.location.replace("/");
+    window.location.replace("/mainPage");
   }, []);
 };
 export default GoogleLogin;

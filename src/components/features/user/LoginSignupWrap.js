@@ -15,13 +15,12 @@ const LoginSignupWrap = () => {
   }, []);
   //!로그아웃 오류 수정필요
   const loginHandler = () => {
-    // window.location.href = "/login";
     setToastState(true);
     setAlert("로그아웃이 되었습니다.");
     removeCookie("token");
     localStorage.removeItem("userInfo");
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/mainPage";
 
       if (getCookie("token") !== undefined) {
         setAlert("로그아웃오류입니다");

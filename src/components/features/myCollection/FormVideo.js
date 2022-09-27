@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const FormVideo = ({ addVideoHandler, addVideoList }) => {
   const dispatch = useDispatch();
   const [hasVideo, setVideo] = useState(true);
-
+  console.log(addVideoList);
   return (
     <Wrap>
       <Label>영상추가</Label>

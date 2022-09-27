@@ -7,6 +7,7 @@ import {
   selectedVideoId,
 } from "../../../redux/modules/tempCollectionSlice";
 import throttle from "lodash/throttle";
+import { editVideoList } from "../../../redux/modules/collectionSlice";
 
 const CollectionVideoList = ({ collectionId }) => {
   const dispatch = useDispatch();

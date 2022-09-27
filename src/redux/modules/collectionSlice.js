@@ -50,6 +50,9 @@ const initialState = {
     error: "",
   },
   isKept: { status: false, message: "", data: "" },
+  editVideoList: {
+    data: [],
+  },
 };
 //!내가 만든 컬렉션
 export const getMyCollection = createAsyncThunk(
@@ -66,11 +69,14 @@ export const getMyCollection = createAsyncThunk(
 
 export const postCollection = createAsyncThunk(
   "post/collection",
-  async (data) => {
+  async ({ addData, setToastState }) => {
+    console.log(addData);
     try {
-      const res = await instance.post("/collections", data);
-      alert("컬렉션이 생성되었습니다.");
-      window.location.href = "/myPage";
+      const res = await instance.post("/collections", addData);
+      setToastState(true);
+      setTimeout(() => {
+        window.location.href = "/myPage";
+      }, [1000]);
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);
@@ -174,6 +180,21 @@ export const keepCollection = createAsyncThunk(
     try {
       const res = await instance.put(`/collections/keep/${collectionId}`);
       return res.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
+);
+//!수정비디오 리스트
+export const editVideoList = createAsyncThunk(
+  "get/editVideoList",
+  async (collectionId) => {
+    try {
+      const res = await instance.get(
+        `/videos/${collectionId}/?offset=0&limit=100`
+      );
+      console.log(res.data.data);
+      return res.data.data;
     } catch (error) {
       return error.message;
     }
@@ -301,6 +322,10 @@ export const myCollectionSlice = createSlice({
       state.isKept.status = true;
       state.isKept.data = action.payload.data;
       state.isKept.message = action.payload.message;
+    });
+    //!editVideoList
+    builder.addCase(editVideoList.fulfilled, (state, action) => {
+      state.editVideoList.data = action.payload;
     });
   },
 });

@@ -7,7 +7,7 @@ const WelcomePage = () => {
   const nav = useNavigate();
   useEffect(() => {
     setTimeout(() => {
-      nav("/");
+      nav("/mainPage");
     }, 2000);
   }, []);
 

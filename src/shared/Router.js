@@ -17,6 +17,7 @@ import MyPage from "../pages/MyPage";
 import ErrorPage from "../pages/ErrorPage";
 import { getCookie } from "./cookie";
 import PrivateRoute from "./PrivateRoute";
+import EventPage from "../pages/EventPage";
 
 function Router() {
   const access = !!getCookie("token");
@@ -26,7 +27,8 @@ function Router() {
       <ScrollTop />
       <Routes>
         {/* //!publicPage */}
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/mainPage" element={<MainPage />} />
         <Route path="/login" element={<LoginSignupPage />} />
         <Route path="/search" element={<SearchPage />} />
         {/* <Route path="/myCollection" element={<MyCollectionPage />} /> */}
@@ -35,9 +37,10 @@ function Router() {
         <Route path="/category/:collection_id" element={<CategoryPage />} />
         <Route path="/google_login/:token" element={<GoogleLoginPage />} />
         <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/event" element={<EventPage />} />
         {/* //!에러페이지  */}
         {/* <Route path="/*" element={<ErrorPage />} /> */}
-        <Route path="/*" element={<Navigate to="/" />} />
+        <Route path="/*" element={<Navigate to="/mainPage" />} />
         {/* //!privatePage */}
         <Route
           path="/myPage"

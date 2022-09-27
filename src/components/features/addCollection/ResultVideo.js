@@ -13,7 +13,6 @@ const ResultVideo = () => {
   const data = useSelector(
     (state) => state.myCollectionSlice.searchResult.data
   );
-  console.log(data);
   const loading = useSelector(
     (state) => state.myCollectionSlice.searchResult.loading
   );
