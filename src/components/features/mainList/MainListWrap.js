@@ -73,11 +73,6 @@ const MainListWrap = () => {
         <InterestedCategories />
       </StyleBackground>
       <ChildrenCategories recommend={recommend} recent={recent} />
-
-      {/* --------------- mvp때 썼던 코드... ----------------------------------- */}
-      {/* <TodaysWeatherCollections categoryId={weatherCategoryId} /> */}
-      {/* <RecommendedCollections categoryId={recommendedCategoryId} /> */}
-      {/* <RecentCollections /> */}
     </>
   );
 };
