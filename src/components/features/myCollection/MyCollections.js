@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
-import MyVideo from "./MyVideo";
+import MyVideo from "../myCollection/MyVideo";
 import icon_like_black from "../../../shared/svg/icon_like_black.svg";
 import icon_comment from "../../../shared/svg/icon_comment.svg";
 import icon_next_white from "../../../shared/svg/icon_next_white.svg";
 import NoData from "../../common/NoData";
+import MyCollectionsLoading from "./Skeleton";
 
-const MyCollections = ({ state, setCount, title, loading }) => {
+const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
   const nav = useNavigate();
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
@@ -16,6 +17,7 @@ const MyCollections = ({ state, setCount, title, loading }) => {
       window.removeEventListener("scroll", infiniteScroll);
     };
   }, []);
+
   const useHandleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
@@ -25,11 +27,10 @@ const MyCollections = ({ state, setCount, title, loading }) => {
     }
   };
   const infiniteScroll = throttle(useHandleScroll, 2000);
-
   return (
     <ListWrap>
       <VideoInfo>
-        {title} Tuning <Num>{state?.length}</Num>
+        {title} Tuning <Num>{totalContents}</Num>
       </VideoInfo>
       {state?.length === 0 && <NoData />}
       {state?.map((data, idx) => {
@@ -66,6 +67,7 @@ const MyCollections = ({ state, setCount, title, loading }) => {
           </Collection>
         );
       })}
+      {hasNext && state?.length !== 0 && <MyCollectionsLoading />}
     </ListWrap>
   );
 };
@@ -81,10 +83,12 @@ const ListWrap = styled.div`
 const VideoInfo = styled.div`
   display: flex;
   margin: 1.25rem 0 1.25rem 0.5rem;
+  padding-bottom: 0.5rem;
   font-size: 0.875rem;
   font-weight: 500;
   text-align: left;
   width: 360px;
+  border-bottom: solid 1px #ffffff;
 `;
 const Num = styled.span`
   font-size: 0.875rem;

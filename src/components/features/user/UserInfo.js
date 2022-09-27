@@ -99,7 +99,12 @@ const UserInfo = () => {
                 if (getCookie("token") === undefined) {
                   alert("로그아웃 되었습니다");
                   nav("/");
-                } else window.reload();
+                } else {
+                  alert("로그아웃 되었습니다");
+                  nav("/");
+                  removeCookie("token");
+                  localStorage.removeItem("userInfo");
+                }
               }}
             >
               로그아웃

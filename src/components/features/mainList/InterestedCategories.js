@@ -84,7 +84,7 @@ const InterestedCategories = () => {
           </>
         )}
       </BodyContainer>
-      {/* <button onClick={deleteInterest}>관심사 삭제 테스트</button> */}
+      {/* <button onClick={deleteInterest}>임시 관심사 삭제</button> */}
       {modal && (
         <SetUserInterestForm
           setModal={setModal}

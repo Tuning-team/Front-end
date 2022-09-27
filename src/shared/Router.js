@@ -29,7 +29,7 @@ function Router() {
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginSignupPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/myCollection" element={<MyCollectionPage />} />
+        {/* <Route path="/myCollection" element={<MyCollectionPage />} /> */}
         <Route path="/comment" element={<CommentPage />} />
         <Route path="/collection/:collection_id" element={<CollectionPage />} />
         <Route path="/category/:collection_id" element={<CategoryPage />} />

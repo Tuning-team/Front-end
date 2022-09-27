@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { getCookie, removeCookie } from "../../../shared/cookie";
-import Frame from "../../../shared/svg/Frame.svg";
-import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
+import ToastNotification from "../../common/ToastNotification";
 
 const LoginSignupWrap = () => {
-  const nav = useNavigate();
-  console.log(getCookie("token"));
+  const [toastState, setToastState] = useState(false);
+  const [alert, setAlert] = useState("튜닝추천을 위해 로그인을 해주세요");
+  useState(() => {
+    if (!getCookie("token")) {
+      setAlert("튜닝추천을 위해 로그인을 해주세요");
+      setToastState(true);
+    }
+  }, []);
+  //!로그아웃 오류 수정필요
+  const loginHandler = () => {
+    // window.location.href = "/login";
+    setToastState(true);
+    setAlert("로그아웃이 되었습니다.");
+    removeCookie("token");
+    localStorage.removeItem("userInfo");
+    setTimeout(() => {
+      window.location.href = "/";
+
+      if (getCookie("token") !== undefined) {
+        setAlert("로그아웃오류입니다");
+        setToastState(true);
+        console.log(getCookie("token"));
+        window.location.href = "/login";
+        removeCookie("token");
+        localStorage.removeItem("userInfo");
+      }
+    }, 1500);
+    // console.log(getCookie("token"));
+  };
+
   return (
     <LoginWrap>
       {getCookie("token") === undefined ? (
@@ -25,24 +52,16 @@ const LoginSignupWrap = () => {
       ) : (
         <ContentWrap>
           <Header>로그아웃</Header>
-          <LoginBtn
-            onClick={() => {
-              alert("로그아웃 되었습니다");
-              window.location.href = "/";
-              removeCookie("token");
-              localStorage.removeItem("userInfo");
-              console.log(getCookie("token"));
-              if (getCookie("token") !== undefined) {
-                alert("로그인오류");
-                console.log(getCookie("token"));
-                window.location.href = "/";
-              }
-            }}
-          >
+          <LoginBtn onClick={loginHandler}>
             <Logo src="./images/logo_google.png" alt="logo" />
             SIGN OUT WITH GOOGLE
           </LoginBtn>
         </ContentWrap>
+      )}
+      {toastState && (
+        <ToastNotification setToastState={setToastState}>
+          {alert}
+        </ToastNotification>
       )}
     </LoginWrap>
   );

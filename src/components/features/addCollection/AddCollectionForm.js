@@ -8,12 +8,12 @@ import {
 } from "../../../redux/modules/collectionSlice";
 import { getCategory } from "../../../redux/modules/categorySlice";
 import useInputs from "../../hooks/useInput";
-import Modal from "../../common/Modal";
 import FormTitle from "../myCollection/FormTitle";
 import FormInput from "../myCollection/FormInput";
 import FormOption from "../myCollection/FormOption";
 import FormTextarea from "../myCollection/FormTextarea";
 import FormVideo from "../myCollection/FormVideo";
+import ToastNotification from "../../common/ToastNotification";
 
 const AddCollectionForm = () => {
   const nav = useNavigate();
@@ -23,8 +23,8 @@ const AddCollectionForm = () => {
     (state) => state.myCollectionSlice.videoList
   );
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
-  const [modal, setModal] = useState(false);
-  const [isDisabled, setDisabled] = useState(false);
+  const [toastState, setToastState] = useState(false);
+  const [alert, setAlert] = useState("모두 입력해주세요");
 
   //!마운트, 언마운트시
   useEffect(() => {
@@ -47,16 +47,16 @@ const AddCollectionForm = () => {
       addVideoList.length === 0 ||
       category_id === "0"
     ) {
-      setModal(true);
+      setAlert("모두 입력해주세요");
+      setToastState(true);
     } else {
       const videos = addVideoList.map((x) => x.id);
       const addData = { category_id, collectionTitle, description, videos };
-      dispatch(postCollection(addData));
+      setAlert("컬렉션이 생성되었습니다.");
+      dispatch(postCollection({ addData, setToastState }));
       dispatch(rememberData([]));
     }
   };
-
-  console.log(modal);
 
   //!비디오 추가 페이지이동
   const addVideoHandler = () => {
@@ -84,25 +84,22 @@ const AddCollectionForm = () => {
           addVideoList={addVideoList}
         />
       </Form>
-      {modal && (
-        <Modal setModal={setModal} modal={modal}>
-          모두 입력해주세요
-        </Modal>
+      {toastState && (
+        <ToastNotification setToastState={setToastState}>
+          {alert}
+        </ToastNotification>
       )}
     </AddCollectionWrap>
   );
 };
 export default AddCollectionForm;
-const AddCollectionWrap = styled.div`
-  // overflow: scroll;
-`;
+const AddCollectionWrap = styled.div``;
 const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-top: 1px solid var(--color-background);
   overflow: scroll;
-  height: 50rem;
   height: 100vh;
   margin-bottom: 5rem;
 `;
