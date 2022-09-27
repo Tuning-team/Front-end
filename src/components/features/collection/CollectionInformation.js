@@ -23,7 +23,7 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
   const dispatch = useDispatch();
 
   const [toastState, setToastState] = useState(false);
-  const [toastText, setToastText] = useState("로그인이 필요한 기능입니다");
+  const [toastText, setToastText] = useState("");
   const [deleteModal, setDeleteModal] = useState(false);
 
   const data = useSelector((state) => state.collectionSlice.data[0]);
@@ -149,7 +149,7 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
         </SaveAndLikeContainer>
       </CollectionInfoBox>
       {modal && (
-        <SlideUpModal setModal={setModal}>
+        <SlideUpModal setModal={setModal} modal={modal}>
           <Btn onClick={shareHandler}>공유하기</Btn>
           <Btn onClick={onDeleteThisCollection}>삭제하기</Btn>
           <Btn onClick={onEditThisCollection}>수정하기</Btn>
@@ -171,7 +171,7 @@ const CollectionInformation = ({ collectionId, modal, setModal }) => {
       )}
       {toastState && (
         <ToastNotification setToastState={setToastState}>
-          {toastText}
+          {toastText || "로그인이 필요한 기능입니다"}
         </ToastNotification>
       )}
     </>

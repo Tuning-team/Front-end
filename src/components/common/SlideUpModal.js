@@ -3,8 +3,8 @@ import { keyframes } from "styled-components";
 
 const SlideupModal = ({ children, setModal }) => {
   return (
-    <Modal>
-      <SlideupBox>
+    <Modal onClick={() => setModal((prev) => !prev)}>
+      <SlideupBox onClick={(e) => e.stopPropagation()}>
         <CloseBtnArea onClick={() => setModal((prev) => !prev)}>
           <CloseBtn />
         </CloseBtnArea>
