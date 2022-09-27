@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_edit" transform="translate(-288 -1385)">
+        <path data-name="Rectangle 12620" transform="translate(288 1385)" style="fill:none" d="M0 0h48v48H0z"/>
+        <circle data-name="Ellipse 171" cx="10" cy="10" r="10" transform="translate(316 1413)" style="fill:#c9bbff"/>
+        <g data-name="Group 6084" transform="translate(1172 7889)">
+            <path data-name="Path 4134" d="M-871.915-6471a1.226 1.226 0 0 0 .2-.016l5.709-.9a1.459 1.459 0 0 0 .8-.413l18.781-18.782a1.26 1.26 0 0 0 .119-1.77l-4.814-4.814a1.083 1.083 0 0 0-.776-.31 1.42 1.42 0 0 0-.994.429l-18.782 18.782a1.461 1.461 0 0 0-.413.8l-.9 5.708a1.071 1.071 0 0 0 1.07 1.286zm3.647-5.54 16.319-16.319.808.808-16.318 16.319-.959.15z" style="fill:#505050"/>
+            <rect data-name="Rectangle 12623" width="36" height="4" rx="2" transform="translate(-878 -6466)" style="fill:#505050"/>
+        </g>
+    </g>
+</svg>

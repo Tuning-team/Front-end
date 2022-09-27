@@ -1,30 +1,40 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import icon_go from "../../../shared/svg/icon_go.svg";
 import {
   deleteComment,
   getComment,
   updateComment,
   addComment,
 } from "../../../redux/modules/commentSlice";
+import { getUserInfo } from "../../../redux/modules/userSlice";
 import { ReactComponent as IconMore } from "../../../shared/svg/icon_moreicon.svg";
-import SlideUpModal from "../../common/SlideUpModal";
+import { ReactComponent as IconActSend } from "../../../shared/svg/icon_act_send.svg"
+import { ReactComponent as IconSend } from "../../../shared/svg/icon_ena_send.svg"
+import { ReactComponent as IconEdit } from "../../../shared/svg/icon_ena_edit.svg"
+import { ReactComponent as IconDelete } from "../../../shared/svg/icon_ena_delete.svg"
 import Modal from "../../common/Modal";
+import { getCookie } from "../../../shared/cookie";
 
 const CommentList = ({ collectionId }) => {
   const [newinputValue, setNewInputValue] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [modal, setModal] = useState("read");
+
   const [commentData, setCommentData] = useState();
   const commentList = useSelector((state) => state.commentSlice.data);
+  const userState = useSelector(state => state.userSlice.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getComment(collectionId));
     setRefresh(false);
   }, [refresh]);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [])
 
   const onCreate = (e) => {
     e.preventDefault();
@@ -64,22 +74,21 @@ const CommentList = ({ collectionId }) => {
   };
 
   function saveCommentData(e) {
-    setCommentData(e.target.value);
+    if (e.target.value !== userState.user._id) {
+      return alert("권한이 없습니다.")
+    }
+    setCommentData(e.target.id);
     setModal("menu");
   }
 
   const editComment = {
     comment: newinputValue,
   };
+
   return (
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          // <SlideUpModal setModal={setModal}>
-          //   <StBtn onClick={onModify}>수정하기</StBtn>
-          //   <StBtn onClick={onDelete} id={commentData}>삭제하기</StBtn>
-          //   <StBtn onClick={() => setModal(!modal)}>닫기</StBtn>
-          // </SlideUpModal>
           <Modal setModal={setModal}>
             <StBtn onClick={onModify}>수정하기</StBtn>
             <StBtn onClick={onDelete} id={commentData}>삭제하기</StBtn>
@@ -111,13 +120,19 @@ const CommentList = ({ collectionId }) => {
                         </StCommentSpan>
                       </li>
                     </StCommentValueDiv>
-                    <StCommentBtnDiv
+
+                    <StCommentBtn
                       onClick={saveCommentData}
-                      value={data.comment_id}>
-                      <StCommentBtn>
-                        <IconMore setModal={setModal} />
-                      </StCommentBtn>
-                    </StCommentBtnDiv>
+                      id={data.comment_id}
+                      value={data.user_id}>
+                      <IconMore
+                        setModal={setModal}
+                        style={{
+                          pointerEvents: "none",
+                          width: "1.125rem",
+                          height: "1.125rem",
+                        }} />
+                    </StCommentBtn>
                   </StProfileDiv>
                 );
               })
@@ -141,9 +156,11 @@ const CommentList = ({ collectionId }) => {
                 value={newinputValue}
                 placeholder="수정할 내용을 입력해주세요 ;)"
               />
-
               <StButton type="submit">
-                <Icon src={icon_go} />
+                <IconSend style={{
+                  height: "1.5rem",
+                  width: "1.5rem"
+                }} />
               </StButton>
             </StInputDiv>
           </StCommentForm>
@@ -157,9 +174,21 @@ const CommentList = ({ collectionId }) => {
                   value={newinputValue}
                   placeholder="ㅤ댓글을 작성해주세요 :-D"
                 ></StInput>
-                <StButton type="submit">
-                  <Icon src={icon_go} />
-                </StButton>
+                {newinputValue.length !== 0 ?
+                  <StButton type="submit">
+                    <IconActSend style={{
+                      height: "1.5rem",
+                      width: "1.5rem"
+                    }}
+                    /></StButton>
+                  :
+                  <StButton style={{ cursor: "arrow" }} >
+                    <IconSend style={{
+                      height: "1.5rem",
+                      width: "1.5rem"
+                    }} />
+                  </StButton>
+                }
               </StInputDiv>
             </StCommentForm>
           </>
@@ -177,17 +206,12 @@ font-size: 0.8rem;
 margin-bottom: 0.5rem;
 color: #adadad;
 display: -webkit - box;
--webkit-box-orient: vertical;
+Webkit-box-orient: vertical;
 // Webkit-line-clamp: 3;
 overflow: hidden;
 `;
 
-// style = {{
-//   pointerEvents: "none",
-//     width: "1.125rem",
-//       height: "1.125rem",
 
-//                           }} 
 
 const StBtn = styled.div`
   font-size: 0.8rem;
@@ -285,13 +309,16 @@ const StCommentImgDiv = styled.div`
   margin-right: 5px;
 `;
 
-const StCommentBtnDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-`;
+// const StCommentBtnDiv = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   vertical-align: middle;
+// `;
 
 const StCommentBtn = styled.button`
+display: flex;
+justify-content: center;
+vertical-align: middle;
   background: none;
   border: none;
   outline: none;
