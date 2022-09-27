@@ -4,7 +4,7 @@ import icon_add from "../../shared/svg/icon_add.svg";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const NoData = () => {
+const NoData = (props) => {
   const nav = useNavigate();
   const location = useLocation();
   const pathname = location.pathname;
@@ -17,13 +17,19 @@ const NoData = () => {
     <>
       {page ? (
         <Wrap>
-          <Icon
-            src={icon_add}
-            onClick={() =>
-              nav(!getCookie("token") ? "/login" : "/myCollection/add")
-            }
-          ></Icon>
-          <A>컬렉션 만들기</A>
+          {props.title === "My" ? (
+            <>
+              <Icon
+                src={icon_add}
+                onClick={() =>
+                  nav(!getCookie("token") ? "/login" : "/myCollection/add")
+                }
+              ></Icon>
+              <A>내 튜닝 만들기</A>
+            </>
+          ) : (
+            <A>해당하는 튜닝이 없습니다.</A>
+          )}
         </Wrap>
       ) : (
         <Wrap>

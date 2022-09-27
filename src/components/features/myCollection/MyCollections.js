@@ -32,7 +32,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
       <VideoInfo>
         {title} Tuning <Num>{totalContents}</Num>
       </VideoInfo>
-      {state?.length === 0 && <NoData />}
+      {state?.length === 0 && <NoData title={title} />}
       {state?.map((data, idx) => {
         return (
           <Collection key={idx}>
@@ -79,13 +79,15 @@ const ListWrap = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 360px;
+  min-height: 100vh;
 `;
 const VideoInfo = styled.div`
   display: flex;
   margin: 1.25rem 0 1.25rem 0.5rem;
   padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: bold;
   text-align: left;
   width: 360px;
   border-bottom: solid 1px #ffffff;
