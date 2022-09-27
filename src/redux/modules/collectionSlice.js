@@ -28,7 +28,7 @@ const initialState = {
     key: "",
     error: "",
   },
-  videoList: [],
+  vixList: [],
   editData: [],
   categoryCollection: {
     loading: false,
@@ -66,9 +66,10 @@ export const getMyCollection = createAsyncThunk(
 
 export const postCollection = createAsyncThunk(
   "post/collection",
-  async (data) => {
+  async ({ addData, setToastState }) => {
     try {
-      const res = await instance.post("/collections", data);
+      const res = await instance.post("/collections", addData);
+      setToastState(true);
       alert("컬렉션이 생성되었습니다.");
       window.location.href = "/myPage";
       return res.data.success;

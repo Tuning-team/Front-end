@@ -11,6 +11,7 @@ const EditCollectionWrap = () => {
   const data = useSelector((state) => state.collectionSlice.data[0]);
   //?리밋 있는데이터임
   const videoList = useSelector((state) => state.collectionSlice.videos);
+  console.log(videoList);
   const add = useSelector((state) => state.myCollectionSlice.videoList);
   //!키값 변경로직
   const test = videoList.map((list) => {
