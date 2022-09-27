@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import SlideupModal from "./SlideupModal";
+import SlideUpModal from "../../common/SlideUpModal";
 import icon_back from "../../../shared/svg/icon_back_enabled.svg";
 import { useNavigate } from "react-router-dom";
 import icon_setting from "../../../shared/svg/icon_setting.svg";
@@ -69,7 +69,7 @@ const UserInfo = () => {
   return (
     <Wrap>
       {modal && (
-        <SlideupModal setModal={setModal}>
+        <SlideUpModal setModal={setModal}>
           <ButtonWrap>
             <ModalBtn onClick={interestedHandler}>
               <ModalIcon src={icon_star} alt="icon_setting" />
@@ -81,7 +81,7 @@ const UserInfo = () => {
               계정관리
             </ModalBtn>
           </ButtonWrap>
-        </SlideupModal>
+        </SlideUpModal>
       )}
       {loginModal && (
         <Modal setModal={setLoginModal} modal={loginModal}>

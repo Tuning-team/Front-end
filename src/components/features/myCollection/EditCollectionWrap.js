@@ -1,17 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addVideoList } from "../../../redux/modules/collectionSlice";
+import {
+  addVideoList,
+  editVideoList,
+} from "../../../redux/modules/collectionSlice";
 import EditCollectionForm from "./EditCollectionForm";
 
 const EditCollectionWrap = () => {
   const nav = useNavigate();
-  //todo 뒤로가기 안되게 하는 로직 짜야함.
+  //?리밋 있는데이터임
+
   const dispatch = useDispatch();
   const data = useSelector((state) => state.collectionSlice.data[0]);
-  //?리밋 있는데이터임
-  const videoList = useSelector((state) => state.collectionSlice.videos);
-  console.log(videoList);
+
+  const videoList = useSelector(
+    (state) => state.myCollectionSlice.editVideoList.data
+  );
   const add = useSelector((state) => state.myCollectionSlice.videoList);
   //!키값 변경로직
   const test = videoList.map((list) => {
@@ -19,7 +24,7 @@ const EditCollectionWrap = () => {
   });
 
   useEffect(() => {
-    if (add.length === 0) {
+    if (add?.length === 0) {
       dispatch(addVideoList(test));
     }
   }, []);
