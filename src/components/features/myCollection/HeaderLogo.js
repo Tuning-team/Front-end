@@ -32,6 +32,7 @@ const Title = styled.div`
   width: 100%;
   height: 3rem;
   position: relative;
+  align-items: center;
 `;
 const IconBack = styled.img`
   width: 1.5rem;
