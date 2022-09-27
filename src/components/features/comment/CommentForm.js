@@ -1,30 +1,40 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import icon_go from "../../../shared/svg/icon_go.svg";
 import {
   deleteComment,
   getComment,
   updateComment,
   addComment,
 } from "../../../redux/modules/commentSlice";
+import { getUserInfo } from "../../../redux/modules/userSlice";
 import { ReactComponent as IconMore } from "../../../shared/svg/icon_moreicon.svg";
-import SlideUpModal from "../../common/SlideUpModal";
+import { ReactComponent as IconActSend } from "../../../shared/svg/icon_act_send.svg"
+import { ReactComponent as IconSend } from "../../../shared/svg/icon_ena_send.svg"
+import { ReactComponent as IconEdit } from "../../../shared/svg/icon_ena_edit.svg"
+import { ReactComponent as IconDelete } from "../../../shared/svg/icon_ena_delete.svg"
 import Modal from "../../common/Modal";
+import { getCookie } from "../../../shared/cookie";
 
 const CommentList = ({ collectionId }) => {
   const [newinputValue, setNewInputValue] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [refresh, setRefresh] = useState(false);
   const [modal, setModal] = useState("read");
+
   const [commentData, setCommentData] = useState();
   const commentList = useSelector((state) => state.commentSlice.data);
+  const userState = useSelector(state => state.userSlice.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getComment(collectionId));
     setRefresh(false);
   }, [refresh]);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [])
 
   const onCreate = (e) => {
     e.preventDefault();
@@ -64,26 +74,24 @@ const CommentList = ({ collectionId }) => {
   };
 
   function saveCommentData(e) {
-    setCommentData(e.target.value);
+    if (e.target.value !== userState.user._id) {
+      return alert("권한이 없습니다.")
+    }
+    setCommentData(e.target.id);
     setModal("menu");
   }
 
   const editComment = {
     comment: newinputValue,
   };
+
   return (
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          // <SlideUpModal setModal={setModal}>
-          //   <StBtn onClick={onModify}>수정하기</StBtn>
-          //   <StBtn onClick={onDelete} id={commentData}>삭제하기</StBtn>
-          //   <StBtn onClick={() => setModal(!modal)}>닫기</StBtn>
-          // </SlideUpModal>
           <Modal setModal={setModal}>
             <StBtn onClick={onModify}>수정하기</StBtn>
             <StBtn onClick={onDelete} id={commentData}>삭제하기</StBtn>
-            {/* <StBtn onClick={() => setModal(!modal)}>닫기</StBtn> */}
           </Modal>
         ) : (
           ""
@@ -97,71 +105,34 @@ const CommentList = ({ collectionId }) => {
               commentList?.map((data, idx) => {
                 return (
                   <StProfileDiv key={data.comment_id}>
-                    <StCommentImgDiv
-                      style={{
-                        verticalAlign: "middle",
-                        marginTop: "0.3rem",
-                        marginRight: "5px",
-                      }}
-                    >
-                      <StProfileImg
-                        src={data.writerProfilePic}
-                        alt="profileImg"
-                      ></StProfileImg>
+                    <StCommentImgDiv>
+                      <StProfileImg src={data.writerProfilePic} alt="profileImg" />
                     </StCommentImgDiv>
                     <StCommentValueDiv>
                       <li key={idx}>
-                        <p
-                          style={{
-                            fontWeight: "bold",
-                            fontSize: "0.87",
-                            marginTop: "0px",
-                            display: "block",
-                            marginBlockStart: "0em",
-                            marginBlockEnd: "0em",
-                            marginInlineStart: "0px",
-                            marginInlineEnd: "0px",
-                          }}
-                        >
+                        <StUserName>
                           {/* 작성자 */}
                           {data.writerName}
-                        </p>
-
-                        <span
-                          style={{
-                            fontSize: "0.8rem",
-                            marginBottom: "0.5rem",
-                            color: "#adadad",
-                            display: "-webkit-box",
-                            WebkitBoxOrient: "vertical",
-                            WebkitLineClamp: "3",
-                            overflow: "hidden",
-                          }}
-                        >
+                        </StUserName>
+                        <StCommentSpan>
                           {/* 댓 내용 */}
                           {data.comment}
-                        </span>
-
+                        </StCommentSpan>
                       </li>
                     </StCommentValueDiv>
-                    <StCommentBtnDiv>
-                      <StCommentBtn
-                        value={data.comment_id}
-                        onClick={saveCommentData}
 
-                      ></StCommentBtn>
-
+                    <StCommentBtn
+                      onClick={saveCommentData}
+                      id={data.comment_id}
+                      value={data.user_id}>
                       <IconMore
                         setModal={setModal}
                         style={{
                           pointerEvents: "none",
                           width: "1.125rem",
-
                           height: "1.125rem",
-
-                        }}
-                      />
-                    </StCommentBtnDiv>
+                        }} />
+                    </StCommentBtn>
                   </StProfileDiv>
                 );
               })
@@ -185,9 +156,11 @@ const CommentList = ({ collectionId }) => {
                 value={newinputValue}
                 placeholder="수정할 내용을 입력해주세요 ;)"
               />
-
               <StButton type="submit">
-                <Icon src={icon_go} />
+                <IconSend style={{
+                  height: "1.5rem",
+                  width: "1.5rem"
+                }} />
               </StButton>
             </StInputDiv>
           </StCommentForm>
@@ -201,9 +174,21 @@ const CommentList = ({ collectionId }) => {
                   value={newinputValue}
                   placeholder="ㅤ댓글을 작성해주세요 :-D"
                 ></StInput>
-                <StButton type="submit">
-                  <Icon src={icon_go} />
-                </StButton>
+                {newinputValue.length !== 0 ?
+                  <StButton type="submit">
+                    <IconActSend style={{
+                      height: "1.5rem",
+                      width: "1.5rem"
+                    }}
+                    /></StButton>
+                  :
+                  <StButton style={{ cursor: "arrow" }} >
+                    <IconSend style={{
+                      height: "1.5rem",
+                      width: "1.5rem"
+                    }} />
+                  </StButton>
+                }
               </StInputDiv>
             </StCommentForm>
           </>
@@ -213,6 +198,18 @@ const CommentList = ({ collectionId }) => {
   );
 };
 export default CommentList;
+
+
+
+const StCommentSpan = styled.span`
+font-size: 0.8rem;
+margin-bottom: 0.5rem;
+color: #adadad;
+display: -webkit - box;
+Webkit-box-orient: vertical;
+// Webkit-line-clamp: 3;
+overflow: hidden;
+`;
 
 
 
@@ -228,6 +225,19 @@ const StBtn = styled.div`
     border: none;
   }
 `;
+
+
+const StUserName = styled.p`
+  font-weight: bold;
+  font-size: 0.87m;
+  margin-top: 0px;
+  display: block;
+  margin-block-start: 0rem;
+  margin-block-end: 0rem;
+  margin-inline-start: 0rem;
+  margin-inline-end: 0em;
+`;
+
 
 const StNoCommentDiv = styled.div`
   margin-top: 3rem;
@@ -250,8 +260,7 @@ const StWrap = styled.div`
 `;
 
 const StCommentForm = styled.form`
-  /* position: fixed; */
-  z-index: 90;
+  z-index: 999;
   bottom: 4.5rem;
   padding: 0.688rem 1.25rem 2.375rem 1.25rem;
 `;
@@ -277,7 +286,6 @@ const StButton = styled.button`
   background: none;
   border: none;
   outline: none;
-  /* display: none; */
   right: 30px;
   top: 25px;
   cursor: pointer;
@@ -286,35 +294,31 @@ const Icon = styled.img`
   height: 1.2rem;
 `;
 
-const StMoreDiv = styled.div`
-  display: block;
-  height: 100vh;
-  width: 375px;
-  background: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  z-index: 110;
-  top: 0;
-`;
-
 const StProfileDiv = styled.div`
   display: flex;
   flex-direction: row;
   padding: 0.1rem 1.5rem 0;
   background-color: #fff;
+  border-bottom: 1px solid #eee;
 `;
 const StCommentImgDiv = styled.div`
   display: flex;
   justify-content: center;
   vertical-align: middle;
+  margin-top: 0.3rem;
+  margin-right: 5px;
 `;
 
-const StCommentBtnDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-`;
+// const StCommentBtnDiv = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   vertical-align: middle;
+// `;
 
 const StCommentBtn = styled.button`
+display: flex;
+justify-content: center;
+vertical-align: middle;
   background: none;
   border: none;
   outline: none;
