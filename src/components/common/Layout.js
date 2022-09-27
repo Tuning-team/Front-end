@@ -28,13 +28,13 @@ const LogoContainer = styled.div`
   transform: translate(-50%, -48%);
   width: 20%;
   & img {
-    width: 50%;
+    width: 10.5rem;
     height: auto;
   }
   & h1 {
     font-family: "Noto Sans KR";
-    font-size: 200%;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: normal;
     letter-spacing: -0.7px;
     color: #505050;
   }

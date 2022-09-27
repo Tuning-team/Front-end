@@ -47,8 +47,8 @@ const ToastContainer = styled.div`
   padding: 0 1.25rem;
   /* 텍스트 */
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: normal;
   color: white;
   /* 내용 정렬 */
   display: flex;
