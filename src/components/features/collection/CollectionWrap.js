@@ -46,7 +46,7 @@ const CollectionWrap = () => {
       <div
         style={{
           position: "fixed",
-          zIndex: "99999",
+          zIndex: "9999",
           width: "360px",
           bottom: tabClicked ? "0" : "-100%",
           transition: "all 1s ease-in-out",
@@ -58,6 +58,7 @@ const CollectionWrap = () => {
   );
 };
 export default CollectionWrap;
+
 const CommentSection = styled.div`
   border-bottom: 0.5rem solid #f5f5f5;
   padding: 0.625rem 1.25rem;
