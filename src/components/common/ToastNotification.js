@@ -10,8 +10,9 @@ const ToastNotification = (props) => {
       clearTimeout(timer);
     };
   }, []);
+  console.log("토스트열렸다");
   return (
-    <ToastContainer>
+    <ToastContainer bottom={props.bottom}>
       <p>{props.children}</p>
     </ToastContainer>
   );
@@ -32,8 +33,8 @@ const ToastContainer = styled.div`
   animation: ${Vibration} 0.1s 3;
   /* 위치잡기 */
   position: fixed;
-  z-index: 500;
-  bottom: 5rem;
+  z-index: 600;
+  bottom: ${(props) => props.bottom || "5rem"};
   left: 50%;
   transform: translateX(-50%);
   /* 배경 */
