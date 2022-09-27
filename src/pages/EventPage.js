@@ -39,6 +39,9 @@ from {
 const Wrap = styled.div`
   height: 37rem;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const Contents = styled.div`
   background-image: url(${eventPage});
