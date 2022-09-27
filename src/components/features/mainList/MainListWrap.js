@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMainCategories } from "../../../redux/modules/categorySlice";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../common/Loading";
+import EventBanner from "./EventBanner";
 
 const MainListWrap = () => {
   const nav = useNavigate();
@@ -58,7 +59,7 @@ const MainListWrap = () => {
                 key={collection._id}
                 src={collection.thumbnails[0]}
                 alt={collection._id}
-                onClick={() => nav(`collection/${collection._id}`)}
+                onClick={() => nav(`/collection/${collection._id}`)}
               />
             ))}
           </Carousel>
@@ -70,6 +71,7 @@ const MainListWrap = () => {
       )}
       <StyleBackground>
         <SearchInput backgroundColor={"#ffffff"} width={"auto"} />
+        <EventBanner />
         <InterestedCategories />
       </StyleBackground>
       <ChildrenCategories recommend={recommend} recent={recent} />
