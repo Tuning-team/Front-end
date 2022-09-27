@@ -14,6 +14,7 @@ import {
 } from "../../../redux/modules/userSlice";
 import { getCategory } from "../../../redux/modules/collectionSlice";
 import icon_star from "../../../shared/svg/icon_star.svg";
+import SetUserInterestForm from "../myCollection/SetUserInterestForm";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
@@ -22,15 +23,19 @@ const UserInfo = () => {
   const [modal, setModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [interestedModal, setInterestedModal] = useState(false);
-
   const saves = useSelector(
     (state) => state.userSlice.userInterested.data.kept_collections
   );
   const likes = useSelector((state) => state.userSlice.userNum.likes);
   const comments = useSelector((state) => state.userSlice.userNum.comments);
+
+  //! 유저가 선택한 카테고리
   const userCategory = useSelector(
     (state) => state.userSlice.userInterest.userCategory
   );
+  //! 카테고리배열
+  const categories = useSelector((state) => state.categorySlice.category.data);
+
   const logoutHandler = () => {
     setModal(false);
     setLoginModal(true);
@@ -43,28 +48,6 @@ const UserInfo = () => {
     dispatch(getUserInterest());
     dispatch(getCategory());
   }, []);
-
-  //!관심사
-  // 유저가 담은 관심사
-  const categoriesArr = useSelector(
-    (state) => state.categorySlice.category.data
-  );
-  const categories = useSelector((state) => state.categorySlice.category.data);
-  const [interests, setInterests] = useState([]);
-  const onChecked = (e) => {
-    if (e.target.checked) {
-      setInterests([...interests, e.target.value]);
-    } else if (!e.target.checked) {
-      setInterests(interests.filter((elem) => elem !== e.target.value));
-    }
-  };
-  const onSubmit = () => {
-    if (interests.length === 4) {
-      dispatch(postUserInterest(interests.join(",")));
-    } else {
-      alert("관심사 4개를 선택해주세요");
-    }
-  };
 
   return (
     <Wrap>
@@ -114,33 +97,11 @@ const UserInfo = () => {
       )}
       {/* //!여기부터 */}
       {interestedModal && (
-        <Modal setModal={setInterestedModal} modal={interestedModal}>
-          <ModalContents>
-            <h1>관심사 수정하기</h1>
-            <div>
-              나의 관심사
-              {userCategory.map((x, idx) => (
-                <div key={idx}>{x}</div>
-              ))}
-            </div>
-            <p>선택된 관심사 {interests.length}개</p>
-            <div>
-              {categories?.map((elem) => {
-                return (
-                  <label key={elem._id}>
-                    <input
-                      type="checkbox"
-                      onChange={onChecked}
-                      value={elem._id}
-                    />
-                    {elem.categoryName}
-                  </label>
-                );
-              })}
-            </div>
-            <button onClick={onSubmit}>확인</button>
-          </ModalContents>
-        </Modal>
+        <SetUserInterestForm
+          setModal={setInterestedModal}
+          modal={interestedModal}
+          categories={categories}
+        />
       )}
       {/* //!모달끝 */}
       <Header>
@@ -153,7 +114,7 @@ const UserInfo = () => {
           <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
           <UserName>{info.displayName}</UserName>
         </Profile>
-        <HeaderIcon
+        <SettingIcon
           src={icon_setting}
           alt="icon_setting"
           onClick={() => setModal(!modal)}
@@ -181,15 +142,20 @@ const Wrap = styled.div`
   width: 360px;
 `;
 const Header = styled.section`
-  padding-top: 1rem;
+  padding: 0.25rem 0.75rem 0 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   height: 9rem;
 `;
 const HeaderIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+`;
+const SettingIcon = styled(HeaderIcon)`
+  padding: 0.3rem;
 `;
 const ProfileLayout = styled.div`
   display: flex;
@@ -198,7 +164,6 @@ const ProfileLayout = styled.div`
   justify-content: space-around;
 `;
 const Profile = styled.div`
-  height: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -210,7 +175,7 @@ const ProfileImg = styled.img`
   justify-content: center;
   width: 5rem;
   height: 5rem;
-  margin: 5px;
+  margin: 0.5rem 0;
 `;
 const UserName = styled.p`
   font-size: 1.25rem;
@@ -229,7 +194,7 @@ const Logout = styled.div`
 const Info = styled.section`
   display: flex;
   justify-content: space-around;
-  height: 4.8rem;
+  height: 4rem;
   align-items: center;
 `;
 const InfoWrap = styled.div`
@@ -251,37 +216,15 @@ const InfoText = styled.div`
   font-size: 0.875rem;
   color: #505050;
 `;
-const ModalContents = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  max-height: 50vh;
-  & h1 {
-    margin-top: 0;
-  }
-  & label {
-    margin: 0.5rem 0;
-    display: block;
-  }
-  & > div {
-    overflow-y: scroll;
-    width: 100%;
-    text-align: left;
-  }
-`;
-
 const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 20.938rem;
+  align-items: left;
   text-align: left;
 `;
 const ModalBtn = styled.div`
   align-items: center;
   display: flex;
-  width: 20.938rem;
   height: 2.313rem;
   font-size: 0.875rem;
   font-weight: 500;
