@@ -13,6 +13,8 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
   }, []);
 
   const [toastState, setToastState] = useState(false);
+  const [toastText, setToastText] = useState("");
+  const [border, setBorder] = useState(false);
 
   //! 유저가 담는 관심사(~ing)
   const [interests, setInterests] = useState([]);
@@ -23,22 +25,31 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
       setInterests(interests.filter((elem) => elem !== e.target.value));
     }
   };
-  console.log(interests);
+
   // ! 유저가 담은 관심사(past)
   const userCategory = useSelector(
     (state) => state.userSlice.userInterest.userCategory
   );
-  console.log(userCategory);
 
   //! 관심사 선택 전송
+  let totalInterstsCount = userCategory.length + interests.length;
   const onSubmit = () => {
     if (interests.length > 0 && interests.length <= 4) {
       dispatch(postUserInterest(interests.join(",")));
-      setModal((prev) => !prev);
+      setToastState(true);
+      setToastText("새 관심사가 저장되었습니다");
+      setTimeout(() => {
+        setModal(false);
+      }, 1000);
     } else {
       setToastState(true);
     }
   };
+
+  // const remainedCategories = categories.filter(
+  //   (item) => !userCategory.includes(item.categoryName)
+  // );
+
   return (
     <>
       <Modal
@@ -49,7 +60,7 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
       >
         <ModalContents>
           <SectionTitle>
-            나의 관심 카테고리
+            기존 관심 카테고리
             <span> {userCategory.length}</span>
           </SectionTitle>
           <PickedCategories>
@@ -58,22 +69,24 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
             ))}
           </PickedCategories>
           <SectionTitle>
-            카테고리<span> {categories.length}</span>
+            새 관심 카테고리
+            <span>
+              {" "}
+              ({interests.length}/{categories.length})
+            </span>
           </SectionTitle>
           <SectionCategories>
             {categories?.map((elem) => {
               return (
-                <div key={elem._id}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      onChange={onChecked}
-                      value={elem._id}
-                      name={elem.categoryName}
-                    />
-                    {elem.categoryName}
-                  </label>
-                </div>
+                <Label key={elem._id}>
+                  <input
+                    type="checkbox"
+                    onChange={onChecked}
+                    value={elem._id}
+                    name={elem.categoryName}
+                  />
+                  {elem.categoryName}
+                </Label>
               );
             })}
           </SectionCategories>
@@ -82,15 +95,14 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
       </Modal>
       {toastState && (
         <ToastNotification setToastState={setToastState} bottom={"3rem"}>
-          관심사는 1개 또는 4개 이하만 <br />
-          선택 할 수 있습니다
+          {toastText || "관심사는 4개 이하로 선택해주세요"}
         </ToastNotification>
       )}
     </>
   );
 };
 export default SetUserInterestForm;
-
+const Label = styled.label``;
 const ModalContents = styled.div`
   display: flex;
   flex-direction: column;

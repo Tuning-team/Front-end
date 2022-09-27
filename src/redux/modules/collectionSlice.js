@@ -193,7 +193,6 @@ export const editVideoList = createAsyncThunk(
       const res = await instance.get(
         `/videos/${collectionId}/?offset=0&limit=100`
       );
-      console.log(res.data.data);
       return res.data.data;
     } catch (error) {
       return error.message;

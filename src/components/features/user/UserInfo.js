@@ -13,7 +13,7 @@ import {
   postUserInterest,
 } from "../../../redux/modules/userSlice";
 import { getCategory } from "../../../redux/modules/collectionSlice";
-import icon_star from "../../../shared/svg/icon_star.svg";
+import icon_star from "../../../shared/svg/24_ena_category edit_2.svg";
 import SetUserInterestForm from "../myCollection/SetUserInterestForm";
 
 const UserInfo = () => {
@@ -155,7 +155,7 @@ const HeaderIcon = styled.img`
   box-sizing: border-box;
 `;
 const SettingIcon = styled(HeaderIcon)`
-  padding: 0.3rem;
+  padding: 0.4rem;
 `;
 const ProfileLayout = styled.div`
   display: flex;
