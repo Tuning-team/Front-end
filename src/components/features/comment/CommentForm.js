@@ -256,6 +256,10 @@ const StWrap = styled.div`
   width: 360px;
   background-color: transparent;
   overflow: scroll;
+  &::-webkit-scrollbar {
+display: none;
+}
+
   overflow-x: hidden;
 `;
 
