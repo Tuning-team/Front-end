@@ -32,7 +32,7 @@ const LoginSignupWrap = () => {
         localStorage.removeItem("userInfo");
       }
     }, 1500);
-    console.log(getCookie("token"));
+    // console.log(getCookie("token"));
   };
 
   return (
