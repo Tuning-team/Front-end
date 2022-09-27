@@ -70,7 +70,6 @@ export const getMyCollection = createAsyncThunk(
 export const postCollection = createAsyncThunk(
   "post/collection",
   async ({ addData, setToastState }) => {
-    console.log(addData);
     try {
       const res = await instance.post("/collections", addData);
       setToastState(true);
@@ -193,7 +192,6 @@ export const editVideoList = createAsyncThunk(
       const res = await instance.get(
         `/videos/${collectionId}/?offset=0&limit=100`
       );
-      console.log(res.data.data);
       return res.data.data;
     } catch (error) {
       return error.message;

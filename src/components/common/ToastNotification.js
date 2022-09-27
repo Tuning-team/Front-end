@@ -10,7 +10,6 @@ const ToastNotification = (props) => {
       clearTimeout(timer);
     };
   }, []);
-  console.log("토스트열렸다");
   return (
     <ToastContainer bottom={props.bottom}>
       <p>{props.children}</p>
