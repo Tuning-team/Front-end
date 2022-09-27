@@ -1,4 +1,3 @@
-import logo_blur from "../../shared/svg/logo_blur.svg";
 import styled from "styled-components";
 import { getCookie } from "../../shared/cookie";
 import icon_add from "../../shared/svg/icon_add.svg";
@@ -10,7 +9,6 @@ const NoData = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const [page, setPage] = useState(false);
-  console.log(location);
   useEffect(() => {
     pathname === "/myPage" ? setPage(true) : setPage(false);
   }, [pathname]);

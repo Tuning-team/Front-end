@@ -14,19 +14,20 @@ const LoginSignupWrap = () => {
     }
   }, []);
   //!로그아웃 오류 수정필요
-  const loginHandler = async () => {
+  const loginHandler = () => {
+    // window.location.href = "/login";
+    setToastState(true);
     setAlert("로그아웃이 되었습니다.");
     removeCookie("token");
     localStorage.removeItem("userInfo");
-
     setTimeout(() => {
+      window.location.href = "/";
+
       if (getCookie("token") !== undefined) {
-        alert("로그아웃오류입니다");
+        setAlert("로그아웃오류입니다");
         setToastState(true);
         console.log(getCookie("token"));
-      } else {
-        setToastState(true);
-        window.location.href = "/";
+        window.location.href = "/login";
         removeCookie("token");
         localStorage.removeItem("userInfo");
       }

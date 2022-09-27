@@ -81,11 +81,13 @@ export const postCollection = createAsyncThunk(
 //!컬렉션수정
 export const editCollection = createAsyncThunk(
   "edit/collection",
-  async ({ collection_id, addData }) => {
+  async ({ collection_id, addData, setToastState }) => {
     try {
       const res = await instance.put(`/collections/${collection_id}`, addData);
-      alert("컬렉션이 수정되었습니다.");
-      window.location.href = `/collection/${collection_id}`;
+      setToastState(true);
+      setTimeout(() => {
+        window.location.href = `/collection/${collection_id}`;
+      }, [1000]);
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);

@@ -15,6 +15,7 @@ import FormInput from "./FormInput";
 import FormOption from "./FormOption";
 import FormTextarea from "./FormTextarea";
 import FormVideo from "./FormVideo";
+import ToastNotification from "../../common/ToastNotification";
 
 const EditCollectionForm = ({ data }) => {
   const nav = useNavigate();
@@ -25,6 +26,7 @@ const EditCollectionForm = ({ data }) => {
     (state) => state.myCollectionSlice.videoList
   );
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
+  const [toastState, setToastState] = useState(false);
   //!마운트
   useEffect(() => {
     dispatch(getCategory());
@@ -49,7 +51,7 @@ const EditCollectionForm = ({ data }) => {
     ) {
       setModal(true);
     } else {
-      dispatch(editCollection({ collection_id, addData }));
+      dispatch(editCollection({ collection_id, addData, setToastState }));
       dispatch(rememberData([]));
       dispatch(deleteVideo("all"));
     }
@@ -86,6 +88,11 @@ const EditCollectionForm = ({ data }) => {
           모두 입력해주세요
         </Modal>
       )}
+      {toastState && (
+        <ToastNotification setToastState={setToastState}>
+          "수정이 완료되었습니다"
+        </ToastNotification>
+      )}
     </AddCollectionWrap>
   );
 };
@@ -93,11 +100,14 @@ const EditCollectionForm = ({ data }) => {
 export default EditCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.3rem 1.3rem 1.3rem 1rem;
-  margin-bottom: 7rem;
+  margin-bottom: 5.25rem;
+  overflow: scroll;
+  height: 100vh;
 `;
 
 const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 1px solid var(--color-background);
 `;

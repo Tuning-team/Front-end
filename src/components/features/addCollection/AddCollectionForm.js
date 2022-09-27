@@ -93,16 +93,13 @@ const AddCollectionForm = () => {
   );
 };
 export default AddCollectionForm;
-const AddCollectionWrap = styled.div`
-  // overflow: scroll;
-`;
+const AddCollectionWrap = styled.div``;
 const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-top: 1px solid var(--color-background);
   overflow: scroll;
-  height: 50rem;
   height: 100vh;
   margin-bottom: 5rem;
 `;
