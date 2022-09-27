@@ -99,7 +99,10 @@ const Form = styled.div`
   flex-direction: column;
   align-items: center;
   border-top: 1px solid var(--color-background);
-  overflow: scroll;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   height: 100vh;
   margin-bottom: 5rem;
 `;
