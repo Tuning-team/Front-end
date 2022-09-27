@@ -26,7 +26,8 @@ function Router() {
       <ScrollTop />
       <Routes>
         {/* //!publicPage */}
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/mainPage" element={<MainPage />} />
         <Route path="/login" element={<LoginSignupPage />} />
         <Route path="/search" element={<SearchPage />} />
         {/* <Route path="/myCollection" element={<MyCollectionPage />} /> */}
@@ -37,7 +38,7 @@ function Router() {
         <Route path="/welcome" element={<WelcomePage />} />
         {/* //!에러페이지  */}
         {/* <Route path="/*" element={<ErrorPage />} /> */}
-        <Route path="/*" element={<Navigate to="/" />} />
+        <Route path="/*" element={<Navigate to="/mainPage" />} />
         {/* //!privatePage */}
         <Route
           path="/myPage"

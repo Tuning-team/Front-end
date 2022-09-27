@@ -43,7 +43,7 @@ const Navbar = () => {
           />
         </Wrap>
 
-        <Wrap onClick={() => nav("/")}>
+        <Wrap onClick={() => nav("/mainPage")}>
           <StyleHomeIcon />
         </Wrap>
         <Wrap
