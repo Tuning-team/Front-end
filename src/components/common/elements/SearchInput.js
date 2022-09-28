@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getList } from "../../../redux/modules/searchSlice";
 import Icon_search from "../../../shared/svg/24_ena_search.svg";
-import ToastNotification from "../../common/ToastNotification";
+import ToastNotification from "../ToastNotification";
 
 const SearchInput = (props) => {
   const nav = useNavigate();
@@ -53,7 +53,7 @@ const SearchInput = (props) => {
 export default SearchInput;
 const Form = styled.form`
   position: relative;
-  width: ${(props) => props.width || "19.5rem"};
+  width: auto;
 `;
 
 const StInput = styled.input`

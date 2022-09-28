@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Loading from "../../common/Loading";
-import SearchInput from "./SearchInput";
+import SearchInput from "../../common/elements/SearchInput";
 import CollectionList from "../../common/CollectionList";
 
 const SearchWrap = () => {

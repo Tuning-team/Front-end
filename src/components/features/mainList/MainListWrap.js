@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ChildrenCategories from "./ChildrenCategories";
-import SearchInput from "../search/SearchInput";
+import SearchInput from "../../common/elements/SearchInput";
 import InterestedCategories from "./InterestedCategories";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";

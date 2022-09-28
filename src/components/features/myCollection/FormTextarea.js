@@ -15,18 +15,21 @@ const FormTextarea = ({ onChange, description }) => {
 };
 export default FormTextarea;
 const Wrap = styled.div`
+width:100%;
 display: flex;
 flex-direction: column;
 align-items
-width: 20.938rem;
-height: 10.5rem;
+// width: 23.438rem;
+height: 6rem;
+
 margin:0 0 1.25rem 0
 `;
 const TextArea = styled.textarea`
   border-radius: 8px;
   border: solid 1px #eee;
-  width: 20.938rem;
+  width: 100%;
   height: 8.75rem;
+  padding: 5px;
   font-size: 1.125rem;
   &:focus {
     outline-color: var(--color-primary);

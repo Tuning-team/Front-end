@@ -5,6 +5,7 @@ import { deleteVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+import icon_trash from "../../../shared/svg/24_ena_delete.svg";
 
 const FormVideo = ({ addVideoHandler, addVideoList }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const FormVideo = ({ addVideoHandler, addVideoList }) => {
               <VideoBox key={idx}>
                 <VideoList>{x.title}</VideoList>
                 <DeleteBtn onClick={() => dispatch(deleteVideo(x.id))}>
-                  X
+                  <Img src={icon_trash} />
                 </DeleteBtn>
               </VideoBox>
             );
@@ -31,24 +32,26 @@ const FormVideo = ({ addVideoHandler, addVideoList }) => {
 };
 export default FormVideo;
 const Wrap = styled.div`
+width:100%;
   display: flex;
   flex-direction: column;
-
-  width: 20.938rem;
-  height: 10.5rem;
-  margin: 0 0 1.25rem 0;
+  align-items
+  // width: 23.438rem;
+  height: 6rem;
+  margin:0 0 1.25rem 0
 `;
 
 const AddVideoBox = styled.div`
   border-style: solid;
-  width: 343px;
+  width: 100%;
   height: 40px;
 `;
 const StVideo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20.938rem;
+  width:100%;
+  padding: 1rem;
   height: {hasVideo ? 0 : "8.75rem"};
   border-radius: 8px;
   border: ${(props) => (props.hasVideo ? "solid 1px #eee" : "unset")};
@@ -73,21 +76,23 @@ const Label = styled.label`
 `;
 const VideoBox = styled.div`
   display: flex;
-  width: 20.938rem;
+  width: 100%;
   height: 2.844rem;
   border-radius: 8px;
   border: solid 1px #eee;
   justify-content: center;
   align-items: center;
+  // margin-bottom: 0.5rem;
 `;
 const DeleteBtn = styled.button`
-  all: unset;
+  // all: unset;
+  margin: 0 0px 0 2rem;
+  border-radius: 8px;
+  padding: 3px;
+  // color: var(--color-primary);
 `;
 const VideoList = styled.div`
   font-size: 0.8rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.06;
   letter-spacing: normal;
   text-align: left;
@@ -97,4 +102,7 @@ const VideoList = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   z-index: 10;
+`;
+const Img = styled.img`
+  width: 23px;
 `;

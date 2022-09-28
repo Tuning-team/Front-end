@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
@@ -6,19 +6,21 @@ import Frame from "../../../shared/svg/logo_without_triangle.svg";
 import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import SearchInput from "../search/SearchInput";
+import SearchInput from "../../common/elements/SearchInput";
 import Icon_search from "../../../shared/svg/24_ena_search.svg";
-
+import ToastNotification from "../../common/ToastNotification";
 const SearchVideo = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
+  const [toastState, setToastState] = useState(false);
+
   const [{ keyword }, onChange, reset] = useInputs({
     keyword: "",
   });
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (keyword === "") {
-      alert("검색어를 입력해주세요");
+      setToastState(true);
       return;
     }
     const token = null;
@@ -33,20 +35,25 @@ const SearchVideo = () => {
       <Title>
         <IconBack src={icon_back_enabled} alt="icon" onClick={() => nav(-1)} />
         <TitleLogo src={Frame} alt="icon" />
-        <TitleSubmit>확인</TitleSubmit>
+        <TitleSubmit></TitleSubmit>
       </Title>
       <Form width="auto" onSubmit={onSubmitHandler}>
         <StInput
+          backgroundColor={"#EEEEF6"}
           onChange={onChange}
           name="keyword"
-          required
           value={keyword}
           type="text"
           placeholder="찾고싶은 영상을 검색해보세요."
         />
-        <StBtn>
+        <StBtn type="submit">
           <StBtnImg src={Icon_search} />
         </StBtn>
+        {toastState && (
+          <ToastNotification setToastState={setToastState}>
+            검색어를 입력해주세요
+          </ToastNotification>
+        )}
       </Form>
     </>
   );
@@ -89,18 +96,21 @@ const TitleSubmit = styled.div`
 `;
 
 const Form = styled.form`
-  border-top: solid var(--color-background) 1px;
-  border-bottom: solid var(--color-background) 1px;
-  padding: 1rem 0 1rem 0;
+  // border-top: solid var(--color-background) 1px;
+  // border-bottom: solid var(--color-background) 1px;
+  // padding: 1.125rem 1.5rem 3.1rem 1.5rem;
+  // position: relative;
+  // width: ${(props) => props.width || "20.438rem"};
+  padding: 1.125rem 1.5rem 2.1rem 1.5rem;
   position: relative;
-  width: ${(props) => props.width || "20.438rem"};
+  width: auto;
 `;
 
 const StInput = styled.input`
-  background: ${(props) => props.backgroundColor || "var(--color-background)"};
+  background-color: #eeeef6;
   padding: 0.375rem 1rem;
   border-radius: 18px;
-  width: 20.438rem;
+  width: 100%;
   height: 2.25rem;
   box-sizing: border-box;
   border: none;
@@ -109,9 +119,9 @@ const StInput = styled.input`
   &::placeholder {
     color: #adadad;
   }
-  &:focus {
+  /* &:focus {
     outline-color: var(--color-primary);
-  }
+  } */
 `;
 
 const StBtn = styled.button`
@@ -120,8 +130,8 @@ const StBtn = styled.button`
   outline: none;
   cursor: pointer;
   position: absolute;
-  right: 1.5rem;
-  top: 50%;
+  right: 2.5rem;
+  top: 37px;
   transform: translate(0, -50%);
 `;
 const StBtnImg = styled.img`
