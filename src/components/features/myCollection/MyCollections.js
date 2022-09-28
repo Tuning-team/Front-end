@@ -80,6 +80,7 @@ const ListWrap = styled.div`
   align-items: center;
   max-width: 360px;
   min-height: 100vh;
+  overflow-x: hidden;
 `;
 const VideoInfo = styled.div`
   display: flex;
