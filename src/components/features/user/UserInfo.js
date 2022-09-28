@@ -111,7 +111,7 @@ const UserInfo = () => {
           onClick={() => nav(-1)}
         />
         <Profile>
-          <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
+          <ProfileImg src={info.profilePicUrl} alt="profile_img" />
           <UserName>{info.displayName}</UserName>
         </Profile>
         <SettingIcon
@@ -139,6 +139,10 @@ const UserInfo = () => {
 };
 export default UserInfo;
 const Wrap = styled.div`
+  // @media screen and (min-width: 480px) {
+  //   min-width: 480px;
+  // }
+  min-width: 280px;
   display: flex;
   flex-direction: column;
 `;
