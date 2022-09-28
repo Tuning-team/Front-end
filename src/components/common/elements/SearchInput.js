@@ -30,7 +30,7 @@ const SearchInput = (props) => {
 
   return (
     <>
-      <Form onSubmit={onSearch} width={props.width}>
+      <Form onSubmit={onSearch}>
         <StInput
           onChange={onChangeHandler}
           name="search"
