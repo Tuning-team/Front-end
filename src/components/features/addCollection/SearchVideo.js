@@ -16,7 +16,8 @@ const SearchVideo = () => {
   const [{ keyword }, onChange, reset] = useInputs({
     keyword: "",
   });
-  const onClickHandler = (e) => {
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
     if (keyword === "") {
       alert("검색어를 입력해주세요");
       return;
@@ -35,7 +36,7 @@ const SearchVideo = () => {
         <TitleLogo src={Frame} alt="icon" />
         <TitleSubmit>확인</TitleSubmit>
       </Title>
-      <Form width="auto">
+      <Form width="auto" onSubmit={onSubmitHandler}>
         <StInput
           onChange={onChange}
           name="keyword"
@@ -44,8 +45,8 @@ const SearchVideo = () => {
           type="text"
           placeholder="찾고싶은 영상을 검색해보세요."
         />
-        <StBtn type="submit">
-          <StBtnImg onClick={onClickHandler} src={Icon_search} />
+        <StBtn>
+          <StBtnImg src={Icon_search} />
         </StBtn>
       </Form>
     </>
@@ -88,7 +89,7 @@ const TitleSubmit = styled.div`
   align-items: center;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   border-top: solid var(--color-background) 1px;
   border-bottom: solid var(--color-background) 1px;
   padding: 1rem 0 1rem 0;
