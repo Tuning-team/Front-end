@@ -139,7 +139,8 @@ const UserInfo = () => {
 };
 export default UserInfo;
 const Wrap = styled.div`
-  width: 360px;
+  display: flex;
+  flex-direction: column;
 `;
 const Header = styled.section`
   padding: 0.25rem 0.75rem 0 0.75rem;
@@ -159,9 +160,6 @@ const SettingIcon = styled(HeaderIcon)`
 `;
 const ProfileLayout = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
 `;
 const Profile = styled.div`
   display: flex;
@@ -171,8 +169,6 @@ const Profile = styled.div`
 const ProfileImg = styled.img`
   border-radius: 40px;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
   width: 5rem;
   height: 5rem;
   margin: 0.5rem 0;
@@ -195,7 +191,6 @@ const Info = styled.section`
   display: flex;
   justify-content: space-around;
   height: 4rem;
-  align-items: center;
 `;
 const InfoWrap = styled.div`
   display: flex;
@@ -237,7 +232,6 @@ const ModalIcon = styled.img`
   margin-right: 3px;
 `;
 const Line = styled.hr`
-  width: 19.688rem;
   border: 0.5px solid #eee;
   margin: 0 auto;
 `;

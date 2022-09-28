@@ -36,7 +36,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
       {state?.map((data, idx) => {
         return (
           <Collection key={idx}>
-            <div onClick={() => nav(`/collection/${data._id}`)}>
+            <ImgWrap onClick={() => nav(`/collection/${data._id}`)}>
               <ClickBox>
                 <IconNext src={icon_next_white} alt="icon"></IconNext>
                 <VideoNum>{data.thumbnails.length}</VideoNum>
@@ -45,7 +45,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
                 src={data.thumbnails[0]}
                 videoNum={data.thumbnails.length}
               />
-            </div>
+            </ImgWrap>
             <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
               <InfoText>
                 <CollectionTitle>{data.collectionTitle}</CollectionTitle>
@@ -74,23 +74,26 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
 export default MyCollections;
 
 const ListWrap = styled.div`
+  width: 100%;
+  height: 100vh;
   background-color: var(--color-background);
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 360px;
-  min-height: 100vh;
+  padding: 0rem 1rem 7rem 1rem;
+  // min-height: 100vh;
+  // max-width: 360px;
   overflow-x: hidden;
 `;
 const VideoInfo = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
   margin: 1.25rem 0 1.25rem 0.5rem;
   padding-bottom: 0.5rem;
-  padding-left: 1.25rem;
   font-size: 0.875rem;
   font-weight: bold;
   text-align: left;
-  width: 360px;
   border-bottom: solid 1px #ffffff;
 `;
 const Num = styled.span`
@@ -101,25 +104,35 @@ const Num = styled.span`
 `;
 
 const Collection = styled.section`
+  width: 100%;
+  height: 100%;
+  padding-top: 50%;
   position: relative;
   display: flex;
-  width: 20.938rem;
-  height: 7.375rem;
+  padding-top: 56.25%;
+  // width: 20.938rem;
+  // height: 7.375rem;
+
   background-color: #ffffff;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
   box-shadow: var(--box-shadow);
+  padding: 1rem;
 `;
-
+const ImgWrap = styled.div`
+  width: 100%;
+`;
 const InfoWrap = styled.div`
-  height: 5rem;
-  width: 8rem;
+  margin: 0 2rem 0 3rem;
+  height: 100%;
+  padding: 0 1rem 0 1rem;
+  width: 40%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin: 0.3rem 0 0 0.5rem;
+  // margin: 0.3rem 0 0 0.5rem;
   flex-direction: column;
   justify-content: space-between;
 `;
@@ -132,6 +145,8 @@ const CollectionTitle = styled.h3`
   letter-spacing: -0.7px;
   text-align: left;
   margin: 0 auto;
+  width: 100%;
+  height: 100%;
 `;
 
 const CollectionDescription = styled.div`
@@ -171,13 +186,16 @@ const IconNum = styled.span`
 const ClickBox = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
-  width: 3.313rem;
-  height: 6.125rem;
-  left: 40%;
+  // width: 3.313rem;
+  // height: 6.125rem;
+  width: 3rem;
+  height: 5.7rem;
+  left: 27%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 200;
 `;
 const IconNext = styled.img`
   width: 3rem;
