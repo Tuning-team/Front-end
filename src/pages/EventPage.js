@@ -4,9 +4,10 @@ import { keyframes } from "styled-components";
 import Headers from "../components/common/Headers";
 import HeaderLogo from "../components/features/myCollection/HeaderLogo";
 import eventPage from "../shared/svg/eventPage.png";
+import Layout from "../components/common/Layout";
 const EventPage = () => {
   return (
-    <>
+    <Layout>
       <HeaderLogo />
       <Wrap>
         <Contents>
@@ -21,9 +22,7 @@ const EventPage = () => {
           </ClickBox>
         </Contents>
       </Wrap>
-
-      <Navbar />
-    </>
+    </Layout>
   );
 };
 export default EventPage;
@@ -43,7 +42,10 @@ const Wrap = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  display: flex;
+  justify-content: center;
 `;
+
 const Contents = styled.div`
   background-image: url(${eventPage});
   height: 100%;
