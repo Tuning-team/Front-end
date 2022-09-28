@@ -73,12 +73,13 @@ const InterestedCategories = () => {
         ) : (
           <>
             {userInterestArr?.map((elem) => (
-              <CategoryCard key={elem._id}>
+              <CategoryCard
+                key={elem._id}
+                onClick={() => nav(`/category/${elem._id}`)}
+              >
                 <Img url={elem.img}></Img>
                 <h6>{elem.name}</h6>
-                <button onClick={() => nav(`/category/${elem._id}`)}>
-                  바로가기
-                </button>
+                <button>바로가기</button>
               </CategoryCard>
             ))}
           </>
