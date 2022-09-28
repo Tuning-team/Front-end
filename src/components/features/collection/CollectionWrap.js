@@ -50,6 +50,7 @@ const CollectionWrap = () => {
           </>
         ) : (
           <Modal>
+            <ModalDiv onClick={onClickedCommentBtn} />
             <SlideupBox>
               <CloseBtnArea >
                 <CloseBtn onClick={onClickedCommentBtn} />
@@ -59,7 +60,6 @@ const CollectionWrap = () => {
               </Children>
             </SlideupBox>
           </Modal>
-
         )}
       </>
     </div>
@@ -100,6 +100,14 @@ const Modal = styled.div`
   right: 0;
   z-index: 400;
 `;
+const ModalDiv = styled.div`
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 400;
+`;
 const slideUp = keyframes`
 from{
   transform: translate(-50%, 11rem)
@@ -116,6 +124,7 @@ const SlideupBox = styled.div`
   position: absolute;
   bottom: 0;
   left: 50%;
+  z-index:401;
   transform: translateX(-50%);
   border-radius: 20px 20px 0 0;
   animation-name: ${slideUp};
