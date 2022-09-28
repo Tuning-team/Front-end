@@ -69,9 +69,9 @@ const StInput = styled.input`
   &::placeholder {
     color: #adadad;
   }
-  &:focus {
+  /* &:focus {
     outline-color: var(--color-primary);
-  }
+  } */
 `;
 
 const StBtn = styled.button`

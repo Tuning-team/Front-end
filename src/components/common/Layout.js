@@ -22,4 +22,5 @@ const StyleLayout = styled.div`
   min-width: 280px;
   max-width: 480px;
   min-height: 100vh;
+  padding-bottom: 4.7rem;
 `;

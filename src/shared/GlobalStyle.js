@@ -13,7 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     --color-input:#F5F5F5;
     --color-disabled: #adadad;
     --box-shadow:4px 4px 8px #D4D1E5;
-    
   }
 
   * {
@@ -23,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     box-sizing: border-box; 
   }
+
   body {
     display: flex;
     align-items: center;
@@ -39,7 +39,18 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
-
+  input, textarea {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+  input:focus, textarea:focus {
+    /* outline-style: solid; */
+    /* outline-offset: 1px; */
+    outline-color : var(--color-primary);
+        /* -moz-outline-radius: 18px; */
+    /* -webkit-tap-highlight-color : var(--color-primary); */
+  }
   html {
     overflow-y: scroll;
   }
