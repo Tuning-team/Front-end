@@ -14,7 +14,6 @@ import { ReactComponent as IconSend } from "../../../shared/svg/24_ena_send.svg"
 import { ReactComponent as IconEdit } from "../../../shared/svg/24_ena_edit.svg";
 import { ReactComponent as IconDelete } from "../../../shared/svg/24_ena_delete.svg";
 import Modal from "../../common/Modal";
-import { getCookie } from "../../../shared/cookie";
 
 const CommentList = ({ collectionId }) => {
   const [newinputValue, setNewInputValue] = useState("");
@@ -74,6 +73,7 @@ const CommentList = ({ collectionId }) => {
   };
 
   function saveCommentData(e) {
+    console.log(e)
     if (e.target.value !== userState.user._id) {
       return alert("권한이 없습니다.");
     }
@@ -215,7 +215,7 @@ const StCommentSpan = styled.span`
   margin-bottom: 0.5rem;
   color: #adadad;
   display: -webkit - box;
-  webkit-box-orient: vertical;
+  -webkit-box-orient: vertical;
   // Webkit-line-clamp: 3;
   overflow: hidden;
 `;
@@ -317,12 +317,6 @@ const StCommentImgDiv = styled.div`
   margin-right: 5px;
 `;
 
-// const StCommentBtnDiv = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   vertical-align: middle;
-// `;
-
 const StCommentBtn = styled.button`
   display: flex;
   justify-content: center;
@@ -345,47 +339,4 @@ const StProfileImg = styled.img`
   border-radius: 70%;
   overflow: hidden;
   margin-left: 5px;
-`;
-
-const StChooseBtnDiv = styled.div`
-  background-color: #ffffff;
-  width: 22.063rem;
-  height: 5.938rem;
-  color: #b295e9;
-
-  font-size: 1.25rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 3px;
-
-  margin: 170% auto 0;
-  /* position: fixed;
-      bottom: 4.5rem;
-      margin: 9px; */
-`;
-
-const StCloseDiv = styled.div`
-  background-color: #ffffff;
-  width: 22.063rem;
-  height: 3.125rem;
-  color: #b295e9;
-  margin-top: 10px;
-  font-size: 1.25rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 3px;
-
-  /* position: fixed; */
-  bottom: 0.5rem;
-  margin: 9px;
-`;
-
-const StBtnDiv = styled.div`
-  text-align: center;
-  width: 100%;
-  padding-bottom: 5px;
 `;
