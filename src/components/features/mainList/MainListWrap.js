@@ -125,10 +125,6 @@ const CarouselDesc = styled.div`
   }
 `;
 const StyleBackground = styled.div`
-  /* width: 23.438rem; */
-  /* height: 34.375rem; */
-  /* margin: 15.625rem 0 1.875rem; */
-  /* padding: 1.125rem 0.031rem 2.5rem 0; */
   background-color: #eeeef6;
   padding: 1.25rem 1.5rem 2.5rem 1.5rem;
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import CategoryModal from "./CategoryModal";
 import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category.svg";
-import { ReactComponent as Logo } from "../../shared/svg/Frame.svg";
+import { ReactComponent as Logo } from "../../shared/svg/logo.svg";
 import { getCookie } from "../../shared/cookie";
 
 const Headers = () => {

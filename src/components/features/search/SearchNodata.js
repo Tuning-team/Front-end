@@ -1,11 +1,9 @@
-import logo from "../../../shared/svg/logo_blur.svg";
 import styled from "styled-components";
 import { getCookie } from "../../../shared/cookie";
 const SearchNoData = () => {
   return (
     <Wrap>
       <P> 새로운 튜닝을 만들어보세요! </P>
-      <img src={logo}></img>
       <A
         href={getCookie("token") === undefined ? "/login" : "/myCollection/add"}
       >

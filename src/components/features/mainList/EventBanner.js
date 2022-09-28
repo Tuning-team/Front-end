@@ -11,17 +11,14 @@ const EventBanner = () => {
 };
 export default EventBanner;
 const Wrap = styled.div`
-  margin-top: 2.5rem;
-  //   padding: 0.75rem 1rem;
+  margin-top: 1.25rem;
   border-radius: 15px;
-  //   background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 const Img = styled.img`
-  width: 19.625rem;
+  width: 100%;
   box-shadow: 5px 5px 15px 0 rgb(24 32 74 / 10%);
-  //   height: 9.938rem;
   border-radius: 15px;
 `;
