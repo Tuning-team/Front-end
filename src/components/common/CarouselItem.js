@@ -31,10 +31,8 @@ const DivCard = styled.div`
     border-radius: 6px;
   }
   & .card-bottom > h6 {
-    font-size: 0.875rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
+    font-size: 1rem;
+    font-weight: 400;
     line-height: normal;
     letter-spacing: -0.35px;
 

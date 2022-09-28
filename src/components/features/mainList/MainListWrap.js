@@ -64,8 +64,10 @@ const MainListWrap = () => {
             ))}
           </Carousel>
           <CarouselDesc>
-            <h2>인기있는 튜닝</h2>
-            <p>가장 많은 좋아요와 댓글을 획득한 튜닝들</p>
+            <TextContainer>
+              <h1>인기있는 튜닝</h1>
+              <p>가장 많은 좋아요와 댓글을 획득한 튜닝들</p>
+            </TextContainer>
           </CarouselDesc>
         </div>
       )}
@@ -83,13 +85,10 @@ export default MainListWrap;
 const CarouselDesc = styled.div`
   position: absolute;
   pointer-events: none;
-  top: 0;
+  top: 50%;
   right: 0;
   left: 0;
-  height: 5.969rem;
-  margin: 7.406rem 0 0;
-  padding: 2.281rem 0 0 1.25rem;
-  /* mix-blend-mode: multiply; */
+  bottom: 0;
   background-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0),
@@ -98,32 +97,26 @@ const CarouselDesc = styled.div`
     rgba(0, 0, 0, 0.8) 70%,
     #000
   );
-  & h2 {
-    height: 1.813rem;
-    margin-bottom: 0;
-    padding-top: 0.6rem;
+`;
+const TextContainer = styled.div`
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1.25rem;
+  left: 1.25rem;
+  & h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
     letter-spacing: normal;
-    text-align: left;
     color: #fff;
   }
   & p {
-    height: 1.25rem;
-    margin: 0.6rem 0 0 0;
-    font-size: 0.875rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
+    font-size: 1rem;
+    font-weight: 400;
     letter-spacing: normal;
-    text-align: left;
     color: #adadad;
   }
 `;
+
 const StyleBackground = styled.div`
   background-color: #eeeef6;
   padding: 1.25rem 1.5rem 2.5rem 1.5rem;

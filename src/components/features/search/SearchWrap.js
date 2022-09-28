@@ -11,7 +11,7 @@ const SearchWrap = () => {
 
   return (
     <Container>
-      <SearchInput backgroundColor={"#ffffff"} />
+      <SearchInput />
       <div>
         {loading ? (
           <Loading />
@@ -28,9 +28,8 @@ const SearchWrap = () => {
 export default SearchWrap;
 
 const Container = styled.div`
-  background-color: #eeeef6;
+  background-color: var(--color-background);
   padding: 3.125rem 1.5rem 0 1.5rem;
-  height: 100%;
   min-height: 100vh;
 `;
 
@@ -38,9 +37,3 @@ const StText = styled.p`
   font-size: 1rem;
   text-align: center;
 `;
-//! 가져온 배열(indexof는 string에서)에서 원하는 값을 추출하는 로직(찾는문자열 없으면 -1, 대소문자 구분함..)
-// const searchResult = searchList?.filter(
-//   (data) =>
-//     data.collectionTitle.indexOf(search) !== -1 ||
-//     data.description.indexOf(search) !== -1
-// );

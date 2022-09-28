@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as UpIcon } from "../../shared/svg/24_ena_feedback.svg";
-import { ReactComponent as MakeTuningIcon } from "../../shared/svg/ena_floating_make tuning.svg";
+import { ReactComponent as MakeTuningIcon } from "../../shared/svg/ena_floating_make tuning_2.svg";
 import { deleteVideo } from "../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
 
@@ -9,6 +9,7 @@ const StickyButtons = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
+  // 피드백 이벤트 끝난 후 다시 들어감
   const ScrollTop = () => {
     window.scroll({
       top: 0,
@@ -22,7 +23,7 @@ const StickyButtons = () => {
   return (
     <StickyContainer>
       <Btn onClick={goFeedback}>
-        <UpIcon className="icon24" />
+        <UpIcon />
       </Btn>
       <MakeTuningBtn
         onClick={() => {
@@ -37,41 +38,36 @@ const StickyButtons = () => {
 };
 export default StickyButtons;
 const StickyContainer = styled.div`
-  border: 1px solid red;
-  position: fixed;
+  position: sticky;
   z-index: 100;
   bottom: 5.75rem;
-  right: 1.25rem;
-  /* margin-left: 85%; */
-  /* width: auto; */
+  padding-right: 1.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: right;
+  justify-content: flex-end;
+  height: 0;
   gap: 0.5rem;
-  * {
-    border: 1px solid green;
-  }
 `;
 const Btn = styled.div`
+  margin-left: auto;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
   box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.23);
+  text-align: center;
   background-color: #fff;
-  /* &:nth-child(2) {
-    background-color: #572cff;
-    margin-bottom: 0.5rem;
-  } */
   & svg {
-    box-sizing: border-box;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     padding: 0.5rem;
   }
 `;
 const MakeTuningBtn = styled(Btn)`
-  background-color: #572cff;
+  background-color: var(--color-primary);
   width: 5rem;
-  border-radius: 20px;
+  border-radius: 23px;
+  & svg {
+    width: 4rem;
+    height: 3rem;
+  }
 `;
