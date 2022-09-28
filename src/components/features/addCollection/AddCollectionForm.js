@@ -51,7 +51,6 @@ const AddCollectionForm = () => {
       setAlert("모두 입력해주세요");
       setToastState(true);
     } else {
-      console.log("wjsthd");
       setDisabled(true);
       const videos = addVideoList.map((x) => x.id);
       const addData = { category_id, collectionTitle, description, videos };

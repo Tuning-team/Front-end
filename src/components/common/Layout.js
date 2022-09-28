@@ -20,7 +20,9 @@ const StyleLayout = styled.div`
     width: 100vw;
   }
   min-width: 280px;
-  max-width: 480px;
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
   min-height: 100vh;
   padding-bottom: 4.7rem;
 `;

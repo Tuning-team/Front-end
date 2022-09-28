@@ -104,6 +104,7 @@ const LoginBtn = styled.div`
   border-radius: 20px;
   box-shadow: 2px 2px 4px #d4d1e5;
   border: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
   &:active {
     box-shadow: 0px 0px 0px #d4d1e5;
     position: relative;
