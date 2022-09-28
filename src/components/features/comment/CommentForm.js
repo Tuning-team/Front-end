@@ -8,11 +8,11 @@ import {
   addComment,
 } from "../../../redux/modules/commentSlice";
 import { getUserInfo } from "../../../redux/modules/userSlice";
-import { ReactComponent as IconMore } from "../../../shared/svg/icon_moreicon.svg";
-import { ReactComponent as IconActSend } from "../../../shared/svg/icon_act_send.svg"
-import { ReactComponent as IconSend } from "../../../shared/svg/icon_ena_send.svg"
-import { ReactComponent as IconEdit } from "../../../shared/svg/icon_ena_edit.svg"
-import { ReactComponent as IconDelete } from "../../../shared/svg/icon_ena_delete.svg"
+import { ReactComponent as IconMore } from "../../../shared/svg/24_ena_more.svg";
+import { ReactComponent as IconActSend } from "../../../shared/svg/24_act_send.svg";
+import { ReactComponent as IconSend } from "../../../shared/svg/24_ena_send.svg";
+import { ReactComponent as IconEdit } from "../../../shared/svg/24_ena_edit.svg";
+import { ReactComponent as IconDelete } from "../../../shared/svg/24_ena_delete.svg";
 import Modal from "../../common/Modal";
 import { getCookie } from "../../../shared/cookie";
 
@@ -24,7 +24,7 @@ const CommentList = ({ collectionId }) => {
 
   const [commentData, setCommentData] = useState();
   const commentList = useSelector((state) => state.commentSlice.data);
-  const userState = useSelector(state => state.userSlice.data);
+  const userState = useSelector((state) => state.userSlice.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const CommentList = ({ collectionId }) => {
 
   useEffect(() => {
     dispatch(getUserInfo());
-  }, [])
+  }, []);
 
   const onCreate = (e) => {
     e.preventDefault();
@@ -75,7 +75,7 @@ const CommentList = ({ collectionId }) => {
 
   function saveCommentData(e) {
     if (e.target.value !== userState.user._id) {
-      return alert("권한이 없습니다.")
+      return alert("권한이 없습니다.");
     }
     setCommentData(e.target.id);
     setModal("menu");
@@ -91,7 +91,9 @@ const CommentList = ({ collectionId }) => {
         {modal === "menu" ? (
           <Modal setModal={setModal}>
             <StBtn onClick={onModify}>수정하기</StBtn>
-            <StBtn onClick={onDelete} id={commentData}>삭제하기</StBtn>
+            <StBtn onClick={onDelete} id={commentData}>
+              삭제하기
+            </StBtn>
           </Modal>
         ) : (
           ""
@@ -106,7 +108,10 @@ const CommentList = ({ collectionId }) => {
                 return (
                   <StProfileDiv key={data.comment_id}>
                     <StCommentImgDiv>
-                      <StProfileImg src={data.writerProfilePic} alt="profileImg" />
+                      <StProfileImg
+                        src={data.writerProfilePic}
+                        alt="profileImg"
+                      />
                     </StCommentImgDiv>
                     <StCommentValueDiv>
                       <li key={idx}>
@@ -124,14 +129,16 @@ const CommentList = ({ collectionId }) => {
                     <StCommentBtn
                       onClick={saveCommentData}
                       id={data.comment_id}
-                      value={data.user_id}>
+                      value={data.user_id}
+                    >
                       <IconMore
                         setModal={setModal}
                         style={{
                           pointerEvents: "none",
                           width: "1.125rem",
                           height: "1.125rem",
-                        }} />
+                        }}
+                      />
                     </StCommentBtn>
                   </StProfileDiv>
                 );
@@ -141,77 +148,77 @@ const CommentList = ({ collectionId }) => {
         </div>
       </StWrap>
 
-      {
-        modal === "modify" ? (
-          <StCommentForm
-            style={{ zIndex: "110" }}
-            action=""
-            id={commentData}
-            onSubmit={onUpdate}
-          >
+      {modal === "modify" ? (
+        <StCommentForm
+          style={{ zIndex: "110" }}
+          action=""
+          id={commentData}
+          onSubmit={onUpdate}
+        >
+          <StInputDiv>
+            <StInput
+              type="text"
+              onChange={(e) => setNewInputValue(e.target.value)}
+              value={newinputValue}
+              placeholder="수정할 내용을 입력해주세요 ;)"
+            />
+            <StButton type="submit">
+              <IconSend
+                style={{
+                  height: "1.5rem",
+                  width: "1.5rem",
+                }}
+              />
+            </StButton>
+          </StInputDiv>
+        </StCommentForm>
+      ) : (
+        <>
+          <StCommentForm action="" onSubmit={onCreate}>
             <StInputDiv>
               <StInput
                 type="text"
                 onChange={(e) => setNewInputValue(e.target.value)}
                 value={newinputValue}
-                placeholder="수정할 내용을 입력해주세요 ;)"
-              />
-              <StButton type="submit">
-                <IconSend style={{
-                  height: "1.5rem",
-                  width: "1.5rem"
-                }} />
-              </StButton>
+                placeholder="ㅤ댓글을 작성해주세요 :-D"
+              ></StInput>
+              {newinputValue.length !== 0 ? (
+                <StButton type="submit">
+                  <IconActSend
+                    style={{
+                      height: "1.5rem",
+                      width: "1.5rem",
+                    }}
+                  />
+                </StButton>
+              ) : (
+                <StButton style={{ cursor: "arrow" }}>
+                  <IconSend
+                    style={{
+                      height: "1.5rem",
+                      width: "1.5rem",
+                    }}
+                  />
+                </StButton>
+              )}
             </StInputDiv>
           </StCommentForm>
-        ) : (
-          <>
-            <StCommentForm action="" onSubmit={onCreate}>
-              <StInputDiv>
-                <StInput
-                  type="text"
-                  onChange={(e) => setNewInputValue(e.target.value)}
-                  value={newinputValue}
-                  placeholder="ㅤ댓글을 작성해주세요 :-D"
-                ></StInput>
-                {newinputValue.length !== 0 ?
-                  <StButton type="submit">
-                    <IconActSend style={{
-                      height: "1.5rem",
-                      width: "1.5rem"
-                    }}
-                    /></StButton>
-                  :
-                  <StButton style={{ cursor: "arrow" }} >
-                    <IconSend style={{
-                      height: "1.5rem",
-                      width: "1.5rem"
-                    }} />
-                  </StButton>
-                }
-              </StInputDiv>
-            </StCommentForm>
-          </>
-        )
-      }
-    </StContainer >
+        </>
+      )}
+    </StContainer>
   );
 };
 export default CommentList;
 
-
-
 const StCommentSpan = styled.span`
-font-size: 0.8rem;
-margin-bottom: 0.5rem;
-color: #adadad;
-display: -webkit - box;
-Webkit-box-orient: vertical;
-// Webkit-line-clamp: 3;
-overflow: hidden;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  color: #adadad;
+  display: -webkit - box;
+  webkit-box-orient: vertical;
+  // Webkit-line-clamp: 3;
+  overflow: hidden;
 `;
-
-
 
 const StBtn = styled.div`
   font-size: 0.8rem;
@@ -226,7 +233,6 @@ const StBtn = styled.div`
   }
 `;
 
-
 const StUserName = styled.p`
   font-weight: bold;
   font-size: 0.87m;
@@ -238,14 +244,12 @@ const StUserName = styled.p`
   margin-inline-end: 0em;
 `;
 
-
 const StNoCommentDiv = styled.div`
   margin-top: 3rem;
   display: flex;
   justify-content: center;
   font-size: 1rem;
 `;
-
 
 const StContainer = styled.div`
   border-radius: 16px;
@@ -257,8 +261,8 @@ const StWrap = styled.div`
   background-color: transparent;
   overflow: scroll;
   &::-webkit-scrollbar {
-display: none;
-}
+    display: none;
+  }
 
   overflow-x: hidden;
 `;
@@ -320,9 +324,9 @@ const StCommentImgDiv = styled.div`
 // `;
 
 const StCommentBtn = styled.button`
-display: flex;
-justify-content: center;
-vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
   background: none;
   border: none;
   outline: none;

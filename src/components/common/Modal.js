@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as CloseIcon } from "../../shared/svg/icon_close.svg";
+import { ReactComponent as CloseIcon } from "../../shared/svg/24_ena_close.svg";
 const Modal = (props) => {
   const closeModal = () => {
     props.setModal((prev) => !prev);

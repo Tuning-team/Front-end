@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_more_main">
+        <g data-name="Group 5731">
+            <path data-name="Rectangle 2722" style="fill:none" d="M0 0h48v48H0z"/>
+            <path data-name="Rectangle 2723" transform="translate(6 6)" style="fill:none" d="M0 0h36v36H0z"/>
+        </g>
+        <g data-name="Group 5973" transform="translate(1387 6558)">
+            <circle data-name="Ellipse 159" cx="10" cy="10" r="10" transform="translate(-1359 -6530)" style="fill:#c9bbff"/>
+            <g data-name="Group 5972">
+                <circle data-name="Ellipse 160" cx="4" cy="4" r="4" transform="translate(-1353 -6538)" style="fill:#505050"/>
+                <circle data-name="Ellipse 161" cx="4" cy="4" r="4" transform="translate(-1381 -6538)" style="fill:#505050"/>
+                <circle data-name="Ellipse 162" cx="4" cy="4" r="4" transform="translate(-1367 -6538)" style="fill:#505050"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as UpIcon } from "../../shared/svg/icon_feedback.svg";
+import { ReactComponent as UpIcon } from "../../shared/svg/24_ena_feedback.svg";
 import { ReactComponent as MakeTuningIcon } from "../../shared/svg/ena_floating_make tuning.svg";
 import { deleteVideo } from "../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";

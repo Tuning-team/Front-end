@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_category edit">
+        <path data-name="Rectangle 2862" transform="rotate(90 24 24)" style="fill:none" d="M0 0h48v48H0z"/>
+        <path data-name="Rectangle 2863" transform="rotate(90 18 24)" style="fill:none" d="M0 0h36v36H0z"/>
+        <g data-name="Group 6050" transform="translate(1567 6558)">
+            <circle data-name="Ellipse 169" cx="10" cy="10" r="10" transform="translate(-1539 -6530)" style="fill:#c9bbff"/>
+            <g data-name="Group 6049">
+                <path data-name="Path 4105" d="M-1529-6548v8h-8v-8h8m2-4h-12a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2z" style="fill:#505050"/>
+                <path data-name="Path 4106" d="M-1549-6548v8h-8v-8h8m2-4h-12a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2z" style="fill:#505050"/>
+                <path data-name="Path 4107" d="M-1549-6528v8h-8v-8h8m2-4h-12a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2z" style="fill:#505050"/>
+                <g data-name="Group 6048">
+                    <path data-name="Path 4108" d="m-1533-6529.686 4 2.329v4.714l-4 2.329-4-2.329v-4.714l4-2.329m0-4.314a2 2 0 0 0-1.006.272l-6 3.492a2 2 0 0 0-.994 1.729v7.014a2 2 0 0 0 .994 1.729l6 3.492a2 2 0 0 0 1.006.272 2 2 0 0 0 1.006-.272l6-3.492a2 2 0 0 0 .994-1.729v-7.014a2 2 0 0 0-.994-1.729l-6-3.492A2 2 0 0 0-1533-6534z" style="fill:#505050"/>
+                </g>
+                <circle data-name="Ellipse 170" cx="2" cy="2" r="2" transform="translate(-1535 -6527)" style="fill:#505050"/>
+            </g>
+        </g>
+    </g>
+</svg>
