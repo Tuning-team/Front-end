@@ -23,7 +23,6 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     box-sizing: border-box; 
   }
-
   body {
     display: flex;
     align-items: center;
