@@ -5,7 +5,6 @@ import throttle from "lodash/throttle";
 import MyVideo from "../myCollection/MyVideo";
 import icon_like_black from "../../../shared/svg/16_ena_like.svg";
 import icon_comment from "../../../shared/svg/16_ena_comment.svg";
-
 import icon_next_white from "../../../shared/svg/icon_next_white.svg";
 import NoData from "../../common/NoData";
 import MyCollectionsLoading from "./Skeleton";
