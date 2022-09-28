@@ -172,6 +172,8 @@ const SettingIcon = styled(HeaderIcon)`
 `;
 const ProfileLayout = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 const Profile = styled.div`
   display: flex;
