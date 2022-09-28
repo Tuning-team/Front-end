@@ -144,15 +144,6 @@ const CollectionDescription = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
-
-const CollectionInfo = styled.span`
-  font-size: 0.75rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.24;
-  letter-spacing: normal;
-`;
 const IconWrap = styled.div`
   display: flex;
   margin-right: 1.5rem;
@@ -171,12 +162,11 @@ const IconLayout = styled.div`
   }
 `;
 const Icon = styled.img`
-  padding: 5px;
   width: 0.8rem;
   height: 0.8rem;
 `;
 const IconNum = styled.span`
-  margin-top: 6px;
+  margin: 5px 6px 0px 6px;
 `;
 const ClickBox = styled.div`
   background-color: rgba(0, 0, 0, 0.4);

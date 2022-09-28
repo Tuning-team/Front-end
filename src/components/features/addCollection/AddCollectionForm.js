@@ -25,7 +25,8 @@ const AddCollectionForm = () => {
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
   const [toastState, setToastState] = useState(false);
   const [alert, setAlert] = useState("모두 입력해주세요");
-
+  const [disabled, setDisabled] = useState(false);
+  console.log(disabled);
   //!마운트, 언마운트시
   useEffect(() => {
     dispatch(getCategory());
@@ -50,10 +51,13 @@ const AddCollectionForm = () => {
       setAlert("모두 입력해주세요");
       setToastState(true);
     } else {
+      console.log("wjsthd");
+      setDisabled(true);
       const videos = addVideoList.map((x) => x.id);
       const addData = { category_id, collectionTitle, description, videos };
       setAlert("컬렉션이 생성되었습니다.");
       dispatch(postCollection({ addData, setToastState }));
+
       dispatch(rememberData([]));
     }
   };
@@ -70,6 +74,7 @@ const AddCollectionForm = () => {
         onClickHandler={onClickHandler}
         title="컬렉션 만들기"
         btn="확인"
+        disabled={disabled}
       />
       <Form>
         <FormInput onChange={onChange} collectionTitle={collectionTitle} />

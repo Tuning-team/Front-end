@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../shared/cookie";
 import { useDispatch } from "react-redux";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as HomeIcon } from "../../shared/svg/icon_home.svg";
+import { ReactComponent as HomeIcon } from "../../shared/svg/24_ena_home.svg";
 import { getUserInfo } from "../../redux/modules/userSlice";
 import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category.svg";
 import { ReactComponent as MyIcon } from "../../shared/svg/24_ena_my.svg";
