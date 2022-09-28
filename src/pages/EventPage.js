@@ -13,7 +13,8 @@ const EventPage = () => {
           <Date>기간: 9.27(화)~ 10.1(토)</Date>
           <ClickBox
             onClick={() =>
-              (window.location.href = "https://bit.ly/projTuning_bugReport1")
+              (window.location.href =
+                "https://docs.google.com/forms/d/e/1FAIpQLSe28mHn_ciGYYe6wJ4Mh94-63tP264TZJFpxINHfL9qXNFTtQ/viewform?usp=send_form")
             }
           >
             👉
