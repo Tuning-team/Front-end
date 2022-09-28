@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
 import MyVideo from "../myCollection/MyVideo";
-import icon_like_black from "../../../shared/svg/icon_like_black.svg";
+import icon_likes from "../../../shared/svg/icon_likes.svg";
 import icon_comment from "../../../shared/svg/icon_comment.svg";
 import icon_next_white from "../../../shared/svg/icon_next_white.svg";
 import NoData from "../../common/NoData";
@@ -55,7 +55,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
               </InfoText>
               <IconWrap>
                 <IconLayout>
-                  <Icon src={icon_like_black} />
+                  <Icon src={icon_likes} />
                   <IconNum>{data.likes}</IconNum>
                 </IconLayout>
                 <IconLayout>
@@ -144,15 +144,6 @@ const CollectionDescription = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
-
-const CollectionInfo = styled.span`
-  font-size: 0.75rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.24;
-  letter-spacing: normal;
-`;
 const IconWrap = styled.div`
   display: flex;
   margin-right: 1.5rem;
@@ -171,12 +162,11 @@ const IconLayout = styled.div`
   }
 `;
 const Icon = styled.img`
-  padding: 5px;
   width: 0.8rem;
   height: 0.8rem;
 `;
 const IconNum = styled.span`
-  margin-top: 6px;
+  margin: 5px 6px 0px 6px;
 `;
 const ClickBox = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
