@@ -80,7 +80,7 @@ const StBtn = styled.button`
   outline: none;
   cursor: pointer;
   position: absolute;
-  right: 0.5rem;
+  right: 1rem;
   top: 50%;
   transform: translate(0, -50%);
 `;

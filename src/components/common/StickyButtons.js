@@ -21,43 +21,57 @@ const StickyButtons = () => {
 
   return (
     <StickyContainer>
-      <Btn
+      <Btn onClick={goFeedback}>
+        <UpIcon className="icon24" />
+      </Btn>
+      <MakeTuningBtn
         onClick={() => {
           dispatch(deleteVideo("all"));
           nav("/myCollection/add");
         }}
       >
         <MakeTuningIcon />
-      </Btn>
-      <Btn onClick={goFeedback}>
-        <UpIcon />
-      </Btn>
+      </MakeTuningBtn>
     </StickyContainer>
   );
 };
 export default StickyButtons;
 const StickyContainer = styled.div`
-  position: sticky;
-  position: -webkit-sticky;
+  border: 1px solid red;
+  position: fixed;
   z-index: 100;
-  bottom: 5rem;
-  margin-left: 85%;
+  bottom: 5.75rem;
+  right: 1.25rem;
+  /* margin-left: 85%; */
+  /* width: auto; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: right;
+  gap: 0.5rem;
+  * {
+    border: 1px solid green;
+  }
 `;
 const Btn = styled.div`
-  box-sizing: border-box;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 20px;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
   box-shadow: 0 1.5px 3px 0 rgba(0, 0, 0, 0.23);
   background-color: #fff;
-  &:nth-child(1) {
+  /* &:nth-child(2) {
     background-color: #572cff;
     margin-bottom: 0.5rem;
-  }
+  } */
   & svg {
     box-sizing: border-box;
     width: 2.5rem;
     height: 2.5rem;
     padding: 0.5rem;
   }
+`;
+const MakeTuningBtn = styled(Btn)`
+  background-color: #572cff;
+  width: 5rem;
+  border-radius: 20px;
 `;

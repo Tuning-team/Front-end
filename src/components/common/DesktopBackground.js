@@ -7,7 +7,8 @@ const DesktopBackground = (props) => {
     <>
       <Desktop classNmae="desktop">
         <img src={tuningLogo} alt="tuningLogo" />
-        <h1>내가 모은 영상 플레이 리스트를 내 방식대로 편하게 보관하자!</h1>
+        <h1>내가 모은 영상 플레이 리스트를</h1>
+        <h1>내 방식대로 편하게 보관하자!</h1>
       </Desktop>
       <Line />
     </>
@@ -20,17 +21,24 @@ const Desktop = styled.div`
   z-index: -1;
   bottom: 42%;
   left: 12%;
-
-  & img {
-    width: 10.5rem;
-    height: auto;
+  * {
+    display: none;
   }
-  & h1 {
-    font-family: "Noto Sans KR";
-    font-size: 1rem;
-    font-weight: normal;
-    letter-spacing: -0.7px;
-    color: #505050;
+  @media screen and (min-width: 1150px) {
+    * {
+      display: block;
+    }
+    & img {
+      width: 10.5rem;
+      height: auto;
+    }
+    & h1 {
+      font-family: "Noto Sans KR";
+      font-size: 1rem;
+      font-weight: normal;
+      letter-spacing: -0.7px;
+      color: #505050;
+    }
   }
 `;
 const Line = styled.div`
