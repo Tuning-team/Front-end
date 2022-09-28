@@ -6,7 +6,7 @@ import {
   rememberData,
 } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
+import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
 //!enabled만들것!!!!!!!!!11
 const FormTitle = ({ onClickHandler, btn, title }) => {
   const nav = useNavigate();

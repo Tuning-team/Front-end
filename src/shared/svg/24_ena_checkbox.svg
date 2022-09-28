@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_checkbox">
+        <path data-name="Rectangle 2874" style="fill:none" d="M0 0h48v48H0z"/>
+        <g data-name="Rectangle 12608" transform="translate(6 6)" style="stroke:#505050;stroke-width:4px;fill:none">
+            <rect width="36" height="36" rx="4" style="stroke:none"/>
+            <rect x="2" y="2" width="32" height="32" rx="2" style="fill:none"/>
+        </g>
+    </g>
+</svg>

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import SlideUpModal from "../../common/SlideUpModal";
-import icon_back from "../../../shared/svg/icon_back_enabled.svg";
+import icon_back from "../../../shared/svg/24_ena_back.svg";
 import { useNavigate } from "react-router-dom";
-import icon_setting from "../../../shared/svg/icon_setting.svg";
+import icon_setting from "../../../shared/svg/24_ena_setting.svg";
 import { useEffect, useState } from "react";
 import Modal from "../../common/Modal";
 import { getCookie, removeCookie } from "../../../shared/cookie";
@@ -13,7 +13,7 @@ import {
   postUserInterest,
 } from "../../../redux/modules/userSlice";
 import { getCategory } from "../../../redux/modules/collectionSlice";
-import icon_star from "../../../shared/svg/24_ena_category edit_2.svg";
+import icon_star from "../../../shared/svg/24_ena_star.svg";
 import SetUserInterestForm from "../myCollection/SetUserInterestForm";
 
 const UserInfo = () => {

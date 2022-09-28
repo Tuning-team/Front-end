@@ -4,8 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryCollection } from "../../../redux/modules/categorySlice";
 import MyCollections from "../myCollection/MyCollections";
-import Frame from "../../../shared/svg/Frame.svg";
-import icon_back_enabled from "../../../shared/svg/icon_back_enabled.svg";
+import Frame from "../../../shared/svg/logo.svg";
+import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
 import NoData from "../../common/NoData";
 
 const CategoryWrap = ({ Children }) => {

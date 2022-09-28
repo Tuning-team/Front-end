@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as BackIcon } from "../../../shared/svg/icon_back_enabled.svg";
-import { ReactComponent as Logo } from "../../../shared/svg/Frame.svg";
-import { ReactComponent as MoreIcon } from "../../../shared/svg/24_ena_more.svg";
+import { ReactComponent as BackIcon } from "../../../shared/svg/24_ena_back.svg";
+import { ReactComponent as Logo } from "../../../shared/svg/logo.svg";
+import { ReactComponent as MoreIcon } from "../../../shared/svg/24_ena_more_main.svg";
 const FloatingIcons = ({ setModal }) => {
   const nav = useNavigate();
 

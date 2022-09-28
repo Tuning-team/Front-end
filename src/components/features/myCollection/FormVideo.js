@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import icon_add from "../../../shared/svg/icon_add.svg";
+import icon_add from "../../../shared/svg/plus.svg";
 import { deleteVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -31,12 +31,12 @@ const FormVideo = ({ addVideoHandler, addVideoList }) => {
 };
 export default FormVideo;
 const Wrap = styled.div`
-display: flex;
-flex-direction: column;
-align-items
-width: 20.938rem;
-height: 10.5rem;
-margin:0 0 1.25rem 0
+  display: flex;
+  flex-direction: column;
+
+  width: 20.938rem;
+  height: 10.5rem;
+  margin: 0 0 1.25rem 0;
 `;
 
 const AddVideoBox = styled.div`

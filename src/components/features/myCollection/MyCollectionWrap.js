@@ -7,7 +7,7 @@ import {
   deleteAll,
   getMyCollection,
 } from "../../../redux/modules/collectionSlice";
-import icon_add from "../../../shared/svg/icon_add.svg";
+import icon_add from "../../../shared/svg/plus.svg";
 
 const MyCollectionWrap = () => {
   const nav = useNavigate();

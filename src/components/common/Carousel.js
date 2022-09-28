@@ -20,7 +20,7 @@ const Carousel = (props) => {
     autoPlay: props.autoPlay || false,
   };
   return (
-    <SliderWrapper height={props.height}>
+    <SliderWrapper height={props.height} className={props.className}>
       <StyleSlider {...settings}>{props.children}</StyleSlider>
     </SliderWrapper>
   );
@@ -30,6 +30,9 @@ export default Carousel;
 const SliderWrapper = styled.div`
   overflow-x: hidden;
   height: ${(props) => props.height};
+  background-color: var(--color-primary);
+  background-color: ${(props) =>
+    props.className ? "var(--color-primary)" : "white"};
 `;
 const StyleSlider = styled(Slider)`
   /* 아이템 사이의 간격 조절 */

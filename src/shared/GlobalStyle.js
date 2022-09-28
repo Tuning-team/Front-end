@@ -34,7 +34,7 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    /* font-family: "Noto Sans KR", "Roboto", sans-serif; */
+    font-family: "Noto Sans KR", "Roboto", sans-serif;
   }
 
   button {
