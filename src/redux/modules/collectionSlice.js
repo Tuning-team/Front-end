@@ -73,9 +73,7 @@ export const postCollection = createAsyncThunk(
     try {
       const res = await instance.post("/collections", addData);
       setToastState(true);
-      setTimeout(() => {
-        window.location.href = "/myPage";
-      }, [1000]);
+      window.location.href = "/myPage";
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);
@@ -90,9 +88,7 @@ export const editCollection = createAsyncThunk(
     try {
       const res = await instance.put(`/collections/${collection_id}`, addData);
       setToastState(true);
-      setTimeout(() => {
-        window.location.href = `/collection/${collection_id}`;
-      }, [1000]);
+      window.location.href = `/collection/${collection_id}`;
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);
@@ -151,6 +147,7 @@ export const getLikedCollection = createAsyncThunk(
       const res = await instance(
         `/collections/mylikes?offset=${count}&limit=5`
       );
+      console.log(res);
       return res.data;
     } catch (error) {
       return error.message;

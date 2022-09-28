@@ -41,16 +41,17 @@ const MyTab = () => {
     if (myCollection.totalContents > count1) {
       dispatch(getMyCollection(count1));
     }
-  }, [count1]);
+  }, [count1, tab]);
   //!2. 좋아요한컬렉션
   useEffect(() => {
+    console.log("2번");
     if (count2 === 0) {
       dispatch(deleteAll());
     }
     if (likedCollection.totalContents > count2) {
       dispatch(getLikedCollection(count2));
     }
-  }, [count2]);
+  }, [count2, tab]);
   //!3. 내가담은 컬렉션
   useEffect(() => {
     if (count3 === 0) {
@@ -59,7 +60,7 @@ const MyTab = () => {
     if (keptCollection.totalContents > count3) {
       dispatch(getKeptCollection(count3));
     }
-  }, [count3]);
+  }, [count3, tab]);
   return (
     <>
       <TabMenu tab={tab}>
@@ -95,7 +96,6 @@ const MyTab = () => {
         <MyCollections
           state={keptCollection.data}
           totalContents={keptCollection.totalContents}
-          hasNext={keptCollection.hasNext}
           setCount={setCount3}
           title="Keeping"
         />

@@ -28,7 +28,7 @@ const ChildrenCategories = (props) => {
         {recommend?.collections.map((collection) => (
           <CarouselItem
             key={collection._id}
-            onClick={() => nav(`collection/${collection._id}`)}
+            onClick={() => nav(`/collection/${collection._id}`)}
             src={collection.thumbnails[0]}
             alt={collection.videos[0]}
             title={collection.collectionTitle}
@@ -47,7 +47,7 @@ const ChildrenCategories = (props) => {
         {recent?.collections.map((collection) => (
           <CarouselItem
             key={collection._id}
-            onClick={() => nav(`collection/${collection._id}`)}
+            onClick={() => nav(`/collection/${collection._id}`)}
             src={collection.thumbnails[0]}
             alt={collection.videos[0]}
             title={collection.collectionTitle}

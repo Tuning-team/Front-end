@@ -100,14 +100,17 @@ const LoginBtn = styled.div`
   justify-content: center;
   font-weight: 500;
   font-size: 0.75rem;
-  margin-top: 15px;
+  margin-top: 20px;
   border-radius: 20px;
+  box-shadow: var(--box-shadow);
   border: 1px solid rgba(0, 0, 0, 0.25);
-  color: #adadad;
   &:active {
-    background-color: white;
-    opacity: 1;
-    font-weight: 900;
+    box-shadow: 0px 0px 0px #d4d1e5;
+    position: relative;
+    top: 2px;
+    // background-color: white;
+    // opacity: 1;
+    // font-weight: 900;
   }
 `;
 const Logo = styled.img`

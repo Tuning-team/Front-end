@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 const MyVideo = ({ src, videoNum }) => {
-  return <Img loading="lazy" src={src} alt="thumbnail" />;
+  return <Img src={src} alt="thumbnail" />;
 };
 export default MyVideo;
 const Img = styled.img`
   width: 10.781rem;
-  // height: 6.125rem;
-  height: 100%;
+  height: 6.125rem;
   left: 36vw;
   display: flex;
   align-items: center;
