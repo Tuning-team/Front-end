@@ -51,6 +51,16 @@ export const GlobalStyle = createGlobalStyle`
         /* -moz-outline-radius: 18px; */
     /* -webkit-tap-highlight-color : var(--color-primary); */
   }
+  /* 인풋 자동완성 시 색상변경 방지 */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+	  transition: background-color 5000s ease-in-out 0s;
+		-webkit-transition: background-color 9999s ease-out;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  }
+
   html {
     overflow-y: scroll;
   }
@@ -76,7 +86,8 @@ export const GlobalStyle = createGlobalStyle`
   font-style: normal;
   font-weight: 700;
   src: url(${NotoSansBold}) format("truetype");
-  } @font-face {
+  } 
+  @font-face {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
