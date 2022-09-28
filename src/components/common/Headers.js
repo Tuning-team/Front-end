@@ -11,7 +11,7 @@ const Headers = () => {
   const [isCategoryShown, setIsCategoryShown] = useState(false);
 
   return (
-    <Wrap>
+    <>
       {/*카테고리 모달 */}
       {isCategoryShown && (
         <CategoryModal
@@ -20,20 +20,22 @@ const Headers = () => {
         />
       )}
 
-      {/*카테고리 아이콘 */}
-      <StyleCategoryIcon
-        onClick={() => {
-          setIsCategoryShown(!isCategoryShown);
-        }}
-      />
+      <Wrap>
+        {/*카테고리 아이콘 */}
+        <StyleCategoryIcon
+          onClick={() => {
+            setIsCategoryShown(!isCategoryShown);
+          }}
+        />
 
-      {/*로고*/}
-      <StyleLogo />
-      {/* 로그인/로그아웃 */}
-      <StyleLogin onClick={() => nav("/login")}>
-        {getCookie("token") === undefined ? "로그인" : "로그아웃"}
-      </StyleLogin>
-    </Wrap>
+        {/*로고*/}
+        <StyleLogo onClick={() => nav("/mainPage")} />
+        {/* 로그인/로그아웃 */}
+        <StyleLogin onClick={() => nav("/login")}>
+          {getCookie("token") === undefined ? "로그인" : "로그아웃"}
+        </StyleLogin>
+      </Wrap>
+    </>
   );
 };
 
@@ -61,9 +63,9 @@ const StyleLogo = styled(Logo)`
   height: 1.625rem;
 `;
 const StyleLogin = styled.div`
-  font-size: 0.625rem;
-  font-weight: 500;
-  width: 2.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 4rem;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
