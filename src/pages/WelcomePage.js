@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Layout from "../components/common/Layout";
 import icon_welcome from "../shared/svg/icon_welcome.svg";
+
 const WelcomePage = () => {
   const nav = useNavigate();
   useEffect(() => {
@@ -13,17 +14,16 @@ const WelcomePage = () => {
 
   return (
     <Layout>
-      <Content src={icon_welcome}></Content>
+      <WelcomeLogo src={icon_welcome} />
     </Layout>
   );
 };
 export default WelcomePage;
 
-const Content = styled.img`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+const WelcomeLogo = styled.img`
+  position: absolute;
   width: 15rem;
-  height: 100vh;
-  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;

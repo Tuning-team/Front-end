@@ -2,7 +2,7 @@ import React from "react";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import Frame from "../../../shared/svg/logo.svg";
+import Frame from "../../../shared/svg/logo_without_triangle.svg";
 import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";

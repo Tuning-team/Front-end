@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryCollection } from "../../../redux/modules/categorySlice";
 import MyCollections from "../myCollection/MyCollections";
-import Frame from "../../../shared/svg/logo.svg";
+import Frame from "../../../shared/svg/logo_without_triangle.svg";
 import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
 import NoData from "../../common/NoData";
 
