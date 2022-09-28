@@ -105,8 +105,8 @@ const MyTab = () => {
 export default MyTab;
 const TabMenu = styled.div`
   display: flex;
-  position: relative;
-  justify-content: space-evenly;
+  // position: relative;
+  // justify-content: space-evenly;
   border-bottom: 0.235rem solid #ffffff;
   padding: 0 1rem;
   height: 2.5rem;
