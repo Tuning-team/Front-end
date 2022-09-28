@@ -147,7 +147,6 @@ export const getLikedCollection = createAsyncThunk(
       const res = await instance(
         `/collections/mylikes?offset=${count}&limit=5`
       );
-      console.log(res);
       return res.data;
     } catch (error) {
       return error.message;
