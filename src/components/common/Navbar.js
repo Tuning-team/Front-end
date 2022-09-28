@@ -76,13 +76,12 @@ const Nav = styled.nav`
   display: flex;
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 360px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 360px;
+  width: 480px;
   z-index: 300;
-  box-sizing: border-box;
   height: 4.7rem;
-  margin: 0 auto;
   background-color: #ffffff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
 `;

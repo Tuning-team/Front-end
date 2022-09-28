@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-input:#F5F5F5;
     --color-disabled: #adadad;
     --box-shadow:4px 4px 8px #D4D1E5;
+    
   }
 
   * {
@@ -20,27 +21,20 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0; 
     padding: 0;
     border: 0;
-    box-sizing: border-box;   
-    
+    box-sizing: border-box; 
   }
 
   body {
-    position: relative;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; 
 
-    background-color: #fff;
-    
-    min-width: 100%;
-    min-height: 100%;
-
-    font-size: 1rem;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
+    /* font-family: "Noto Sans KR", "Roboto", sans-serif; */
   }
 
   button {
@@ -79,7 +73,7 @@ export const GlobalStyle = createGlobalStyle`
   src: url(${NotoSansBold}) format("truetype");
   }
   /* Roboto fonts */
-  /* @font-face {
+  @font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
@@ -102,5 +96,5 @@ export const GlobalStyle = createGlobalStyle`
   font-style: normal;
   font-weight: bold;
   src: url(${RobotoBold}) format("truetype");
-  } */
+  }
 `;
