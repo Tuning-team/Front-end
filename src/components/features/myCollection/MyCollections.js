@@ -37,13 +37,13 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
         return (
           <Collection key={idx}>
             <ImgWrap onClick={() => nav(`/collection/${data._id}`)}>
-              <ClickBox>
+              {/* <ClickBox>
                 <IconNext src={icon_next_white} alt="icon"></IconNext>
-                <VideoNum>{data.thumbnails.length}</VideoNum>
-              </ClickBox>
+                {/* <VideoNum>{videoNum}</VideoNum> */}
+              {/* </ClickBox> */}
               <MyVideo
                 src={data.thumbnails[0]}
-                videoNum={data.thumbnails.length}
+                videoNum={data?.thumbnails.length}
               />
             </ImgWrap>
             <InfoWrap onClick={() => nav(`/collection/${data._id}`)}>
@@ -75,7 +75,7 @@ export default MyCollections;
 
 const ListWrap = styled.div`
   width: 100%;
-  height: 100vh;
+  // height: 100vh;
   background-color: var(--color-background);
   display: flex;
   flex-direction: column;
@@ -122,19 +122,23 @@ const Collection = styled.section`
   padding: 1rem;
 `;
 const ImgWrap = styled.div`
-  width: 100%;
+  width: 11rem;
+  height: 6.125rem;
+  position: relative;
 `;
 const InfoWrap = styled.div`
-  margin: 0 2rem 0 3rem;
-  height: 100%;
-  padding: 0 1rem 0 1rem;
-  width: 40%;
+  margin: 0 1rem 0 2rem;
+  // height: 100%;
+  // padding: 0 1rem 0 1rem;
+  // width: 60%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   // margin: 0.3rem 0 0 0.5rem;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 13rem;
+  overflow: hidden;
 `;
 const InfoText = styled.div`
   width: 100%;
@@ -186,16 +190,19 @@ const IconNum = styled.span`
 const ClickBox = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
   // width: 3.313rem;
   // height: 6.125rem;
-  width: 3rem;
-  height: 5.7rem;
-  left: 27%;
+  width: 21%;
+  height: 100%;
+  left: 79%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 200;
+  z-index: 300;
 `;
 const IconNext = styled.img`
   width: 3rem;

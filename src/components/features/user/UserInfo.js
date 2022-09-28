@@ -139,6 +139,10 @@ const UserInfo = () => {
 };
 export default UserInfo;
 const Wrap = styled.div`
+  // @media screen and (min-width: 480px) {
+  //   min-width: 480px;
+  // }
+  min-width: 280px;
   display: flex;
   flex-direction: column;
 `;
