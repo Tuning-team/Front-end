@@ -111,7 +111,7 @@ const UserInfo = () => {
           onClick={() => nav(-1)}
         />
         <Profile>
-          <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
+          <ProfileImg src={info.profilePicUrl} alt="profile_img" />
           <UserName>{info.displayName}</UserName>
         </Profile>
         <SettingIcon

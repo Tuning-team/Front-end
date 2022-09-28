@@ -75,14 +75,13 @@ export default MyCollections;
 
 const ListWrap = styled.div`
   width: 100%;
-  // height: 100vh;
+
   background-color: var(--color-background);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0rem 1rem 7rem 1rem;
-  // min-height: 100vh;
-  // max-width: 360px;
+
   overflow-x: hidden;
 `;
 const VideoInfo = styled.div`
@@ -110,8 +109,6 @@ const Collection = styled.section`
   position: relative;
   display: flex;
   padding-top: 56.25%;
-  // width: 20.938rem;
-  // height: 7.375rem;
 
   background-color: #ffffff;
   border-radius: 8px;
@@ -128,9 +125,7 @@ const ImgWrap = styled.div`
 `;
 const InfoWrap = styled.div`
   margin: 0 1rem 0 2rem;
-  // height: 100%;
-  // padding: 0 1rem 0 1rem;
-  // width: 60%;
+
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -166,11 +161,11 @@ const CollectionDescription = styled.div`
 const IconWrap = styled.div`
   display: flex;
   margin-right: 1.5rem;
+  margin-top: 1rem;
 `;
 const IconLayout = styled.div`
   display: flex;
   align-items: center;
-
   & span {
     font-size: 0.75rem;
     font-weight: normal;
@@ -185,7 +180,7 @@ const Icon = styled.img`
   height: 0.8rem;
 `;
 const IconNum = styled.span`
-  margin: 5px 6px 0px 6px;
+  margin: 0px 6px 0px 6px;
 `;
 const ClickBox = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
@@ -193,8 +188,6 @@ const ClickBox = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-  // width: 3.313rem;
-  // height: 6.125rem;
   width: 21%;
   height: 100%;
   left: 79%;

@@ -27,12 +27,6 @@ const Img = styled.img`
   left: 0;
   width: 11rem;
   height: 100%;
-  // z-index: 100;
-  // width: 10.781rem;
-  // height: 6.125rem;
-  // left: 36vw;
-  // display: flex;
-  // align-items: center;
 `;
 const ClickBox = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
@@ -40,8 +34,7 @@ const ClickBox = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-  // width: 3.313rem;
-  // height: 6.125rem;
+
   width: 21%;
   height: 100%;
   left: 79%;
