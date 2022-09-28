@@ -159,7 +159,7 @@ export const getKeptCollection = createAsyncThunk(
   async (count) => {
     try {
       const res = await instance(
-        `/collections/mykeeps?offset=${count}&limit=5`
+        `/collections/mykeeps?offset=${count}&limit=100`
       );
 
       return res.data;

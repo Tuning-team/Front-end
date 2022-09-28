@@ -13,7 +13,8 @@ export default MyCollectionsLoading;
 const Collection = styled.section`
   position: relative;
   display: flex;
-  width: 20.938rem;
+  // width: 20.938rem;
+  width: 100%;
   height: 7.375rem;
   background-color: #ffffff;
   border-radius: 8px;
@@ -21,11 +22,13 @@ const Collection = styled.section`
   justify-content: center;
   margin-bottom: 1rem;
   box-shadow: var(--box-shadow);
+  padding: 1rem;
 `;
 
 const InfoWrap = styled.div`
   height: 5rem;
-  width: 8rem;
+  // width: 8rem;
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -34,8 +37,9 @@ const InfoWrap = styled.div`
   justify-content: space-between;
 `;
 const MyVideo = styled.div`
-  width: 10.781rem;
+  // width: 10.781rem;
   height: 6.125rem;
+  width: 100%;
   left: 36vw;
   display: flex;
   align-items: center;

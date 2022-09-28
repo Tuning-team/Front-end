@@ -9,12 +9,16 @@ import Modal from "../../common/Modal";
 import { getCookie, removeCookie } from "../../../shared/cookie";
 import {
   getMyCategory,
+  getUserInfo,
   getUserInterest,
+  getUserInterested,
+  getUserNum,
   postUserInterest,
 } from "../../../redux/modules/userSlice";
 import { getCategory } from "../../../redux/modules/collectionSlice";
 import icon_star from "../../../shared/svg/24_ena_star.svg";
 import SetUserInterestForm from "../myCollection/SetUserInterestForm";
+import MyTab from "./MyTab";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
@@ -28,7 +32,6 @@ const UserInfo = () => {
   );
   const likes = useSelector((state) => state.userSlice.userNum.likes);
   const comments = useSelector((state) => state.userSlice.userNum.comments);
-
   //! 유저가 선택한 카테고리
   const userCategory = useSelector(
     (state) => state.userSlice.userInterest.userCategory
@@ -47,94 +50,99 @@ const UserInfo = () => {
   useEffect(() => {
     dispatch(getUserInterest());
     dispatch(getCategory());
+    dispatch(getUserNum());
+    dispatch(getUserInterested());
   }, []);
 
   return (
-    <Wrap>
-      {modal && (
-        <SlideUpModal setModal={setModal}>
-          <ButtonWrap>
-            <ModalBtn onClick={interestedHandler}>
-              <ModalIcon src={icon_star} alt="icon_setting" />
-              나의 관심사설정
-            </ModalBtn>
-            <Line />
-            <ModalBtn onClick={logoutHandler}>
-              <ModalIcon src={icon_setting} alt="icon_setting" />
-              계정관리
-            </ModalBtn>
-          </ButtonWrap>
-        </SlideUpModal>
-      )}
-      {loginModal && (
-        <Modal setModal={setLoginModal} modal={loginModal}>
-          <ProfileLayout>
-            <Profile>
-              <ProfileImg src={info.profilePicUrl} alt="priofile_img" />
-              <UserName>{info.displayName}</UserName>
+    <>
+      <Wrap>
+        {modal && (
+          <SlideUpModal setModal={setModal}>
+            <ButtonWrap>
+              <ModalBtn onClick={interestedHandler}>
+                <ModalIcon src={icon_star} alt="icon_setting" />
+                나의 관심사설정
+              </ModalBtn>
+              <Line />
+              <ModalBtn onClick={logoutHandler}>
+                <ModalIcon src={icon_setting} alt="icon_setting" />
+                계정관리
+              </ModalBtn>
+            </ButtonWrap>
+          </SlideUpModal>
+        )}
+        {loginModal && (
+          <Modal setModal={setLoginModal} modal={loginModal}>
+            <ProfileLayout>
+              <Profile>
+                <ProfileImg src={info.profilePicUrl} alt="profile_img" />
+                <UserName>{info.displayName}</UserName>
 
-              <LoginInfo>구글계정으로 로그인됨</LoginInfo>
-            </Profile>
-            <Logout
-              onClick={() => {
-                removeCookie("token");
-                localStorage.removeItem("userInfo");
-                if (getCookie("token") === undefined) {
-                  alert("로그아웃 되었습니다");
-                  nav("/");
-                } else {
-                  alert("로그아웃 되었습니다");
-                  nav("/");
+                <LoginInfo>구글계정으로 로그인됨</LoginInfo>
+              </Profile>
+              <Logout
+                onClick={() => {
                   removeCookie("token");
                   localStorage.removeItem("userInfo");
-                }
-              }}
-            >
-              로그아웃
-            </Logout>
-          </ProfileLayout>
-        </Modal>
-      )}
-      {/* //!여기부터 */}
-      {interestedModal && (
-        <SetUserInterestForm
-          setModal={setInterestedModal}
-          modal={interestedModal}
-          categories={categories}
-        />
-      )}
-      {/* //!모달끝 */}
-      <Header>
-        <HeaderIcon
-          src={icon_back}
-          alt="icon_backspace_black"
-          onClick={() => nav(-1)}
-        />
-        <Profile>
-          <ProfileImg src={info.profilePicUrl} alt="profile_img" />
-          <UserName>{info.displayName}</UserName>
-        </Profile>
-        <SettingIcon
-          src={icon_setting}
-          alt="icon_setting"
-          onClick={() => setModal(!modal)}
-        />
-      </Header>
-      <Info>
-        <InfoWrap>
-          <InfoNum>{likes}</InfoNum>
-          <InfoText>likes</InfoText>
-        </InfoWrap>
-        <InfoWrap>
-          <InfoNum>{comments}</InfoNum>
-          <InfoText>comments</InfoText>
-        </InfoWrap>
-        <InfoWrap>
-          {saves && <InfoNum>{saves.length}</InfoNum>}
-          <InfoText>saves</InfoText>
-        </InfoWrap>
-      </Info>
-    </Wrap>
+                  if (getCookie("token") === undefined) {
+                    alert("로그아웃 되었습니다");
+                    nav("/");
+                  } else {
+                    alert("로그아웃 되었습니다");
+                    nav("/");
+                    removeCookie("token");
+                    localStorage.removeItem("userInfo");
+                  }
+                }}
+              >
+                로그아웃
+              </Logout>
+            </ProfileLayout>
+          </Modal>
+        )}
+        {/* //!여기부터 */}
+        {interestedModal && (
+          <SetUserInterestForm
+            setModal={setInterestedModal}
+            modal={interestedModal}
+            categories={categories}
+          />
+        )}
+        {/* //!모달끝 */}
+        <Header>
+          <HeaderIcon
+            src={icon_back}
+            alt="icon_backspace_black"
+            onClick={() => nav(-1)}
+          />
+          <Profile>
+            <ProfileImg src={info.profilePicUrl} alt="profile_img" />
+            <UserName>{info.displayName}</UserName>
+          </Profile>
+          <SettingIcon
+            src={icon_setting}
+            alt="icon_setting"
+            onClick={() => setModal(!modal)}
+          />
+        </Header>
+        <Info>
+          <InfoWrap>
+            <InfoNum>{likes}</InfoNum>
+            <InfoText>likes</InfoText>
+          </InfoWrap>
+          <InfoWrap>
+            <InfoNum>{comments}</InfoNum>
+            <InfoText>comments</InfoText>
+          </InfoWrap>
+          <InfoWrap>
+            {saves && <InfoNum>{saves.length}</InfoNum>}
+            <InfoText>saves</InfoText>
+          </InfoWrap>
+        </Info>
+      </Wrap>
+      <MyTab></MyTab>
+    </>
   );
 };
 export default UserInfo;

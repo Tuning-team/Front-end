@@ -3,11 +3,13 @@ import Navbar from "../components/common/Navbar";
 import Headers from "../components/common/Headers";
 import Layout from "../components/common/Layout";
 import StickyButtons from "../components/common/StickyButtons";
-
+import UserInfo from "../components/features/user/UserInfo";
+import { Outlet } from "react-router-dom";
 const MyPage = () => {
   return (
     <Layout>
-      <MyPageWrap />
+      <UserInfo />
+      <Outlet></Outlet>
       <StickyButtons />
       <Navbar />
     </Layout>
