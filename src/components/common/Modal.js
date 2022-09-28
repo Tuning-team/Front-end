@@ -26,20 +26,26 @@ const ModalBackground = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 500;
   text-align: center;
 
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
+
+  @media screen and (max-width: 479px) {
+    width: 100vw;
+  }
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
 `;
 const ModalContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: block;
   padding: 1rem;
   background-color: white;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);

@@ -14,7 +14,7 @@ const SearchHeaders = () => {
           nav(-1);
         }}
       />
-      <StyleLogo />
+      <StyleLogo onClick={() => nav("/mainPage")} />
       <StyleIcon />
     </HeaderContainer>
   );

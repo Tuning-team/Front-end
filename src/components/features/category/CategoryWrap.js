@@ -26,7 +26,7 @@ const CategoryWrap = ({ Children }) => {
     <Wrap>
       <Title>
         <IconBack src={icon_back_enabled} alt="icon" onClick={() => nav(-1)} />
-        <TitleLogo src={Frame} alt="icon" />
+        <TitleLogo src={Frame} alt="icon" onClick={() => nav("/mainPage")} />
         <TitleSubmit>{Children}</TitleSubmit>
       </Title>
       <MyCollections title={title[0]?.categoryName || "오늘의"} state={data} />

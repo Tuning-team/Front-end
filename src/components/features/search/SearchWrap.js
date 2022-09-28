@@ -34,6 +34,8 @@ const Container = styled.div`
 `;
 
 const StText = styled.p`
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-align: center;
+  margin-top: 3.5rem;
+  color: var(--color-disabled);
 `;

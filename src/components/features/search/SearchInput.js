@@ -30,7 +30,7 @@ const SearchInput = (props) => {
 
   return (
     <>
-      <Form onSubmit={onSearch} width={props.width}>
+      <Form onSubmit={onSearch}>
         <StInput
           onChange={onChangeHandler}
           name="search"
@@ -53,7 +53,7 @@ const SearchInput = (props) => {
 export default SearchInput;
 const Form = styled.form`
   position: relative;
-  width: ${(props) => props.width || "19.5rem"};
+  width: auto;
 `;
 
 const StInput = styled.input`

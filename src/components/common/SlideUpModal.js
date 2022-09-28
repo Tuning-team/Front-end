@@ -21,27 +21,35 @@ const Modal = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 400;
+  @media screen and (max-width: 479px) {
+    width: 100vw;
+  }
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
+  min-width: 280px;
+  min-height: 100vh;
 `;
 const slideUp = keyframes`
 from{
-  transform: translate(-50%, 11rem)
+  transform: translateY(11rem)
 }
 to{
-  transform: translateY(-50%, 0)
+  transform: translateY(0)
 }
 `;
 const SlideupBox = styled.div`
-  box-sizing: border-box;
   padding: 0 1.25rem 2.375rem 1.25rem;
   background-color: #ffffff;
-  min-width: 22.5rem;
+  min-width: 280px;
+  @media screen and (max-width: 479px) {
+    width: 100vw;
+  }
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   border-radius: 20px 20px 0 0;
   animation-name: ${slideUp};
   animation-duration: 0.5s;
