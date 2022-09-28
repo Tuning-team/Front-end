@@ -102,7 +102,7 @@ const LoginBtn = styled.div`
   font-size: 0.75rem;
   margin-top: 20px;
   border-radius: 20px;
-  box-shadow: var(--box-shadow);
+  box-shadow: 2px 2px 4px #d4d1e5;
   border: 1px solid rgba(0, 0, 0, 0.25);
   &:active {
     box-shadow: 0px 0px 0px #d4d1e5;

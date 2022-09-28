@@ -3,7 +3,7 @@ const PrivateRoute = ({ authenticated, component: Component }) => {
   return authenticated ? (
     Component
   ) : (
-    <Navigate to="/mainPage" {...alert("로그인을 해주세요")} />
+    <Navigate to="/login" {...alert("로그인을 해주세요")} />
   );
 };
 export default PrivateRoute;

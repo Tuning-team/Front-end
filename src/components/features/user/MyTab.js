@@ -44,7 +44,6 @@ const MyTab = () => {
   }, [count1, tab]);
   //!2. 좋아요한컬렉션
   useEffect(() => {
-    console.log("2번");
     if (count2 === 0) {
       dispatch(deleteAll());
     }

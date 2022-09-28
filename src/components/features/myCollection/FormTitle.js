@@ -8,7 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
 //!enabled만들것!!!!!!!!!11
-const FormTitle = ({ onClickHandler, btn, title }) => {
+const FormTitle = ({ onClickHandler, btn, title, disabled }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   return (
@@ -23,7 +23,9 @@ const FormTitle = ({ onClickHandler, btn, title }) => {
       ></IconBack>
       <TitleLogo>{title}</TitleLogo>
 
-      <TitleSubmit onClick={onClickHandler}>{btn}</TitleSubmit>
+      <TitleSubmit disabled={disabled} onClick={onClickHandler}>
+        {btn}
+      </TitleSubmit>
     </Title>
   );
 };
@@ -54,7 +56,8 @@ const Title = styled.div`
   height: 3rem;
   position: relative;
 `;
-const TitleSubmit = styled.p`
+const TitleSubmit = styled.button`
+  all: unset;
   font-size: 0.625rem;
   font-weight: 500;
   width: 2.5rem;
@@ -62,8 +65,8 @@ const TitleSubmit = styled.p`
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.5px;
-  color: #572cff;
-
+  color: ${(props) =>
+    props.disabled ? "var(--color-disabled)" : "var(--color-primary)"};
   margin-right: 0.75rem;
   display: flex;
   align-items: center;
