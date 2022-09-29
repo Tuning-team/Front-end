@@ -6,7 +6,7 @@ import MyVideo from "../myCollection/MyVideo";
 import icon_like_black from "../../../shared/svg/16_ena_like.svg";
 import icon_comment from "../../../shared/svg/16_ena_comment.svg";
 import NoData from "../../common/NoData";
-import MyCollectionsLoading from "./Skeleton";
+import Skeleton from "../myCollection/Skeleton";
 
 const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
   const nav = useNavigate();
@@ -23,7 +23,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight) {
+    if (setCount && scrollTop + clientHeight >= scrollHeight) {
       setCount((prev) => prev + 5);
     }
   };
@@ -38,10 +38,6 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
         return (
           <Collection key={idx}>
             <ImgWrap onClick={() => nav(`/collection/${data._id}`)}>
-              {/* <ClickBox>
-                <IconNext src={icon_next_white} alt="icon"></IconNext>
-                {/* <VideoNum>{videoNum}</VideoNum> */}
-              {/* </ClickBox> */}
               <MyVideo
                 src={data.thumbnails[0]}
                 videoNum={data?.thumbnails.length}
@@ -68,7 +64,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
           </Collection>
         );
       })}
-      {hasNext && state?.length !== 0 && <MyCollectionsLoading />}
+      {hasNext && state?.length !== 0 && <Skeleton />}
     </ListWrap>
   );
 };

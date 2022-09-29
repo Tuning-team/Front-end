@@ -81,7 +81,6 @@ const MainListWrap = () => {
       <StyleBackground>
         <SearchInput
           backgroundColor={"#ffffff"}
-          type="button"
           onClick={() => nav("/search")}
         />
         <EventBanner />

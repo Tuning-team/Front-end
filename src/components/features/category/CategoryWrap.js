@@ -1,38 +1,45 @@
-import React, { Children, useEffect } from "react";
-import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoryCollection } from "../../../redux/modules/categorySlice";
+import {
+  deleteCategory,
+  getCategoryCollection,
+} from "../../../redux/modules/categorySlice";
 import MyCollections from "../myCollection/MyCollections";
 
-import NoData from "../../common/NoData";
-import Headers from "../../common/Headers";
-
-const CategoryWrap = ({ Children }) => {
+const CategoryWrap = () => {
   const param = useParams();
-  const nav = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
-
-  const data = useSelector(
-    (state) => state.categorySlice.categoryCollection.data
+  const id = param.collection_id;
+  const [count, setCount] = useState(0);
+  //!카테고리에 맞는 컬렉션리스트
+  const { data, hasNext, totalContents } = useSelector(
+    (state) => state.categorySlice.categoryCollection
   );
-  const categories = useSelector((state) => state.categorySlice.category.data);
+
   useEffect(() => {
-    dispatch(getCategoryCollection(param.collection_id));
-  }, [param.collection_id]);
-  const title = categories.filter((x) => x._id === param.collection_id);
+    setCount(0);
+  }, [location]);
+
+  useEffect(() => {
+    if (count === 0) {
+      dispatch(deleteCategory());
+    }
+    if (totalContents > count) {
+      dispatch(getCategoryCollection({ id, count }));
+    }
+  }, [count, location]);
 
   return (
-    <Wrap>
-      <Headers />
-      <MyCollections title={title[0]?.categoryName || "오늘의"} state={data} />
-      {/* {data?.length === 0 && <NoData />} */}
-    </Wrap>
+    <MyCollections
+      title={data[0]?.category_title || "오늘의"}
+      state={data}
+      hasNext={hasNext}
+      totalContents={totalContents}
+      setCount={setCount}
+    />
   );
 };
 
 export default CategoryWrap;
-const Wrap = styled.div`
-  min-height: 100vh;
-  background-color: var(--color-background);
-`;

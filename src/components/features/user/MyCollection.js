@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteAll,
   getMyCollection,
-  getLikedCollection,
-  getKeptCollection,
 } from "../../../redux/modules/collectionSlice";
 import MyCollections from "../myCollection/MyCollections";
 

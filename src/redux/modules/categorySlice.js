@@ -10,6 +10,8 @@ const initialState = {
   categoryCollection: {
     loading: false,
     data: [],
+    hasNext: false,
+    totalContents: 1,
     error: "",
   },
   mainCategories: {
@@ -21,6 +23,11 @@ const initialState = {
     isLoading: false,
     data: [],
     dataList: [],
+    error: "",
+  },
+  categoryName: {
+    loading: false,
+    data: [],
     error: "",
   },
 };
@@ -36,12 +43,12 @@ export const getCategory = createAsyncThunk("get/category", async (id) => {
 
 export const getCategoryCollection = createAsyncThunk(
   "get/categoryCollection",
-  async (id) => {
+  async ({ id, count }) => {
     try {
       const res = await instance(
-        `/collections?category_id=${id}&offset=0&limit=20`
+        `/collections?category_id=${id}&offset=${count}&limit=5`
       );
-      return res.data.data;
+      return res.data;
     } catch (error) {
       return error.message;
     }
@@ -90,7 +97,12 @@ export const getCategoryCollectionForMain = createAsyncThunk(
 export const categorySlice = createSlice({
   name: "category",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteCategory(state) {
+      state.categoryCollection.data = [];
+      state.categoryCollection.hasNext = true;
+    },
+  },
   extraReducers: (builder) => {
     //!getCategory
     builder.addCase(getCategory.pending, (state) => {
@@ -112,7 +124,10 @@ export const categorySlice = createSlice({
     });
     builder.addCase(getCategoryCollection.fulfilled, (state, action) => {
       state.categoryCollection.loading = false;
-      state.categoryCollection.data = action.payload;
+      state.categoryCollection.data.push(...action.payload.data);
+      state.categoryCollection.hasNext = action.payload.pageInfo.hasNext;
+      state.categoryCollection.totalContents =
+        action.payload.pageInfo.totalContents;
       state.categoryCollection.error = "";
     });
     builder.addCase(getCategoryCollection.rejected, (state, action) => {
@@ -148,3 +163,4 @@ export const categorySlice = createSlice({
     });
   },
 });
+export let { deleteCategory } = categorySlice.actions;
