@@ -36,10 +36,9 @@ export default SearchWrap;
 const Container = styled.div`
   background-color: var(--color-background);
   min-height: 100vh;
-  border: 1px solid red;
 `;
 const InputContainer = styled.div`
-  margin: 3.125rem 1.25rem 0 1.25rem;
+  padding: 3rem 1.25rem 0 1.25rem;
 `;
 const StText = styled.p`
   font-size: 1rem;
