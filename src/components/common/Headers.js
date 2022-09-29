@@ -50,6 +50,7 @@ const Wrap = styled.div`
   width: 100%;
   height: 3rem;
   position: relative;
+  background-color: #ffffff;
 `;
 
 const LeftBtn = styled.img`

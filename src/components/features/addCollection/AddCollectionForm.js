@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  postCollection,
-  rememberData,
-} from "../../../redux/modules/collectionSlice";
+
 import { getCategory } from "../../../redux/modules/categorySlice";
 import useInputs from "../../hooks/useInput";
 import FormTitle from "../myCollection/FormTitle";
@@ -14,6 +11,10 @@ import FormOption from "../myCollection/FormOption";
 import FormTextarea from "../myCollection/FormTextarea";
 import FormVideo from "../myCollection/FormVideo";
 import ToastNotification from "../../common/ToastNotification";
+import {
+  postCollection,
+  rememberData,
+} from "../../../redux/modules/collectionSlice";
 
 const AddCollectionForm = () => {
   const nav = useNavigate();
@@ -99,7 +100,7 @@ const AddCollectionForm = () => {
 export default AddCollectionForm;
 const AddCollectionWrap = styled.div`
   width: 100%;
-  padding: 1.125rem 1.5rem 1rem 1.5rem;
+  // padding: 0rem 1.5rem 1rem 1.5rem;
 `;
 const Form = styled.div`
   display: flex;
