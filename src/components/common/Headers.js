@@ -56,7 +56,6 @@ const Wrap = styled.div`
 const LeftBtn = styled.img`
   height: 2.5rem;
   width: 2.5rem;
-
   margin: 0.25rem 0 0.25rem 0.75rem;
   padding: 0.5rem;
   box-sizing: border-box;
@@ -71,12 +70,10 @@ const RightBtn = styled.div`
   width: 4rem;
   letter-spacing: -0.5px;
   color: #572cff;
-
   margin-right: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin: 0.25rem 0.75rem 0.25rem 0;
-  // padding: 0.5rem;
   box-sizing: border-box;
 `;

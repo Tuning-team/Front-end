@@ -10,16 +10,12 @@ import icon_bottom from "../../../shared/svg/icon_bottom.svg";
 const ResultVideo = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const data = useSelector(
-    (state) => state.myCollectionSlice.searchResult.data
+  const { data, loading } = useSelector(
+    (state) => state.myCollectionSlice.searchResult
   );
-  const loading = useSelector(
-    (state) => state.myCollectionSlice.searchResult.loading
-  );
-  const token = useSelector(
+  const { token, key } = useSelector(
     (state) => state.myCollectionSlice.searchResult.nextPageToken
   );
-  const key = useSelector((state) => state.myCollectionSlice.searchResult.key);
 
   const seeMore = () => {
     const keyword = localStorage.getItem("keyword");
