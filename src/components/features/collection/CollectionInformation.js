@@ -7,14 +7,12 @@ import {
   putLikeBtn,
 } from "../../../redux/modules/tempCollectionSlice";
 import {
-  editCollection,
   keepCollection,
 } from "../../../redux/modules/collectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../../shared/cookie";
 import shareKakao from "../../../shared/shareKakao";
-import More from "../../common/More";
 import ToastNotification from "../../common/ToastNotification";
 import { ReactComponent as LikeIcon } from "../../../shared/svg/28_ena_like.svg";
 import { ReactComponent as SaveIcon } from "../../../shared/svg/28_ena_get.svg";

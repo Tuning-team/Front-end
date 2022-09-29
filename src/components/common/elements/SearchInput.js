@@ -34,11 +34,12 @@ const SearchInput = (props) => {
         <StInput
           onChange={onChangeHandler}
           name="search"
-          type="text"
           placeholder="찾고싶은 컬렉션을 검색해보세요"
           backgroundColor={props.backgroundColor}
+          // type={props.type || "text"}
+          onClick={props.onClick || null}
         />
-        <StBtn type="submit">
+        <StBtn>
           <StBtnImg src={Icon_search} />
         </StBtn>
       </Form>

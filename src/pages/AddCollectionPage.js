@@ -1,12 +1,12 @@
 import React from "react";
-import AddCollectionWrap from "../components/features/addCollection/AddCollectionWrap";
 import Navbar from "../components/common/Navbar";
 import Layout from "../components/common/Layout";
-import StButton from "../components/common/StickyButtons";
+
+import AddCollectionForm from "../components/features/addCollection/AddCollectionForm";
 const AddCollectionPage = () => {
   return (
     <Layout>
-      <AddCollectionWrap />
+      <AddCollectionForm btn="추가하기" />;
       <Navbar />
     </Layout>
   );

@@ -73,7 +73,7 @@ export const postCollection = createAsyncThunk(
     try {
       const res = await instance.post("/collections", addData);
       setToastState(true);
-      window.location.href = "/myPage";
+      window.location.href = "/myPage/myCollection";
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);

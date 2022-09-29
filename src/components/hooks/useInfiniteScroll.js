@@ -2,11 +2,11 @@
 // import { useState } from "react";
 // import { useDispatch } from "react-redux";
 // import { getMyCollection } from "../redux/modules/collectionSlice";
+// import Skeleton from "../../components/features/myCollection/Skeleton";
 
 // const useInfiniteScroll = () => {
 //   const [count, setCount] = useState(0);
 //   const [isFetching, setFetching] = useState(false);
-//   const [data, setData] = useState([]);
 //   const [hasNextPage, setNextPage] = useState(true);
 
 //   const useHandleScroll = () => {
@@ -20,7 +20,6 @@
 //       setCount((prev) => prev + 5);
 //     }
 //   };
-//   const infiniteScroll = throttle(useHandleScroll, 2000);
 
 //   useEffect(() => {
 //     window.addEventListener("scroll", infiniteScroll);
@@ -33,6 +32,8 @@
 //     dispatch(getMyCollection(count));
 //   }, [count]);
 
-//   return { count, data, isFetching, hasNextPage };
+//   const infiniteScroll = throttle(useHandleScroll, 1000);
+
+//   return { count, isFetching, hasNextPage };
 // };
 // export default useInfiniteScroll;
