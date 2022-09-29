@@ -32,7 +32,7 @@ const MyCollection = () => {
       totalContents={myCollection.totalContents}
       hasNext={myCollection.hasNext}
       setCount={setCount1}
-      title="My"
+      title="My Tuning"
     />
   );
 };

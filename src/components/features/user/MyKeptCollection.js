@@ -30,7 +30,7 @@ const MyKeptCollection = () => {
       state={keptCollection.data}
       totalContents={keptCollection.totalContents}
       setCount={setCount3}
-      title="Keeping"
+      title="Kept Tuning"
     />
   );
 };
