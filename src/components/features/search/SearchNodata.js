@@ -7,7 +7,7 @@ const SearchNoData = () => {
       <A
         href={getCookie("token") === undefined ? "/login" : "/myCollection/add"}
       >
-        내튜닝 만들러 가기{" "}
+        내 튜닝 만들러 가기{" "}
       </A>
     </Wrap>
   );
