@@ -117,10 +117,12 @@ to{
 }
 `;
 const SlideupBox = styled.div`
+  min-width: 280px;
+  max-width: 480px;
+  width: 100%;
   box-sizing: border-box;
   padding: 0 1.25rem 0 1.25rem;
   background-color: #ffffff;
-  min-width: 22.5rem;
   position: absolute;
   bottom: 0;
   left: 50%;
