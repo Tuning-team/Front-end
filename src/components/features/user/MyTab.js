@@ -69,18 +69,21 @@ const TabMenu = styled.div`
   }
 
   & .myCollection {
+    box-sizing: content-box;
     border-bottom: 0.235rem solid
       ${(props) => (props.tab === 1 ? "var(--color-primary)" : "transparent")};
     color: ${(props) =>
       props.tab === 1 ? "var(--color-primary)" : "var(--color-disabled)"};
   }
   & .likedCollection {
+    box-sizing: content-box;
     border-bottom: 0.235rem solid
       ${(props) => (props.tab === 2 ? "var(--color-primary)" : "transparent")};
     color: ${(props) =>
       props.tab === 2 ? "var(--color-primary)" : "var(--color-disabled)"};
   }
   & .interestedCollection {
+    box-sizing: content-box;
     border-bottom: 0.235rem solid
       ${(props) => (props.tab === 3 ? "var(--color-primary)" : "transparent")};
     color: ${(props) =>

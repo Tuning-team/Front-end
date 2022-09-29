@@ -34,14 +34,12 @@ const ClickBox = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-
   width: 30%;
-  height: 100%;
-  left: 71%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   z-index: 300;
 `;
 const IconNext = styled.img`
@@ -51,5 +49,4 @@ const IconNext = styled.img`
 const VideoNum = styled.span`
   color: #ffffff;
   font-size: 0.75rem;
-  padding-top: 5px;
 `;

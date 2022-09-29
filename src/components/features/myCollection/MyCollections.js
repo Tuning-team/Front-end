@@ -26,11 +26,11 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
       setCount((prev) => prev + 5);
     }
   };
-  const infiniteScroll = throttle(useHandleScroll, 2000);
+  const infiniteScroll = throttle(useHandleScroll, 1000);
   return (
     <ListWrap>
       <VideoInfo>
-        {title} Tuning <Num>{totalContents}</Num>
+        {title} <Num>{totalContents || state.length}</Num>
       </VideoInfo>
       {state?.length === 0 && <NoData title={title} />}
       {state?.map((data, idx) => {
@@ -75,20 +75,19 @@ export default MyCollections;
 
 const ListWrap = styled.div`
   width: 100%;
-
+  min-height: 100vh;
   background-color: var(--color-background);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0rem 1rem 7rem 1rem;
-
+  padding: 0 1rem;
   overflow-x: hidden;
 `;
 const VideoInfo = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  margin: 1.25rem 0 1.25rem 0.5rem;
+  margin: 1.25rem 0;
   padding-bottom: 0.5rem;
   font-size: 0.875rem;
   font-weight: bold;
@@ -101,7 +100,12 @@ const Num = styled.span`
   color: var(--color-disabled);
   margin-left: 0.5rem;
 `;
-
+const ImgWrap = styled.div`
+  width: 100%;
+  max-width: 11rem;
+  min-height: 6.125rem;
+  position: relative;
+`;
 const Collection = styled.section`
   width: 100%;
   height: 100%;
@@ -109,7 +113,16 @@ const Collection = styled.section`
   position: relative;
   display: flex;
   padding-top: 56.25%;
-  justify-content: flex-start;
+
+  @media screen and (max-width: 334px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    & ${ImgWrap} {
+      width: 100%;
+    }
+  }
+
+  gap: 1rem;
   background-color: #ffffff;
   border-radius: 8px;
 
@@ -117,18 +130,11 @@ const Collection = styled.section`
   box-shadow: var(--box-shadow);
   padding: 1rem;
 `;
-const ImgWrap = styled.div`
-  width: 11rem;
-  height: 6.125rem;
-  position: relative;
-`;
-const InfoWrap = styled.div`
-  margin: 0 1rem 0 2rem;
 
+const InfoWrap = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  // margin: 0.3rem 0 0 0.5rem;
   flex-direction: column;
   justify-content: space-between;
   max-width: 13rem;
@@ -138,7 +144,7 @@ const InfoText = styled.div`
   width: 100%;
 `;
 const CollectionTitle = styled.h3`
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: bold;
   letter-spacing: -0.7px;
   text-align: left;
@@ -148,7 +154,7 @@ const CollectionTitle = styled.h3`
 `;
 
 const CollectionDescription = styled.div`
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   letter-spacing: -0.25px;
   text-align: left;
   color: var(--color-disabled);

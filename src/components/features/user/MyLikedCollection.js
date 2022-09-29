@@ -29,7 +29,7 @@ const MyLikedCollection = () => {
       totalContents={likedCollection.totalContents}
       state={likedCollection.data}
       setCount={setCount2}
-      title="Liked"
+      title="Liked Tuning"
     />
   );
 };

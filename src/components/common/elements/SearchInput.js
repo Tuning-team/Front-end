@@ -68,6 +68,7 @@ const StInput = styled.input`
   font-weight: normal;
   &::placeholder {
     color: #adadad;
+    font-size: 1rem;
   }
   /* &:focus {
     outline-color: var(--color-primary);
