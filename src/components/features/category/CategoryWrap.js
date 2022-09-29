@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteCategory,
@@ -13,11 +13,12 @@ const CategoryWrap = () => {
   const dispatch = useDispatch();
   const id = param.collection_id;
   const [count, setCount] = useState(0);
+
   //!카테고리에 맞는 컬렉션리스트
   const { data, hasNext, totalContents } = useSelector(
     (state) => state.categorySlice.categoryCollection
   );
-
+  //!카테고리가 바뀔때마다
   useEffect(() => {
     setCount(0);
   }, [location]);

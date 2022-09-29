@@ -10,7 +10,6 @@ import Skeleton from "../myCollection/Skeleton";
 
 const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
   const nav = useNavigate();
-  const [isFetching, setFetching] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
@@ -183,28 +182,4 @@ const Icon = styled.img`
 `;
 const IconNum = styled.span`
   margin: 0px 6px 0px 6px;
-`;
-const ClickBox = styled.div`
-  background-color: rgba(0, 0, 0, 0.4);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 21%;
-  height: 100%;
-  left: 79%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 300;
-`;
-const IconNext = styled.img`
-  width: 3rem;
-  height: 1.5rem;
-`;
-const VideoNum = styled.span`
-  color: #ffffff;
-  font-size: 0.75rem;
-  padding-top: 5px;
 `;

@@ -8,27 +8,25 @@ import MyCollections from "../myCollection/MyCollections";
 
 const MyCollection = () => {
   const dispatch = useDispatch();
-  const myCollection = useSelector(
+  const { dataList, hasNext, totalContents } = useSelector(
     (state) => state.myCollectionSlice.myCollection
   );
-  const myCollectionLoading = useSelector(
-    (state) => state.myCollectionSlice.myCollection.loading
-  );
-  const [count1, setCount1] = useState(0);
+
+  const [count, setCount] = useState(0);
   useEffect(() => {
-    if (count1 === 0) {
+    if (count === 0) {
       dispatch(deleteAll());
     }
-    if (myCollection.totalContents > count1) {
-      dispatch(getMyCollection(count1));
+    if (totalContents > count) {
+      dispatch(getMyCollection(count));
     }
-  }, []);
+  }, [count]);
   return (
     <MyCollections
-      state={myCollection.data}
-      totalContents={myCollection.totalContents}
-      hasNext={myCollection.hasNext}
-      setCount={setCount1}
+      state={dataList}
+      totalContents={totalContents}
+      hasNext={hasNext}
+      setCount={setCount}
       title="My Tuning"
     />
   );
