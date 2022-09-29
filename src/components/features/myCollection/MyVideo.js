@@ -35,9 +35,9 @@ const ClickBox = styled.div`
   right: 0;
   bottom: 0;
 
-  width: 21%;
+  width: 30%;
   height: 100%;
-  left: 79%;
+  left: 71%;
   display: flex;
   flex-direction: column;
   justify-content: center;

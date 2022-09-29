@@ -109,11 +109,10 @@ const Collection = styled.section`
   position: relative;
   display: flex;
   padding-top: 56.25%;
-
+  justify-content: flex-start;
   background-color: #ffffff;
   border-radius: 8px;
-  align-items: center;
-  justify-content: center;
+
   margin-bottom: 1rem;
   box-shadow: var(--box-shadow);
   padding: 1rem;

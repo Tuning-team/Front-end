@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import LoginSignupPage from "../pages/LoginSignupPage";
 import MainPage from "../pages/MainPage";
-import MyCollectionPage from "../pages/MyCollectionPage";
 import SearchPage from "../pages/SearchPage";
 import AddCollectionPage from "../pages/AddCollectionPage";
 import AddVideoSearchPage from "../pages/AddVideoSearchPage";
@@ -18,7 +17,9 @@ import ErrorPage from "../pages/ErrorPage";
 import { getCookie } from "./cookie";
 import PrivateRoute from "./PrivateRoute";
 import EventPage from "../pages/EventPage";
-
+import MyCollection from "../components/features/user/MyCollection";
+import MyKeptCollection from "../components/features/user/MyKeptCollection";
+import MyLikedCollection from "../components/features/user/MyLikedCollection";
 function Router() {
   const access = !!getCookie("token");
 
@@ -47,7 +48,11 @@ function Router() {
           element={
             <PrivateRoute authenticated={access} component={<MyPage />} />
           }
-        />
+        >
+          <Route path="myCollection" element={<MyCollection />} />
+          <Route path="likedCollection" element={<MyLikedCollection />} />
+          <Route path="keptCollection" element={<MyKeptCollection />} />
+        </Route>
         <Route
           path="/myCollection/add"
           element={

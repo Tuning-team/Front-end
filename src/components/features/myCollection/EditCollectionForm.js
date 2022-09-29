@@ -99,8 +99,8 @@ const EditCollectionForm = ({ data }) => {
 
 export default EditCollectionForm;
 const AddCollectionWrap = styled.div`
-  padding: 1.3rem 1.3rem 1.3rem 1rem;
-  margin-bottom: 5.25rem;
+  padding: 1.125rem 1.5rem 1rem 1.5rem;
+  // margin-bottom: 5.25rem;
   overflow: scroll;
   height: 100vh;
 `;
@@ -109,5 +109,12 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
   border-top: 1px solid var(--color-background);
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  height: 100vh;
+  // margin-bottom: 5rem;
 `;

@@ -19,12 +19,13 @@ const FormOption = ({ onChange, category_id, categories }) => {
 };
 export default FormOption;
 const Wrap = styled.div`
-display: flex;
-flex-direction: column;
-align-items
-width: 23.438rem;
-height: 6rem;
-margin:0 0 1.25rem 0
+width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items
+  // width: 23.438rem;
+  height: 6rem;
+  margin:0 0 1.25rem 0
 `;
 const Label = styled.label`
   display: flex;
@@ -39,11 +40,15 @@ const Label = styled.label`
   text-align: left;
 `;
 const Select = styled.select`
-  margin-bottom: 12px;
-  border: #b295e9 solid 1px;
-  border-radius: 3px;
-  width: 21.438rem;
+  // width: 20.938rem;
+  width: 100%;
   height: 2.5rem;
+  padding: 5px;
+  // margin-bottom: 0.125rem;
+  border-radius: 8px;
+  border: solid 1px #eee;
+  background-color: #fff;
+  font-size: 1.125rem;
   &:focus {
     outline-color: var(--color-primary);
   }
@@ -55,4 +60,5 @@ const Option = styled.option`
   border-radius: 8px;
   border: solid 1px #eee;
   font-size: 1.125rem;
+  color: var(--color-background);
 `;

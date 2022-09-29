@@ -97,16 +97,20 @@ const AddCollectionForm = () => {
   );
 };
 export default AddCollectionForm;
-const AddCollectionWrap = styled.div``;
+const AddCollectionWrap = styled.div`
+  width: 100%;
+  padding: 1.125rem 1.5rem 1rem 1.5rem;
+`;
 const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
   border-top: 1px solid var(--color-background);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
   height: 100vh;
-  margin-bottom: 5rem;
+  // margin-bottom: 5rem;
 `;
