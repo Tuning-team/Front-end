@@ -45,17 +45,16 @@ export default CategoryModal;
 
 const slideIn = keyframes`
 from{
-  transform: translateX(-50%)
+  transform: translateY(50%);
 }
 to{
-  transform: translateX(0)
+  transform: translateY(0);
 }
 `;
 
 const ModalFloater = styled.div`
   background-color: white;
   padding: 0 1.25rem;
-
   position: fixed;
   top: 0;
   bottom: 0;

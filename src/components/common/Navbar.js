@@ -1,26 +1,42 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getCookie } from "../../shared/cookie";
 import { useDispatch } from "react-redux";
 import { getUserInfo } from "../../redux/modules/userSlice";
 import CategoryModal from "./CategoryModal";
 import { ReactComponent as HomeIcon } from "../../shared/svg/24_ena_home.svg";
-import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category.svg";
-import { ReactComponent as MyIcon } from "../../shared/svg/24_ena_my.svg";
+import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category_nav.svg";
 import { ReactComponent as SearchIcon } from "../../shared/svg/24_ena_search.svg";
-import homeicon from "../../shared/svg/24_ena_home.svg";
+import { ReactComponent as MyIcon } from "../../shared/svg/24_ena_my.svg";
+
 const Navbar = () => {
+  const location = useLocation().pathname;
   const dispatch = useDispatch();
   const nav = useNavigate();
   const [isCategoryShown, setIsCategoryShown] = useState(false);
+  const [onMain, setOnMain] = useState("#505050");
+  const [onCategory, setOnCategory] = useState("#505050");
+  const [onSearch, setOnSearch] = useState("#505050");
+  const [onMyPage, setOnMyPage] = useState("#505050");
 
   useEffect(() => {
     if (getCookie("token") !== undefined) {
       dispatch(getUserInfo());
     }
+    if (location.includes("/mainPage")) {
+      setOnMain("#572cff");
+    } else if (location.includes("/category")) {
+      setOnCategory("#572cff");
+    } else if (location.includes("/search")) {
+      setOnSearch("#572cff");
+    } else if (
+      location.includes("/myPage") ||
+      location.includes("/myCollection")
+    ) {
+      setOnMyPage("#572cff");
+    }
   }, []);
-
   return (
     <>
       {isCategoryShown && (
@@ -30,21 +46,24 @@ const Navbar = () => {
         />
       )}
       <Nav>
-        <StyleHomeIcon onClick={() => nav("/mainPage")} />
+        <StyleHomeIcon onClick={() => nav("/mainPage")} fill={onMain} />
         <StyleCategoryIcon
           onClick={() => {
             setIsCategoryShown(!isCategoryShown);
           }}
+          fill={onCategory}
         />
         <StyleSearchIcon
           onClick={() => {
             nav("/search");
           }}
+          fill={onSearch}
         />
         <StyleMyIcon
           onClick={() => {
             nav("/myPage/myCollection");
           }}
+          fill={onMyPage}
         />
       </Nav>
     </>
