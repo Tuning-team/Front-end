@@ -23,10 +23,10 @@ const CategoryModal = ({ setIsCategoryShown }) => {
         <StyleCloseIcon onClick={() => setIsCategoryShown((prev) => !prev)} />
       </TitleWrap>
 
-      <ul>
+      <List>
         {categories?.map((elem) => {
           return (
-            <Li
+            <li
               key={elem._id}
               onClick={() => {
                 nav(`/category/${elem._id}`);
@@ -34,10 +34,10 @@ const CategoryModal = ({ setIsCategoryShown }) => {
               }}
             >
               {elem.categoryName}
-            </Li>
+            </li>
           );
         })}
-      </ul>
+      </List>
     </ModalFloater>
   );
 };
@@ -45,7 +45,7 @@ export default CategoryModal;
 
 const slideIn = keyframes`
 from{
-  transform: translateX(-150px)
+  transform: translateX(-50%)
 }
 to{
   transform: translateX(0)
@@ -55,17 +55,26 @@ to{
 const ModalFloater = styled.div`
   background-color: white;
   padding: 0 1.25rem;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  min-height: 100vh;
-  z-index: 500;
 
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 500;
+  @media screen and (max-width: 479px) {
+    width: 100vw;
+  }
+  @media screen and (min-width: 480px) {
+    width: 480px;
+  }
   /* 슬라이드 애니메이션 적용 */
   animation-name: ${slideIn};
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const TitleWrap = styled.div`
   position: sticky;
@@ -87,17 +96,18 @@ const StyleCloseIcon = styled(CloseIcon)`
   height: 3rem;
   padding: 0.5rem;
 `;
-
-const Li = styled.li`
-  font-size: 1.25rem;
-  font-weight: bold;
-  letter-spacing: -0.9px;
-  padding: 1rem 0;
-  border-top: 1px solid #eeeeee;
-  cursor: pointer;
-  &:active {
-    background-color: #eeeeee;
-    opacity: 1;
-    font-weight: 900;
+const List = styled.ul`
+  & li {
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: -0.9px;
+    padding: 1rem 0;
+    border-top: 1px solid #eeeeee;
+    cursor: pointer;
+    &:active {
+      background-color: #eeeeee;
+      opacity: 1;
+      font-weight: 900;
+    }
   }
 `;
