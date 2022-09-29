@@ -43,7 +43,7 @@ const Navbar = () => {
         />
         <StyleMyIcon
           onClick={() => {
-            nav("/myPage");
+            nav("/myPage/myCollection");
           }}
         />
       </Nav>

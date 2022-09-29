@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ChildrenCategories from "./ChildrenCategories";
-import SearchInput from "../search/SearchInput";
+import SearchInput from "../../common/elements/SearchInput";
 import InterestedCategories from "./InterestedCategories";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
@@ -37,6 +37,13 @@ const MainListWrap = () => {
       })
     );
   }, []);
+  const [centerPadding, setCenterPadding] = useState("50px");
+  useEffect(() => {
+    const clientWidth = document.documentElement.clientWidth;
+    if (clientWidth > 423) {
+      setCenterPadding("80px");
+    }
+  }, []);
 
   return (
     <>
@@ -49,7 +56,7 @@ const MainListWrap = () => {
             centerMode={true}
             infinite={true}
             speed={500}
-            centerPadding={"50px"}
+            centerPadding={centerPadding}
             autoPlay={true}
             className={"center"}
             height={"15.625rem"}
@@ -82,6 +89,7 @@ const MainListWrap = () => {
 };
 
 export default MainListWrap;
+
 const CarouselDesc = styled.div`
   position: absolute;
   pointer-events: none;

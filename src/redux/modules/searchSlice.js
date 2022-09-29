@@ -10,9 +10,10 @@ const initialState = {
 export const getList = createAsyncThunk("GET_LIST", async (search) => {
   try {
     const response = await instance.get(
-      `collections/search?keyword=${search}&offset=0&limit=50`
+      `collections/search?keyword=${search}&offset=0&limit=5`
     );
-    return response.data.data;
+    let res = response.data.data;
+    return { res, search };
   } catch (error) {
     return error.message;
   }
@@ -21,8 +22,11 @@ export const getList = createAsyncThunk("GET_LIST", async (search) => {
 export const searchSlice = createSlice({
   name: "getList",
   initialState,
-  reducers: {},
-
+  reducers: {
+    resetKeyword(state, action) {
+      state.data = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getList.pending, (state, action) => {
       state.loading = true;
@@ -38,3 +42,4 @@ export const searchSlice = createSlice({
     });
   },
 });
+export let { resetKeyword } = searchSlice.actions;

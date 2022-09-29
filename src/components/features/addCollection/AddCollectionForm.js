@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  postCollection,
-  rememberData,
-} from "../../../redux/modules/collectionSlice";
+
 import { getCategory } from "../../../redux/modules/categorySlice";
 import useInputs from "../../hooks/useInput";
 import FormTitle from "../myCollection/FormTitle";
@@ -14,6 +11,10 @@ import FormOption from "../myCollection/FormOption";
 import FormTextarea from "../myCollection/FormTextarea";
 import FormVideo from "../myCollection/FormVideo";
 import ToastNotification from "../../common/ToastNotification";
+import {
+  postCollection,
+  rememberData,
+} from "../../../redux/modules/collectionSlice";
 
 const AddCollectionForm = () => {
   const nav = useNavigate();
@@ -26,7 +27,7 @@ const AddCollectionForm = () => {
   const [toastState, setToastState] = useState(false);
   const [alert, setAlert] = useState("모두 입력해주세요");
   const [disabled, setDisabled] = useState(false);
-  console.log(disabled);
+
   //!마운트, 언마운트시
   useEffect(() => {
     dispatch(getCategory());
@@ -97,16 +98,20 @@ const AddCollectionForm = () => {
   );
 };
 export default AddCollectionForm;
-const AddCollectionWrap = styled.div``;
+const AddCollectionWrap = styled.div`
+  width: 100%;
+  // padding: 0rem 1.5rem 1rem 1.5rem;
+`;
 const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem 1rem 1rem 1rem;
   border-top: 1px solid var(--color-background);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
   height: 100vh;
-  margin-bottom: 5rem;
+  // margin-bottom: 5rem;
 `;

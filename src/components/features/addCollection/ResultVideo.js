@@ -10,16 +10,12 @@ import icon_bottom from "../../../shared/svg/icon_bottom.svg";
 const ResultVideo = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const data = useSelector(
-    (state) => state.myCollectionSlice.searchResult.data
+  const { data, loading } = useSelector(
+    (state) => state.myCollectionSlice.searchResult
   );
-  const loading = useSelector(
-    (state) => state.myCollectionSlice.searchResult.loading
-  );
-  const token = useSelector(
+  const { token, key } = useSelector(
     (state) => state.myCollectionSlice.searchResult.nextPageToken
   );
-  const key = useSelector((state) => state.myCollectionSlice.searchResult.key);
 
   const seeMore = () => {
     const keyword = localStorage.getItem("keyword");
@@ -68,6 +64,7 @@ const ResultWrap = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
+  padding: 1.125rem 1.5rem 3.1rem 1.5rem;
 `;
 
 const ResultBox = styled.div`
@@ -75,7 +72,8 @@ const ResultBox = styled.div`
   margin: 5px 0px 5px 0px;
   border-bottom: 1px solid #efefef;
   padding: 5px;
-  width: 20.938rem;
+  // width: 20.938rem;
+  width: 100%;
   height: 5rem;
 
   &:active {
@@ -100,7 +98,7 @@ const Thumbnail = styled.img`
 const VideoInfo = styled.p`
   font-style: bold;
   padding: 3px;
-  width: 15rem;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

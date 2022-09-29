@@ -1,105 +1,51 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteAll,
-  getMyCollection,
-  getLikedCollection,
-  getKeptCollection,
-} from "../../../redux/modules/collectionSlice";
-
-import MyCollections from "../myCollection/MyCollections";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const MyTab = () => {
-  const dispatch = useDispatch();
-  //!useselector
-  const myCollection = useSelector(
-    (state) => state.myCollectionSlice.myCollection
-  );
-  const myCollectionLoading = useSelector(
-    (state) => state.myCollectionSlice.myCollection.loading
-  );
-  const likedCollection = useSelector(
-    (state) => state.myCollectionSlice.likedCollection
-  );
-  const keptCollection = useSelector(
-    (state) => state.myCollectionSlice.keptCollection
-  );
-
-  //!usestate
+  const location = useLocation();
+  const nav = useNavigate();
   const [tab, setTab] = useState(1);
-  const [count1, setCount1] = useState(0);
-  const [count2, setCount2] = useState(0);
-  const [count3, setCount3] = useState(0);
-
-  //!useeffect
-  //!1. 내컬렉션
   useEffect(() => {
-    if (count1 === 0) {
-      dispatch(deleteAll());
+    if (location.pathname === "/myPage/myCollection") {
+      setTab(1);
+    } else if (location.pathname === "/myPage/likedCollection") {
+      setTab(2);
+    } else if (location.pathname === "/myPage/keptCollection") {
+      setTab(3);
     }
-    if (myCollection.totalContents > count1) {
-      dispatch(getMyCollection(count1));
-    }
-  }, [count1, tab]);
-  //!2. 좋아요한컬렉션
-  useEffect(() => {
-    if (count2 === 0) {
-      dispatch(deleteAll());
-    }
-    if (likedCollection.totalContents > count2) {
-      dispatch(getLikedCollection(count2));
-    }
-  }, [count2, tab]);
-  //!3. 내가담은 컬렉션
-  useEffect(() => {
-    if (count3 === 0) {
-      dispatch(deleteAll());
-    }
-    if (keptCollection.totalContents > count3) {
-      dispatch(getKeptCollection(count3));
-    }
-  }, [count3, tab]);
+  }, [location]);
   return (
-    <>
-      <TabMenu tab={tab}>
-        <div className="myCollection" onClick={() => setTab(1)}>
-          <span>내 튜닝</span>
-        </div>
-        <div className="likedCollection" onClick={() => setTab(2)}>
-          <span>좋아요한 튜닝</span>
-        </div>
-        <div className="interestedCollection" onClick={() => setTab(3)}>
-          <span>담아온 튜닝</span>
-        </div>
-      </TabMenu>
-      {tab === 1 && (
-        <MyCollections
-          state={myCollection.dataList}
-          totalContents={myCollection.totalContents}
-          hasNext={myCollection.hasNext}
-          setCount={setCount1}
-          title="My"
-        />
-      )}
-      {tab === 2 && (
-        <MyCollections
-          hasNext={likedCollection.hasNext}
-          totalContents={likedCollection.totalContents}
-          state={likedCollection.data}
-          setCount={setCount2}
-          title="Liked"
-        />
-      )}
-      {tab === 3 && (
-        <MyCollections
-          state={keptCollection.data}
-          totalContents={keptCollection.totalContents}
-          setCount={setCount3}
-          title="Keeping"
-        />
-      )}
-    </>
+    <TabMenu tab={tab}>
+      <div
+        className="myCollection"
+        onClick={() => {
+          setTab(1);
+          nav("/myPage/myCollection");
+        }}
+      >
+        <span>내 튜닝</span>
+      </div>
+      <div
+        className="likedCollection"
+        onClick={() => {
+          setTab(2);
+          nav("/myPage/likedCollection");
+        }}
+      >
+        <span>좋아요한 튜닝</span>
+      </div>
+      <div
+        className="interestedCollection"
+        onClick={() => {
+          setTab(3);
+          nav("/myPage/keptCollection");
+        }}
+      >
+        <span>담아온 튜닝</span>
+      </div>
+    </TabMenu>
   );
 };
 export default MyTab;
@@ -123,18 +69,21 @@ const TabMenu = styled.div`
   }
 
   & .myCollection {
+    box-sizing: content-box;
     border-bottom: 0.235rem solid
       ${(props) => (props.tab === 1 ? "var(--color-primary)" : "transparent")};
     color: ${(props) =>
       props.tab === 1 ? "var(--color-primary)" : "var(--color-disabled)"};
   }
   & .likedCollection {
+    box-sizing: content-box;
     border-bottom: 0.235rem solid
       ${(props) => (props.tab === 2 ? "var(--color-primary)" : "transparent")};
     color: ${(props) =>
       props.tab === 2 ? "var(--color-primary)" : "var(--color-disabled)"};
   }
   & .interestedCollection {
+    box-sizing: content-box;
     border-bottom: 0.235rem solid
       ${(props) => (props.tab === 3 ? "var(--color-primary)" : "transparent")};
     color: ${(props) =>

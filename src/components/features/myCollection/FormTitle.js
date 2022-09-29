@@ -12,7 +12,7 @@ const FormTitle = ({ onClickHandler, btn, title, disabled }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   return (
-    <Title>
+    <Wrap>
       <IconBack
         onClick={() => {
           dispatch(rememberData([]));
@@ -26,17 +26,25 @@ const FormTitle = ({ onClickHandler, btn, title, disabled }) => {
       <TitleSubmit disabled={disabled} onClick={onClickHandler}>
         {btn}
       </TitleSubmit>
-    </Title>
+    </Wrap>
   );
 };
 export default FormTitle;
+const Wrap = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 3rem;
+  position: relative;
+  align-items: center;
+`;
+
 const TitleLogo = styled.h1`
   margin-top: 0.688rem;
   height: 1.625rem;
   font-size: 1.5rem;
   font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 0.75;
   letter-spacing: -1.2px;
 `;
@@ -48,26 +56,19 @@ const IconBack = styled.img`
   padding: 0.5rem;
   box-sizing: border-box;
 `;
-const Title = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 3rem;
-  position: relative;
-`;
+
 const TitleSubmit = styled.button`
   all: unset;
-  font-size: 0.625rem;
-  font-weight: 500;
-  width: 2.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 4rem;
+  letter-spacing: -0.5px;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: -0.5px;
   color: ${(props) =>
     props.disabled ? "var(--color-disabled)" : "var(--color-primary)"};
-  margin-right: 0.75rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;

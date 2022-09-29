@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getList } from "../../../redux/modules/searchSlice";
 import Icon_search from "../../../shared/svg/24_ena_search.svg";
-import ToastNotification from "../../common/ToastNotification";
+import ToastNotification from "../ToastNotification";
 
 const SearchInput = (props) => {
   const nav = useNavigate();
@@ -68,6 +68,7 @@ const StInput = styled.input`
   font-weight: normal;
   &::placeholder {
     color: #adadad;
+    font-size: 1rem;
   }
   /* &:focus {
     outline-color: var(--color-primary);

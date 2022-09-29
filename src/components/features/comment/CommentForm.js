@@ -49,8 +49,7 @@ const CommentList = ({ collectionId }) => {
 
   const onDelete = (e) => {
     e.preventDefault();
-    const commentId = e.target.id;
-    dispatch(deleteComment(commentId));
+    dispatch(deleteComment(commentData));
     setRefresh(true);
     setModal("read");
   };
@@ -73,13 +72,9 @@ const CommentList = ({ collectionId }) => {
   };
 
   function saveCommentData(e) {
-    // 이 메뉴를 누르는 자, 작성한 자가 맞는가?
-    // e.target.value = 작성한 사람의 id
-    // userState.user_id = 지금 로그인한 사람의 id
     if (e.target.value !== userState.user._id) {
       return alert("권한이 없습니다.");
     }
-    // 맞으면! 받아올 수 있게 넣어준다! 무엇을? 수정할 코멘트 내용! 관여할 id!
     setFixValue(e.target.title);
     setCommentData(e.target.id);
     setModal("menu");
@@ -93,7 +88,10 @@ const CommentList = ({ collectionId }) => {
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          <Modal setModal={setModal} margin="2rem auto 1rem auto" >
+          <Modal setModal={setModal}
+            margin="2rem auto 1rem auto"
+            backdrop="none"
+          >
             <div onClick={onModify} style={{
               display: "flex",
               flexDirection: "row",
@@ -106,8 +104,11 @@ const CommentList = ({ collectionId }) => {
               <IconEdit style={{
                 height: "1.5rem",
                 width: "1.5rem",
+                pointerEvents: "none",
               }} />
-              <StBtn >수정하기</StBtn>
+              <StBtn style={{
+                pointerEvents: "none",
+              }}>수정하기</StBtn>
             </div>
 
             <div onClick={onDelete} id={commentData}
@@ -123,9 +124,11 @@ const CommentList = ({ collectionId }) => {
               <IconDelete style={{
                 height: "1.5rem",
                 width: "1.5rem",
+                pointerEvents: "none",
               }} />
-              <StBtn >
-                삭제하기
+              <StBtn style={{
+                pointerEvents: "none",
+              }}>삭제하기
               </StBtn>
             </div>
           </Modal>
@@ -292,7 +295,7 @@ const StContainer = styled.div`
 `;
 const StWrap = styled.div`
   height: 30.5rem;
-  width: 360px;
+  /* width: 360px; */
   background-color: transparent;
   overflow: scroll;
   &::-webkit-scrollbar {

@@ -9,6 +9,8 @@ import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
 import CommentForm from "../comment/CommentForm";
 import { keyframes } from "styled-components";
+import Headers from "../../common/Headers";
+import icon_more from "../../../shared/svg/24_ena_more_main.svg";
 
 const CollectionWrap = () => {
   const param = useParams();
@@ -31,7 +33,14 @@ const CollectionWrap = () => {
 
   return (
     <div style={{ minHeight: "100vh" }}>
-      <FloatingIcons setModal={setModal} />
+      <Headers>
+        <MoreIcon
+          src={icon_more}
+          onClick={() => {
+            setModal((prev) => !prev);
+          }}
+        />
+      </Headers>
       <YoutubeContainer />
       <CollectionInformation
         collectionId={param.collection_id}
@@ -46,13 +55,12 @@ const CollectionWrap = () => {
       <CollectionVideoList collectionId={param.collection_id} />
       <>
         {slideState === false ? (
-          <>
-          </>
+          <></>
         ) : (
           <Modal>
             <ModalDiv onClick={onClickedCommentBtn} />
             <SlideupBox>
-              <CloseBtnArea >
+              <CloseBtnArea>
                 <CloseBtn onClick={onClickedCommentBtn} />
               </CloseBtnArea>
               <Children>
@@ -63,32 +71,30 @@ const CollectionWrap = () => {
         )}
       </>
     </div>
-
   );
 };
 export default CollectionWrap;
 
 const CommentSection = styled.div`
-      border-bottom: 0.5rem solid #f5f5f5;
-      padding: 0.625rem 1.25rem;
-      `;
+  border-bottom: 0.5rem solid #f5f5f5;
+  padding: 0.625rem 1.25rem;
+`;
 
 const OpenCommentBox = styled.div`
-      box-sizing: border-box;
-      height: 2.25rem;
-      padding: 0.5rem 0 0.5rem 1rem;
-      border-radius: 18px;
-      background-color: #f5f5f5;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: #505050;
-      cursor: pointer;
-      & span {
-        font-weight: normal;
-      color: #adadad;
+  box-sizing: border-box;
+  height: 2.25rem;
+  padding: 0.5rem 0 0.5rem 1rem;
+  border-radius: 18px;
+  background-color: #f5f5f5;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #505050;
+  cursor: pointer;
+  & span {
+    font-weight: normal;
+    color: #adadad;
   }
-      `;
-
+`;
 
 const Modal = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
@@ -101,12 +107,12 @@ const Modal = styled.div`
   z-index: 400;
 `;
 const ModalDiv = styled.div`
-position: fixed;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-z-index: 400;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
 `;
 const slideUp = keyframes`
 from{
@@ -117,14 +123,16 @@ to{
 }
 `;
 const SlideupBox = styled.div`
+  min-width: 280px;
+  max-width: 480px;
+  width: 100%;
   box-sizing: border-box;
   padding: 0 1.25rem 0 1.25rem;
   background-color: #ffffff;
-  min-width: 22.5rem;
   position: absolute;
   bottom: 0;
   left: 50%;
-  z-index:401;
+  z-index: 401;
   transform: translateX(-50%);
   border-radius: 20px 20px 0 0;
   animation-name: ${slideUp};
@@ -151,4 +159,9 @@ const Children = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 0.7rem;
+`;
+const MoreIcon = styled.img`
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0.5rem;
 `;
