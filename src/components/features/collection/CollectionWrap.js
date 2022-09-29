@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { resetVideoId } from "../../../redux/modules/tempCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import FloatingIcons from "./FloatingIcons";
 import YoutubeContainer from "./YoutubeContainer";
 import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";

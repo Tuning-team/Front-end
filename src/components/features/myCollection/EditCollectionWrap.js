@@ -9,7 +9,6 @@ import EditCollectionForm from "./EditCollectionForm";
 
 const EditCollectionWrap = () => {
   const nav = useNavigate();
-  //?리밋 있는데이터임
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.collectionSlice.data[0]);

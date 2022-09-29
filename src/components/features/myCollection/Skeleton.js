@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MyCollectionsLoading = () => {
+const Skeleton = () => {
   return (
     <Collection>
       <MyVideo />
@@ -8,7 +8,7 @@ const MyCollectionsLoading = () => {
     </Collection>
   );
 };
-export default MyCollectionsLoading;
+export default Skeleton;
 
 const Collection = styled.section`
   position: relative;
