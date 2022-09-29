@@ -4,11 +4,12 @@ import Navbar from "../components/common/Navbar";
 import Layout from "../components/common/Layout";
 import SearchHeaders from "../components/features/search/SearchHeader";
 import StickyButtons from "../components/common/StickyButtons";
+import Headers from "../components/common/Headers";
 
 const SearchPage = () => {
   return (
     <Layout>
-      <SearchHeaders />
+      <Headers />
       <SearchWrap />
       <StickyButtons />
       <Navbar />

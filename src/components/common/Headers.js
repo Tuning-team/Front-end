@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category.svg";
 import { ReactComponent as Logo } from "../../shared/svg/logo_without_triangle.svg";
-import { getCookie } from "../../shared/cookie";
+import icon_category from "../../shared/svg/24_ena_category.svg";
+import icon_back from "../../shared/svg/24_ena_back.svg";
 
-const Headers = () => {
+const Headers = (props) => {
   const nav = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
+  const [src, setSrc] = useState(icon_category);
+  const leftBtnHandler = () => {
+    path === "/mainPage" ? setIsCategoryShown(!isCategoryShown) : nav(-1);
+  };
   const [isCategoryShown, setIsCategoryShown] = useState(false);
+
+  useEffect(() => {
+    if (path === "/mainPage") {
+      setSrc(icon_category);
+    } else setSrc(icon_back);
+  }, [location]);
 
   return (
     <>
@@ -21,19 +33,9 @@ const Headers = () => {
       )}
 
       <Wrap>
-        {/*카테고리 아이콘 */}
-        <StyleCategoryIcon
-          onClick={() => {
-            setIsCategoryShown(!isCategoryShown);
-          }}
-        />
-
-        {/*로고*/}
+        <LeftBtn src={src} onClick={leftBtnHandler} />
         <StyleLogo onClick={() => nav("/mainPage")} />
-        {/* 로그인/로그아웃 */}
-        <StyleLogin onClick={() => nav("/login")}>
-          {getCookie("token") === undefined ? "로그인" : "로그아웃"}
-        </StyleLogin>
+        <RightBtn>{props.children}</RightBtn>
       </Wrap>
     </>
   );
@@ -50,7 +52,7 @@ const Wrap = styled.div`
   position: relative;
 `;
 
-const StyleCategoryIcon = styled(CategoryIcon)`
+const LeftBtn = styled.img`
   height: 2.5rem;
   width: 2.5rem;
 
@@ -62,17 +64,18 @@ const StyleLogo = styled(Logo)`
   margin-top: 0.688rem;
   height: 1.625rem;
 `;
-const StyleLogin = styled.div`
+const RightBtn = styled.div`
   font-size: 1rem;
   font-weight: bold;
   width: 4rem;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
   letter-spacing: -0.5px;
   color: #572cff;
 
   margin-right: 0.75rem;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  margin: 0.25rem 0.75rem 0.25rem 0;
+  // padding: 0.5rem;
+  box-sizing: border-box;
 `;

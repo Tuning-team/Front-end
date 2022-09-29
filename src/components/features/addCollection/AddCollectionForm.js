@@ -26,7 +26,7 @@ const AddCollectionForm = () => {
   const [toastState, setToastState] = useState(false);
   const [alert, setAlert] = useState("모두 입력해주세요");
   const [disabled, setDisabled] = useState(false);
-  console.log(disabled);
+
   //!마운트, 언마운트시
   useEffect(() => {
     dispatch(getCategory());
