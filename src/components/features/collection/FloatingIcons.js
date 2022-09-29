@@ -14,7 +14,7 @@ const FloatingIcons = ({ setModal }) => {
           nav(-1);
         }}
       />
-      <StyleLogo />
+      <StyleLogo onClick={() => nav("/mainPage")} />
       <StyleMoreIcon
         onClick={() => {
           setModal((prev) => !prev);

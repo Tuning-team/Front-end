@@ -72,7 +72,7 @@ const MainListWrap = () => {
         </div>
       )}
       <StyleBackground>
-        <SearchInput backgroundColor={"#ffffff"} width={"auto"} />
+        <SearchInput backgroundColor={"#ffffff"} />
         <EventBanner />
         <InterestedCategories />
       </StyleBackground>

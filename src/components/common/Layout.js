@@ -15,7 +15,7 @@ export default Layout;
 const StyleLayout = styled.div`
   position: relative;
   background-color: #fff;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   @media screen and (max-width: 479px) {
     width: 100vw;
   }
@@ -25,4 +25,5 @@ const StyleLayout = styled.div`
   min-width: 280px;
   min-height: 100vh;
   padding-bottom: 4.7rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.16);
 `;
