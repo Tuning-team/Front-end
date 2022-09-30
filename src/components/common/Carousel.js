@@ -18,6 +18,7 @@ const Carousel = (props) => {
     arrows: false,
     centerPadding: props.centerPadding || "0px",
     autoPlay: props.autoPlay || false,
+    lazyLoad: true,
   };
   return (
     <SliderWrapper height={props.height} className={props.className}>

@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: "Noto Sans KR",'Apple SD Gothic Neo', sans-serif;
     margin: 0; 
     padding: 0;
     border: 0;
