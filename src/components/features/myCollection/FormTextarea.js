@@ -19,7 +19,6 @@ width:100%;
 display: flex;
 flex-direction: column;
 align-items
-// width: 23.438rem;
 height: 6rem;
 
 margin:0 0 1.25rem 0

@@ -3,8 +3,6 @@ import styled from "styled-components";
 import icon_add from "../../../shared/svg/plus.svg";
 import { deleteVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
 import icon_trash from "../../../shared/svg/24_ena_delete.svg";
 
 const FormVideo = ({ addVideoHandler, addVideoList }) => {
@@ -13,7 +11,7 @@ const FormVideo = ({ addVideoHandler, addVideoList }) => {
     <Wrap>
       <Label>영상추가</Label>
       <AddVideoBox>
-        <StVideo hasVideo>
+        <StVideo>
           {addVideoList?.map((x, idx) => {
             return (
               <VideoBox key={idx}>
@@ -36,7 +34,6 @@ width:100%;
   display: flex;
   flex-direction: column;
   align-items
-  // width: 23.438rem;
   height: 6rem;
   margin:0 0 1.25rem 0
 `;
@@ -85,11 +82,9 @@ const VideoBox = styled.div`
   // margin-bottom: 0.5rem;
 `;
 const DeleteBtn = styled.button`
-  // all: unset;
   margin: 0 0px 0 2rem;
   border-radius: 8px;
   padding: 3px;
-  // color: var(--color-primary);
 `;
 const VideoList = styled.div`
   font-size: 0.8rem;

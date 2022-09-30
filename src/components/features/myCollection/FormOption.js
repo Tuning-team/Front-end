@@ -19,11 +19,10 @@ const FormOption = ({ onChange, category_id, categories }) => {
 };
 export default FormOption;
 const Wrap = styled.div`
-width:100%;
+  width:100%;
   display: flex;
   flex-direction: column;
   align-items
-  // width: 23.438rem;
   height: 6rem;
   margin:0 0 1.25rem 0
 `;
@@ -40,11 +39,9 @@ const Label = styled.label`
   text-align: left;
 `;
 const Select = styled.select`
-  // width: 20.938rem;
   width: 100%;
   height: 2.5rem;
   padding: 5px;
-  // margin-bottom: 0.125rem;
   border-radius: 8px;
   border: solid 1px #eee;
   background-color: #fff;

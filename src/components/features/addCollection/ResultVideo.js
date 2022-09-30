@@ -17,11 +17,11 @@ const ResultVideo = () => {
     (state) => state.myCollectionSlice.searchResult.nextPageToken
   );
 
+  //! 검색을 안했을때 useselector 안들어오도록
   const seeMore = () => {
     const keyword = localStorage.getItem("keyword");
     dispatch(getVideo({ keyword, token, key }));
   };
-
   return (
     <ResultWrap>
       {loading ? (

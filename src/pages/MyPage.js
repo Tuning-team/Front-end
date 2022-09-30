@@ -1,4 +1,3 @@
-import MyPageWrap from "../components/features/user/MyPageWrap";
 import Navbar from "../components/common/Navbar";
 import Layout from "../components/common/Layout";
 import StickyButtons from "../components/common/StickyButtons";
