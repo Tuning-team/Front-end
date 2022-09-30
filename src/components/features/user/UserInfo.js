@@ -19,9 +19,11 @@ import { getCategory } from "../../../redux/modules/collectionSlice";
 import icon_star from "../../../shared/svg/24_ena_star.svg";
 import SetUserInterestForm from "../myCollection/SetUserInterestForm";
 import MyTab from "./MyTab";
+import { useLocation } from "react-router-dom";
 
 const UserInfo = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const info = JSON.parse(localStorage.getItem("userInfo"));
   const nav = useNavigate();
   const [modal, setModal] = useState(false);
@@ -52,6 +54,9 @@ const UserInfo = () => {
     dispatch(getCategory());
     dispatch(getUserNum());
     dispatch(getUserInterested());
+    if (location.state) {
+      setModal(true);
+    }
   }, []);
 
   return (
