@@ -5,7 +5,7 @@ const EventBanner = () => {
   const nav = useNavigate();
   return (
     <Wrap onClick={() => nav("/event")}>
-      <Img src={event_banner} />
+      <Img src={event_banner} loading="lazy" alt="튜닝 이벤트 배너" />
     </Wrap>
   );
 };

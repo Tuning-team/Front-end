@@ -11,7 +11,7 @@ const CategoryWrap = () => {
   const param = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
-  const id = param.collection_id;
+  const id = param.category_id;
   const [count, setCount] = useState(0);
 
   //!카테고리에 맞는 컬렉션리스트
