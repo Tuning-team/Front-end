@@ -1,8 +1,7 @@
 name: S3 deploy with cloud front
 on:
   pull_request:
-    branches:
-      - features
+    branches:[features]
       types: [closed]
 
 jobs:
