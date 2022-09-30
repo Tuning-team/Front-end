@@ -20,7 +20,7 @@ const Desktop = styled.div`
   position: fixed;
   z-index: -1;
   bottom: 42%;
-  left: 12%;
+  left: 11%;
   * {
     display: none;
   }
@@ -33,9 +33,8 @@ const Desktop = styled.div`
       height: auto;
     }
     & h1 {
-      font-family: "Noto Sans KR";
       font-size: 1rem;
-      font-weight: normal;
+      font-weight: bold;
       letter-spacing: -0.7px;
       color: #505050;
     }

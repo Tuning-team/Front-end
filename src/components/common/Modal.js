@@ -27,14 +27,12 @@ const ModalBackground = styled.div`
   top: 0;
   bottom: 0;
   left: 50%;
-  border-radius: 20px 20px 0 0;
   transform: translateX(-50%);
   z-index: 500;
   text-align: center;
 
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: ${(props) => props.backdrop || "blur(4px)"};
-  /* backdrop-filter: blur(4px); */
 
   @media screen and (max-width: 479px) {
     width: 100vw;
@@ -42,7 +40,6 @@ const ModalBackground = styled.div`
   @media screen and (min-width: 480px) {
     width: 480px;
   }
-  
 `;
 const ModalContainer = styled.div`
   position: absolute;
