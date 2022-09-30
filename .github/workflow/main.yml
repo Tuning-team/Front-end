@@ -2,7 +2,7 @@ name: S3 deploy with cloud front
 on:
   pull_request:
     branches:
-      - main
+      - features
       types: [closed]
 
 jobs:
