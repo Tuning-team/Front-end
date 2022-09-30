@@ -79,8 +79,8 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
   padding: 0;
+  /* margin: 0; */
   border: 0;
   font-size: 100%;
   /* font: inherit; */
@@ -122,38 +122,15 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* @font-face {
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 100;
-  src: url("styles/fonts/NotoSansKR-Light.woff2") format("woff2"),
-    url("styles/fonts/NotoSansKR-Light.woff") format("woff"),
-    url("styles/fonts/NotoSansKR-Light.otf") format("truetype");
+h1,
+h2,
+h3 {
+  letter-spacing: 0.5px;
 }
-
-@font-face {
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: normal;
-  src: url("styles/fonts/NotoSansKR-Regular.woff2") format("woff2"),
-    url("styles/fonts/NotoSansKR-Regular.woff") format("woff"),
-    url("styles/fonts/NotoSansKR-Regular.otf") format("truetype");
+/* y축 스크롤바 안보이게하는 css */
+html {
+  overflow-y: scroll;
 }
-
-@font-face {
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 500;
-  src: url("styles/fonts/NotoSansKR-Medium.woff2") format("woff2"),
-    url("styles/fonts/NotoSansKR-Medium.woff") format("woff"),
-    url("styles/fonts/NotoSansKR-Medium.otf") format("truetype");
+html::-webkit-scrollbar {
+  display: none;
 }
-
-@font-face {
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: bold;
-  src: url("styles/fonts/NotoSansKR-Bold.woff2") format("woff2"),
-    url("styles/fonts/NotoSansKR-Bold.woff") format("woff"),
-    url("styles/fonts/NotoSansKR-Bold.otf") format("truetype");
-} */

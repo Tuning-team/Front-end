@@ -23,6 +23,7 @@ export const addComment = createAsyncThunk(
   }
 );
 
+
 export const getComment = createAsyncThunk(
   "GET_COMMENT",
   async (collection_id) => {
@@ -46,11 +47,13 @@ export const updateComment = createAsyncThunk(
         editComment
       );
     } catch (error) {
-      alert("로그인을 해주세요");
+      alert("Comment Edit Error");
       return error.message;
     }
   }
 );
+
+
 
 export const deleteComment = createAsyncThunk(
   "DELETE_COMMENT",
@@ -59,11 +62,12 @@ export const deleteComment = createAsyncThunk(
       const response = await instance.delete(`/comments/${commentId}`);
       return response.data;
     } catch (error) {
-      alert("로그인을 해주세요");
+      alert("Comment Delete Error");
       return error.message;
     }
   }
 );
+
 
 export const commentSlice = createSlice({
   name: "commentList",

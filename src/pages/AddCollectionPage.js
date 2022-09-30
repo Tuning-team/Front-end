@@ -1,13 +1,14 @@
 import React from "react";
-import AddCollectionWrap from "../components/addCollection/AddCollectionWrap";
-import Navbar from "../common/Navbar";
+import Navbar from "../components/common/Navbar";
+import Layout from "../components/common/Layout";
+import AddCollectionForm from "../components/features/addCollection/AddCollectionForm";
 
 const AddCollectionPage = () => {
   return (
-    <>
-      <AddCollectionWrap />
+    <Layout>
+      <AddCollectionForm btn="추가하기" />;
       <Navbar />
-    </>
+    </Layout>
   );
 };
 export default AddCollectionPage;

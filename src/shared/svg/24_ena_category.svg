@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_category">
+        <path data-name="Rectangle 2162" style="fill:none" d="M0 0h48v48H0z"/>
+        <g data-name="Group 5887" transform="translate(817 7008)">
+            <circle data-name="Ellipse 37" cx="10" cy="10" r="10" transform="translate(-789 -6980)" style="fill:#c9bbff"/>
+            <g data-name="Group 5900">
+                <path data-name="사각형 1271" d="M-779-6998v8h-8v-8h8m2-4h-12a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2z" style="fill:#505050"/>
+                <path data-name="사각형 1272" d="M-799-6998v8h-8v-8h8m2-4h-12a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2z" style="fill:#505050"/>
+                <path data-name="사각형 1273" d="M-799-6978v8h-8v-8h8m2-4h-12a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2zM-779-6978v8h-8v-8h8m2-4h-12a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-12a2 2 0 0 0-2-2z" style="fill:#505050"/>
+            </g>
+        </g>
+    </g>
+</svg>

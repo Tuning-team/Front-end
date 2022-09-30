@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_act_checkbox">
+        <g data-name="Group 5968">
+            <path data-name="Rectangle 2874" style="fill:none" d="M0 0h48v48H0z"/>
+        </g>
+        <g data-name="Group 6047" transform="translate(7473 18869)">
+            <rect data-name="Rectangle 12615" width="36" height="36" rx="4" transform="translate(-7467 -18863)" style="fill:#572cff"/>
+            <g data-name="Group 6043">
+                <path data-name="Path 4104" d="M-994.666-6811a1.657 1.657 0 0 0-1.144.456l-9.479 8.974-4.918-4.527a1.654 1.654 0 0 0-1.126-.44 1.66 1.66 0 0 0-1.229.543 1.678 1.678 0 0 0 .1 2.364l7.2 6.63 11.734-11.109a1.679 1.679 0 0 0 .069-2.365 1.656 1.656 0 0 0-1.212-.526z" style="fill:#fff" transform="translate(-6446 -12041)"/>
+            </g>
+        </g>
+    </g>
+</svg>

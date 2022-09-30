@@ -1,16 +1,14 @@
 import React from "react";
-import Headers from "../common/Headers";
-import LoginSignupWrap from "../components/loginSignup/LoginSignupWrap";
-import Navbar from "../common/Navbar";
-
+import LoginSignupWrap from "../components/features/user/LoginSignupWrap";
+import Layout from "../components/common/Layout";
+import Headers from "../components/common/Headers";
+//!마이페이지 안으로
 const LoginSignupPage = () => {
   return (
-    <>
-      {/* //todo 로그인버튼 안보이게 하기 */}
-      {/* <Headers /> */}
+    <Layout>
+      <Headers />
       <LoginSignupWrap />
-      <Navbar />
-    </>
+    </Layout>
   );
 };
 export default LoginSignupPage;

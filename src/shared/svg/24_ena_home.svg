@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <g data-name="24_ena_home">
+        <path data-name="Rectangle 2162" style="fill:none" d="M0 0h48v48H0z"/>
+        <g data-name="Group 5884" transform="translate(1747 7008)">
+            <circle data-name="Ellipse 36" cx="10" cy="10" r="10" transform="translate(-1719 -6980)" style="fill:#c9bbff"/>
+            <path data-name="Path 4044" d="M-1705-6988a1.984 1.984 0 0 0-.651-1.468v-.007l-16.116-12.1-.005.009A1.98 1.98 0 0 0-1723-7002a1.984 1.984 0 0 0-1.191.4l-.006-.01-16.187 12.161v.006A1.99 1.99 0 0 0-1741-6988v20a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-11h4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-19.983zm-4 18h-8v-11a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v11h-8v-17.08l14-10.286 14 10.286z" style="fill:current"/>
+        </g>
+    </g>
+</svg>

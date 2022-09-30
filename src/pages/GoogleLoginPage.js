@@ -1,20 +1,21 @@
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { setCookie } from "../shared/cookie";
 
 const GoogleLogin = () => {
+  let now = new Date();
+  let after1d = new Date();
+
   const param = useParams();
-  const nav = useNavigate();
 
   useEffect(() => {
-    const expires = new Date();
-    expires.setDate(Date.now() + 1000 * 60 * 60);
+    after1d.setMinutes(now.getMinutes() + 60 * 24);
     setCookie("token", param.token, {
       path: "/",
-      expires,
+      expires: after1d,
     });
-    window.location.replace("/");
-    nav("/");
+
+    window.location.replace("/mainPage");
   }, []);
 };
 export default GoogleLogin;
