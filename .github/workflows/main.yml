@@ -7,13 +7,13 @@ on:
 
 jobs:
   deploy:
-    # runs-on: ubuntu-latest
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    # runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout source code
-        # uses: actions/checkout@master
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
+        # uses: actions/checkout@v2
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -42,5 +42,5 @@ jobs:
             --region ap-northeast-2 \
             build s3://hanghaegaelog
 
-      - name: Invalidate CloudFront Cache
-        run: aws cloudfront create-invalidation --distribution-id ${{secrets.CLOUDFRONT_DISTRIBUTION_ID}} --paths "/*"
+      # - name: Invalidate CloudFront Cache
+      #   run: aws cloudfront create-invalidation --distribution-id ${{secrets.CLOUDFRONT_DISTRIBUTION_ID}} --paths "/*"
