@@ -14,7 +14,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    font-family: "Noto Sans KR", sans-serif;
     margin: 0; 
     padding: 0;
     border: 0;
@@ -26,11 +25,14 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     flex-direction: column; 
 
-    font-weight: normal;
+    font-family: "Noto Sans KR", 'Apple SD Gothic Neo', sans-serif;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   button {
