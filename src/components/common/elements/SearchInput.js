@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getList } from "../../../redux/modules/searchSlice";
-import Icon_search from "../../../shared/svg/24_ena_search.svg";
+import { ReactComponent as IconSearch } from "../../../shared/svg/24_ena_search.svg";
 import ToastNotification from "../ToastNotification";
 
 const SearchInput = (props) => {
@@ -40,7 +40,7 @@ const SearchInput = (props) => {
           onClick={props.onClick || null}
         />
         <StBtn>
-          <StBtnImg src={Icon_search} />
+          <StIconSearch fill="#505050" />
         </StBtn>
       </Form>
       {toastState && (
@@ -66,7 +66,7 @@ const StInput = styled.input`
   box-sizing: border-box;
   border: none;
   font-size: 1rem;
-  font-weight: normal;
+  /* font-weight: normal; */
   &::placeholder {
     color: #adadad;
     font-size: 1rem;
@@ -86,7 +86,7 @@ const StBtn = styled.button`
   top: 50%;
   transform: translate(0, -50%);
 `;
-const StBtnImg = styled.img`
+const StIconSearch = styled(IconSearch)`
   width: 1.5rem;
   height: 1.5rem;
 `;

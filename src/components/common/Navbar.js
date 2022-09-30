@@ -28,7 +28,7 @@ const Navbar = () => {
       setOnMain("#572cff");
     } else if (location.includes("/category")) {
       setOnCategory("#572cff");
-    } else if (location.includes("/search")) {
+    } else if (location === "/search") {
       setOnSearch("#572cff");
     } else if (
       location.includes("/myPage") ||
