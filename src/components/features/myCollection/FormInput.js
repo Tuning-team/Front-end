@@ -16,11 +16,10 @@ const FormInput = ({ onChange, collectionTitle }) => {
 };
 export default FormInput;
 const Wrap = styled.div`
-width:100%;
+  width:100%;
   display: flex;
   flex-direction: column;
   align-items
-  // width: 23.438rem;
   height: 6rem;
   margin:0 0 1.25rem 0
 
@@ -39,7 +38,6 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  // width: 20.938rem;
   width: 100%;
   height: 2.5rem;
   padding: 5px;

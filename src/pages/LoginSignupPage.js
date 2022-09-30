@@ -1,13 +1,12 @@
 import React from "react";
 import LoginSignupWrap from "../components/features/user/LoginSignupWrap";
-import Navbar from "../components/common/Navbar";
 import Layout from "../components/common/Layout";
-import HeaderLogo from "../components/features/myCollection/HeaderLogo";
+import Headers from "../components/common/Headers";
 //!마이페이지 안으로
 const LoginSignupPage = () => {
   return (
     <Layout>
-      <HeaderLogo />
+      <Headers />
       <LoginSignupWrap />
     </Layout>
   );
