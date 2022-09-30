@@ -1,65 +1,3 @@
-# name: S3 deploy with cloud front
-# on:
-#   # pull_request:
-#   #   branches:[features]
-#   push:
-#     branches:
-#       - feature_addCollection
-
-# jobs:
-#  deploy:
-#     if: github.event.pull_request.merged == true
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         node-versions: [16.x]
-
-# #  name: Deploy
-# #     env:
-# #       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-# #       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-# #       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-#     steps:
-#       - name: Checkout source code
-#       uses: actions/checkout@v2
-
-#       - name: Cache node modules
-#         uses: actions/cache@v2
-#         with:
-#           path: node_modules
-#           key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-#           restore-keys: |
-#             ${{ runner.OS }}-build-
-#             ${{ runner.OS }}-
-
-#       - name: Install dependencies
-#         run: npm install
-
-#       - name: Build
-#         run: npm run build
-
-#       - name: Configure AWS Credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: ${{ secrets.AWS_REGION }}
-#       # - name: Deploy
-#       #   uses: lbertenasco/s3-deploy@v2
-#       #   with:
-#       #     folder: build
-#       #     bucket: ${{ secrets.S3_BUCKET }}
-#       #     dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-#       #     invalidation: / *
-
-#       - name: Deploy to S3
-#       run: aws s3 sync ./build s3://${{ secrets.S3_BUCKET }} --delete
-
-#  - name: Invalidate CloudFront Cache
-#         run: aws cloudfront create-invalidation --distribution-id ${{secrets.CLOUDFRONT_DISTRIBUTION_ID}} --paths "/*"
-
-# main-deploy.yml
-
 name: Deploy to Production
 
 on:
@@ -100,3 +38,6 @@ jobs:
             --recursive \
             --region ap-northeast-2 \
             build s3://hanghaegaelog
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{secrets.AWS_DISTRIBUTION_ID}} --paths "/*"
