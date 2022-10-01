@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import NotoSansMedium from "../shared/fonts/notosans/NotoSansKR-Medium.woff"; //500
-import NotoSansBold from "../shared/fonts/notosans/NotoSansKR-Bold.woff"; //700
+import NotoSansMedium from "../../shared/fonts/notosans/NotoSansKR-Medium.woff"; //500
+import NotoSansBold from "../../shared/fonts/notosans/NotoSansKR-Bold.woff"; //700
 
 export const GlobalStyle = createGlobalStyle`
   ${reset};

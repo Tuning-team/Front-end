@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { addVideoList } from "../../../redux/modules/collectionSlice";
 import Loading from "../../common/Loading";
 import { getVideo } from "../../../redux/modules/collectionSlice";
-import icon_bottom from "../../../shared/svg/icon_bottom.svg";
+import icon_bottom from "../../../shared/icon/icon_bottom.svg";
 
 const ResultVideo = () => {
   const nav = useNavigate();

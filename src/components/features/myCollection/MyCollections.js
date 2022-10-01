@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
 import MyVideo from "../myCollection/MyVideo";
-import icon_like_black from "../../../shared/svg/16_ena_like.svg";
-import icon_comment from "../../../shared/svg/16_ena_comment.svg";
+import icon_like_black from "../../../shared/icon/16_ena_like.svg";
+import icon_comment from "../../../shared/icon/16_ena_comment.svg";
 import NoData from "../../common/NoData";
 import Skeleton from "../myCollection/Skeleton";
 

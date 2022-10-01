@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import Frame from "../../../shared/svg/logo_without_triangle.svg";
-import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
+import Frame from "../../../shared/icon/logo_without_triangle.svg";
+import icon_back_enabled from "../../../shared/icon/24_ena_back.svg";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import SearchInput from "../../common/elements/SearchInput";
-import Icon_search from "../../../shared/svg/24_ena_search.svg";
+import Icon_search from "../../../shared/icon/24_ena_search.svg";
 import ToastNotification from "../../common/ToastNotification";
 const SearchVideo = () => {
   const dispatch = useDispatch();
@@ -25,8 +24,9 @@ const SearchVideo = () => {
     }
     const token = null;
     const key = null;
+    console.log(keyword, token, key);
     dispatch(getVideo({ keyword, token, key }));
-    localStorage.setItem("keyword", keyword);
+    // localStorage.setItem("keyword", keyword);
     reset();
   };
 

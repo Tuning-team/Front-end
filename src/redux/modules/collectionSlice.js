@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { instance } from "../../shared/instance";
+import { instance } from "../../shared/util/instance";
 import axios from "axios";
 
 const initialState = {
@@ -131,16 +131,19 @@ export const getCategoryCollection = createAsyncThunk(
 export const getVideo = createAsyncThunk(
   "get/video",
   async ({ keyword, token, key }) => {
+    console.log(initialState.searchResult.nextPageToken);
     try {
       if (!token) {
         const res = await axios(
           `https://api.tube-tuning.com/youtubesearch?q=${keyword}`
         );
+        console.log(res.data);
         return res.data;
       } else {
         const res = await axios(
           `https://api.tube-tuning.com/youtubesearch?q=${keyword}&key=${key}&pageToken=${token}`
         );
+        console.log(res.data);
         return res.data;
       }
     } catch (error) {
@@ -273,9 +276,11 @@ export const myCollectionSlice = createSlice({
     });
     builder.addCase(getVideo.fulfilled, (state, action) => {
       state.searchResult.loading = false;
+      console.log(action.payload.results);
       state.searchResult.data = action.payload.results;
       state.searchResult.key = action.payload.key;
       state.searchResult.nextPageToken = action.payload.nextPageToken;
+      console.log(action.payload.nextPageToken);
       state.searchResult.error = "";
     });
     builder.addCase(getVideo.rejected, (state, action) => {

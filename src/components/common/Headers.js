@@ -1,10 +1,10 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as Logo } from "../../shared/svg/logo_without_triangle.svg";
-import icon_category from "../../shared/svg/24_ena_category.svg";
-import icon_back from "../../shared/svg/24_ena_back.svg";
+import { ReactComponent as Logo } from "../../shared/icon/logo_without_triangle.svg";
+import icon_category from "../../shared/icon/24_ena_category.svg";
+import icon_back from "../../shared/icon/24_ena_back.svg";
 
 const Headers = (props) => {
   const nav = useNavigate();

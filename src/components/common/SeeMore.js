@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import smallGoIcon from "../../../shared/svg/10_ena_go.svg";
+import smallGoIcon from "../../shared/icon/10_ena_go.svg";
 
 const SeeMore = (props) => {
   return (

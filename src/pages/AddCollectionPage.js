@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/common/Navbar";
 import Layout from "../components/common/Layout";
-import AddCollectionForm from "../components/features/addCollection/AddCollectionForm";
+import AddCollectionForm from "../components/features/myCollection/form/AddCollectionForm";
 
 const AddCollectionPage = () => {
   return (
