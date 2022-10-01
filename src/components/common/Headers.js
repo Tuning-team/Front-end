@@ -11,10 +11,15 @@ const Headers = (props) => {
   const location = useLocation();
   const path = location.pathname;
   const [src, setSrc] = useState(icon_category);
-  const leftBtnHandler = () => {
-    path === "/mainPage" ? setIsCategoryShown(!isCategoryShown) : nav(-1);
-  };
   const [isCategoryShown, setIsCategoryShown] = useState(false);
+
+  const leftBtnHandler = () => {
+    if (path === "/mainPage") {
+      setIsCategoryShown(!isCategoryShown);
+    } else if (path === "/login") {
+      nav("/mainPage");
+    } else nav(-1);
+  };
 
   useEffect(() => {
     if (path === "/mainPage") {
