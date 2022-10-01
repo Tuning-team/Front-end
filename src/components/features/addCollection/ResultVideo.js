@@ -22,6 +22,7 @@ const ResultVideo = () => {
     const keyword = localStorage.getItem("keyword");
     dispatch(getVideo({ keyword, token, key }));
   };
+
   return (
     <ResultWrap>
       {loading ? (
@@ -39,9 +40,12 @@ const ResultVideo = () => {
                 nav(-1);
               }}
             >
-              <Thumbnail src={x.video?.thumbnail_src} />
+              <Thumbnail>
+                <img src={x.video?.thumbnail_src} alt={x.video?.title} />
+              </Thumbnail>
               <VideoInfo>
-                {x.uploader?.username} <VideoTitle>{x.video?.title}</VideoTitle>
+                <span>{x.uploader?.username}</span> |{" "}
+                <VideoTitle>{x.video?.title}</VideoTitle>
               </VideoInfo>
             </ResultBox>
           );
@@ -64,21 +68,6 @@ const ResultWrap = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 5rem;
-  padding: 1.125rem 1.5rem 3.1rem 1.5rem;
-`;
-
-const ResultBox = styled.div`
-  display: flex;
-  margin: 5px 0px 5px 0px;
-  border-bottom: 1px solid #efefef;
-  padding: 5px;
-  // width: 20.938rem;
-  width: 100%;
-  height: 5rem;
-
-  &:active {
-    background-color: #efefef;
-  }
 `;
 const AlertBox = styled.div`
   display: flex;
@@ -87,35 +76,51 @@ const AlertBox = styled.div`
   align-content: center;
   margin-top: 10px;
 `;
-const Thumbnail = styled.img`
-  width: 8.781rem;
-  height: 5rem;
+const ResultBox = styled.div`
+  display: flex;
+  padding: 0.65rem 1.25rem;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  width: 100%;
+  &:active {
+    background-color: #efefef;
+  }
+`;
+const Thumbnail = styled.div`
+  min-width: 8.8rem;
+  max-height: 5rem;
+  overflow: hidden;
+
   &:active {
     opacity: 0.5;
   }
+  & img {
+    width: 8.781rem;
+    height: auto;
+    object-fit: cover;
+  }
 `;
-
 const VideoInfo = styled.p`
-  font-style: bold;
-  padding: 3px;
+  padding-left: 0.2rem;
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  & span {
+    font-weight: bold;
+  }
 `;
 const VideoTitle = styled.span`
   font-size: 0.75rem;
   font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.25;
   letter-spacing: -0.3px;
   text-align: left;
   color: #adadad;
 `;
 const More = styled.div`
+  margin-top: 1rem;
   color: #adadad;
   display: flex;
-  width: 20rem;
   justify-content: center;
 `;
