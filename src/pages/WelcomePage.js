@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Layout from "../components/common/Layout";
-import icon_welcome from "../shared/svg/icon_welcome.svg";
+import icon_welcome from "../shared/icon/icon_welcome.svg";
 
 const WelcomePage = () => {
   const nav = useNavigate();

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ChildrenCategories from "./ChildrenCategories";
-import SearchInput from "../../common/elements/SearchInput";
+import SearchInput from "../../common/SearchInput";
 import InterestedCategories from "./InterestedCategories";
-import Carousel from "../../common/Carousel";
-import CarouselItem from "../../common/CarouselItem";
+import Carousel from "./Carousel";
+import CarouselItem from "./CarouselItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCategories } from "../../../redux/modules/categorySlice";

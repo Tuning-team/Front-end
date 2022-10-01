@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import icon_add from "../../../shared/svg/plus.svg";
-import { deleteVideo } from "../../../redux/modules/collectionSlice";
+import icon_add from "../../../../shared/icon/plus.svg";
+import { deleteVideo } from "../../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import icon_trash from "../../../shared/svg/24_ena_delete.svg";
+import icon_trash from "../../../../shared/icon/24_ena_delete.svg";
 
 const FormVideo = ({ addVideoHandler, addVideoList }) => {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
-import { instance } from "../../shared/instance";
+import { instance } from "../../shared/util/instance";
 
 const initialState = {
   loading: false,

@@ -1,23 +1,21 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import SlideUpModal from "../../common/SlideUpModal";
-import icon_back from "../../../shared/svg/24_ena_back.svg";
+import icon_back from "../../../shared/icon/24_ena_back.svg";
 import { useNavigate } from "react-router-dom";
-import icon_setting from "../../../shared/svg/24_ena_setting.svg";
+import icon_setting from "../../../shared/icon/24_ena_setting.svg";
+import icon_star from "../../../shared/icon/24_ena_star.svg";
 import { useEffect, useState } from "react";
 import Modal from "../../common/Modal";
-import { getCookie, removeCookie } from "../../../shared/cookie";
+import { getCookie, removeCookie } from "../../../shared/util/cookie";
 import {
-  getMyCategory,
-  getUserInfo,
   getUserInterest,
   getUserInterested,
   getUserNum,
-  postUserInterest,
 } from "../../../redux/modules/userSlice";
 import { getCategory } from "../../../redux/modules/collectionSlice";
-import icon_star from "../../../shared/svg/24_ena_star.svg";
-import SetUserInterestForm from "../myCollection/SetUserInterestForm";
+
+import SetUserInterestForm from "./form/SetUserInterestForm";
 import MyTab from "./MyTab";
 import { useLocation } from "react-router-dom";
 
@@ -32,12 +30,7 @@ const UserInfo = () => {
   const saves = useSelector(
     (state) => state.userSlice.userInterested.data.kept_collections
   );
-  const likes = useSelector((state) => state.userSlice.userNum.likes);
-  const comments = useSelector((state) => state.userSlice.userNum.comments);
-  //! 유저가 선택한 카테고리
-  const userCategory = useSelector(
-    (state) => state.userSlice.userInterest.userCategory
-  );
+  const { comments, likes } = useSelector((state) => state.userSlice.userNum);
   //! 카테고리배열
   const categories = useSelector((state) => state.categorySlice.category.data);
 

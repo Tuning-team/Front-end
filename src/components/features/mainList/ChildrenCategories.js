@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategoryCollectionForMain } from "../../../redux/modules/categorySlice";
-import Carousel from "../../common/Carousel";
-import CarouselItem from "../../common/CarouselItem";
-import SeeMore from "../../common/elements/SeeMore";
+import Carousel from "./Carousel";
+import CarouselItem from "./CarouselItem";
+import SeeMore from "../../common/SeeMore";
 const ChildrenCategories = (props) => {
   const nav = useNavigate();
 

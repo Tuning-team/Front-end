@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { instance } from "../../shared/instance";
+import { instance } from "../../shared/util/instance";
 import axios from "axios";
 
 const initialState = {
@@ -130,16 +130,16 @@ export const getCategoryCollection = createAsyncThunk(
 
 export const getVideo = createAsyncThunk(
   "get/video",
-  async ({ keyword, token, key }) => {
+  async ({ keyword, nextPageToken, key }) => {
     try {
-      if (!token) {
+      if (!nextPageToken) {
         const res = await axios(
           `https://api.tube-tuning.com/youtubesearch?q=${keyword}`
         );
         return res.data;
       } else {
         const res = await axios(
-          `https://api.tube-tuning.com/youtubesearch?q=${keyword}&key=${key}&pageToken=${token}`
+          `https://api.tube-tuning.com/youtubesearch?q=${keyword}&key=${key}&pageToken=${nextPageToken}`
         );
         return res.data;
       }

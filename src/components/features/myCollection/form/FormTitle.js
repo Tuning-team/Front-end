@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import {
   deleteVideo,
   rememberData,
-} from "../../../redux/modules/collectionSlice";
+} from "../../../../redux/modules/collectionSlice";
 import { useDispatch } from "react-redux";
-import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
+import icon_back_enabled from "../../../../shared/icon/24_ena_back.svg";
 //!enabled만들것!!!!!!!!!11
 const FormTitle = ({ onClickHandler, btn, title, disabled }) => {
   const nav = useNavigate();

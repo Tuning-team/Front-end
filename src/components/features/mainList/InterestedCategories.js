@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../../shared/cookie";
+import { getCookie } from "../../../shared/util/cookie";
 import { getCategory } from "../../../redux/modules/categorySlice";
 import {
-  postUserInterest,
   deleteUserInterest,
   getUserInterest,
 } from "../../../redux/modules/userSlice";
-import Modal from "../../common/Modal";
 import { categoryList } from "./categoryData";
-import SetUserInterestForm from "../myCollection/SetUserInterestForm";
-import SeeMore from "../../common/elements/SeeMore";
+import SetUserInterestForm from "../myCollection/form/SetUserInterestForm";
 
 const InterestedCategories = () => {
   const nav = useNavigate();

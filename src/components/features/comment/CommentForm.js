@@ -8,11 +8,11 @@ import {
   addComment,
 } from "../../../redux/modules/commentSlice";
 import { getUserInfo } from "../../../redux/modules/userSlice";
-import { ReactComponent as IconMore } from "../../../shared/svg/24_ena_more.svg";
-import { ReactComponent as IconActSend } from "../../../shared/svg/24_act_send.svg";
-import { ReactComponent as IconSend } from "../../../shared/svg/24_ena_send.svg";
-import { ReactComponent as IconEdit } from "../../../shared/svg/24_ena_edit.svg";
-import { ReactComponent as IconDelete } from "../../../shared/svg/24_ena_delete.svg";
+import { ReactComponent as IconMore } from "../../../shared/icon/24_ena_more.svg";
+import { ReactComponent as IconActSend } from "../../../shared/icon/24_act_send.svg";
+import { ReactComponent as IconSend } from "../../../shared/icon/24_ena_send.svg";
+import { ReactComponent as IconEdit } from "../../../shared/icon/24_ena_edit.svg";
+import { ReactComponent as IconDelete } from "../../../shared/icon/24_ena_delete.svg";
 import Modal from "../../common/Modal";
 
 const CommentList = ({ collectionId }) => {
@@ -88,27 +88,13 @@ const CommentList = ({ collectionId }) => {
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          <Modal setModal={setModal} margin="2rem auto 1rem auto" backdrop="none" >
-            <StBtnDiv onClick={onModify} style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#f5f5f5",
-              borderRadius: "8px",
-              padding: "0.3rem 0.5rem",
-              margin: "0.5em 0"
-            }}>
-              <IconEdit style={{
-                height: "1.5rem",
-                width: "1.5rem",
-                pointerEvents: "none",
-              }} />
-              <StBtn style={{
-                pointerEvents: "none",
-              }}>수정하기</StBtn>
-            </StBtnDiv>
-
-            <StBtnDiv onClick={onDelete} id={commentData}
+          <Modal
+            setModal={setModal}
+            margin="2rem auto 1rem auto"
+            backdrop="none"
+          >
+            <StBtnDiv
+              onClick={onModify}
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -116,16 +102,51 @@ const CommentList = ({ collectionId }) => {
                 backgroundColor: "#f5f5f5",
                 borderRadius: "8px",
                 padding: "0.3rem 0.5rem",
-                margin: "0.5em 0"
-              }}>
-              <IconDelete style={{
-                height: "1.5rem",
-                width: "1.5rem",
-                pointerEvents: "none",
-              }} />
-              <StBtn style={{
-                pointerEvents: "none",
-              }}>삭제하기
+                margin: "0.5em 0",
+              }}
+            >
+              <IconEdit
+                style={{
+                  height: "1.5rem",
+                  width: "1.5rem",
+                  pointerEvents: "none",
+                }}
+              />
+              <StBtn
+                style={{
+                  pointerEvents: "none",
+                }}
+              >
+                수정하기
+              </StBtn>
+            </StBtnDiv>
+
+            <StBtnDiv
+              onClick={onDelete}
+              id={commentData}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                backgroundColor: "#f5f5f5",
+                borderRadius: "8px",
+                padding: "0.3rem 0.5rem",
+                margin: "0.5em 0",
+              }}
+            >
+              <IconDelete
+                style={{
+                  height: "1.5rem",
+                  width: "1.5rem",
+                  pointerEvents: "none",
+                }}
+              />
+              <StBtn
+                style={{
+                  pointerEvents: "none",
+                }}
+              >
+                삭제하기
               </StBtn>
             </StBtnDiv>
           </Modal>
@@ -255,14 +276,14 @@ const StCommentSpan = styled.span`
 `;
 
 const StBtnDiv = styled.div`
-display: flex;
-              flex-direction: row;
-              align-items: center;
-              background-color: #f5f5f5;
-              border-radius: 8px;
-              padding: 0.3rem 0.5rem;
-              margin: 0.5em 0; 
-`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+  margin: 0.5em 0;
+`;
 
 const StBtn = styled.div`
   font-size: 0.8rem;

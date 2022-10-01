@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import Modal from "../../common/Modal";
-import { postUserInterest } from "../../../redux/modules/userSlice";
-import ToastNotification from "../../common/ToastNotification";
-import { getUserInterest } from "../../../redux/modules/userSlice";
+import Modal from "../../../common/Modal";
+import { postUserInterest } from "../../../../redux/modules/userSlice";
+import ToastNotification from "../../../common/ToastNotification";
+import { getUserInterest } from "../../../../redux/modules/userSlice";
 
 const SetUserInterestForm = ({ setModal, modal, categories }) => {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
 
   const [toastState, setToastState] = useState(false);
   const [toastText, setToastText] = useState("");
-  const [border, setBorder] = useState(false);
 
   //! 유저가 담는 관심사(~ing)
   const [interests, setInterests] = useState([]);

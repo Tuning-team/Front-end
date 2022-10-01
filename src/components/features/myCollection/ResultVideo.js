@@ -5,22 +5,19 @@ import { useNavigate } from "react-router-dom";
 import { addVideoList } from "../../../redux/modules/collectionSlice";
 import Loading from "../../common/Loading";
 import { getVideo } from "../../../redux/modules/collectionSlice";
-import icon_bottom from "../../../shared/svg/icon_bottom.svg";
+import icon_bottom from "../../../shared/icon/icon_bottom.svg";
 
 const ResultVideo = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const { data, loading } = useSelector(
+  const { data, loading, nextPageToken, key } = useSelector(
     (state) => state.myCollectionSlice.searchResult
-  );
-  const { token, key } = useSelector(
-    (state) => state.myCollectionSlice.searchResult.nextPageToken
   );
 
   //! 검색을 안했을때 useselector 안들어오도록
   const seeMore = () => {
     const keyword = localStorage.getItem("keyword");
-    dispatch(getVideo({ keyword, token, key }));
+    dispatch(getVideo({ keyword, nextPageToken, key }));
   };
 
   return (
