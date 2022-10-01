@@ -8,13 +8,11 @@ import {
   addComment,
 } from "../../../redux/modules/commentSlice";
 import { getUserInfo } from "../../../redux/modules/userSlice";
-// import { ReactComponent as IconActSend } from "../../../shared/svg/24_act_send.svg";
-// import { ReactComponent as IconSend } from "../../../shared/svg/24_ena_send.svg";
-import IconActSend from "../../../shared/svg/24_act_send.svg";
-import IconSend from "../../../shared/svg/24_ena_send.svg";
-import IconMore from "../../../shared/svg/24_ena_more.svg";
-import IconDelete from "../../../shared/svg/24_ena_delete.svg";
-import IconEdit from "../../../shared/svg/24_ena_edit.svg";
+import IconActSend from "../../../shared/icon/24_act_send.svg";
+import IconSend from "../../../shared/icon/24_ena_send.svg";
+import IconMore from "../../../shared/icon/24_ena_more.svg";
+import IconDelete from "../../../shared/icon/24_ena_delete.svg";
+import IconEdit from "../../../shared/icon/24_ena_edit.svg";
 import Modal from "../../common/Modal";
 
 const CommentList = ({ collectionId }) => {
