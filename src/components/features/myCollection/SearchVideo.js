@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useInputs from "../../hooks/useInput";
 import { getVideo } from "../../../redux/modules/collectionSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Frame from "../../../shared/icon/logo_without_triangle.svg";
 import icon_back_enabled from "../../../shared/icon/24_ena_back.svg";
 import styled from "styled-components";
@@ -24,9 +24,8 @@ const SearchVideo = () => {
     }
     const token = null;
     const key = null;
-    console.log(keyword, token, key);
     dispatch(getVideo({ keyword, token, key }));
-    // localStorage.setItem("keyword", keyword);
+    localStorage.setItem("keyword", keyword);
     reset();
   };
 
