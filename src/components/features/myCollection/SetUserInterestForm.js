@@ -46,10 +46,6 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
     }
   };
 
-  // const remainedCategories = categories.filter(
-  //   (item) => !userCategory.includes(item.categoryName)
-  // );
-
   return (
     <>
       <Modal

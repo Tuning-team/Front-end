@@ -133,7 +133,7 @@ export const collectionSlice = createSlice({
       state.loading = false;
       state.isDeleted = true;
       state.data = action.payload;
-      return (window.location.href = "/myPage");
+      return (window.location.href = "/myPage/myCollection");
     });
     builder.addCase(deleteCollection.rejected, (state, action) => {
       state.loading = false;

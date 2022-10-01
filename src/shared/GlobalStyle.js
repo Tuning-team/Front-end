@@ -1,9 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import NotoSansMedium from "../shared/fonts/notosans/NotoSansKR-Medium.otf"; //500
-import NotoSansBold from "../shared/fonts/notosans/NotoSansKR-Bold.otf"; //700
-import RobotoMedium from "../shared/fonts/roboto/Roboto-Medium.ttf";
-import RobotoBold from "../shared/fonts/roboto/Roboto-Bold.ttf";
+import NotoSansMedium from "../shared/fonts/notosans/NotoSansKR-Medium.woff"; //500
+import NotoSansBold from "../shared/fonts/notosans/NotoSansKR-Bold.woff"; //700
 
 export const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -16,7 +14,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    font-family: "Noto Sans KR", sans-serif;
     margin: 0; 
     padding: 0;
     border: 0;
@@ -28,12 +25,14 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     flex-direction: column; 
 
-    font-weight: normal;
+    font-family: "Noto Sans KR", 'Apple SD Gothic Neo', sans-serif;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    /* font-family: "Noto Sans KR", "Roboto", sans-serif; */
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   button {
@@ -73,49 +72,24 @@ export const GlobalStyle = createGlobalStyle`
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
-  src: url(${NotoSansMedium}) format("truetype");
+  src: url(${NotoSansMedium}) format("woff");
   }
   @font-face {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: normal;
-  src: url(${NotoSansMedium}) format("truetype");
+  src: url(${NotoSansMedium}) format("woff");
   }
   @font-face {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 700;
-  src: url(${NotoSansBold}) format("truetype");
+  src: url(${NotoSansBold}) format("woff");
   } 
   @font-face {
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: bold;
-  src: url(${NotoSansBold}) format("truetype");
-  }
-  /* Roboto fonts */
-  @font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  src: url(${RobotoMedium}) format("truetype");
-  } 
-  @font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: normal;
-  src: url(${RobotoMedium}) format("truetype");
-  }
-  @font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 700;
-  src: url(${RobotoBold}) format("truetype");
-  } 
-  @font-face {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: bold;
-  src: url(${RobotoBold}) format("truetype");
+  src: url(${NotoSansBold}) format("woff");
   }
 `;

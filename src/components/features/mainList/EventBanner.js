@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import event_banner from "../../../shared/svg/event_banner.png";
+import event_banner from "../../../shared/images/event_banner.webp";
 const EventBanner = () => {
   const nav = useNavigate();
   return (
     <Wrap onClick={() => nav("/event")}>
-      <Img src={event_banner} />
+      <Img src={event_banner} loading="lazy" alt="튜닝 이벤트 배너" />
     </Wrap>
   );
 };

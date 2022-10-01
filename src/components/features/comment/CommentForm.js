@@ -88,11 +88,8 @@ const CommentList = ({ collectionId }) => {
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          <Modal setModal={setModal}
-            margin="2rem auto 1rem auto"
-            backdrop="none"
-          >
-            <div onClick={onModify} style={{
+          <Modal setModal={setModal} margin="2rem auto 1rem auto" backdrop="none" >
+            <StBtnDiv onClick={onModify} style={{
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
@@ -109,9 +106,9 @@ const CommentList = ({ collectionId }) => {
               <StBtn style={{
                 pointerEvents: "none",
               }}>수정하기</StBtn>
-            </div>
+            </StBtnDiv>
 
-            <div onClick={onDelete} id={commentData}
+            <StBtnDiv onClick={onDelete} id={commentData}
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -130,7 +127,7 @@ const CommentList = ({ collectionId }) => {
                 pointerEvents: "none",
               }}>삭제하기
               </StBtn>
-            </div>
+            </StBtnDiv>
           </Modal>
         ) : (
           ""
@@ -256,6 +253,16 @@ const StCommentSpan = styled.span`
   -webkit-box-orient: vertical;
   overflow: hidden;
 `;
+
+const StBtnDiv = styled.div`
+display: flex;
+              flex-direction: row;
+              align-items: center;
+              background-color: #f5f5f5;
+              border-radius: 8px;
+              padding: 0.3rem 0.5rem;
+              margin: 0.5em 0; 
+`
 
 const StBtn = styled.div`
   font-size: 0.8rem;

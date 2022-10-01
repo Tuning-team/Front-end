@@ -68,7 +68,13 @@ const InterestedCategories = () => {
         ) : userInterestArr.length === 0 ? (
           <TextContent>
             아직 관심사 설정을 하지 않았습니다.
-            <span onClick={() => nav("/myPage")}>설정하러가기</span>
+            <span
+              onClick={() =>
+                nav("/myPage/myCollection", { state: "관심사설정" })
+              }
+            >
+              설정하러가기
+            </span>
           </TextContent>
         ) : (
           <>

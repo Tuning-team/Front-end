@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { keyframes } from "styled-components";
 import Headers from "../components/common/Headers";
 import HeaderLogo from "../components/features/myCollection/HeaderLogo";
-import eventPage from "../shared/svg/eventPage.png";
+import eventPage from "../shared/images/eventPage.webp";
 import Layout from "../components/common/Layout";
 const EventPage = () => {
   return (

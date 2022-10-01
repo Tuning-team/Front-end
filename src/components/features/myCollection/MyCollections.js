@@ -5,12 +5,12 @@ import throttle from "lodash/throttle";
 import MyVideo from "../myCollection/MyVideo";
 import icon_like_black from "../../../shared/svg/16_ena_like.svg";
 import icon_comment from "../../../shared/svg/16_ena_comment.svg";
-import icon_next_white from "../../../shared/svg/icon_next_white.svg";
 import NoData from "../../common/NoData";
-import MyCollectionsLoading from "./Skeleton";
+import Skeleton from "../myCollection/Skeleton";
 
 const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
   const nav = useNavigate();
+
   useEffect(() => {
     window.addEventListener("scroll", infiniteScroll);
     return () => {
@@ -22,7 +22,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight) {
+    if (setCount && scrollTop + clientHeight >= scrollHeight) {
       setCount((prev) => prev + 5);
     }
   };
@@ -37,10 +37,6 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
         return (
           <Collection key={idx}>
             <ImgWrap onClick={() => nav(`/collection/${data._id}`)}>
-              {/* <ClickBox>
-                <IconNext src={icon_next_white} alt="icon"></IconNext>
-                {/* <VideoNum>{videoNum}</VideoNum> */}
-              {/* </ClickBox> */}
               <MyVideo
                 src={data.thumbnails[0]}
                 videoNum={data?.thumbnails.length}
@@ -67,7 +63,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
           </Collection>
         );
       })}
-      {hasNext && state?.length !== 0 && <MyCollectionsLoading />}
+      {hasNext && state?.length !== 0 && <Skeleton />}
     </ListWrap>
   );
 };
@@ -186,28 +182,4 @@ const Icon = styled.img`
 `;
 const IconNum = styled.span`
   margin: 0px 6px 0px 6px;
-`;
-const ClickBox = styled.div`
-  background-color: rgba(0, 0, 0, 0.4);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 21%;
-  height: 100%;
-  left: 79%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 300;
-`;
-const IconNext = styled.img`
-  width: 3rem;
-  height: 1.5rem;
-`;
-const VideoNum = styled.span`
-  color: #ffffff;
-  font-size: 0.75rem;
-  padding-top: 5px;
 `;

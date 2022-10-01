@@ -23,6 +23,15 @@ const initialState = {
   },
   searchResult: {
     loading: false,
+    // data: [
+    //   {
+    //     uploader: { url: "", username: "" },
+    //     video: {
+    //       id: "",
+    //       title: "",
+    //     },
+    //   },
+    // ],
     data: [],
     nextPageToken: "",
     key: "",
@@ -73,7 +82,7 @@ export const postCollection = createAsyncThunk(
     try {
       const res = await instance.post("/collections", addData);
       setToastState(true);
-      window.location.href = "/myPage";
+      window.location.href = "/myPage/myCollection";
       return res.data.success;
     } catch (error) {
       alert(error.response.data.message);
@@ -159,7 +168,7 @@ export const getKeptCollection = createAsyncThunk(
   async (count) => {
     try {
       const res = await instance(
-        `/collections/mykeeps?offset=${count}&limit=100`
+        `/collections/mykeeps?offset=${count}&limit=5`
       );
 
       return res.data;
