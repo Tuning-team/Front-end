@@ -3,7 +3,7 @@ name: Deploy to Production
 on:
   push:
     branches:
-      - features
+      - feature_addCollection
 
 jobs:
   deploy:
