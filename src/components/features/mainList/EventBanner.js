@@ -19,6 +19,7 @@ const Wrap = styled.div`
 `;
 const Img = styled.img`
   width: 100%;
+  max-width: 432px;
   box-shadow: 5px 5px 15px 0 rgb(24 32 74 / 10%);
   border-radius: 15px;
 `;

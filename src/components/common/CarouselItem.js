@@ -10,7 +10,7 @@ const CarouselItem = (props) => {
       maxwidth={props.maxwidth}
     >
       <div className="card-top">
-        <img src={props.src} alt={props.alt} />
+        <img src={props.src} alt={props.alt} loading="lazy" />
       </div>
       <div className="card-bottom">
         <h6>{props.title || props.children}</h6>

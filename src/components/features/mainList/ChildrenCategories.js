@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategoryCollectionForMain } from "../../../redux/modules/categorySlice";
 import Carousel from "../../common/Carousel";
 import CarouselItem from "../../common/CarouselItem";
 import SeeMore from "../../common/elements/SeeMore";
+
 const ChildrenCategories = (props) => {
   const nav = useNavigate();
 
@@ -67,9 +66,6 @@ const Section = styled.div`
   & h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
     letter-spacing: -0.6px;
     height: 2.25rem;
     margin: 0 1.25rem 0.625rem 0;
