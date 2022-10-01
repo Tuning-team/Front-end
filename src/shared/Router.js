@@ -49,8 +49,8 @@ function Router() {
           <Route path="/event" element={<EventPage />} />
 
           {/* error 경로 */}
-          {/* <Route path="/*" element={<ErrorPage />} /> */}
-          <Route path="/*" element={<Navigate to="/mainPage" />} />
+          <Route path="/*" element={<ErrorPage />} />
+          {/* <Route path="/*" element={<Navigate to="/mainPage" />} /> */}
 
           {/* private 경로 */}
           <Route

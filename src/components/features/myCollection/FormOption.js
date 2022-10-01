@@ -19,12 +19,10 @@ const FormOption = ({ onChange, category_id, categories }) => {
 };
 export default FormOption;
 const Wrap = styled.div`
-  width:100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items
   height: 6rem;
-  margin:0 0 1.25rem 0
 `;
 const Label = styled.label`
   display: flex;
@@ -57,5 +55,4 @@ const Option = styled.option`
   border-radius: 8px;
   border: solid 1px #eee;
   font-size: 1.125rem;
-  color: var(--color-background);
 `;

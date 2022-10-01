@@ -101,8 +101,11 @@ export default EditCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.125rem 1.5rem 1rem 1.5rem;
   // margin-bottom: 5.25rem;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100vh;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Form = styled.div`
