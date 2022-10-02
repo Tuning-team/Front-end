@@ -10,6 +10,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     # runs-on: ubuntu-20.04
+     strategy:
+      matrix:
+        node-versions: [16.x]
 
     steps:
       - name: Checkout source code
@@ -43,5 +46,5 @@ jobs:
             --region ap-northeast-2 \
             build s3://hanghaegaelog
 
-      # - name: Invalidate CloudFront Cache
-      #   run: aws cloudfront create-invalidation --distribution-id ${{secrets.CLOUDFRONT_DISTRIBUTION_ID}} --paths "/*"
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{secrets.CLOUDFRONT_DISTRIBUTION_ID}} --paths "/*"
