@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getCategory } from "../../../../redux/modules/categorySlice";
 import useInputs from "../../../hooks/useInput";
 import FormTitle from "./FormTitle";
