@@ -14,7 +14,7 @@
 
 > ## 프로젝트 소개
 >
-> <br>
+>  <br>
 
 - ### 📆 프로젝트 기간
 
@@ -59,7 +59,7 @@
 
 > ## 프로젝트 아키텍처
 >
-> <br>
+>  <br>
 
 ![architecture](https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/db1c34b9-3670-472f-89c4-80b65acd4874)
 
