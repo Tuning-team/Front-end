@@ -17,7 +17,7 @@ export const addComment = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return error.message;
+      return alert(error.response.data.errorMessage);
     }
   }
 );
