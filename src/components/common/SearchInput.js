@@ -39,7 +39,7 @@ const SearchInput = (props) => {
           // type={props.type || "text"}
           onClick={props.onClick || null}
         />
-        <StBtn>
+        <StBtn disabled={props.disabled}>
           <StIconSearch fill="#505050" />
         </StBtn>
       </Form>

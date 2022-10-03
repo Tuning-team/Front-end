@@ -73,6 +73,7 @@ const MainListWrap = () => {
         <SearchInput
           backgroundColor={"#ffffff"}
           onClick={() => nav("/search")}
+          disabled={true}
         />
         <InterestedCategories />
       </StyleBackground>

@@ -1,9 +1,12 @@
+import React from "react";
 import styled from "styled-components";
-import { getCookie } from "../../../shared/cookie";
+import { getCookie } from "../../../shared/util/cookie";
+
 const SearchNoData = () => {
   return (
     <Wrap>
-      <P> 새로운 튜닝을 만들어보세요! </P>
+      <P>검색 결과가 존재하지 않습니다.</P>
+      <P>나만의 새로운 튜닝을 만들어 볼까요?</P>
       <A
         href={getCookie("token") === undefined ? "/login" : "/myCollection/add"}
       >
@@ -15,18 +18,16 @@ const SearchNoData = () => {
 export default SearchNoData;
 
 const Wrap = styled.div`
-  background-color: var(--color-background);
-  width: 22rem;
-  height: 40rem;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 2rem;
 `;
 const P = styled.p`
   font-size: 1.25rem;
   font-weight: bold;
   text-align: left;
-  color: white;
+  color: #808080;
 `;
 const A = styled.a`
   color: var(--color-disabled);
