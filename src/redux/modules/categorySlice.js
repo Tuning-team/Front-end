@@ -68,32 +68,6 @@ export const getMainCategories = createAsyncThunk(
   }
 );
 
-export const getCategoryCollectionForMain = createAsyncThunk(
-  "get/categoryCollectionForMain",
-  async (categoryId) => {
-    try {
-      const res = await instance.get(
-        `/collections?category_id=${categoryId}&offset=0&limit=10`
-      );
-      if (categoryId === "631e7d7a4ae4c133c405a966") {
-        const res1 = res.data;
-        return { resName: "resOfRecommend", resArr: res1.data };
-      } else if (categoryId === "6319aeebd1e330e86bbade9f") {
-        const res2 = res.data;
-        return { resName: "resOfFamous", resArr: res2.data };
-      } else if (categoryId === "631e7d7a4ae4c133c405a964") {
-        const res3 = res.data;
-        return { resName: "resOfRecent", resArr: res3.data };
-      } else if (categoryId === "631e7d7a4ae4c133c405a965") {
-        const res4 = res.data;
-        return { resName: "resOfWeather", resArr: res4.data };
-      }
-    } catch (error) {
-      return error.message;
-    }
-  }
-);
-
 export const categorySlice = createSlice({
   name: "category",
   initialState,
@@ -145,21 +119,6 @@ export const categorySlice = createSlice({
     });
     builder.addCase(getMainCategories.rejected, (state, action) => {
       state.mainCategories.loading = false;
-    });
-    // !임시
-    builder.addCase(getCategoryCollectionForMain.pending, (state, action) => {
-      state.categoryCollectionForMain.isLoading = true;
-    });
-    builder.addCase(getCategoryCollectionForMain.fulfilled, (state, action) => {
-      state.categoryCollectionForMain.isLoading = false;
-      state.categoryCollectionForMain.dataList = [
-        ...state.categoryCollectionForMain.dataList,
-        action.payload,
-      ];
-    });
-    builder.addCase(getCategoryCollectionForMain.rejected, (state, action) => {
-      state.categoryCollectionForMain.isLoading = false;
-      state.categoryCollectionForMain.error = action.error.message;
     });
   },
 });
