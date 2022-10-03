@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getList } from "../../../redux/modules/searchSlice";
-import { ReactComponent as IconSearch } from "../../../shared/svg/24_ena_search.svg";
-import ToastNotification from "../ToastNotification";
+import { getList } from "../../redux/modules/searchSlice";
+import { ReactComponent as IconSearch } from "../../shared/icon/24_ena_search.svg";
+import ToastNotification from "./ToastNotification";
 
 const SearchInput = (props) => {
   const nav = useNavigate();
@@ -39,7 +39,7 @@ const SearchInput = (props) => {
           // type={props.type || "text"}
           onClick={props.onClick || null}
         />
-        <StBtn>
+        <StBtn disabled={props.disabled}>
           <StIconSearch fill="#505050" />
         </StBtn>
       </Form>

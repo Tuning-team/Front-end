@@ -15,4 +15,5 @@ export default configureStore({
     userSlice: userSlice.reducer,
     categorySlice: categorySlice.reducer,
   },
+  devTools: process.env.NODE_ENV !== "development",
 });

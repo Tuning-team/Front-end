@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Frame from "../../../shared/svg/logo_without_triangle.svg";
-import icon_back_enabled from "../../../shared/svg/24_ena_back.svg";
+import Frame from "../../../shared/icon/logo_without_triangle.svg";
+import icon_back_enabled from "../../../shared/icon/24_ena_back.svg";
 import { useNavigate } from "react-router-dom";
 
 const HeaderLogo = () => {

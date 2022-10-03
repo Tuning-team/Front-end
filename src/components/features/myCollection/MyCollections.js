@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
 import MyVideo from "../myCollection/MyVideo";
-import icon_like_black from "../../../shared/svg/16_ena_like.svg";
-import icon_comment from "../../../shared/svg/16_ena_comment.svg";
+import icon_like_black from "../../../shared/icon/16_ena_like.svg";
+import icon_comment from "../../../shared/icon/16_ena_comment.svg";
 import NoData from "../../common/NoData";
 import Skeleton from "../myCollection/Skeleton";
 
@@ -26,7 +26,7 @@ const MyCollections = ({ state, setCount, title, hasNext, totalContents }) => {
       setCount((prev) => prev + 5);
     }
   };
-  const infiniteScroll = throttle(useHandleScroll, 1000);
+  const infiniteScroll = throttle(useHandleScroll, 700);
   return (
     <ListWrap>
       <VideoInfo>
@@ -105,11 +105,9 @@ const ImgWrap = styled.div`
 const Collection = styled.section`
   width: 100%;
   height: 100%;
-  padding-top: 50%;
   position: relative;
   display: flex;
-  padding-top: 56.25%;
-
+  cursor: pointer;
   @media screen and (max-width: 334px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -117,11 +115,9 @@ const Collection = styled.section`
       width: 100%;
     }
   }
-
   gap: 1rem;
   background-color: #ffffff;
   border-radius: 8px;
-
   margin-bottom: 1rem;
   box-shadow: var(--box-shadow);
   padding: 1rem;

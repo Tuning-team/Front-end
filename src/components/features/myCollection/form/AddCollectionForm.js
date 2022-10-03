@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-import { getCategory } from "../../../redux/modules/categorySlice";
-import useInputs from "../../hooks/useInput";
-import FormTitle from "../myCollection/FormTitle";
-import FormInput from "../myCollection/FormInput";
-import FormOption from "../myCollection/FormOption";
-import FormTextarea from "../myCollection/FormTextarea";
-import FormVideo from "../myCollection/FormVideo";
-import ToastNotification from "../../common/ToastNotification";
+import { getCategory } from "../../../../redux/modules/categorySlice";
+import useInputs from "../../../hooks/useInput";
+import FormTitle from "./FormTitle";
+import FormInput from "./FormInput";
+import FormOption from "./FormOption";
+import FormTextarea from "./FormTextarea";
+import FormVideo from "./FormVideo";
+import ToastNotification from "../../../common/ToastNotification";
 import {
   postCollection,
   rememberData,
-} from "../../../redux/modules/collectionSlice";
+} from "../../../../redux/modules/collectionSlice";
 
 const AddCollectionForm = () => {
   const nav = useNavigate();

@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as CloseIcon } from "../../shared/svg/24_ena_close.svg";
+import { ReactComponent as CloseIcon } from "../../shared/icon/24_ena_close.svg";
 const Modal = (props) => {
   const closeModal = () => {
     props.setModal((prev) => !prev);
   };
 
   return (
-    <ModalBackground onClick={closeModal} backdrop={props.backdrop}>
+    <ModalBackground
+      onClick={closeModal}
+      backdrop={props.backdrop}
+      borderRadius={props.borderRadius}
+    >
       <ModalContainer onClick={(e) => e.stopPropagation()}>
         {props.modalKeyword && (
           <ModalKeyword>{props.modalKeyword}</ModalKeyword>
@@ -30,10 +34,10 @@ const ModalBackground = styled.div`
   transform: translateX(-50%);
   z-index: 500;
   text-align: center;
-
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: ${(props) => props.backdrop || "blur(4px)"};
-
+  border-radius: ${(props) => props.borderRadius || "0"};
+  /* 16 16 0 0  */
   @media screen and (max-width: 479px) {
     width: 100vw;
   }

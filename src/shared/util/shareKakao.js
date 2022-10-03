@@ -1,5 +1,4 @@
 const shareKakao = (data) => {
-  console.log(data);
   if (!window.Kakao.isInitialized()) {
     window.Kakao.init("619cfb7c202434b27d1c685581b2544f");
   }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { getCookie, removeCookie } from "../../../shared/cookie";
+import { getCookie, removeCookie } from "../../../shared/util/cookie";
 import ToastNotification from "../../common/ToastNotification";
 
 const LoginSignupWrap = () => {
@@ -30,8 +29,7 @@ const LoginSignupWrap = () => {
         removeCookie("token");
         localStorage.removeItem("userInfo");
       }
-    }, 1500);
-    // console.log(getCookie("token"));
+    }, 1000);
   };
 
   return (

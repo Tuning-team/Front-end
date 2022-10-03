@@ -1,33 +1,37 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getCookie } from "./cookie";
-import Loading from "../components/common/Loading";
+import Loading from "../../components/common/Loading";
 import ScrollTop from "./ScrollTop";
 
 function Router() {
-  const WelcomePage = lazy(() => import("../pages/WelcomePage"));
-  const MainPage = lazy(() => import("../pages/MainPage"));
-  const EventPage = lazy(() => import("../pages/EventPage"));
-  const LoginSignupPage = lazy(() => import("../pages/LoginSignupPage"));
-  const GoogleLoginPage = lazy(() => import("../pages/GoogleLoginPage"));
-  const SearchPage = lazy(() => import("../pages/SearchPage"));
-  const CategoryPage = lazy(() => import("../pages/CategoryPage"));
-  const CollectionPage = lazy(() => import("../pages/CollectionPage"));
-  const ErrorPage = lazy(() => import("../pages/ErrorPage"));
+  const WelcomePage = lazy(() => import("../../pages/WelcomePage"));
+  const MainPage = lazy(() => import("../../pages/MainPage"));
+  const EventPage = lazy(() => import("../../pages/EventPage"));
+  const LoginSignupPage = lazy(() => import("../../pages/LoginSignupPage"));
+  const GoogleLoginPage = lazy(() => import("../../pages/GoogleLoginPage"));
+  const SearchPage = lazy(() => import("../../pages/SearchPage"));
+  const CategoryPage = lazy(() => import("../../pages/CategoryPage"));
+  const CollectionPage = lazy(() => import("../../pages/CollectionPage"));
+  const ErrorPage = lazy(() => import("../../pages/ErrorPage"));
   const PrivateRoute = lazy(() => import("./PrivateRoute"));
-  const MyPage = lazy(() => import("../pages/MyPage"));
+  const MyPage = lazy(() => import("../../pages/MyPage"));
   const MyCollection = lazy(() =>
-    import("../components/features/user/MyCollection")
+    import("../../components/features/myCollection/MyCollection")
   );
   const MyKeptCollection = lazy(() =>
-    import("../components/features/user/MyKeptCollection")
+    import("../../components/features/myCollection/MyKeptCollection")
   );
   const MyLikedCollection = lazy(() =>
-    import("../components/features/user/MyLikedCollection")
+    import("../../components/features/myCollection/MyLikedCollection")
   );
-  const AddCollectionPage = lazy(() => import("../pages/AddCollectionPage"));
-  const AddVideoSearchPage = lazy(() => import("../pages/AddVideoSearchPage"));
-  const EditCollectionPage = lazy(() => import("../pages/EditCollectionPage"));
+  const AddCollectionPage = lazy(() => import("../../pages/AddCollectionPage"));
+  const AddVideoSearchPage = lazy(() =>
+    import("../../pages/AddVideoSearchPage")
+  );
+  const EditCollectionPage = lazy(() =>
+    import("../../pages/EditCollectionPage")
+  );
 
   const access = !!getCookie("token");
   return (

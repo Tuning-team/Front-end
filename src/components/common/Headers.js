@@ -1,20 +1,25 @@
-import React, { Children, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as Logo } from "../../shared/svg/logo_without_triangle.svg";
-import icon_category from "../../shared/svg/24_ena_category.svg";
-import icon_back from "../../shared/svg/24_ena_back.svg";
+import { ReactComponent as Logo } from "../../shared/icon/logo_without_triangle.svg";
+import icon_category from "../../shared/icon/24_ena_category.svg";
+import icon_back from "../../shared/icon/24_ena_back.svg";
 
 const Headers = (props) => {
   const nav = useNavigate();
   const location = useLocation();
   const path = location.pathname;
   const [src, setSrc] = useState(icon_category);
-  const leftBtnHandler = () => {
-    path === "/mainPage" ? setIsCategoryShown(!isCategoryShown) : nav(-1);
-  };
   const [isCategoryShown, setIsCategoryShown] = useState(false);
+
+  const leftBtnHandler = () => {
+    if (path === "/mainPage") {
+      setIsCategoryShown(!isCategoryShown);
+    } else if (path === "/login") {
+      nav("/mainPage");
+    } else nav(-1);
+  };
 
   useEffect(() => {
     if (path === "/mainPage") {
@@ -33,7 +38,7 @@ const Headers = (props) => {
       )}
 
       <Wrap>
-        <LeftBtn src={src} onClick={leftBtnHandler} />
+        <LeftBtn src={src} onClick={leftBtnHandler} alt="버튼아이콘" />
         <StyleLogo onClick={() => nav("/mainPage")} />
         <RightBtn>{props.children}</RightBtn>
       </Wrap>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import tuningLogo from "../../shared/svg/icon_welcome.svg";
+import tuningLogo from "../../shared/icon/icon_welcome.svg";
 
 const DesktopBackground = (props) => {
   return (
