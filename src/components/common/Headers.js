@@ -38,7 +38,7 @@ const Headers = (props) => {
       )}
 
       <Wrap>
-        <LeftBtn src={src} onClick={leftBtnHandler} />
+        <LeftBtn src={src} onClick={leftBtnHandler} alt="버튼아이콘" />
         <StyleLogo onClick={() => nav("/mainPage")} />
         <RightBtn>{props.children}</RightBtn>
       </Wrap>

@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   height: 100%;
   padding-top: 56.25%;
   overflow: hidden;
+  cursor: pointer;
 `;
 const Img = styled.img`
   position: absolute;
