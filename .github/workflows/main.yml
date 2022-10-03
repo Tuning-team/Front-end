@@ -10,9 +10,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-      strategy:
-      matrix:
-        node-versions: [16.x]
 
     steps:
       - name: Checkout source code
