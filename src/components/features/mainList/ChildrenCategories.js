@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import Carousel from "../../common/Carousel";
-import CarouselItem from "../../common/CarouselItem";
-import SeeMore from "../../common/elements/SeeMore";
-
+import Carousel from "./Carousel";
+import CarouselItem from "./CarouselItem";
+import SeeMore from "../../common/SeeMore";
 const ChildrenCategories = (props) => {
   const nav = useNavigate();
 

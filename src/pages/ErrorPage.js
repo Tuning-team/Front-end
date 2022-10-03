@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/common/Layout";
-import Button from "../components/common/elements/Button";
-import { ReactComponent as Logo } from "../shared/svg/logo_without_triangle.svg";
+import { ReactComponent as Logo } from "../shared/icon/logo_without_triangle.svg";
 import errorImg from "../shared/images/error_triangle.webp";
 import styled from "styled-components";
 

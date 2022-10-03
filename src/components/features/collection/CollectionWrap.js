@@ -9,7 +9,7 @@ import CollectionVideoList from "./CollectionVideoList";
 import CommentForm from "../comment/CommentForm";
 import { keyframes } from "styled-components";
 import Headers from "../../common/Headers";
-import icon_more from "../../../shared/svg/24_ena_more_main.svg";
+import icon_more from "../../../shared/icon/24_ena_more_main.svg";
 
 const CollectionWrap = () => {
   const param = useParams();

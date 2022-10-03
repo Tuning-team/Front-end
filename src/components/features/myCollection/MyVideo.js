@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import icon_next_white from "../../../shared/svg/icon_next_white.svg";
+import icon_next_white from "../../../shared/icon/icon_next_white.svg";
 const MyVideo = ({ src, videoNum }) => {
   return (
     <Wrapper>

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useLocation, useNavigate } from "react-router-dom";
-import { getCookie } from "../../shared/cookie";
+import { getCookie } from "../../shared/util/cookie";
 import { useDispatch } from "react-redux";
 import { getUserInfo } from "../../redux/modules/userSlice";
 import CategoryModal from "./CategoryModal";
-import { ReactComponent as HomeIcon } from "../../shared/svg/24_ena_home.svg";
-import { ReactComponent as CategoryIcon } from "../../shared/svg/24_ena_category_nav.svg";
-import { ReactComponent as SearchIcon } from "../../shared/svg/24_ena_search.svg";
-import { ReactComponent as MyIcon } from "../../shared/svg/24_ena_my.svg";
+import { ReactComponent as HomeIcon } from "../../shared/icon/24_ena_home.svg";
+import { ReactComponent as CategoryIcon } from "../../shared/icon/24_ena_category_nav.svg";
+import { ReactComponent as SearchIcon } from "../../shared/icon/24_ena_search.svg";
+import { ReactComponent as MyIcon } from "../../shared/icon/24_ena_my.svg";
 
 const Navbar = () => {
   const location = useLocation().pathname;

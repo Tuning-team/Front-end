@@ -8,11 +8,11 @@ import {
   addComment,
 } from "../../../redux/modules/commentSlice";
 import { getUserInfo } from "../../../redux/modules/userSlice";
-import { ReactComponent as IconMore } from "../../../shared/svg/24_ena_more.svg";
-import { ReactComponent as IconActSend } from "../../../shared/svg/24_act_send.svg";
-import { ReactComponent as IconSend } from "../../../shared/svg/24_ena_send.svg";
-import { ReactComponent as IconEdit } from "../../../shared/svg/24_ena_edit.svg";
-import { ReactComponent as IconDelete } from "../../../shared/svg/24_ena_delete.svg";
+import IconActSend from "../../../shared/icon/24_act_send.svg";
+import IconSend from "../../../shared/icon/24_ena_send.svg";
+import IconMore from "../../../shared/icon/24_ena_more.svg";
+import IconDelete from "../../../shared/icon/24_ena_delete.svg";
+import IconEdit from "../../../shared/icon/24_ena_edit.svg";
 import Modal from "../../common/Modal";
 
 const CommentList = ({ collectionId }) => {
@@ -88,45 +88,19 @@ const CommentList = ({ collectionId }) => {
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          <Modal setModal={setModal} margin="2rem auto 1rem auto" backdrop="none" >
-            <StBtnDiv onClick={onModify} style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#f5f5f5",
-              borderRadius: "8px",
-              padding: "0.3rem 0.5rem",
-              margin: "0.5em 0"
-            }}>
-              <IconEdit style={{
-                height: "1.5rem",
-                width: "1.5rem",
-                pointerEvents: "none",
-              }} />
-              <StBtn style={{
-                pointerEvents: "none",
-              }}>수정하기</StBtn>
+          <Modal setModal={setModal}
+            margin="2rem auto 1rem auto"
+            backdrop="none"
+            borderRadius="16px 16px 0 0"
+          >
+            <StBtnDiv onClick={onModify} >
+              <StIconImg src={IconEdit} />
+              <StBtn>수정하기</StBtn>
             </StBtnDiv>
 
-            <StBtnDiv onClick={onDelete} id={commentData}
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                backgroundColor: "#f5f5f5",
-                borderRadius: "8px",
-                padding: "0.3rem 0.5rem",
-                margin: "0.5em 0"
-              }}>
-              <IconDelete style={{
-                height: "1.5rem",
-                width: "1.5rem",
-                pointerEvents: "none",
-              }} />
-              <StBtn style={{
-                pointerEvents: "none",
-              }}>삭제하기
-              </StBtn>
+            <StBtnDiv onClick={onDelete} id={commentData}>
+              <StIconImg src={IconDelete} />
+              <StBtn>삭제하기</StBtn>
             </StBtnDiv>
           </Modal>
         ) : (
@@ -166,14 +140,9 @@ const CommentList = ({ collectionId }) => {
                       value={data.user_id}
                       title={data.comment}
                     >
-                      <IconMore
+                      <StIconImg
                         setModal={setModal}
-                        style={{
-                          pointerEvents: "none",
-                          width: "1.125rem",
-                          height: "1.125rem",
-                        }}
-                      />
+                        src={IconMore} />
                     </StCommentBtn>
                   </StProfileDiv>
                 );
@@ -195,15 +164,11 @@ const CommentList = ({ collectionId }) => {
               type="text"
               onChange={(e) => setFixValue(e.target.value)}
               value={fixValue}
-              placeholder="수정할 내용을 입력해주세요 ;)"
+              maxLength={50}
+              placeholder=" 수정할 댓글을 작성해주세요 ;)"
             />
             <StButton type="submit">
-              <IconSend
-                style={{
-                  height: "1.5rem",
-                  width: "1.5rem",
-                }}
-              />
+              <StIconImg src={IconSend} />
             </StButton>
           </StInputDiv>
         </StCommentForm>
@@ -215,35 +180,33 @@ const CommentList = ({ collectionId }) => {
                 type="text"
                 onChange={(e) => setInputValue(e.target.value)}
                 value={inputValue}
+                maxLength={50}
                 placeholder="ㅤ댓글을 작성해주세요 :-D"
               ></StInput>
               {inputValue.length !== 0 ? (
                 <StButton type="submit">
-                  <IconActSend
-                    style={{
-                      height: "1.5rem",
-                      width: "1.5rem",
-                    }}
-                  />
+                  <StIconImg src={IconActSend} />
                 </StButton>
               ) : (
-                <StButton style={{ cursor: "arrow" }}>
-                  <IconSend
-                    style={{
-                      height: "1.5rem",
-                      width: "1.5rem",
-                    }}
-                  />
+                <StButton>
+                  <StIconImg src={IconSend} />
                 </StButton>
               )}
             </StInputDiv>
           </StCommentForm>
         </>
-      )}
-    </StContainer>
+      )
+      }
+    </StContainer >
   );
 };
 export default CommentList;
+
+const StIconImg = styled.img`
+  height: 1.5rem;
+  width: 1.5rem;
+  pointer-events: none;
+`;
 
 const StCommentSpan = styled.span`
   font-size: 0.8rem;
@@ -252,24 +215,25 @@ const StCommentSpan = styled.span`
   display: -webkit - box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: clip;
 `;
 
 const StBtnDiv = styled.div`
-display: flex;
-              flex-direction: row;
-              align-items: center;
-              background-color: #f5f5f5;
-              border-radius: 8px;
-              padding: 0.3rem 0.5rem;
-              margin: 0.5em 0; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+  margin: 0.5em 0; 
 `
 
 const StBtn = styled.div`
+  pointer-events: none;
   font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: -0.7px;
   text-align: center;
-  /* padding: 7px; */
   padding-left: 10px;
   border-bottom: 1px solid #eee;
   &:nth-child(2) {
@@ -302,7 +266,6 @@ const StContainer = styled.div`
 `;
 const StWrap = styled.div`
   height: 30.5rem;
-  /* width: 360px; */
   background-color: transparent;
   overflow: scroll;
   &::-webkit-scrollbar {
@@ -328,6 +291,7 @@ const StInput = styled.input`
   outline: none;
   border-radius: 1rem;
   background-color: #f5f5f5;
+  -webkit-line-clamp: 3;
 `;
 
 const StInputDiv = styled.div`
@@ -336,6 +300,7 @@ const StInputDiv = styled.div`
 `;
 
 const StButton = styled.button`
+  cursor: arrow;
   background: none;
   border: none;
   outline: none;
@@ -361,7 +326,11 @@ const StCommentImgDiv = styled.div`
 `;
 
 const StCommentBtn = styled.button`
+  height: 2.5rem;
+  width: 2.5rem;
   display: flex;
+  right: 40px;
+  position: fixed;
   justify-content: center;
   vertical-align: middle;
   background: none;

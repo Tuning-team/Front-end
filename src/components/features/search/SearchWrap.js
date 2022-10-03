@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { resetKeyword } from "../../../redux/modules/searchSlice";
 import Loading from "../../common/Loading";
-import SearchInput from "../../common/elements/SearchInput";
+import SearchInput from "../../common/SearchInput";
 import MyCollections from "../myCollection/MyCollections";
 
 const SearchWrap = () => {

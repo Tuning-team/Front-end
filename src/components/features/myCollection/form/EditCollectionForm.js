@@ -5,17 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   rememberData,
   deleteVideo,
-} from "../../../redux/modules/collectionSlice";
-import { getCategory } from "../../../redux/modules/categorySlice";
-import useInputs from "../../hooks/useInput";
-import { editCollection } from "../../../redux/modules/collectionSlice";
-import Modal from "../../common/Modal";
+} from "../../../../redux/modules/collectionSlice";
+import { getCategory } from "../../../../redux/modules/categorySlice";
+import useInputs from "../../../hooks/useInput";
+import { editCollection } from "../../../../redux/modules/collectionSlice";
+import Modal from "../../../common/Modal";
 import FormTitle from "./FormTitle";
 import FormInput from "./FormInput";
 import FormOption from "./FormOption";
 import FormTextarea from "./FormTextarea";
 import FormVideo from "./FormVideo";
-import ToastNotification from "../../common/ToastNotification";
+import ToastNotification from "../../../common/ToastNotification";
 
 const EditCollectionForm = ({ data }) => {
   const nav = useNavigate();

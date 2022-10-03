@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../../shared/cookie";
+import { getCookie } from "../../../shared/util/cookie";
 import { getCategory } from "../../../redux/modules/categorySlice";
 import {
   deleteUserInterest,
