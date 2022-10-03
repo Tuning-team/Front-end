@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { resetVideoId } from "../../../redux/modules/tempCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import YoutubeContainer from "./YoutubeContainer";
+import YoutubePlayer from "./YoutubePlayer";
 import CollectionInformation from "./CollectionInformation";
 import CollectionVideoList from "./CollectionVideoList";
 import CommentForm from "../comment/CommentForm";
@@ -15,7 +15,6 @@ const CollectionWrap = () => {
   const param = useParams();
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  const [tabClicked, setTabClicked] = useState(false);
   const [slideState, setSlideState] = useState(false);
 
   const onClickedCommentBtn = () => {
@@ -40,7 +39,7 @@ const CollectionWrap = () => {
           }}
         />
       </Headers>
-      <YoutubeContainer />
+      <YoutubePlayer />
       <CollectionInformation
         collectionId={param.collection_id}
         modal={modal}

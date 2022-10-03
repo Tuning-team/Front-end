@@ -9,7 +9,6 @@ import {
   getUserInterest,
 } from "../../../redux/modules/userSlice";
 import { categoryList } from "./categoryData";
-import SetUserInterestForm from "../myCollection/form/SetUserInterestForm";
 
 const InterestedCategories = () => {
   const nav = useNavigate();
@@ -21,25 +20,12 @@ const InterestedCategories = () => {
   //! 유저 정보
   const data = useSelector((state) => state.userSlice.userInterest.data);
 
-  //! 모달 열었을떄 카테고리 정보
-  const categoriesArr = useSelector(
-    (state) => state.categorySlice.category.data
-  );
-  const [categories, setCategories] = useState();
-
   useEffect(() => {
     dispatch(getCategory());
     if (isLoggedIn) {
       dispatch(getUserInterest());
     }
   }, []);
-
-  //! 모달 여닫는 로직
-  const [modal, setModal] = useState(false);
-  const showModal = () => {
-    setModal((prev) => !prev);
-    setCategories(categoriesArr);
-  };
 
   //! 로컬에 있는 카테고리리스트에서 유저가 가지고 있는 관심사 카테고리id가 일치하는 내역만 뽑아낸 배열
   const userInterestArr = categoryList.filter((item) =>
@@ -57,7 +43,6 @@ const InterestedCategories = () => {
     <Wrap>
       <Title>
         <h1>관심있는 카테고리</h1>
-        {/* <SeeMore>더보기</SeeMore> */}
       </Title>
       <BodyContainer>
         {!isLoggedIn ? (
@@ -89,13 +74,6 @@ const InterestedCategories = () => {
         )}
       </BodyContainer>
       {/* <button onClick={deleteInterest}>임시 관심사 삭제</button> */}
-      {modal && (
-        <SetUserInterestForm
-          setModal={setModal}
-          modal={modal}
-          categories={categories}
-        />
-      )}
     </Wrap>
   );
 };
@@ -110,13 +88,9 @@ const Wrap = styled.div`
 `;
 
 const Title = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
   margin-bottom: 0.938rem;
   height: 2.188rem;
   & h1 {
-    margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
     letter-spacing: -1.2px;
@@ -164,10 +138,7 @@ const CategoryCard = styled.div`
     margin: 0.5rem 0 0.625rem 0;
     font-size: 0.875rem;
     font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
     line-height: 1.29;
-    letter-spacing: normal;
     text-align: center;
     color: #191919;
   }
@@ -180,12 +151,7 @@ const CategoryCard = styled.div`
     background-color: #572cff;
     color: white;
     font-size: 0.813rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
     line-height: 1.38;
-    letter-spacing: normal;
-    text-align: center;
   }
 `;
 const Img = styled.div`
