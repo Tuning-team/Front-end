@@ -2,9 +2,9 @@ name: Deploy to Production
 
 on:
   push:
-
-  branches:
-    - feature_addCollection
+    # pull_request:
+    branches:
+      - feature_addCollection
 
 jobs:
   deploy:
