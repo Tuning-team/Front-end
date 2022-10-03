@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Modal from "../../../common/Modal";
-import { postUserInterest } from "../../../../redux/modules/userSlice";
+import {
+  postUserInterest,
+  deleteUserInterest,
+  getUserInterest,
+} from "../../../../redux/modules/userSlice";
 import ToastNotification from "../../../common/ToastNotification";
-import { getUserInterest } from "../../../../redux/modules/userSlice";
 
 const SetUserInterestForm = ({ setModal, modal, categories }) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getUserInterest());
-  }, []);
 
   const [toastState, setToastState] = useState(false);
   const [toastText, setToastText] = useState("");
+  const [interests, setInterests] = useState([]);
 
   //! 유저가 담는 관심사(~ing)
-  const [interests, setInterests] = useState([]);
   const onChecked = (e) => {
     if (e.target.checked) {
       setInterests([...interests, e.target.value]);
@@ -27,11 +27,10 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
 
   // ! 유저가 담은 관심사(past)
   const userCategory = useSelector(
-    (state) => state.userSlice.userInterest.userCategory
+    (state) => state.userSlice.userInterest.data.categories
   );
 
   //! 관심사 선택 전송
-  let totalInterstsCount = userCategory.length + interests.length;
   const onSubmit = () => {
     if (interests.length > 0 && interests.length <= 4) {
       dispatch(postUserInterest(interests.join(",")));
@@ -44,7 +43,14 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
       setToastState(true);
     }
   };
+  const deleteFromUserInterest = (categoryId) => {
+    dispatch(deleteUserInterest(categoryId));
+    console.log(categoryId);
+  };
 
+  useEffect(() => {
+    dispatch(getUserInterest());
+  }, [dispatch]);
   return (
     <>
       <Modal
@@ -52,6 +58,7 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
         modal={modal}
         modalKeyword="키워드 설정"
         margin="1.25rem 0 0.25rem 0"
+        width="calc(100% - 3rem)"
       >
         <ModalContents>
           <SectionTitle>
@@ -59,8 +66,13 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
             <span> {userCategory.length}</span>
           </SectionTitle>
           <PickedCategories>
-            {userCategory.map((item, idx) => (
-              <p key={idx}>{item}</p>
+            {userCategory?.map((item) => (
+              <p
+                key={item._id}
+                onClick={() => deleteFromUserInterest(item._id)}
+              >
+                {item.categoryName}
+              </p>
             ))}
           </PickedCategories>
           <SectionTitle>
@@ -73,7 +85,7 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
           <SectionCategories>
             {categories?.map((elem) => {
               return (
-                <Label key={elem._id}>
+                <Label key={elem._id} value={elem._id}>
                   <input
                     type="checkbox"
                     onChange={onChecked}
@@ -97,15 +109,18 @@ const SetUserInterestForm = ({ setModal, modal, categories }) => {
   );
 };
 export default SetUserInterestForm;
-const Label = styled.label``;
+const Label = styled.label`
+  & input {
+    appearance: auto;
+    accent-color: #572cff;
+    margin-right: 5px;
+  }
+`;
 const ModalContents = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   max-height: 50vh;
-  * {
-    box-sizing: border-box;
-  }
 `;
 const SectionTitle = styled.h1`
   margin: 0 0 0.25rem 0;
@@ -138,7 +153,6 @@ const PickedCategories = styled.div`
   & p {
     margin: 0;
     min-width: 2.5rem;
-    box-sizing: border-box;
     border-radius: 14px;
     background-color: white;
     font-size: 0.8rem;
