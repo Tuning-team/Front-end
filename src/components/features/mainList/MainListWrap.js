@@ -47,7 +47,7 @@ const MainListWrap = () => {
           slidesToShow={1}
           centerMode={true}
           infinite={true}
-          speed={500}
+          speed={600}
           centerPadding={centerPadding}
           autoPlay={true}
           className={"center"}
@@ -73,6 +73,7 @@ const MainListWrap = () => {
         <SearchInput
           backgroundColor={"#ffffff"}
           onClick={() => nav("/search")}
+          disabled={true}
         />
         <InterestedCategories />
       </StyleBackground>

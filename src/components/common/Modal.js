@@ -12,7 +12,7 @@ const Modal = (props) => {
       backdrop={props.backdrop}
       borderRadius={props.borderRadius}
     >
-      <ModalContainer onClick={(e) => e.stopPropagation()}>
+      <ModalContainer onClick={(e) => e.stopPropagation()} width={props.width}>
         {props.modalKeyword && (
           <ModalKeyword>{props.modalKeyword}</ModalKeyword>
         )}
@@ -55,7 +55,7 @@ const ModalContainer = styled.div`
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.16);
   border-radius: 16px;
   user-select: none;
-  width: 18.5rem;
+  width: ${(props) => props.width || "18.5rem"};
 `;
 const ModalKeyword = styled.h2`
   margin: 0;

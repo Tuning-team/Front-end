@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getCookie } from "../../../shared/util/cookie";
 import { getCategory } from "../../../redux/modules/categorySlice";
-import {
-  deleteUserInterest,
-  getUserInterest,
-} from "../../../redux/modules/userSlice";
+import { getUserInterest } from "../../../redux/modules/userSlice";
 import { categoryList } from "./categoryData";
 
 const InterestedCategories = () => {
@@ -31,13 +28,6 @@ const InterestedCategories = () => {
   const userInterestArr = categoryList.filter((item) =>
     data.categories?.some((i) => i._id === item._id)
   );
-
-  //! 관심사 삭제버튼
-  const deleteInterest = () => {
-    userInterestArr.map((elem) => {
-      dispatch(deleteUserInterest(elem._id));
-    });
-  };
 
   return (
     <Wrap>
@@ -73,7 +63,6 @@ const InterestedCategories = () => {
           </>
         )}
       </BodyContainer>
-      {/* <button onClick={deleteInterest}>임시 관심사 삭제</button> */}
     </Wrap>
   );
 };

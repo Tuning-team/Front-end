@@ -70,6 +70,7 @@ export const deleteUserInterest = createAsyncThunk(
     }
   }
 );
+
 //!내가 담은 컬렉션확인 (no.30)
 export const getUserInterested = createAsyncThunk(
   "get/userInterested",

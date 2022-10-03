@@ -10,7 +10,7 @@ const Carousel = (props) => {
     className: props.className,
     dots: false,
     infinite: props.infinite || false,
-    speed: props.speed || 100,
+    speed: props.speed || 300,
     slidesToShow: props.slidesToShow || 1.2,
     slidesToScroll: 1,
     adaptiveHeight: false,
@@ -19,6 +19,8 @@ const Carousel = (props) => {
     centerPadding: props.centerPadding || "0px",
     autoPlay: props.autoPlay || false,
     lazyLoad: true,
+    swipe: true,
+    touchThreshold: 100,
   };
   return (
     <SliderWrapper height={props.height} className={props.className}>
