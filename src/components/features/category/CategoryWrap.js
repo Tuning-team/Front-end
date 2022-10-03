@@ -14,11 +14,10 @@ const CategoryWrap = () => {
   const id = param.category_id;
   const [count, setCount] = useState(0);
 
-  //!카테고리에 맞는 컬렉션리스트
   const { data, hasNext, totalContents } = useSelector(
     (state) => state.categorySlice.categoryCollection
   );
-  //!카테고리가 바뀔때마다
+
   useEffect(() => {
     setCount(0);
   }, [location]);
