@@ -88,12 +88,13 @@ const CommentList = ({ collectionId }) => {
     <StContainer>
       <StWrap>
         {modal === "menu" ? (
-          <Modal setModal={setModal}
+          <Modal
+            setModal={setModal}
             margin="2rem auto 1rem auto"
             backdrop="none"
             borderRadius="16px 16px 0 0"
           >
-            <StBtnDiv onClick={onModify} >
+            <StBtnDiv onClick={onModify}>
               <StIconImg src={IconEdit} />
               <StBtn>수정하기</StBtn>
             </StBtnDiv>
@@ -140,9 +141,7 @@ const CommentList = ({ collectionId }) => {
                       value={data.user_id}
                       title={data.comment}
                     >
-                      <StIconImg
-                        setModal={setModal}
-                        src={IconMore} />
+                      <StIconImg setModal={setModal} src={IconMore} />
                     </StCommentBtn>
                   </StProfileDiv>
                 );
@@ -195,9 +194,8 @@ const CommentList = ({ collectionId }) => {
             </StInputDiv>
           </StCommentForm>
         </>
-      )
-      }
-    </StContainer >
+      )}
+    </StContainer>
   );
 };
 export default CommentList;
@@ -225,8 +223,8 @@ const StBtnDiv = styled.div`
   background-color: #f5f5f5;
   border-radius: 8px;
   padding: 0.3rem 0.5rem;
-  margin: 0.5em 0; 
-`
+  margin: 0.5em 0;
+`;
 
 const StBtn = styled.div`
   pointer-events: none;

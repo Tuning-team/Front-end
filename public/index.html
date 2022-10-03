@@ -15,7 +15,7 @@
       })(window, document, "script", "dataLayer", "GTM-P5BJ32B");
     </script>
     <!-- End Google Tag Manager -->
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="./manifest.json" />
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <!-- 모바일 input에 focus되었을 때 확대 방지  -->
@@ -25,11 +25,13 @@
     />
     <!-- 검색엔진최적화를 위한 메타태그 -->
     <meta property="og:title" content="유튜브를 내맘대로, 튜닝" />
-    <meta property="og:description" content="유튜브 보는 방법을 "튜닝"해보세요!"
+    <meta
+      property="og:description"
+      content="유튜브 보는 방법을 튜닝해보세요!"
     />
     <meta
       property="og:image"
-      content="{{ url_for('public', filename='/images/og-image.png') }}"
+      content="{{ url_for('public', filename='./images/og-image.png') }}"
     />
     <meta name="theme-color" content="#000000" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -40,24 +42,6 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
     <script async src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <title>tuning | 튜닝!</title>
-    <!-- 이미지 캐싱안되게 -->
-    <!-- <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
-    <!-- <script type="module">
-      import "https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate";
-      const el = document.createElement("pwa-update");
-      document.body.appendChild(el);
-    </script> -->
-    <!-- http오류 -->
-    <!-- <meta
-      http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
-    /> -->
     <!-- Google tag (gtag.js) -->
     <script
       async

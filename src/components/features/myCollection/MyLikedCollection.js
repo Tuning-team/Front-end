@@ -8,10 +8,11 @@ import MyCollections from "../myCollection/MyCollections";
 
 const MyLikedCollection = () => {
   const dispatch = useDispatch();
+  const [count, setCount] = useState(0);
   const { data, hasNext, totalContents } = useSelector(
     (state) => state.myCollectionSlice.likedCollection
   );
-  const [count, setCount] = useState(0);
+
   useEffect(() => {
     if (count === 0) {
       dispatch(deleteAll());

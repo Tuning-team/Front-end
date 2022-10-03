@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMainCategories } from "../../../redux/modules/categorySlice";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../common/Loading";
-import EventBanner from "./EventBanner";
 
 const MainListWrap = () => {
   const nav = useNavigate();
@@ -75,7 +74,6 @@ const MainListWrap = () => {
           backgroundColor={"#ffffff"}
           onClick={() => nav("/search")}
         />
-        <EventBanner />
         <InterestedCategories />
       </StyleBackground>
       <ChildrenCategories recommend={recommend} recent={recent} />

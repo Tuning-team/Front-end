@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getCookie } from "./cookie";
 import Loading from "../../components/common/Loading";
 import ScrollTop from "./ScrollTop";

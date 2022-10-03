@@ -10,6 +10,7 @@ const FormInput = ({ onChange, collectionTitle }) => {
         name="collectionTitle"
         onChange={onChange}
         value={collectionTitle}
+        maxLength="15"
       />
     </Wrap>
   );
