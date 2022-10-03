@@ -192,14 +192,18 @@ const CollectionInfoBox = styled.div`
     letter-spacing: -0.9px;
     color: #191919;
     margin: 0.125rem 0;
+    max-width: inherit;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
   & .collectionExplanation {
     font-size: 0.75rem;
     font-weight: normal;
     color: #999;
+    max-width: inherit;
+    word-break: break-all;
   }
 `;
-
 const UserNameAndVideoNums = styled.div`
   font-size: 0.875rem;
   font-weight: bold;

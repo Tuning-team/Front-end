@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import ReactPlayer from "react-player/youtube";
 
-const YoutubeContainer = () => {
+const YoutubePlayer = () => {
   const videoId = useSelector((state) => state.collectionSlice.selectedVideoId);
   const videoList = useSelector((state) => state.collectionSlice.videos);
   const defaultVideoId = videoList[0]?.videoId;
@@ -63,7 +63,7 @@ const YoutubeContainer = () => {
   );
 };
 
-export default YoutubeContainer;
+export default YoutubePlayer;
 const PlayerWrapper = styled.div`
   position: sticky;
   top: 0;
