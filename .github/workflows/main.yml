@@ -38,8 +38,8 @@ jobs:
         run: |
           aws s3 cp \
             --recursive \
-            --region ap-northeast-2 \
-            build s3://hanghaegaelog
+            --region ${{secrets.AWS_DEFAULT_REGION}} \
+            build s3://${{ secrets.S3_BUCKET }}
 
       # - name: Invalidate CloudFront Cache
       #   run: aws cloudfront create-invalidation --distribution-id ${{secrets.CLOUDFRONT_DISTRIBUTION_ID}} --paths "/*"

@@ -11,7 +11,7 @@ const EventPage = () => {
       <HeaderLogo />
       <Wrap>
         <Contents>
-          <Date></Date>
+          <Date>기간: 9.27~ 10.01 (이벤트 종료)</Date>
           <ClickBox
             onClick={() =>
               (window.location.href =

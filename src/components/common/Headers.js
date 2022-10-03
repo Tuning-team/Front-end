@@ -16,7 +16,7 @@ const Headers = (props) => {
   const leftBtnHandler = () => {
     if (path === "/mainPage") {
       setIsCategoryShown(!isCategoryShown);
-    } else if (path === "/login") {
+    } else if (path === "/login" || path === "/search") {
       nav("/mainPage");
     } else nav(-1);
   };
@@ -25,7 +25,7 @@ const Headers = (props) => {
     if (path === "/mainPage") {
       setSrc(icon_category);
     } else setSrc(icon_back);
-  }, [location]);
+  }, [path]);
 
   return (
     <>
