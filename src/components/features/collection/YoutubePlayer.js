@@ -7,7 +7,7 @@ const YoutubePlayer = () => {
   const videoId = useSelector((state) => state.collectionSlice.selectedVideoId);
   const videoList = useSelector((state) => state.collectionSlice.videos);
   const defaultVideoId = videoList[0]?.videoId;
-  const baseUrl = "http://www.youtube.com/watch?v=";
+  const baseUrl = "https://www.youtube.com/watch?v=";
   const id = videoList.map((x) => x.videoId);
   const youtubeConfig = {
     youtube: {
@@ -27,6 +27,7 @@ const YoutubePlayer = () => {
   useEffect(() => {
     defaultVideoId && setTest(defaultVideoId);
   }, [defaultVideoId]);
+  console.log(test);
   return (
     <>
       <PlayerWrapper>
