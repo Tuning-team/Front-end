@@ -25,9 +25,8 @@ const YoutubePlayer = () => {
   }, [videoId]);
   //!디폴트비디오
   useEffect(() => {
-    !defaultVideoId && setTest(defaultVideoId);
+    defaultVideoId && setTest(defaultVideoId);
   }, [defaultVideoId]);
-
   return (
     <>
       <PlayerWrapper>
@@ -50,7 +49,6 @@ const YoutubePlayer = () => {
           }}
         />
       </PlayerWrapper>
-      );
     </>
   );
 };

@@ -4,7 +4,7 @@ on:
   push:
     # pull_request:
     branches:
-      # - feature_addCollection
+      - feature_addCollection
 
 jobs:
   deploy:
