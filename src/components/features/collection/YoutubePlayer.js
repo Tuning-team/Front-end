@@ -8,7 +8,7 @@ const YoutubePlayer = () => {
   const videoList = useSelector((state) => state.collectionSlice.videos);
   const defaultVideoId = videoList[0]?.videoId;
   const baseUrl = "https://www.youtube.com/watch?v=";
-  const id = videoList.map((x) => x.videoId);
+
   const youtubeConfig = {
     youtube: {
       playerVars: {
@@ -19,13 +19,13 @@ const YoutubePlayer = () => {
     },
   };
   //!비디오 클릭시
-  const [test, setTest] = useState(defaultVideoId);
+  const [playVideo, setPlayVideo] = useState(defaultVideoId);
   useEffect(() => {
-    setTest(videoId);
+    setPlayVideo(videoId);
   }, [videoId]);
   //!디폴트비디오
   useEffect(() => {
-    defaultVideoId && setTest(defaultVideoId);
+    defaultVideoId && setPlayVideo(defaultVideoId);
   }, [defaultVideoId]);
   console.log(test);
   return (
@@ -33,7 +33,7 @@ const YoutubePlayer = () => {
       <PlayerWrapper>
         <ReactPlayer
           // url={baseUrl + elem.videoId}
-          url={baseUrl + test}
+          url={baseUrl + playVideo}
           className="player"
           light={true}
           width="100%"
@@ -45,8 +45,9 @@ const YoutubePlayer = () => {
           playsinline={false}
           conifg={youtubeConfig}
           onEnded={() => {
-            const num = id.indexOf(test);
-            setTest(videoList[num + 1].videoId);
+            const id = videoList.map((x) => x.videoId);
+            const num = id.indexOf(playVideo);
+            setPlayVideo(videoList[num + 1].videoId);
           }}
         />
       </PlayerWrapper>
