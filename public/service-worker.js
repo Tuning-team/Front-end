@@ -19,8 +19,10 @@ const RUNTIME = "runtime";
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
-  "index.html",
-  "./", // Alias for index.html
+  "/images/categoryImg/cate_01_economy.webp",
+
+  // "index.html",
+  // "./", // Alias for index.html
 ];
 
 // The install handler takes care of precaching the resources we always need.
@@ -60,7 +62,27 @@ self.addEventListener("activate", (event) => {
 // from the network before returning it to the page.
 self.addEventListener("fetch", (event) => {
   // Skip cross-origin requests, like those for Google Analytics.
+  // console.log(event.request);
   if (event.request.url.startsWith(self.location.origin)) {
+    if (event.request.url.indexOf("/mainPage") !== -1) {
+      return false;
+    }
+
+    if (event.request.url.indexOf("/myPage") !== -1) {
+      return false;
+    }
+    if (event.request.url.indexOf("/search") !== -1) {
+      return false;
+    }
+    if (event.request.url.indexOf("/category") !== -1) {
+      return false;
+    }
+    if (event.request.url.indexOf("/collection") !== -1) {
+      return false;
+    }
+    if (event.request.url.indexOf("/static/js") !== -1) {
+      return false;
+    }
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
         if (cachedResponse) {
