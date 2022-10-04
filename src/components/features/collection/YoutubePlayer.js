@@ -27,7 +27,7 @@ const YoutubePlayer = () => {
   useEffect(() => {
     defaultVideoId && setPlayVideo(defaultVideoId);
   }, [defaultVideoId]);
-  console.log(test);
+
   return (
     <>
       <PlayerWrapper>
