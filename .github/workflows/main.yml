@@ -5,6 +5,7 @@ on:
     # pull_request:
     branches:
       # - feature_addCollection
+      -main
 
 jobs:
   deploy:
