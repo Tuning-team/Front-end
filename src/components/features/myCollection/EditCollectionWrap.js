@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addVideoList,
-  deleteVideo,
-} from "../../../redux/modules/collectionSlice";
+import { addVideoList } from "../../../redux/modules/collectionSlice";
 import EditCollectionForm from "./form/EditCollectionForm";
 
 const EditCollectionWrap = () => {
@@ -21,12 +18,8 @@ const EditCollectionWrap = () => {
   useEffect(() => {
     if (add?.length === 0) {
       dispatch(addVideoList(videoList));
-    } else {
-      dispatch(deleteVideo("all"));
-      dispatch(addVideoList(videoList));
     }
   }, []);
-
   return (
     data && (
       <EditCollectionForm

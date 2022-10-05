@@ -29,3 +29,9 @@ test("modal", () => {
   expect(screen.getByText("comments")).toBeVisible();
   expect(getByText("Task-1")).not.toBeNull();
 });
+
+const mockFn = jest.fn();
+mockFn.mockReturnValue("3");
+console.log(mockFn());
+mockFn.mockImplementation((name) => `I am ${name}!`);
+console.log(mockFn("Dale"));
