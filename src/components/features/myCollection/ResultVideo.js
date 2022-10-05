@@ -14,7 +14,6 @@ const ResultVideo = () => {
     (state) => state.myCollectionSlice.searchResult
   );
 
-  //! 검색을 안했을때 useselector 안들어오도록
   const seeMore = () => {
     const keyword = localStorage.getItem("keyword");
     dispatch(getVideo({ keyword, nextPageToken, key }));

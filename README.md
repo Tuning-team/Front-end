@@ -47,7 +47,7 @@
 
         - 구글로그인: 유투브 계정과의 연동을 위해 구글 로그인만을 사용합니다.
 
-        - 메인페이지: 서서비스에서 추천하는 다양한 튜닝들을 모아서 보여줍니다. 인기있는 튜닝, 검색창, 관심있는 카테고리, 바로 지금 추천하는 튜닝으로 이루어져 있습니다.
+        - 메인페이지: 서비스에서 추천하는 다양한 튜닝들을 모아서 보여줍니다. 인기있는 튜닝, 검색창, 관심있는 카테고리, 바로 지금 추천하는 튜닝으로 이루어져 있습니다.
 
         - 검색페이지 : 유저들이 만든 튜닝들을 검색할 수 있고, 인기검색어를 통해 다양한 검색어를 접할 수 있습니다.
 
@@ -67,27 +67,118 @@
  
 ![architecture](https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/db1c34b9-3670-472f-89c4-80b65acd4874)
 
-<br>     
- 
-----
-> ## tools
 <br>
 
+---
+
+> ## 사용기술
+
+<br>
+
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"/>&nbsp;
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)
 ![PWA](https://img.shields.io/badge/-PWA-%23593d88?style=for-the-badge&logo=PWA&logoColor=white)
-![github](https://img.shields.io/badge/-GitHubActions-%2088FF?style=for-the-badge&logo=GitHubActions&logoColor=white)
-![github](https://img.shields.io/badge/-Axios-%?style=for-the-badge&logo=Axios&logoColor=white)
-
+<img src="https://img.shields.io/badge/Redux Toolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Amazon CloudFront-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white"/>&nbsp;
 <br>
 
-<!-- --- -->
+---
 
-<!-- > ## 트러블슈팅
+> ## 트러블슈팅
 
-추가예정....... -->
+<details>
+ <summary> 1. (캐싱전략) 배포시 캐싱 문제 해결</summary>
+<div markdown="1">
+<br>
+> 문제상황 (AS-IS)
+<br>
+배포시에  변경된 사항들이 실시간으로 업데이트 되지 못하고, 배포후 강력 새로고침을 해야 변경사항들이 반영됨. 
+→ 피드백을 반영하여 수정하여도 유저들에게 변경된 사항을 바로 보여줄수 없음.**
+>
+
+> 핵심문제 정의
+> <br>
+> 기존의 데이터가 계속 존재하는 상황. 프론트쪽에서 캐싱이 되고 있는 곳은 총 두 곳:
+> `CloudFront`와 `Service worker`에서 캐싱되고 있음을 인지
+> → 네트워크 탭을 통해 확인 해보니 service worker에서 캐싱된 데이터가 들어오고 있음을 확인.
+
+    + service worker를 register()에서 unregister()로 전환하면 변경사항이 반영되기 시작하는 것을 확인
+
+”**서비스워커가 index.html을 캐싱하지 못하도록 해야함”**
+
+>
+
+> 해결방안
+> <br>
+> service-woker 내의 cache storage api**를 사용하여 캐싱을 커스텀 하거나 **workbox**를 통해 서비스워커를 조작하는 방법이 존재.
+> workbox는 **Cache First, Network First, Network Only, Cache Only등으로 캐싱전략이 나눠져 있으며, 원하는 파일들을 선택하여 캐싱설정이 가능
+> → _workbox를 통해 필수로 사용하는 icon, webp, otf형식의 파일들만 캐싱되도록 설정._\*\*
+
+---
+
+> 해결 후 효과 (TO-BE)
+> <br>
+> 필요한 파일들만 캐싱함으로써 로딩속도는 캐싱 전보다 높이고,
+> 업데이트된 사항은 바로바로 업데이트 될 수 있도록 함.\*\*
+
+ </div>
+</details>
+
+<details>
+ <summary>2. 최적화와 리팩토링을 통한 속도 개선</summary>
+<div markdown="1">
+<br>
+> 문제상황 (AS-IS)
+<br>
+> 유저테스트 초기에 이미지 로딩속도가 느리다는 피드백을 많이 받게됨.
+> 이미지의 경우 아래 사진과 같이 이미지가 깨져서 들어오게되는 상황
+> 데스크탑에서는 무리없이 작동됐으나, 모바일 환경에서 특히 느려짐.\*\*
+
+> 핵심문제 정의
+> <br>
+
+1. 라이트하우스의 진단결과 이미지 크기가 크며, 사용하지 않는 자바스크립트 코드가 많다는 진단을 받음.
+   —> 주로보여지는 유투브 썸네일의 경우, 유투브 자체 썸네일로 크기조절이 어려운 상황.
+   —> 한번에 이미지를 갖고 오는 양을 줄여야 함.
+2. 컴포넌트가 복잡하게 얽혀있어 리팩토링을 통해 렌더링이 적절한시기에 되지 않는 상황. 세개의 탭으로 나뉘어있는 마이페이지는 하나의 컴포넌트에서 모두 관리하고 있어 하나의 탭이 렌더링 될때마다 다른 탭들도 렌더링이 되고 있음.
+   —> 한 컴포넌트에 여러개의 useEffect가 있어 마운트 속도를 지연시키고, 의존성 배열에 변화가 있을 때마다 리렌더링을 유발함.\*\*
+   >
+
+> 해결방안
+> <br>
+> 성능을 올리고 이미지 로딩을 빠르게 가져올 수 있는 방법들을 실행.
+
+1.  이미지 lazy 속성 적용
+2.  무한스크롤 기능을 이용하여 한번에 최대 5개의 이미지만을 불러올 수 있도록 함.
+3.  React.Lazy, Suspense를 사용한 코드스플리팅
+4.  탭부분을 페이지로 분리.
+5.  png, jpeg파일 → webp로 전환
+6.  기본적으로 쓰이는 아이콘, 글꼴 → 서비스워커의 캐싱기능을 활용
+7.  추가적으로, 로딩중일 때에는 로딩스피너를 추가하여 이용자 이탈을 막고, 무한스크롤 시 스켈레톤 UI를 추가하여 대기체감시간을 줄임.\*\*
+    >
+
+---
+
+> 해결 후 효과 (TO-BE)
+> <br>
+> 메인페이지 기준: 라이트하우스 성능점수 37점 —> 57점 증가/ 총로딩시간 32ms →22ms로 단축 (맥북에어기준)
+> 초기의 이미지 로딩이 느리다는 피드백 감소 + 로딩중 이미지가 깨지는 현상 사라짐.\*\*
+
+> 👀리팩토링 전
+> ![전](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F814e39e2-0ec0-4bbd-a51e-ba83e311a1c5%2FIMG_A5D374C54241-1.jpeg?table=block&id=948bb06d-efdf-413f-93a9-4564496a7328&spaceId=25baf198-14f4-4c01-b098-e9973b36b6ee&width=2000&userId=119a1556-1a9b-48c3-ac40-92daf6d156cf&cache=v2)
+
+> 👀리팩토링 후
+> ![후](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F98c0a12f-83f4-49fe-b06c-a1a2b235706f%2FIMG_1B45595660EB-1.jpeg?table=block&id=c1a4647f-178c-4c39-bf46-9e0a7963754f&spaceId=25baf198-14f4-4c01-b098-e9973b36b6ee&width=2000&userId=119a1556-1a9b-48c3-ac40-92daf6d156cf&cache=v2)
+
+</div>
+</details>
 
 <br>
 

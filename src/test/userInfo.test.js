@@ -9,3 +9,14 @@ test("likes,saves,comments, profile 확인", () => {
   expect(screen.getByText("saves")).toBeVisible();
   expect(screen.getByAltText("profile_img")).toBeVisible();
 });
+
+test("toast modal 확인", () => {
+  render(<UserInfo />);
+  expect(screen.getByText("comments")).toBeVisible();
+});
+
+const mockFn = jest.fn();
+mockFn.mockReturnValue("3");
+console.log(mockFn());
+mockFn.mockImplementation((name) => `I am ${name}!`);
+console.log(mockFn("Dale"));
