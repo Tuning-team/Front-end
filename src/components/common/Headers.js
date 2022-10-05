@@ -68,6 +68,7 @@ const LeftBtn = styled.img`
 const StyleLogo = styled(Logo)`
   margin-top: 0.688rem;
   height: 1.625rem;
+  cursor: pointer;
 `;
 const RightBtn = styled.div`
   font-size: 1rem;
