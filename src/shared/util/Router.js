@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getCookie } from "./cookie";
-import Loading from "../../components/common/Loading";
+import LoadingPage from "../../pages/LoadingPage";
 import ScrollTop from "./ScrollTop";
 
 function Router() {
@@ -37,7 +37,7 @@ function Router() {
   return (
     <BrowserRouter>
       <ScrollTop />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<LoadingPage />}>
         <Routes>
           {/* public 경로 */}
           <Route path="/" element={<WelcomePage />} />
