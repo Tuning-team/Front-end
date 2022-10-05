@@ -23,15 +23,6 @@ const initialState = {
   },
   searchResult: {
     loading: false,
-    // data: [
-    //   {
-    //     uploader: { url: "", username: "" },
-    //     video: {
-    //       id: "",
-    //       title: "",
-    //     },
-    //   },
-    // ],
     data: [],
     nextPageToken: "",
     key: "",
