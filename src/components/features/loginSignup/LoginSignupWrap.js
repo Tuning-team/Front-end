@@ -39,7 +39,7 @@ const LoginSignupWrap = () => {
           <Header>로그인</Header>
           <LoginBtn
             onClick={() => {
-              window.location.href = "https://api.tube-tuning.com/api/google";
+              window.location.href = "https://tube-tuning.com/api/google";
             }}
           >
             <Logo src="./images/logo_google.png" alt="logo" />
@@ -66,7 +66,6 @@ const LoginSignupWrap = () => {
 export default LoginSignupWrap;
 
 const LoginWrap = styled.div`
-  // width: 22.438rem;
   width: 100%;
   height: 30.75rem;
   display: flex;
@@ -109,9 +108,6 @@ const LoginBtn = styled.div`
     box-shadow: 0px 0px 0px #d4d1e5;
     position: relative;
     top: 2px;
-    // background-color: white;
-    // opacity: 1;
-    // font-weight: 900;
   }
 `;
 const Logo = styled.img`

@@ -6,7 +6,7 @@
 
 ### 👉 [노션링크](https://www.notion.so/bohyeonkim/154a50090fe546519c80d130f5f775b7)
 
-### 👉 소개영상 (준비중)
+### 👉 [소개영상](https://www.youtube.com/watch?v=qcqPacw5v_Q)
 
 <br>
 
@@ -36,7 +36,7 @@
 * ### 📲 서비스 주요 기능
 
     <details>
-    <summary>페이지 구성 및 디자인</summary>
+    <summary> 페이지 구성 및 디자인</summary>
     <div markdown="1">
 
   ![페이지 이미지](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d53fa4d0-763d-49dd-bd0d-cdeae4f6cdf9/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221003%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221003T115458Z&X-Amz-Expires=86400&X-Amz-Signature=f7d2f4776e661463c372322576fa0ea659ed911375d4c09dde2b82de76715d96&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)

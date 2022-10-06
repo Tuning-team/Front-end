@@ -15,7 +15,6 @@ import SearchNoData from "./SearchNodata";
 const SearchWrap = () => {
   const dispatch = useDispatch();
   const searchList = useSelector((state) => state.searchSlice.search.data);
-  const loading = useSelector((state) => state.searchSlice.loading);
   const defaultPage = useSelector((state) => state.searchSlice.searchStatus);
 
   useEffect(() => {
@@ -47,10 +46,4 @@ const Container = styled.div`
 `;
 const InputContainer = styled.div`
   padding: 3rem 1.25rem 0 1.25rem;
-`;
-const StText = styled.p`
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 3.5rem;
-  color: var(--color-disabled);
 `;
