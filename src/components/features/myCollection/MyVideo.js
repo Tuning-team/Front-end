@@ -16,7 +16,6 @@ export default MyVideo;
 const Wrapper = styled.div`
   position: relative;
   width: 11rem;
-  // width: 100%;
   height: 100%;
   padding-top: 56.25%;
   overflow: hidden;

@@ -1,14 +1,12 @@
-import Navbar from "../components/common/Navbar";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 import Headers from "../components/common/Headers";
-import HeaderLogo from "../components/features/myCollection/HeaderLogo";
 import eventPage from "../shared/images/eventPage.webp";
 import Layout from "../components/common/Layout";
 const EventPage = () => {
   return (
     <Layout>
-      <HeaderLogo />
+      <Headers />
       <Wrap>
         <Contents>
           <Date>기간: 9.27~ 10.01 (이벤트 종료)</Date>
@@ -62,7 +60,6 @@ const Date = styled.div`
   color: #fff;
 `;
 const ClickBox = styled.div`
-  //   border: 1px solid red;
   width: 17rem;
   height: 4rem;
   margin-top: 28rem;

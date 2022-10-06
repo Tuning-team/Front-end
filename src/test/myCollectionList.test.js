@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import CollectionList from "../common/CollectionList";
 
 test("컬렉션리스트map", () => {

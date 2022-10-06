@@ -15,7 +15,6 @@ const SearchInput = (props) => {
   const onChangeHandler = (e) => {
     setSearch(e.target.value);
   };
-  // toastState가 true면 보여줌
   const [toastState, setToastState] = useState(false);
 
   const onSearch = (e) => {

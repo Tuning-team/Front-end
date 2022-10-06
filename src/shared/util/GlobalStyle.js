@@ -44,13 +44,8 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-appearance: none;
   }
   input:focus, textarea:focus {
-    /* outline-style: solid; */
-    /* outline-offset: 1px; */
-    outline-color : var(--color-primary);
-        /* -moz-outline-radius: 18px; */
-    /* -webkit-tap-highlight-color : var(--color-primary); */
+    outline-color : var(--color-primary);  
   }
-  /* 인풋 자동완성 시 색상변경 방지 */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,

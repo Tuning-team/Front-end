@@ -9,7 +9,6 @@ import {
 import { getCategory } from "../../../../redux/modules/categorySlice";
 import useInputs from "../../../hooks/useInput";
 import { editCollection } from "../../../../redux/modules/collectionSlice";
-import Modal from "../../../common/Modal";
 import FormTitle from "./FormTitle";
 import FormInput from "./FormInput";
 import FormOption from "./FormOption";
@@ -20,13 +19,14 @@ import ToastNotification from "../../../common/ToastNotification";
 const EditCollectionForm = ({ data }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
+  const [toastState, setToastState] = useState(false);
+  const [alert, setAlert] = useState("모두 입력해주세요");
   const categories = useSelector((state) => state.categorySlice.category.data);
   const addVideoList = useSelector(
     (state) => state.myCollectionSlice.videoList
   );
   const inputData = useSelector((state) => state.myCollectionSlice.editData);
-  const [toastState, setToastState] = useState(false);
+
   //!마운트
   useEffect(() => {
     dispatch(getCategory());
@@ -49,8 +49,10 @@ const EditCollectionForm = ({ data }) => {
       addVideoList.length === 0 ||
       category_id === "0"
     ) {
-      setModal(true);
+      setAlert("모두 입력해주세요");
+      setToastState(true);
     } else {
+      setAlert("수정이 완료되었습니다");
       dispatch(editCollection({ collection_id, addData, setToastState }));
       dispatch(rememberData([]));
       dispatch(deleteVideo("all"));
@@ -83,14 +85,9 @@ const EditCollectionForm = ({ data }) => {
           addVideoList={addVideoList}
         />
       </Form>
-      {modal && (
-        <Modal setModal={setModal} modal={modal}>
-          모두 입력해주세요
-        </Modal>
-      )}
       {toastState && (
         <ToastNotification setToastState={setToastState}>
-          "수정이 완료되었습니다"
+          {alert}
         </ToastNotification>
       )}
     </AddCollectionWrap>
@@ -100,7 +97,6 @@ const EditCollectionForm = ({ data }) => {
 export default EditCollectionForm;
 const AddCollectionWrap = styled.div`
   padding: 1.125rem 1.5rem 1rem 1.5rem;
-  // margin-bottom: 5.25rem;
   overflow-y: scroll;
   height: 100vh;
   &::-webkit-scrollbar {
@@ -119,5 +115,4 @@ const Form = styled.div`
     display: none;
   }
   height: 100vh;
-  // margin-bottom: 5rem;
 `;

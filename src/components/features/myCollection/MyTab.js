@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const MyTab = () => {
   const location = useLocation();
@@ -16,32 +15,21 @@ const MyTab = () => {
       setTab(3);
     }
   }, [location]);
+
   return (
     <TabMenu tab={tab}>
-      <div
-        className="myCollection"
-        onClick={() => {
-          setTab(1);
-          nav("/myPage/myCollection");
-        }}
-      >
+      <div className="myCollection" onClick={() => nav("/myPage/myCollection")}>
         <span>내 튜닝</span>
       </div>
       <div
         className="likedCollection"
-        onClick={() => {
-          setTab(2);
-          nav("/myPage/likedCollection");
-        }}
+        onClick={() => nav("/myPage/likedCollection")}
       >
         <span>좋아요한 튜닝</span>
       </div>
       <div
         className="interestedCollection"
-        onClick={() => {
-          setTab(3);
-          nav("/myPage/keptCollection");
-        }}
+        onClick={() => nav("/myPage/keptCollection")}
       >
         <span>담아온 튜닝</span>
       </div>

@@ -56,7 +56,6 @@ const AddCollectionForm = () => {
       const addData = { category_id, collectionTitle, description, videos };
       setAlert("컬렉션이 생성되었습니다.");
       dispatch(postCollection({ addData, setToastState }));
-
       dispatch(rememberData([]));
     }
   };
@@ -99,7 +98,6 @@ const AddCollectionForm = () => {
 export default AddCollectionForm;
 const AddCollectionWrap = styled.div`
   width: 100%;
-  // padding: 0rem 1.5rem 1rem 1.5rem;
 `;
 const Form = styled.div`
   display: flex;
@@ -112,5 +110,4 @@ const Form = styled.div`
     display: none;
   }
   height: 100vh;
-  // margin-bottom: 5rem;
 `;

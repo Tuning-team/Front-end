@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import throttle from "lodash/throttle";
@@ -165,11 +165,7 @@ const IconLayout = styled.div`
   align-items: center;
   & span {
     font-size: 0.75rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
     line-height: 1.24;
-    letter-spacing: normal;
   }
 `;
 const Icon = styled.img`

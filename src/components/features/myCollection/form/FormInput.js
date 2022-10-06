@@ -42,7 +42,6 @@ const Input = styled.input`
   width: 100%;
   height: 2.5rem;
   padding: 5px;
-  // margin-bottom: 0.125rem;
   border-radius: 8px;
   border: solid 1px #eee;
   background-color: #fff;
