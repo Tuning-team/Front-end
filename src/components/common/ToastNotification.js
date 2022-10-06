@@ -12,7 +12,7 @@ const ToastNotification = (props) => {
   }, []);
   return (
     <ToastContainer bottom={props.bottom}>
-      <p>{props.children}</p>
+      <p data-testid="content">{props.children}</p>
     </ToastContainer>
   );
 };
