@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
 const ToastNotification = (props) => {
@@ -12,7 +12,7 @@ const ToastNotification = (props) => {
   }, []);
   return (
     <ToastContainer bottom={props.bottom}>
-      <p>{props.children}</p>
+      <p data-testid="content">{props.children}</p>
     </ToastContainer>
   );
 };
@@ -28,7 +28,6 @@ to {
 `;
 const ToastContainer = styled.div`
   /* 이름 duration timing-function delay iteration-count fill-mode play-state  */
-  /* https://poiemaweb.com/css3-animation 참고 */
   animation: ${Vibration} 0.1s 3;
   /* 위치잡기 */
   position: fixed;
@@ -43,8 +42,11 @@ const ToastContainer = styled.div`
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
   /* 크기 및 간격 */
   min-height: 3rem;
-  width: 18.5rem;
+  width: calc(480px - 3rem);
   padding: 0 1.25rem;
+  @media screen and (max-width: 480px) {
+    width: calc(100vw - 3rem);
+  }
   /* 텍스트 */
   text-align: center;
   font-size: 1rem;

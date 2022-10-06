@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import icon_next_white from "../../../shared/svg/icon_next_white.svg";
+import icon_next_white from "../../../shared/icon/icon_next_white.svg";
 const MyVideo = ({ src, videoNum }) => {
   return (
     <Wrapper>
@@ -16,10 +16,10 @@ export default MyVideo;
 const Wrapper = styled.div`
   position: relative;
   width: 11rem;
-  // width: 100%;
   height: 100%;
   padding-top: 56.25%;
   overflow: hidden;
+  cursor: pointer;
 `;
 const Img = styled.img`
   position: absolute;

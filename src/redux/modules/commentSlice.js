@@ -1,12 +1,11 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
-import { instance } from "../../shared/instance";
+import { instance } from "../../shared/util/instance";
 
 const initialState = {
   loading: false,
   data: [],
   error: "",
 };
-
 
 export const addComment = createAsyncThunk(
   "ADD_COMMENT",
@@ -18,11 +17,10 @@ export const addComment = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return error.message;
+      return alert(error.response.data.errorMessage);
     }
   }
 );
-
 
 export const getComment = createAsyncThunk(
   "GET_COMMENT",
@@ -35,8 +33,6 @@ export const getComment = createAsyncThunk(
     }
   }
 );
-
-
 
 export const updateComment = createAsyncThunk(
   "UPDATE_COMMENT",
@@ -53,8 +49,6 @@ export const updateComment = createAsyncThunk(
   }
 );
 
-
-
 export const deleteComment = createAsyncThunk(
   "DELETE_COMMENT",
   async (commentId) => {
@@ -67,7 +61,6 @@ export const deleteComment = createAsyncThunk(
     }
   }
 );
-
 
 export const commentSlice = createSlice({
   name: "commentList",

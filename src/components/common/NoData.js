@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { getCookie } from "../../shared/cookie";
-import icon_add from "../../shared/svg/plus.svg";
+import { getCookie } from "../../shared/util/cookie";
+import icon_add from "../../shared/icon/plus.svg";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 

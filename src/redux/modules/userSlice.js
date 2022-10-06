@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { instance } from "../../shared/instance";
+import { instance } from "../../shared/util/instance";
 
 const initialState = {
   data: [],
@@ -70,6 +70,7 @@ export const deleteUserInterest = createAsyncThunk(
     }
   }
 );
+
 //!내가 담은 컬렉션확인 (no.30)
 export const getUserInterested = createAsyncThunk(
   "get/userInterested",

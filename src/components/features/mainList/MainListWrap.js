@@ -1,35 +1,30 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ChildrenCategories from "./ChildrenCategories";
-import SearchInput from "../../common/elements/SearchInput";
+import SearchInput from "../../common/SearchInput";
 import InterestedCategories from "./InterestedCategories";
-import Carousel from "../../common/Carousel";
-import CarouselItem from "../../common/CarouselItem";
+import Carousel from "./Carousel";
+import CarouselItem from "./CarouselItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCategories } from "../../../redux/modules/categorySlice";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../common/Loading";
-import EventBanner from "./EventBanner";
 
 const MainListWrap = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const { data, loading } = useSelector(
-    (state) => state.categorySlice.mainCategories
-  );
+  const data = useSelector((state) => state.categorySlice.mainCategories.data);
 
-  const weather = data[0]?.res1;
-  const recommend = data[1]?.res2;
-  const popular = data[2]?.res3;
-  const recent = data[3]?.res4;
+  const recommend = data[0]?.res1;
+  const popular = data[1]?.res2;
+  const recent = data[2]?.res3;
 
   useEffect(() => {
     dispatch(
       getMainCategories({
         category_ids: [
-          "631e7d7a4ae4c133c405a965",
           "631e7d7a4ae4c133c405a966",
           "6319aeebd1e330e86bbade9f",
           "631e7d7a4ae4c133c405a964",
@@ -47,43 +42,39 @@ const MainListWrap = () => {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <div style={{ position: "relative" }}>
-          <Carousel
-            slidesToShow={1}
-            centerMode={true}
-            infinite={true}
-            speed={500}
-            centerPadding={centerPadding}
-            autoPlay={true}
-            className={"center"}
-            height={"15.625rem"}
-          >
-            {popular?.collections.map((collection) => (
-              <CarouselItem
-                key={collection._id}
-                src={collection.thumbnails[0]}
-                alt={collection._id}
-                onClick={() => nav(`/collection/${collection._id}`)}
-              />
-            ))}
-          </Carousel>
-          <CarouselDesc>
-            <TextContainer>
-              <h1>인기있는 튜닝</h1>
-              <p>가장 많은 좋아요와 댓글을 획득한 튜닝들</p>
-            </TextContainer>
-          </CarouselDesc>
-        </div>
-      )}
+      <div style={{ position: "relative" }}>
+        <Carousel
+          slidesToShow={1}
+          centerMode={true}
+          infinite={true}
+          speed={600}
+          centerPadding={centerPadding}
+          autoPlay={true}
+          className={"center"}
+          height={"15.625rem"}
+        >
+          {popular?.collections.map((collection) => (
+            <CarouselItem
+              key={collection._id}
+              src={collection.thumbnails[0]}
+              alt={collection._id}
+              onClick={() => nav(`/collection/${collection._id}`)}
+            />
+          ))}
+        </Carousel>
+        <CarouselDesc>
+          <TextContainer>
+            <h1>인기있는 튜닝</h1>
+            <p>가장 많은 좋아요와 댓글을 획득한 튜닝들</p>
+          </TextContainer>
+        </CarouselDesc>
+      </div>
       <StyleBackground>
         <SearchInput
           backgroundColor={"#ffffff"}
           onClick={() => nav("/search")}
+          disabled={true}
         />
-        <EventBanner />
         <InterestedCategories />
       </StyleBackground>
       <ChildrenCategories recommend={recommend} recent={recent} />
@@ -117,13 +108,10 @@ const TextContainer = styled.div`
   & h1 {
     font-size: 1.5rem;
     font-weight: bold;
-    letter-spacing: normal;
     color: #fff;
   }
   & p {
     font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: normal;
     color: #adadad;
   }
 `;

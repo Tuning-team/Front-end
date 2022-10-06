@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../../redux/modules/categorySlice";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
-import { ReactComponent as CloseIcon } from "../../shared/svg/24_ena_close.svg";
+import { ReactComponent as CloseIcon } from "../../shared/icon/24_ena_close.svg";
 
 const CategoryModal = ({ setIsCategoryShown }) => {
   const nav = useNavigate();

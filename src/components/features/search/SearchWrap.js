@@ -1,15 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { resetKeyword } from "../../../redux/modules/searchSlice";
+import {
+  resetKeyword,
+  resetSearchStatus,
+} from "../../../redux/modules/searchSlice";
 import Loading from "../../common/Loading";
-import SearchInput from "../../common/elements/SearchInput";
+import SearchInput from "../../common/SearchInput";
 import MyCollections from "../myCollection/MyCollections";
+import SearchKeyword from "./SearchKeyword";
+import SearchNoData from "./SearchNodata";
 
+// { Suspense, lazy }
 const SearchWrap = () => {
   const dispatch = useDispatch();
-  const searchList = useSelector((state) => state.searchSlice.data);
-  const loading = useSelector((state) => state.searchSlice.loading);
+  const searchList = useSelector((state) => state.searchSlice.search.data);
+  const defaultPage = useSelector((state) => state.searchSlice.searchStatus);
+
   useEffect(() => {
     return () => {
       dispatch(resetKeyword());
@@ -20,10 +27,10 @@ const SearchWrap = () => {
       <InputContainer>
         <SearchInput />
       </InputContainer>
-      {loading ? (
-        <Loading />
-      ) : searchList.length === 0 ? (
-        <StText>검색 결과가 없습니다.</StText>
+      {!defaultPage ? (
+        <SearchKeyword />
+      ) : searchList.res.length === 0 ? (
+        <SearchNoData />
       ) : (
         <MyCollections state={searchList.res} title={searchList.search} />
       )}
@@ -39,10 +46,4 @@ const Container = styled.div`
 `;
 const InputContainer = styled.div`
   padding: 3rem 1.25rem 0 1.25rem;
-`;
-const StText = styled.p`
-  font-size: 1rem;
-  text-align: center;
-  margin-top: 3.5rem;
-  color: var(--color-disabled);
 `;

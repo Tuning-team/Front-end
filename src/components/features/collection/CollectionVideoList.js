@@ -122,7 +122,7 @@ const TextWrapper = styled.div`
 
   & h6 {
     margin: 0;
-    font-size: 0.625rem;
+    font-size: 0.725rem;
     font-weight: normal;
     letter-spacing: -0.25px;
     color: #adadad;

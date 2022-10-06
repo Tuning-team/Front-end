@@ -6,16 +6,14 @@ import {
   deleteCollection,
   putLikeBtn,
 } from "../../../redux/modules/tempCollectionSlice";
-import {
-  keepCollection,
-} from "../../../redux/modules/collectionSlice";
+import { keepCollection } from "../../../redux/modules/collectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "../../../shared/cookie";
-import shareKakao from "../../../shared/shareKakao";
+import { getCookie } from "../../../shared/util/cookie";
+import shareKakao from "../../../shared/util/shareKakao";
 import ToastNotification from "../../common/ToastNotification";
-import { ReactComponent as LikeIcon } from "../../../shared/svg/28_ena_like.svg";
-import { ReactComponent as SaveIcon } from "../../../shared/svg/28_ena_get.svg";
+import { ReactComponent as LikeIcon } from "../../../shared/icon/28_ena_like.svg";
+import { ReactComponent as SaveIcon } from "../../../shared/icon/28_ena_get.svg";
 import Modal from "../../common/Modal";
 import SlideUpModal from "../../common/SlideUpModal";
 import { editVideoList } from "../../../redux/modules/collectionSlice";
@@ -194,14 +192,18 @@ const CollectionInfoBox = styled.div`
     letter-spacing: -0.9px;
     color: #191919;
     margin: 0.125rem 0;
+    max-width: inherit;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
   }
   & .collectionExplanation {
     font-size: 0.75rem;
     font-weight: normal;
     color: #999;
+    max-width: inherit;
+    word-break: break-all;
   }
 `;
-
 const UserNameAndVideoNums = styled.div`
   font-size: 0.875rem;
   font-weight: bold;

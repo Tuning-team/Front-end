@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { setCookie } from "../shared/cookie";
+import { setCookie } from "../shared/util/cookie";
 
 const GoogleLogin = () => {
   let now = new Date();
